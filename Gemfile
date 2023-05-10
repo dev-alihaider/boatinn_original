@@ -131,3 +131,5 @@ gem 'country_select'
 gem 'redcarpet' #markdown
 
 gem "invisible_captcha", "~> 2.0"
+
+gem 'globalid'
