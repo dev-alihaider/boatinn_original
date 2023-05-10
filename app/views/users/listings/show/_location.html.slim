@@ -1,0 +1,183 @@
+.listing-map#lst_location
+  #listing-map.map
+  - if @boat.location.present?
+    = hidden_field_tag 'location[lat]', @boat.location.lat, id: 'list-lat'
+    = hidden_field_tag 'location[lng]', @boat.location.lng, id: 'list-lng'
+
+javascript:
+  var input = document.getElementById('location');
+
+  var delay = (function(){
+    var timer = 0;
+    return function(callback, ms){
+      clearTimeout (timer);
+      timer = setTimeout(callback, ms);
+    };
+  })();
+
+  $(document).ready(function() {
+
+    $('#location').keypress(function(e) {
+      if(e.keyCode==13){
+        e.preventDefault();
+        delay(function(){
+          var inputLocation = $('.search-form #location'),
+              startPHLocation = $('#location').prop('placeholder'),
+              emptyLocation = 'Select location from dropdown list';
+          if($('#lat-value').val() == '' && !($('#location').hasClass('.input-error'))) {
+            inputLocation.addClass('input-error');
+            inputLocation.val('');
+            inputLocation.prop('placeholder', emptyLocation);
+          } else {
+            inputLocation.removeClass('input-error');
+            inputLocation.prop('placeholder', startPHLocation);
+            $('.search-form').submit(); 
+          };
+
+        }, 500);
+      }
+    });
+
+    $('#location').on('keypress', function(){
+      $('#lat-value').val('');
+      $('#lng-value').val('');
+      if($(this).val() != '') {
+        $(this).removeClass('input-error');
+        $(this).prop('placeholder', startPHLocation);
+      }
+    });
+
+    $('#location').on('focus', function(){
+      $(this).prop('placeholder', startPHLocation)
+    });
+
+    // Validation of search-form
+    var startPHLocation = $('#location').prop('placeholder'),
+        emptyLocation = 'Select location from dropdown list',
+        
+        startPHFrom = $('#from').prop('placeholder'),
+        emptyFrom = 'Select date',
+    
+        startPHTo = $('#to').prop('placeholder'),
+        emptyTo = 'Select date';
+
+    function locateValidation(){
+      var inputLocation = $('.search-form #location');
+          inputFrom = $('.search-form #from');
+          inputTo = $('.search-form #to');
+
+      if($('#lat-value').val() == '' && !($('#location').hasClass('.input-error'))) {
+        inputLocation.addClass('input-error');
+        inputLocation.val('');
+        inputLocation.prop('placeholder', emptyLocation);
+      } else {
+        inputLocation.removeClass('input-error');
+        inputLocation.prop('placeholder', startPHLocation);   
+      };
+
+      // if(inputFrom.val() == '') {
+      //   if(!inputFrom.hasClass('input-error')) {
+      //     inputFrom.addClass('input-error');
+      //   };
+      //   inputFrom.prop('placeholder', emptyFrom);
+      // } else {
+      //   inputFrom.removeClass('input-error');
+      //   inputFrom.prop('placeholder', startPHFrom);
+      // };
+
+      // if(inputTo.val() == '') {
+      //   if(!inputTo.hasClass('input-error')) {
+      //     inputTo.addClass('input-error');
+      //   };
+      //   inputTo.prop('placeholder', emptyTo);
+      // } else {
+      //   inputTo.removeClass('input-error');
+      //   inputTo.prop('placeholder', startPHTo);
+      // };
+
+      if($('.search-form .input-error').length == 0) {
+        $('.search-form').submit();
+      }
+    };
+
+    $('.search-form button[type="submit"]').on('click', function(e){
+      e.preventDefault();
+      locateValidation();
+    })
+
+  });
+
+  function initMap() {
+    // Create the map.
+    var listLat = parseFloat($('#list-lat').val());
+    var listLng = parseFloat($('#list-lng').val());
+
+    var citymap = {
+      mandaluyong: {
+        center: {lat: listLat, lng: listLng},
+      }
+    };
+    var map = new google.maps.Map(document.getElementById('listing-map'), {
+      zoom: 16,
+      center: {lat: listLat, lng: listLng},
+      mapTypeId: 'terrain'
+    });
+
+    // Construct the circle for each value in citymap.
+    // Note: We scale the area of the circle based on the population.
+    for (var city in citymap) {
+      // Add the circle for this city to the map.
+      var cityCircle = new google.maps.Circle({
+        strokeColor: '#168d8f',
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: '#168d8f',
+        fillOpacity: 0.35,
+        map: map,
+        center: citymap[city].center,
+        radius: 100
+      });
+    }
+
+    var input = document.getElementById('location');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+
+    autocomplete.addListener('place_changed', function() {
+
+      var place = autocomplete.getPlace();
+
+      if (!place.geometry) {
+        var firstResult = $(".pac-container .pac-item:first .pac-item-query").text();
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({"address":firstResult }, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            $('#lat-value').val(results[0].geometry.location.lat());
+            $('#lng-value').val(results[0].geometry.location.lng());
+
+            $(".pac-container .pac-item:first").addClass("pac-selected");
+            $(".pac-container").css("display","none");
+            $('#location').val(firstResult);
+            $(".pac-container").css("visibility","hidden");
+          }
+        });
+        return;
+      };
+
+      var address = '';
+      if (place.address_components) {
+        address = [
+          (place.address_components[0] && place.address_components[0].short_name || ''),
+          (place.address_components[1] && place.address_components[1].short_name || ''),
+          (place.address_components[2] && place.address_components[2].short_name || '')
+        ].join(' ');
+      }
+
+      // Set data for server
+      $('#lat-value').val(place.geometry.location.lat());
+      $('#lng-value').val(place.geometry.location.lng());
+
+    });
+  
+  }
+
+script async="" defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCK3l7AsKHTwtVByqkpAGCNOXzNv6nug2k&libraries=places&callback=initMap"

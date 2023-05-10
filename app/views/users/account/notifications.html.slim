@@ -1,0 +1,41 @@
+= render 'users/shared/menu'
+
+.container
+  .flex-container.account-container
+    .sidebar = render 'menu'
+    .content
+      h3.title = t('notifications')
+      .inner-content
+        = form_tag update_notifications_dashboard_account_index_path, method: :patch, class: %i[notification-form account-form] do |f|
+          .row
+            .column.col-lg-6.col-sm-12
+              .form-field
+                h4.subtitle = t('users.notifications.choose_options_to_communicate')
+              .form-field
+                h4.subtitle
+                  = "#{t('users.profile.phone_number')} "
+                  span.marked = current_user.phone_number
+                p.description = t('users.notifications.phone_description')
+              .form-field
+                .switcher-wrapper
+                  = check_box_tag "notifications[sms]", 1, @user_notifications.sms, class: %i[reverse-switcher]
+                  = label_tag 'notifications_sms' do
+                    = t('users.notifications.sms')
+                    .switchbox
+                p.description = t('users.notifications.sms_description')
+              .form-field
+                .switcher-wrapper
+                  = check_box_tag "notifications[email]", 1, @user_notifications.email, class: %i[reverse-switcher]
+                  = label_tag 'notifications_email' do
+                    = t('email')
+                    .switchbox
+                p.description
+                  span.marked = current_user.email
+                p.description = t('users.notifications.email_description')
+              .form-field
+                h4.subtitle
+                  = t('users.notifications.to_update_phone_email')
+                  =< link_to t('users.profile.menu.edit_profile'), edit_dashboard_profile_index_path
+                = button_tag nil, class: %i[button btn-success btn-save] do
+                  i.fa.fa-save
+                  = t('save')

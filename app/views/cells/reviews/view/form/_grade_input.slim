@@ -1,0 +1,8 @@
+.column.col-lg-6.col-sm-12
+  .review-rating-box
+    h3.subtitle
+      = t("users.inbox.reviews.create.#{field}")
+    p.note
+      = t("users.inbox.reviews.create.#{field}_#{prefix}")
+    .review-rating
+      = f.hidden_field field, class: "review-field", disabled: disabled

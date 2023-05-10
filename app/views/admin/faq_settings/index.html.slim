@@ -1,0 +1,31 @@
+.row
+  .col-lg-12
+    h2.title--bordered FAQs
+    = render 'admin/shares/breadcrumbs'
+.row
+  .col-lg-4
+    .ibox.float-e-margins
+      .ibox-content.accordion
+        = link_to 'Add new question', new_admin_faq_setting_path, class: 'button btn-success'
+        .accordion-item
+          h3.accordion-btn General
+          ul.panel = render partial: 'admin/faq_settings/leftside_title_part', collection: @faqs_general
+        .accordion-item
+          h3.accordion-btn For renters
+          ul.panel = render partial: 'admin/faq_settings/leftside_title_part', collection: @faqs_for_renters
+        .accordion-item
+          h3.accordion-btn For owners
+          ul.panel = render partial: 'admin/faq_settings/leftside_title_part', collection: @faqs_for_owners
+  .col-lg-8
+    .ibox.float-e-margins
+      .ibox-content.faq-content
+        .faq-content__inner
+          .faq-group
+            h3.title.title--bordered General
+            = render partial:'admin/faq_settings/setting_part', collection: @faqs_general
+          .faq-group
+            h3.title.title--bordered For renters
+            = render partial:'admin/faq_settings/setting_part', collection: @faqs_for_renters
+          .faq-group
+            h3.title.title--bordered For owners
+            = render partial:'admin/faq_settings/setting_part', collection: @faqs_for_owners

@@ -1,0 +1,30 @@
+- sidebar_dir = 'users/inbox/show/sidebar/'
+
+.sidebar
+  / Boat owner present
+  = render "#{sidebar_dir}user_present", user: @travel.seller
+
+  / reservation details
+  .subtitle = t('users.inbox.show.booking_sidebar.reservation_details')
+
+  table.info-booking-table
+    / boat details
+    = render "#{sidebar_dir}boat_details"
+
+    / current member present
+    - if @travel.shared?
+      tr
+        td colspan="2" = render "#{sidebar_dir}member_present", customer: @travel.current_customer, show_name: true
+
+    / checkout details
+    = render "#{sidebar_dir}checkout_details"
+    = render "#{sidebar_dir}reservation_codes", with_details: @travel.shared?
+
+    - if @travel.shared? && @travel.customers.count.positive?
+      tr
+        td colspan="2"
+          h3 = t("users.inbox.show.booking_sidebar.members")
+          = render partial: "#{sidebar_dir}member_present", collection: @travel.customers, as: :customer, locals: { show_name: true }
+
+  - unless @hide_cancellation.presence
+    = render "#{sidebar_dir}cancellation_info"

@@ -1,0 +1,6 @@
+.btn-block
+  label.btn.save-btn
+    = f.submit t('activerecord.attributes.homepage_setting.edit.save_button'), class: %i(btn save-btn)
+    i.fa.fa-floppy-o[aria-hidden="true"]
+  = link_to(return_url, class:%i(btn exit-btn)) do
+    i.fa.fa-reply[aria-hidden="true"]

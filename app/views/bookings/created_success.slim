@@ -1,0 +1,21 @@
+.container.checkout-header
+  / = image_tag "logo-small.svg", class: "checkout-header-logo"
+.container
+  .flex-container
+    .content
+      .tr-wizard-step
+        .row
+          .col-md-12
+            h2.title = t("bookings.requests.confirmed_title")
+            p = t("bookings.requests.confirmed_desc", email: @travel.current_user.email)
+        = form_tag booking_share_by_email_path(booking_id: @booking.id), method: 'post' do |form|
+          .row
+            .col-md-6.col-sm-12
+              #request-emails
+                = label_tag 'email', t('.email_label')
+                .form-field.request-email-field = email_field_tag 'emails[0]', nil, placeholder: t('email')
+              = link_to t('.add_more'), "#", class: "request-email-add"
+          .row
+            .col-md-4.col-sm-12 = button_tag t('next'), class: "button btn-primary btn-expanded"
+    .sidebar
+      = render 'bookings/short_checkout_info'

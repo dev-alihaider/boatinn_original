@@ -1,0 +1,18 @@
+.container
+  .messages-header
+    .links.remote-links
+      = link_to t('users.inbox.travelling_title'), travels_dashboard_inbox_index_path, class: (@inbox.booking_type_selected?(:travelling) ? :active : '')
+      span |
+      = link_to t('users.inbox.reservations_title'), reservations_dashboard_inbox_index_path, class: (@inbox.booking_type_selected?(:reservations) ? :active : '')
+    .filter
+      / Different filter for index/show
+      - if action_name == 'show'
+        .title = t('users.inbox.index.filter')
+          .select-wrapper
+            = select_tag :filter_messages_from, conversation_users_options(@conversation), class: :select2
+      - else
+        ul.remote-links
+          - InboxService::UNREAD_STATUSES.each do |status|
+            li
+              - attr = @inbox.unread_status_selected?(status) ? { class: :active } : {}
+              = link_to t("users.inbox.#{status}", count_msg: @inbox.count_messages(unread_status: status)), @inbox.search_params(unread_status: status), attr

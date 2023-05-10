@@ -1,0 +1,15 @@
+= render 'users/shared/menu'
+= hidden_field_tag 'current-user-id', current_user.id
+= hidden_field_tag 'title-delete-wishlist', t('search.index.delete_wishlist')
+section.wishlist-section
+  .container-fluid
+    .row
+      h3.main-title = t('users.listings.wishlist.index.wish_list')
+    .row
+      ul.wishlist-list = render partial: 'users/wishlist/wishlist_item', collection: @wishes, as: :boat
+  - if @similar_boats.present?
+    .container-fluid
+      .row
+        h3.main-title = t('users.listings.show.similar_listings')
+      .row
+        ul.wishlist-list = render partial: 'users/wishlist/similar_item', collection: @similar_boats, as: :boat

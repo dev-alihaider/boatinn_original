@@ -1,0 +1,44 @@
+.toplinks
+  .container
+    ul
+      li
+        = link_to dashboard_inbox_index_path, class: active_menu_item('inbox') do
+          i.bt-icon.bt-icon-envelope
+          = t('users.account.inbox')
+      li
+        = link_to dashboard_statistics_path, class: active_menu_item('statistics') do
+          i.bt-icon.bt-icon-pie-chart
+          = t('users.account.statistics')
+      li
+        = link_to dashboard_trips_path, class: active_menu_item('trips') do
+          i.bt-icon.bt-icon-ship
+          = t('users.account.your_trip')
+      li
+        = link_to dashboard_listings_path, class: active_menu_item('listings') do
+          i.bt-icon.bt-icon-list
+          = t('users.account.your_listings')
+      / li
+        = link_to dashboard_wishlist_index_path, class: active_menu_item('wishlist') do
+          i.fa.fa-list
+          = t('wishlist')
+      li
+        = link_to dashboard_calendar_index_path, class: active_menu_item('calendar') do
+          i.bt-icon.bt-icon-month-calendar
+          = t('users.account.calendar')
+      li
+        = link_to dashboard_earnings_path, class: active_menu_item('earnings', by_index_action: true) do
+          i.bt-icon.bt-icon-earnings
+          = t('users.account.earning')
+      li
+        = link_to dashboard_reservations_path, class: active_menu_item('reservations', by_index_action: true) do
+          i.bt-icon.bt-icon-inbox
+          = t('users.account.reservations')
+      li
+        = link_to dashboard_account_index_path, class: active_menu_item('account') do
+          i.bt-icon.bt-icon-user-circle
+          = t('users.account.account')
+
+      li
+        = link_to show_profile_path(id: current_user.id) do
+          i.bt-icon.bt-icon-user-circle
+          = t('users.account.profile')

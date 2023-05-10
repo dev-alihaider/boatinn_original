@@ -1,0 +1,138 @@
+= render 'users/shared/menu'
+
+.container
+  .flex-container.inbox-inner-container
+    / = render 'users/inbox/show/booking_sidebar'
+
+    / TODO: Move to template
+    .sidebar
+      .user
+        .avatar.img-block
+          = link_to show_profile_path(@review_target_user) do
+            = image_tag user_image_url(@review_target_user)
+        .name
+          = link_to show_profile_path(@review_target_user) do
+            = @review_target_user.display_name
+        .info
+          = "3 verifications - #{@review_target_user.reviews_about.count} reviews"
+
+      / .location-box
+        .subtitle = 'Deluxe boat in Makati'
+        i.fa.fa-map-marker
+        = 'Malaga, Spain'
+
+      / .check-in-out-box
+        .check-in-box
+        /   .subtitle = t('.check_in')
+        /   = 'Friday, 17 AGO'
+        / .check-out-box
+        /   .subtitle = t('.check_out')
+        /   = 'Monday, 22 AGO'
+
+      / .guests-box
+      /   .subtitle = @boat.listing_title
+      /   / = 'Deluxe boat in Makati'
+      /   i.fa.fa-map-marker
+      /   =< @boat.location.short_name
+      /   / i.fa.fa-map-marker
+      /   / = @boat.
+      /   = image_tag boat_image_url(@boat, :medium), width: '50%'
+      / / TODO: add boat info
+      / .calculations-box
+      /   i.fa.fa-group
+      /   =< @boat.guest_number
+      /   br
+      /   i.fa.fa-calendar
+      /   =< 'May 15, 2018 > May 19, 2018'
+      /   / .subtitle = to_human(check_in_out_times, @boat.check_in_time)
+
+      table.info-booking-table
+        tr
+          td
+            p
+              strong.location-title
+                = link_to "#" do
+                  = @boat.listing_title
+            p
+              = link_to "#" do
+                =< @boat.location.short_name
+          td
+            .img-block
+              = link_to "#" do
+                = image_tag boat_image_url(@boat, :medium)
+        tr
+          td colspan="2"
+            p
+              i.custom-icon-guests
+              span.guest_label
+                =< @boat.guest_number
+            p
+              i.custom-icon-calendar
+              =< 'May 15, 2018 > May 19, 2018'
+
+    .content
+      .inner-content.reviews-content
+        = form_for @review, url: create_review_dashboard_inbox_index_path do |f|
+          = f.hidden_field :target_user_id, value: f.object.receiver.id
+
+          h3.subtitle
+            = t('users.inbox.reviews.create.public_review_header')
+          p.note
+            = t('users.inbox.reviews.create.public_review_description')
+          = f.text_area :public_review, placeholder: t('users.inbox.reviews.create.review_placeholer'), class: "textarea-small"
+          / textarea[placeholder="#{t('users.inbox.reviews.create.review_placeholer')}"]
+
+          h3.subtitle
+            = t('users.inbox.reviews.create.private_review_header')
+          p.note
+            = t('users.inbox.reviews.create.private_review_description')
+          = f.text_area :private_review, placeholder: t('users.inbox.reviews.create.review_placeholer'), class: "textarea-small"
+          / textarea[placeholder="#{t('users.inbox.reviews.create.review_placeholer')}"]
+
+          .row
+            .column.col-lg-6.col-sm-12
+              .review-rating-box
+                h3.subtitle
+                  = t('users.inbox.reviews.create.rating_cleanliness')
+                p.note
+                  = t('users.inbox.reviews.create.rating_cleanliness_description')
+                .review-rating
+                  = f.hidden_field :rating_cleanliness, value: f.object.rating_cleanliness, class: "review-field"
+            .column.col-lg-6.col-sm-12
+              .review-rating-box
+                h3.subtitle
+                  = t('users.inbox.reviews.create.rating_communication')
+                p.note
+                  = t('users.inbox.reviews.create.rating_communication_description')
+                .review-rating
+                  = f.hidden_field :rating_communication, value: f.object.rating_communication, class: "review-field"
+            .column.col-lg-6.col-sm-12
+              .review-rating-box
+                h3.subtitle
+                  = t('users.inbox.reviews.create.rating_boat_rules')
+                p.note
+                  = t('users.inbox.reviews.create.rating_boat_rules_description')
+                .review-rating
+                  = f.hidden_field :rating_boat_rules, value: f.object.rating_boat_rules, class: "review-field"
+
+          .row
+            .column.col-lg-6.col-sm-12
+              .review-rating-box
+                h3.subtitle
+                  = t('users.inbox.reviews.create.rating_recommend')
+                p.note
+                  = t('users.inbox.reviews.create.rating_recommend_description')
+                .recommend-box
+                  = link_to "#", class: "recommend-btn rec-smile"
+                    i.fa.fa-smile-o
+                    span
+                      = "Yes"
+                  = link_to "#", class: "recommend-btn rec-frown"
+                    i.fa.fa-frown-o
+                    span
+                      = "No"
+                  = f.hidden_field :would_recommend, value: f.object.would_recommend
+                / = f.text_field :would_recommend
+
+          .row
+            = button_tag t('users.inbox.reviews.create.submit'), class: %i[button btn-primary btn-send-message]

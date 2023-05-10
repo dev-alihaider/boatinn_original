@@ -1,0 +1,40 @@
+/ = stripe_javascript_tag
+/ = javascript_include_tag 'checkout_stripe'
+
+#add-credit-card data = { path: dashboard_payments_path }
+  = hidden_field_tag :stripe_card_token, ''
+
+  .row
+    #card-errors
+  .row
+    .column.col-md-12
+      .form-field
+        = label_tag :card_number, t('users.payments.card_number')
+        #card_number.form-field-input
+  .row.custom-grid-row
+    .column.col-md-6
+      .form-field
+        = label_tag :c_month, t('users.payments.expires_on')
+        #c_month.form-field-input
+
+    .column.col-md-6
+      .form-field
+        = label_tag :security_code, t('users.payments.security_cod')
+        #security_code.form-field-input
+
+  .row
+    .column.col-md-12
+      .form-field
+        = label_tag :details_holder_name, t('users.payments.holder_name')
+        = text_field_tag 'card_details[name]'
+
+  .row.custom-grid-row
+    .column.col-md-6
+      .form-field
+        = label_tag :zip_code, t('users.payments.zip_code')
+        #postalCode.form-field-input
+
+    .column.col-md-6
+      .form-field
+        = label_tag :country, t('users.payments.country')
+        = country_select(:card_details, :address_country, {include_blank: t('users.payments.select_a_country')}, {class: 'select2'})

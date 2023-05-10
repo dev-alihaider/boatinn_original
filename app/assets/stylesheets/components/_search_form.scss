@@ -1,0 +1,82 @@
+.search-form {
+  background-color: $white;
+  display: flex;
+
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  .form-field {
+    &:nth-child(1) {
+      width: 100%;
+      @include respond-to-min($mobile) {
+        width: 40%;
+      }
+      @include respond-to-min($desktop) {
+        width: 30%;
+        margin-bottom: 0;
+      }
+    }
+    &:nth-child(2), &:nth-child(3) {
+      width: 48%;
+      @include respond-to-min($mobile) {
+        width: 28%;
+      }
+      @include respond-to-min($desktop) {
+        width: 18%;
+        margin-bottom: 0;
+      }
+    }
+    &:nth-child(4) {
+      width: 48%;
+      margin-bottom: 0;
+      @include respond-to-min($mobile) {
+        width: 28%;
+      }
+      @include respond-to-min($desktop) {
+        width: 18%;
+      }
+    }
+    &:nth-child(5) {
+      width: 48%;
+      margin-bottom: 0;
+      @include respond-to-min($mobile) {
+        width:70%;
+      }
+      @include respond-to-min($desktop) {
+        width: 16%;
+      }
+    }
+  }
+}
+
+header.with-search form.search-form .form-field {
+  &.with-icon {
+    &::before {
+      @include respond-to-max($desktop) {
+        font-size: 1rem;
+        left: 12px;
+      }
+    }
+    @include respond-to-max($desktop) {
+      input {
+        padding-left: 2rem;
+        font-size: 0.875rem;
+      }
+    }
+  }
+  @include respond-to-max($desktop) {
+    .button {
+      min-width: auto;
+      font-size: 1rem;
+    }
+  }
+  // &:nth-child(4) {
+  //   width: 18%;
+  //   @include respond-to-max($desktop) {
+  //     // width: 11%;
+  //   }
+  //   @include respond-to-max($tablet) {
+  //     width: 100%;
+  //   }
+  // }
+}

@@ -1,0 +1,523 @@
+.messages-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 4rem 0 2rem;
+  .links {
+    padding: 1rem 0;
+    a {
+      display: inline-block;
+      font-size: rem-calc(22);
+      color: $carbon;
+      &.active {
+        color: $teal;
+        font-family: $bold-font;
+      }
+    }
+    span {
+      padding: 0 0.5rem;
+      font-size: 1.5rem;
+      color: $carbon;
+    }
+  }
+  .filter {
+    padding: 22px 0;
+    display: flex;
+    justify-content: space-between;
+    @include respond-to-max($tablet - 1) {
+      width: 80%;
+      margin: 0 auto;
+    }
+    .title {
+      font-family: $bold-font;
+      color: $carbon;
+      line-height: $form-height;
+    }
+    .select-wrapper {
+      position: relative;
+      width: calc(100% - 4rem);
+    }
+    .remote-links {
+      padding: 0;
+      margin: 0 auto;
+      li {
+        list-style-type: none;
+        display: inline-block;
+        padding: 0 10px;
+        border-right: 1px solid $carbon;
+        &:last-child {
+          border-right: 0;
+        }
+        a {
+          color: $carbon;
+          &:hover, &.active {
+            color: $main-color;
+          }
+        }
+      }
+    }
+  }
+  @include respond-to-max($tablet - 1) {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.messages-table,
+.mobile-messages-table {
+  margin: 0 0 4rem;
+  display: none;
+  @include respond-to-min($tablet) {
+    display: table;
+  }
+  td {
+    text-align: center;
+    vertical-align: middle;
+    width: 33.33%;
+    border-bottom: 1px solid $border-color;
+    padding: 1.2rem;
+    &:first-child {
+      text-align: left;
+    }
+    &:last-child {
+      text-align: right;
+      @include respond-to-max($tablet - 1) {
+        text-align: center;
+      }
+    }
+    &.main-info {
+      width: 45%;
+    }
+  }
+
+  tr {
+    &:nth-child(odd) {
+      background-color: $white;
+    }
+  }
+
+  .unread, tr.unread {
+    background-color: $smoke;
+    .fading-line {
+      &:after {
+        background: linear-gradient(to right, rgba(255, 255, 255, 0), $smoke);
+      }
+    }
+  }
+
+  i.fa {
+    padding-right: 0.5rem;
+    color: $teal;
+    &.fa-envelope-o {
+      color: $crimson;
+    }
+    &.fa-envelope-open-o {
+      color: $yellowgreen;
+    }
+  }
+
+  .msg-info {
+    display: flex;
+    align-items: center;
+    .avatar {
+      width: 4rem;
+      min-width: 4rem;
+      padding-top: 4rem;
+    }
+    .userinfo {
+      margin-left: 1.5rem;
+      flex-grow: 1;
+      .name {
+        font-family: $bold-font;
+        font-size: 1rem;
+        a {
+          color: $teal;
+        }
+      }
+      .date {
+        color: $carbon;
+        line-height: 20px;
+        padding-top: 6px;
+      }
+    }
+  }
+
+  .msg-conversation {
+    text-align: left;
+    .content {
+      color: $carbon;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .title-wrapper {
+      display: flex;
+      justify-content: space-between;
+    }
+    .date {
+      text-align: right;
+      min-width: 95px;
+      font-size: 0.9rem;
+      padding-top: 1px;
+      font-family: $bold-font;
+      color: $carbon;
+      &.double {
+        min-width: 200px;
+      }
+    }
+    .title {
+      flex-grow: 1;
+      margin-right: 0.5rem;
+      font-family: $bold-font;
+      color: $carbon;
+    }
+  }
+
+  .msg-type {
+    color: $carbon;
+    font-family: $bold-font;
+  }
+
+  .msg-status {
+    span {
+      font-family: $bold-font;
+      &.accepted {
+        color: $success-color;
+      }
+      &.canceled {
+        color: $error-color;
+      }
+
+      &.aborted {
+        color: $error-color;
+      }
+      &.completed {
+        color: $success-color;
+      }
+    }
+  }
+
+}
+
+.mobile-messages-table {
+  display: block;
+  border-top: 1px solid $border-color;
+  @include respond-to-min($tablet) {
+    display: none;
+  }
+  .mobile-messages-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid $border-color;
+    .right-col {
+      padding-left: 1rem;
+      flex-grow: 1;
+    }
+    .avatar {
+      width: 4rem;
+      min-width: 4rem;
+      padding-top: 4rem;
+    }
+    .msg-conversation {
+      .date {
+        text-align: left;
+      }
+      .content {
+        margin: 0.5rem 0;
+      }
+    }
+    .msg-type-status {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+
+/* Inner Inbox Styles*/
+.inbox-inner-container {
+  margin-top: 3rem;
+  .sidebar {
+    padding: 1rem;
+    border: 1px solid $border-color;
+    width: 100%;
+    @include respond-to-min($ipad_as_mobile) {
+      padding: 1rem;
+      margin-bottom: 4rem;
+      width: 50%;
+    }
+    @include respond-to-min($desktop) {  
+      padding: 2rem;
+      width: 35%;
+    }
+    h3 {
+      text-align: center;
+      color: $carbon;
+      margin-bottom: 1rem;
+    }
+    .avatar {
+      width: 125px;
+      padding-top: 125px;
+      margin: 1rem auto 1rem;
+      height: 0;
+    }
+    .user {
+      .name {
+        text-align: center;
+        font-family: $bold-font;
+        margin-bottom: 0.5rem;
+
+        a {
+          color: $carbon-middle;
+        }
+      }
+      .info {
+        text-align: center;
+        margin-bottom: 2.5rem;
+      }
+      .contact-box {
+        margin: 3rem auto 2rem;
+        .title {
+          font-family: $bold-font;
+          margin: 0.5rem 0;
+        }
+        p {
+          margin: 0 0 1.5rem;
+          line-height: 1;
+        }
+      }
+    }
+    .subtitle {
+      padding-bottom: 1rem;
+      font-family: $bold-font;
+      color: $carbon;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    .chat-members {
+      margin-bottom: 2.5rem;
+    }
+    .chat-member {
+      display: flex;
+      width: 100%;
+      margin: 1.5rem 0;
+      align-items: center;
+      .avatar {
+        margin: 0;
+        width: 80px;
+        padding-top: 80px;
+      }
+      .user-info {
+        margin: 0 0 0 2rem;
+        line-height: 1.7;
+        .name {
+          font-size: 1.3rem;
+          font-family: $bold-font;
+        }
+        .friends {
+          color: $main-text-color;
+          font-size: 1.1rem;
+        }
+      }
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+  .content {
+    padding: 1rem;
+    @include respond-to-min($tablet + 1) {
+      padding: 0 0 2rem 2rem;
+    }
+  }
+}
+
+.btn-send-message {
+  margin: 1rem auto;
+}
+
+.info-box-wrapper {
+  margin-bottom: 2rem;
+  @include respond-to-min($tablet) {
+    margin-bottom: 4rem;
+  }
+}
+
+.info-box {
+  border: 1px solid $border-color;
+  padding: 2rem 2rem 2rem 4rem;
+  display: flex;
+  background: image-url('icons/info-green.svg') 13px 17px no-repeat;
+  background-size: 40px;
+  margin-bottom: 2rem;
+  .title {
+    font-family: $bold-font;
+    margin-bottom: 0.5rem;
+    color: $carbon;
+  }
+  .subtitle {
+    margin-bottom: 0.5rem;
+    color: $carbon;
+    font-size: 1.125rem;
+  }
+  .content {
+    padding: 0;
+  }
+  &.without-icon {
+    background: none;
+    padding-left: 2rem;
+  }
+}
+
+.inbox-btn-holder {
+  margin-top: 20px;
+
+  .button {
+    min-width: 12.5rem;
+  }
+}
+
+.new_message {
+  #message_content {
+    height: 6rem;
+    margin: 0;
+  }
+  .button {
+    margin: 1rem 0 1.2rem;
+  }
+}
+
+.chat-window {
+  padding-top: 2rem;
+  margin-bottom: 2rem;
+  border-top: 1px solid $border-color;
+  .message-box {
+    width: 100%;
+    margin-bottom: 2rem;
+    display: flex;
+    align-self: flex-start;
+    .avatar {
+      width: 4rem;
+      padding-top: 4rem;
+      height: 0;
+    }
+    .text {
+      width: calc(100% - 4rem - 35px);
+      padding: 1.5rem 1.5rem 1rem 1.5rem;
+      border-radius: 0 1rem 1rem 1rem;
+      background-color: $smoke;
+      position: relative;
+      color: $carbon;
+      margin: 30px 0 0 35px;
+      &:before {
+        content: "";
+        position: absolute;
+        left: -30px;
+        top: 0;
+        width: 0;
+        height: 0;
+        border-top: 30px solid $smoke;
+        border-left: 30px solid $transparent;
+      }
+      .date {
+        float: right;
+        margin-top: 1rem;
+        i {
+          padding-right: 0.5rem;
+          color: $teal;
+        }
+      }
+    }
+    &.out-mes {
+      flex-direction: row-reverse;
+      .text {
+        border-radius: 1rem 0 1rem 1rem;
+        margin: 30px 35px 0 0;
+        &:before {
+          right: -30px;
+          left: auto;
+          top: 0;
+          width: 0;
+          height: 0;
+          border-top: 30px solid $smoke;
+          border-right: 30px solid $transparent;
+        }
+      }
+    }
+  }
+}
+
+.transition-message {
+  width: 100%;
+  position: relative;
+  text-align: center;
+  .custom-think-line {
+    position: absolute;
+    z-index: 5;
+    top: 8px;
+  }
+  .transition-text {
+    margin: 0 auto;
+    display: inline-block;
+    background-color: $white;
+    line-height: 1rem;
+    padding: 0 1rem;
+    font-size: 0.8rem;
+    position: relative;
+    z-index: 7;
+    cursor: default;
+  }
+  .custom-icon-info-green {
+    width: 20px;
+    height: 20px;
+    margin: -5px 10px -5px -1px;
+  }
+}
+
+.cancelation-text {
+  margin: 2rem 0;
+  .title {
+    font-size: 1.2rem;
+    margin: 0 0 0.5rem;
+    color: $carbon;
+  }
+  p {
+    line-height: 1.4rem;
+  }
+}
+
+.book-inbox-calendar {
+  margin: 2rem 0;
+  .datepicker td,
+  .datepicker th {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    padding: 0;
+    &.disabled {
+      color: $white;
+      background-color: $carbon;
+    }
+  }
+  .datepicker .datepicker-days tbody td {
+    pointer-events: none; // TO DO Can be refactored
+  }
+  .datepicker-inline {
+    width: 100%;
+    padding: 0;
+  }
+}
+
+.inbox-pagination-wrapper {
+  margin: 1rem 0 3rem;
+}
+
+.cancellation-small-text {
+  padding: 1rem 0;
+}
+
+textarea + span.field-error {
+  color: $crimson;
+  font-size: 0.8rem;
+  line-height: 1rem;
+  padding-top: 5px;
+}

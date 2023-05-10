@@ -1,0 +1,498 @@
+body.search {
+  .header-search-control-panel {
+    display: block;
+  }
+  .logo {
+    display: none;
+  }
+  .logo-small {
+    display: block;
+  }
+  .pagination {
+    margin: 2rem 0;
+    @include respond-to-max($tablet) {
+      margin: 1rem 0;
+    }
+  }
+  footer {
+    border-top: 1px solid $border-color;
+  }
+  .header-search-wrapper {
+    width: 100%;
+    // margin-top: 1rem;
+    @include respond-to-min($notebook + 1) {
+      width: 89%;
+    }
+  }
+}
+
+.search-container {
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  min-height: 80vh;
+  padding: 1rem;
+  @include respond-to-max($full) {
+    max-width: 1240px;
+    padding: 1rem 0;
+  }
+  @include respond-to-max($desktop) {
+    width: 97%;
+  }
+  @include respond-to-max($tablet) {
+    flex-direction: column-reverse;
+    width: auto;
+    padding-top: 0;
+  }
+  .search-sidebar {
+    width: 36%;
+    min-height: 100vh;
+    @include respond-to-max($tablet) {
+      width: 100%;
+      margin-left: 0;
+    }
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      .button {
+        width: 48%;
+      }
+    }
+  }
+  .search-content {
+    width: 64%;
+    min-height: 100vh;
+    @include respond-to-max($tablet) {
+      width: 100%;
+      min-height: auto;
+    }
+  }
+}
+
+.filter-price {
+  padding: 0 1rem;
+  @include respond-to-min($ipad_as_mobile) {
+    padding: 0;
+  }
+}
+
+.filters-nav {
+  padding: 0 1rem;
+  @include respond-to-min($ipad_as_mobile) {
+    margin-bottom: 3rem;
+    padding: 0;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin-right: -12px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    @include respond-to-max($tablet) {
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+    li {
+      width: 23.5%;
+      @include respond-to-max($tablet) {
+        width: calc(50% - 0.5rem);
+        margin-bottom: 1rem;
+      }
+      a {
+        display: block;
+        background-color: $smoke;
+        border-bottom: 5px solid $transparent;
+        transition: 0.2s all linear;
+        color: $carbon;
+        height: rem-calc(61);
+        line-height: rem-calc(61);
+        overflow: hidden;
+        font-size: 1rem;
+        text-align: center;
+        i {
+          padding-right: 0.8rem;
+          font-size: 2rem;
+          position: relative;
+          top: 4px;
+          @include respond-to-max($tablet) {
+            font-size: 1.4rem;
+            top: 4px;
+          }
+        }
+        &:hover {
+          text-decoration: none;
+          @include respond-to-min($ipad_as_mobile) {
+            background-color: $smoke-dark;
+          }
+        }
+        &.active {
+          background-color: $smoke-dark;
+          @include respond-to-min($ipad_as_mobile) {
+            background-color: $smoke;
+          }
+        }
+      }
+      &:nth-child(1) {
+        a {
+          border-color: $main-color;
+        }
+      }
+      &:nth-child(2) {
+        a {
+          border-color: $carbon;
+        }
+      }
+      &:nth-child(3) {
+        a {
+          border-color: $lemon;
+        }
+      }
+      &:nth-child(4) {
+        a {
+          border-color: $crimson;
+        }
+      }
+    }
+  }
+}
+
+.rent-type-text {
+  background-color: $carbon;
+  color: $white;
+  text-align: center;
+  height: 1.2rem;
+  font-family: $bold-font;
+}
+
+.search-results {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 1rem;
+  @include respond-to-min($ipad_as_mobile) {
+    padding: 0;
+  }
+}
+
+.search-result-box {
+  width: 100%;
+  margin-bottom: 3rem;
+  padding: 0 0 1rem;
+  border-bottom: 1px solid $border-color;
+  @include respond-to-min($medium) {
+    padding: 0;
+    border: 0;
+  }
+  .img-wrap {
+    position: relative;
+    a {
+      display: block;
+      img {
+        opacity: 0.9;
+        transition: 0.2 opacity linear;
+      }
+      &:hover {
+        text-decoration: none;
+        img {
+          opacity: 1;
+        }
+      }
+    }
+    .wishlist-add {
+      position: absolute;
+      bottom: 0.8rem;
+      right: 1rem;
+      display: block;
+      color: $white;
+      z-index: 1;
+      font-size: 1.5rem;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+  .inf-wrap {
+    color: $carbon;
+    .title {
+      font-family: $bold-font;
+      margin: 0.7rem 0 0.6rem;
+      font-size: 1rem;
+      line-height: 1.4rem;
+      height: 2.8rem;
+      overflow: hidden;
+      a {
+        color: $carbon-dark;
+      }
+    }
+    .price {
+      font-size: 0.8rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      .price-number {
+        font-family: $bold-font;
+        color: $main-color;
+        margin-right: 5px;
+      }
+      .pas-count1 {
+        padding-left: 0.5rem;
+        i {
+          color: $main-color;
+        }
+      }
+    }
+    .location {
+      font-size: 0.8rem;
+      i {
+        color: $main-color;
+        padding-right: 0.5rem;
+      }
+    }
+    .rating {
+      width: 4rem;
+      .fa {
+        font-size: 0.8rem;
+        width: 0.8rem;
+        &.fa-star {
+          color: $main-color;
+        }
+      }
+    }
+    .pas-count {
+      min-width: 90px;
+      background: $main-color;
+      color: $white;
+      padding: 1.2rem 0.5rem 0.5rem;
+      text-align: center;
+      margin-left: 1rem;
+      max-height: 70px;
+      i {
+        padding-right: 0.5rem;
+      }
+    }
+  }
+}
+
+#search-results {
+  .search-result-box {
+    @include respond-to-min($medium) {
+      width: calc(50% - 0.5rem);
+      margin: 0 1rem 2rem 0;
+      &:nth-child(2n+2) {
+        margin-right: 0;
+      }
+    }
+    @include respond-to-min($ipad_as_mobile) {
+      width: calc((100% - 2rem) / 3);
+      margin: 0 1rem 3rem 0;
+      &:nth-child(2n+2) {
+        margin-right: 1rem;
+      }
+      &:nth-child(3n+3) {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+aside.search-sidebar {
+  padding: 0 0 0 1rem;
+  position: relative;
+  @include respond-to-max($notebook) {
+    min-height: calc(50vh);
+    padding: 0;
+    margin-bottom: 1rem;
+  }
+  @include respond-to-max($tablet - 1) {
+    min-height: calc(100vh - 11rem);
+  }
+  .aside-column {
+    height: 100%;
+    position: relative;
+    z-index: 3;
+    padding: 1rem;
+    // top: 0;
+    // bottom: 0;
+    // left: 1rem;
+    // right: 0;
+    // @include respond-to-max($tablet) {
+    //   left: 0;
+    // }
+    @include respond-to-min($ipad_as_mobile) {
+      padding: 0 0.5rem;
+    }
+    &#search-map {
+      height: 100%;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      @include respond-to-min($ipad_as_mobile) {
+        left: 1rem;
+      }
+    }
+  }
+}
+
+.filters-content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#filter_captain {
+  width: 100%;
+  display: flex;
+}
+
+.search-filter-box {
+  background-color: $white;
+  padding: 0 15px;
+  display: none;
+  @include respond-to-max($medium) {
+    padding: 0 5px;
+  }
+  .title {
+    font-size: 1.5rem;
+    height: rem-calc(61);
+    line-height: rem-calc(61);
+    color: $carbon;
+    border-bottom: 1px solid $border-color;
+    margin-bottom: 2rem;
+    font-family: $bold-font;
+    i {
+      padding-right: 1rem;
+      font-size: 2rem;
+      position: relative;
+      top: 5px;
+    }
+    @include respond-to-max($tablet) {
+      margin-bottom: 1.2rem;
+      font-size: 1.4rem;
+      height: 3rem;
+      line-height: 1.6rem;
+    }
+    @include respond-to-max($mobile) {
+      margin-bottom: 12px;
+      font-size: 1rem;
+      height: 2.2rem;
+      line-height: 1.1rem;
+      i {
+        font-size: 1.5rem;
+      }
+    }
+  }
+  .checkbox-wrap {
+    margin-bottom: 1rem;
+    width: 50%;
+    @include respond-to-min($tablet) {
+      margin-bottom: 2rem;
+    }
+    @include respond-to-max($mobile) {
+      input[type="checkbox"]+label:before, input[type="radio"]+label:before {
+        width: 13px;
+        height: 13px;
+      }
+      input[type="checkbox"]+label:after, input[type="radio"]+label:after {
+        top: 2px;
+        left: 3px;
+        width: 7px;
+        height: 7px;
+      }
+      input[type="radio"]+label:after {
+        top: 3px;
+      }
+    }
+  }
+  .info {
+    margin-top: 2rem;
+    @include respond-to-max($tablet) {
+      margin-top: 1rem;
+      p {
+        font-size: 14px;
+        line-height: 1.4rem;
+      }
+    }
+    @include respond-to-max($tablet) {
+      margin-top: 0.5rem;
+      p {
+        font-size: 12px;
+        line-height: 1.2rem;
+      }
+    }
+
+  }
+  .buttons {
+    // position: absolute;
+    // bottom: 4rem;
+    // right: 1rem;
+    // left: 2rem;
+    margin-top: 4rem;
+    @include respond-to-max($tablet) {
+      margin-top: 1.1rem;
+      // bottom: 0;
+      // left: 1rem;
+      .column {
+        float: left;
+        width: 50%;
+        padding: 0;
+        &:first-child {
+          padding-right: 0.5rem;
+        }
+        &:last-child {
+          padding-left: 0.5rem;
+        }
+      }
+    }
+    @include respond-to-max($small) {
+      .button {
+        height: 2.5375rem;
+        line-height: 2.5375rem;
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+.wait {
+  position: relative;
+  &:after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 5;
+    background: image-url('wait.gif') #fff no-repeat center center;
+  }
+}
+
+input.datepicker-couple[disabled] {
+  cursor: not-allowed;
+  color: $carbon-light;
+  background-color: $smoke;
+}
+
+.search-currency {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#boat_sleepin_description, #boat_shared_description, #boat_listing_title {
+  &:not(.input-error) {
+    transition: none;
+  }
+}
+
+#search-slider-range {
+  &.disabled {
+    pointer-events: none;
+    .ui-slider-handle.ui-corner-all.ui-state-default {
+      left: 0% !important;
+      &:last-child {
+        display: none;
+      }
+    }
+  }
+}

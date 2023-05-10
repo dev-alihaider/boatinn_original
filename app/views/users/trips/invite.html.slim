@@ -1,0 +1,42 @@
+= render 'users/shared/menu'
+
+.container.your-trip
+  .trip-invite-container
+    .trip-invite-description
+      h2.title = t('dashboard.invite_trip.title')
+      p = t('dashboard.invite_trip.subtitle')
+      hr
+      .invite-block
+        p = t('dashboard.invite_trip.invite_title')
+        .link-block
+          = link_to 'javascript:void(0)', class: 'button btn-expanded btn-facebook' do
+            i.fa.fa-facebook-square
+            = t('dashboard.invite_trip.invite_facebook')
+          = link_to 'javascript:void(0)', class: 'button btn-expanded btn-twitter' do
+            i.fa.fa-twitter
+            = t('dashboard.invite_trip.invite_twitter')
+      .share-block
+        label for="invite" = t('dashboard.invite_trip.share_title')
+        input[type="text" value="https://boatinn.com/invite" id="invite" readonly="true"]
+      hr
+      h2.title
+        = t('dashboard.invite_trip.credits')
+        span 25.00 &euro;
+      p = t('dashboard.invite_trip.credits_description')
+      hr
+      h3.title-small = t('dashboard.invite_trip.referral_title')
+      .referral-block
+        .referral-item
+          h4.title-small.title-small--normal = t('dashboard.invite_trip.how_earn')
+          ul
+            li = t('dashboard.invite_trip.earn_item1')
+            li = t('dashboard.invite_trip.earn_item2')
+        .referral-item
+          h4.title-small.title-small--normal = t('dashboard.invite_trip.how_use')
+          ul
+            li = t('dashboard.invite_trip.use_item1')
+            li = t('dashboard.invite_trip.use_item2')
+      hr
+      h3.title-small = t('dashboard.invite_trip.offer')
+      p = t('dashboard.invite_trip.offer_text')
+    .trip-invite-image = image_tag 'your-credits.png'

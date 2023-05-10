@@ -1,0 +1,179 @@
+.img-wrap {
+  line-height: 0;
+  img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+  &.hover-opacity-effect {
+    position: relative;
+    &:after {
+      content: "";
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.10);
+      transition: 0.2s opacity linear;
+      opacity: 1;
+      cursor: pointer;
+    }
+    &:hover {
+      &:after {
+        opacity: 0;
+      }
+    }
+  }
+}
+
+.centered {
+  text-align: center;
+}
+.align-right {
+  text-align: right;
+}
+.align-left {
+  text-align: left;
+}
+
+.form-field {
+  margin-bottom: 1rem;
+}
+
+.row.custom-grid-row {
+  margin: 0 -1rem;
+
+  .modal-dialog & {
+    display: flex;
+  }
+
+  .column {
+    &:first-child,
+    &:last-child,
+    &:not(:first-child):last-child {
+      padding: 0 1rem;
+    }
+    @include respond-to-min($tablet) {
+      &:first-child {
+        padding: 0 0.5rem 0 1rem;
+      }
+      &:not(:first-child):last-child {
+        padding: 0 1rem 0 0.5rem;
+      }
+    }
+  }
+
+  .col-md-6 {
+    .modal-dialog & {
+      width: 50%;
+    }
+  }
+}
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+.img-block {
+  position: relative;
+  background-color: $smoke-dark;
+  overflow: hidden;
+  svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    // z-index: 100;
+    z-index: 3;
+    width: 64px;
+    height: auto;
+  }
+  img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    // z-index: 102;
+    z-index: 4;
+    object-fit: cover;
+  }
+}
+
+.flex-container {
+  display: flex;
+  min-height: 80vh;
+  width: 100%;
+  flex-direction: column;
+  @include respond-to-min($ipad_as_mobile) {
+    flex-direction: row;
+  }
+  .sidebar {
+    width: 100%;
+    @include respond-to-min($ipad_as_mobile) {
+      width: 25%;
+    }
+  }
+  .content {
+    width: 100%;
+    @include respond-to-min($ipad_as_mobile) {
+      width: 75%;
+    }
+  }
+}
+
+.avatar {
+  overflow: hidden;
+  border-radius: 50%;
+  width: 100%;
+  padding-top: 100%;
+  box-sizing: content-box;
+}
+
+.text-nowrap {
+  white-space: nowrap;
+}
+
+//=============
+.change-account-link {
+  margin-left: 10px;
+}
+
+.stripe-select {
+  margin: 10px 0;
+}
+button.button.stripe-btn,
+button.button.stripe-btn {
+  margin: 15px 0;
+  width: 100%;
+
+  &:disabled {
+    background: #ccc;
+    pointer-events: none;
+  }
+}
+
+button.btn-primary {
+  &:disabled {
+    background: #ccc;
+    pointer-events: none;
+  }
+}
+
+
+.errors {
+  margin: 20px 0;
+  color: #ff0000;
+}
+
+.stripe-card-container {
+  border: 1px solid #000;
+  padding: 12px;
+}

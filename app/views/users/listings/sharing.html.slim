@@ -1,0 +1,67 @@
+= render 'users/shared/menu'
+
+section.activate-sharing
+  .listings-inner-page
+    .col.left-column
+      .title = t('users.listings.sharing.title')
+      = form_for @boat, url: dashboard_listing_path, html: {id: :sharing_form} do |f|
+        = f.hidden_field :shared, value: true
+        .row
+          .column.col-md-12.col-sm-12
+            .form-field
+              = f.label :listing_title, t('wizards.index.page03.name')
+              = f.text_field :listing_title
+            .form-field
+              = f.label :shared_description, t('wizards.index.page03.desc')
+              = f.text_area :shared_description
+            .row.custom-grid-row
+              .column.col-md-6.col-sm-6
+                .form-field
+                  = f.label :shared_check_in_time, t('users.listings.sharing.boat_starts')
+                  .clnd-holder.clearfix
+                    .clnd-icon
+                      i.fa.fa-clock-o
+                    .clnd-input = f.select :shared_check_in_time, options_for_select(check_in_out_times, default_check_in_out(@boat.shared_check_in_time)), {}, class: :select2
+              .column.col-md-6.col-sm-6
+                .form-field
+                  = f.label :shared_check_out_time, t('users.listings.sharing.boat_finish')
+                  .clnd-holder.clearfix
+                    .clnd-icon
+                      i.fa.fa-clock-o
+                    .clnd-input = f.select :shared_check_out_time, options_for_select(check_in_out_times, default_check_in_out(@boat.shared_check_out_time)), {}, class: :select2
+            .row.custom-grid-row
+              .column.col-md-6.col-sm-6
+                .form-field
+                  = f.label :shared_min_passengers, t('users.listings.sharing.min_number_of_passengers')
+                  = f.select :shared_min_passengers, options_for_select(min_passengers_count_options, @boat.shared_min_passengers), {include_blank:true}, {class: :select2}
+              .column.col-md-6.col-sm-6
+                .form-field
+                  = f.label :shared_max_passengers, t('users.listings.sharing.max_number_of_passengers')
+                  = f.select :shared_max_passengers, options_for_select(passengers_count_options, @boat.shared_max_passengers), {include_blank:true}, {class: :select2}
+            .row.custom-grid-row
+              .column.col-md-6.col-sm-6
+                .form-field
+                  = f.label :shared_price, t('users.listings.sharing.price_per_person')
+                  .clnd-holder.clearfix
+                    .clnd-icon
+                      span.currency_symb = Money.default_currency.symbol
+                    .clnd-input = f.text_field :shared_price, value: number_with_precision(f.object.shared_price, precision: ListingsHelper::PRECISION, strip_insignificant_zeros: true), class: 'person-price', placeholder: '-----'
+            .form-field
+              = f.check_box :instant_booking_shared, class: 'agree-switcher'
+              = f.label :instant_booking_shared, t('users.listings.sharing.agree_text')
+        .buttons.row.custom-grid-row
+          .column.col-md-4.col-sm-12.prev-btn-wrapper
+            = link_to dashboard_listings_path, class: %i[button btn-info-outlined btn-expanded back] do
+              i.fa.fa-angle-left
+              = t('back')
+          .column.col-md-4.col-md-offset-4.col-sm-12.next-btn-wrapper
+            - save_button_classes = %i[button btn-success btn-expanded next]
+            - save_button_classes << 'btn-disabled' unless @boat.instant_booking_shared?
+            = button_tag nil, name: '', class: save_button_classes do
+              i.fa.fa-save
+              = t('save')
+    .col.right-column
+      hr /
+      .description.multiple
+        span.mark = "#{t('users.listings.sharing.info')}: "
+        = t('users.listings.sharing.description').html_safe

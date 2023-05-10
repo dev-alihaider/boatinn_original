@@ -1,0 +1,33 @@
+.yl-box
+  / = render 'users/listings/edit/header', stage: 3, title: @boat.listing_title
+  h3.title = @boat.listing_title
+
+  - if @boat.location.present?
+    p
+      i.fa.fa-map-marker
+      =< @boat.location.name
+
+  h3.title = t('users.listings.edit.about_the_listing')
+  .tabs-container
+    ul
+      li class=(:hidden unless @boat.classic?)
+        a href="#about-tab-1" = t('classic_charter')
+      li class=(:hidden unless @boat.shared?)
+        a href="#about-tab-2" = t('boat_shared')
+      li class=(:hidden unless @boat.sleepin?)
+        a href="#about-tab-3" = t('sleepinn')
+    #about-tab-1 class=(:hidden unless @boat.classic?)
+      = link_to edit_wizard_path(@boat, stage: 3), class: 'button btn-secondary btn-edit' do
+        i.fa.fa-edit
+        = t('edit')
+      .description= markdown_line_break_to_paragraph(@boat.listing_description)
+    #about-tab-2 class=(:hidden unless @boat.shared?)
+      = link_to sharing_dashboard_listing_path(@boat), class: 'button btn-secondary btn-edit' do
+        i.fa.fa-edit
+        = t('edit')
+      .description= markdown_line_break_to_paragraph(@boat.shared_description)
+    #about-tab-3 class=(:hidden unless @boat.sleepin?)
+      = link_to sleepin_dashboard_listing_path(@boat), class: 'button btn-secondary btn-edit' do
+        i.fa.fa-edit
+        = t('edit')
+      .description= markdown_line_break_to_paragraph(@boat.sleepin_description)

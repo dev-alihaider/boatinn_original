@@ -1,0 +1,8 @@
+.yl-box
+  = render 'users/listings/edit/header', stage: 11, title: t('users.listings.edit.location')
+
+  - if @boat.location.present?
+    ul.yl-box-list.location-list
+      li
+        i.fa.fa-angle-right
+        =< @boat.location.name

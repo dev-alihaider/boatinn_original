@@ -1,0 +1,58 @@
+-if  boat.showboat == true
+ .buttons
+   = link_to t('dashboard.listings.index.delete_the_listing'), setshowboat_dashboard_listing_path(boat),  class: %i[button btn-danger], data: {confirm: t('dashboard.listings.index.delete_question'), boat: boat.id, deleted: t('dashboard.listings.index.deleted_listing')}
+ .y-listing-box
+   .img-wrap.img-block 
+     = link_to edit_dashboard_listing_path(boat) do
+       = image_tag boat_image_url(boat)
+   .description-wrap
+     .name = boat.listing_title
+     .description-top
+       .description-top-left
+         - if boat.location.present?
+           .location
+             i.fa.fa-map-marker
+             =< boat.location.short_name
+         .last-update
+           i.fa.fa-clock-o
+           = boat_last_update(boat.updated_at)
+       .activate-tools
+         .switcher-wrapper
+           = check_box_tag "sleepin_switcher_#{boat.id}", nil, boat.sleepin?, class: %i[switcher sleepin-switch]
+           = label_tag "sleepin_switcher_#{boat.id}", switcher_sleepin_label(boat.sleepin?), class: 'sleepin-switch-label',
+               data: {id: boat.id, edit: sleepin_dashboard_listing_path(boat), enabled_text: t('dashboard.listings.index.sleepin_active'), disabled_text: t('dashboard.listings.index.activate_sleepin')}
+         .switcher-wrapper
+           = check_box_tag "shared_switcher_#{boat.id}", nil, boat.shared?, class: %i[switcher shared-switch]
+           = label_tag "shared_switcher_#{boat.id}", switcher_shared_label(boat.shared?), class: 'shared-switch-label',
+               data: {id: boat.id, edit: sharing_dashboard_listing_path(boat), enabled_text: t('dashboard.listings.index.boat_shared_active'), disabled_text: t('dashboard.listings.index.activate_boat_shared')}
+     .toolbar
+       .tool-online
+         = check_box_tag "classic_switcher_#{boat.id}", nil, boat.classic?, class: %i[switcher online_swither]
+         = label_tag "classic_switcher_#{boat.id}", switcher_status(boat.classic?), class: 'online-switch-label',
+             data: {id: boat.id, enabled_text: t('dashboard.listings.index.online'), disabled_text: t('dashboard.listings.index.offline')}
+       .tool-link
+         = link_to edit_dashboard_listing_path(boat), class: %i[button btn-primary-outlined] do
+           i.fa.fa-edit
+           = t('dashboard.listings.index.manage_listing')
+       .tool-link
+         = link_to dashboard_calendar_index_path(boat_id: boat.id), class: %i[button btn-primary-outlined] do
+           i.fa.fa-calendar
+           = t('dashboard.listings.index.calendar')
+       .tool-link
+         = link_to listing_path(boat), class: %i[button btn-primary-outlined] do
+           i.fa.fa-eye
+           = t('dashboard.listings.index.preview')
+       .tool-lightning
+         - lightning_button_classes = %i[btn-lightning]
+         - lightning_button_classes << :active if boat.instant_booking_classic?
+         = link_to settings_dashboard_listing_path(boat), class: lightning_button_classes do
+           i.fa.fa-bolt 
+
+
+ - if boat.sleepin? || boat.shared?
+   .y-listing-additions-container
+     - if boat.sleepin?
+       = render 'boat_sleepin_shared', boat: boat, mode: :sleepin
+     - if boat.shared?
+       = render 'boat_sleepin_shared', boat: boat, mode: :shared
+

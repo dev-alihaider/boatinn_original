@@ -1,0 +1,179 @@
+.reservations-container {
+  margin-bottom: 2rem;
+  .title {
+    padding: 1.5rem 0;
+    color: $carbon;
+    border-bottom: 1px solid $border-color;
+    margin: 1rem 0;
+    text-align: center;
+    @include respond-to-min($tablet) {
+      margin: 2rem 0 4rem;
+      text-align: left;
+    }
+  }
+  .content {
+    width: 100%;
+    padding: 0 1rem;
+    @include respond-to-min($tablet) {
+      padding: 0 2rem 0 0;
+      width: 70%;
+    }
+  }
+  .sidebar {
+    margin: 1rem 0;
+    width: 100%;
+    padding: 0 1rem;
+    @include respond-to-min($tablet) {
+      width: 30%;
+      padding: 0;
+      margin: 0 0 2rem;
+    }
+    .select-boat-wrapper {
+      margin-top: 5rem;
+      position: relative;
+    }
+    .select-wrapper {
+      margin-bottom: 1rem;
+    }
+    .sidebar-box {
+      position: relative;
+      border: 1px solid $border-color;
+      padding: 2rem;
+      .status-switcher-box {
+        .checkbox-wrapper {
+          padding: 1.5rem 0;
+          border-bottom: 1px solid $border-color;
+          &:last-child {
+            border-bottom: none;
+          }
+        }
+      }
+    }
+    .sidebar-title {
+      margin-top: 2rem;
+      color: $carbon;
+      line-height: $form-height;
+      font-family: $bold-font;
+    }
+    table.calc {
+      margin: 1rem 0;
+      tr:nth-child(odd) {
+        background-color: $white;
+      }
+      td {
+        padding: 0.5rem 0;
+        &:last-child {
+          text-align: right;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+}
+
+.res-ear-menu {
+  display: flex;
+  margin-bottom: 2rem;
+  width: 100%;
+  @include respond-to-min($tablet) {
+    width: 50%;
+  }
+  .res-ear-btn {
+    display: block;
+    height: $form-height;
+    line-height: $form-height;
+    text-align: center;
+    border: 1px solid $border-color;
+    border-right: none;
+    width: 50%;
+    color: $main-text-color;
+    transition: 0.2s all linear;
+    &:last-child {
+      border-right: 1px solid $border-color;
+    }
+    &.active, &:hover {
+      text-decoration: none;
+      color: $white;
+      background-color: $main-color;
+      border-color: $main-color;
+    }
+  }
+}
+
+.y-reservations {
+  p {
+    padding: 0;
+    margin: 0;
+    line-height: 1.4;
+  }
+  .links, .status {
+    font-size: 0.8rem;
+  }
+  thead {
+    th {
+      text-align: center;
+    }
+    @include respond-to-min($tablet) {
+      th {
+        text-align: left;
+        border-bottom: none;
+        &:first-child {
+          padding-left: 0;
+        }
+      }
+    }
+  }
+  tbody {
+    td {
+      color: $carbon;
+      &:last-child {
+        width: 8rem;
+        text-align: right;
+        @include respond-to-min($tablet) {
+          text-align: left;
+        }
+      }
+    }
+  }
+}
+
+.select-wrapper {
+  position: relative;
+}
+
+.calc{
+  .transfered_sum,
+  .will_be_transfer,
+  .total {
+    td:last-child {
+      white-space: nowrap;
+    }
+  }
+}
+
+.y-reservations {
+  .penalty-invoice-show-link {
+    display: block;
+    @include respond-to-min($ipad_as_mobile) {
+      display: inline-block;
+      padding-left: 0.5rem;
+    }
+  }
+}
+.custom-penalty-td {
+  @include respond-to-max($tablet) {
+    text-align: left;
+    white-space: nowrap;
+  }
+}
+.custom-penalty-info {
+  padding: 0;
+  td {
+    padding: 0.4rem 1rem;
+  }
+  &.last {
+    td {
+      padding: 0.4rem 1rem 1rem;
+    }
+  }
+}

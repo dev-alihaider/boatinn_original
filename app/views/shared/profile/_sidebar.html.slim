@@ -1,0 +1,24 @@
+.sidebar
+  .avatar.img-block = image_tag user_image_url(@user)
+  ul.user-info
+    li
+      i.fa.fa-check-square
+      = t('users.profile.verified_info')
+    li class=('verified' if @user.confirmed?)
+      i.fa.fa-envelope
+      = t('users.profile.email_adress')
+      - if @user.confirmed?
+        i.fa.fa-check-circle
+    li class=('verified' if @user.phone_verified?)
+      i.fa.fa-phone
+      = t('users.profile.phone_number')
+      - if @user.phone_verified?
+        i.fa.fa-check-circle
+  - if @boats.count.positive?
+    .listings-container
+      - listings_count = t('users.profile.show.listings', count: @boats.count)
+      - if current_user == @user
+        = link_to listings_count, dashboard_listings_path, class: :title
+      - else
+        .title = listings_count
+      = render partial: 'shared/profile/listing', collection: @boats, as: :boat

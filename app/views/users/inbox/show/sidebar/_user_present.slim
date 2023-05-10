@@ -1,0 +1,10 @@
+.user
+  .avatar.img-block = link_to image_tag(user_image_url(user)), show_profile_path(id: user.id)
+  .name = link_to user.display_name, show_profile_path(id: user.id)
+  .info title="#{travel_user_verifications(user)[:text]}" = t('users.inbox.show.booking_sidebar.ver_rev_count', ver_count: travel_user_verifications(user)[:count], rev_count: user.received_reviews.count)
+  .contact-box
+  /*  .title = t('users.inbox.show.booking_sidebar.email')
+    p = user.email
+    - if user.phone_verified?
+      .title = t('users.inbox.show.booking_sidebar.phone_number')
+      p = user.phone_number

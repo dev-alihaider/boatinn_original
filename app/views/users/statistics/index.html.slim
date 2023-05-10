@@ -1,0 +1,20 @@
+= render 'users/shared/menu'
+
+.container.statistics
+  .statistics-container
+    h3.title = t('dashboard.statistics.main.title')
+    .rating-block
+      .title-block
+        h3.title = t('dashboard.statistics.main.rating_title')
+        = link_to ratings_dashboard_statistics_path, class: 'button btn-outlined' do
+          i.fa.fa-th-list
+          = t('dashboard.statistics.main.more_details')
+      = render 'ratings_bar_graphs'
+    .view-block
+      .title-block
+        h3.title = t('dashboard.statistics.main.view_title')
+        = link_to views_dashboard_statistics_path, class: 'button btn-outlined' do
+          i.fa.fa-th-list
+          = t('dashboard.statistics.main.more_details')
+      = render 'views_table'
+

@@ -1,0 +1,35 @@
+@font-face {
+  font-family: 'Circular-Std-Book';
+  src: font-url('circular-std-book/CircularStd-Book.eot');
+  src: font-url('circular-std-book/CircularStd-Book.woff2') format('woff2'),
+       font-url('circular-std-book/CircularStd-Book.woff') format('woff'),
+       font-url('circular-std-book/CircularStd-Book.ttf') format('truetype'),
+       font-url('circular-std-book/CircularStd-Book.svg#CircularStd-Book') format('svg'),
+       font-url('circular-std-book/CircularStd-Book.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Circular-Std-Bold';
+  src: font-url('circular-std-bold/CircularStd-Bold.eot');
+  src: font-url('circular-std-bold/CircularStd-Bold.woff2') format('woff2'),
+       font-url('circular-std-bold/CircularStd-Bold.woff') format('woff'),
+       font-url('circular-std-bold/CircularStd-Bold.ttf') format('truetype'),
+       font-url('circular-std-bold/CircularStd-Bold.svg#CircularStd-Bold') format('svg'),
+       font-url('circular-std-bold/CircularStd-Bold.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'OpenSans-Light';
+  src: font-url('opensans-light/OpenSans-Light.eot');
+  src: font-url('opensans-light/OpenSans-Light.woff2') format('woff2'),
+       font-url('opensans-light/OpenSans-Light.woff') format('woff'),
+       font-url('opensans-light/OpenSans-Light.ttf') format('truetype'),
+       font-url('opensans-light/OpenSans-Light.svg#OpenSans-Light') format('svg'),
+       font-url('opensans-light/OpenSans-Light.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}

@@ -1,0 +1,25 @@
+= render 'users/shared/menu'
+
+section.port
+  .listings-inner-page
+    .wrapper
+      .title = t('users.listings.port.title')
+      = form_for @boat, url: dashboard_listing_path, html: {id: :port_form} do |f|
+        .row
+          .column.col-md-12.col-sm-12
+            .form-field
+              = f.label :port, t('users.listings.port.subtitle')
+              = f.text_area :port
+        .buttons.row.custom-grid-row
+          .column.col-md-3.col-sm-12.prev-btn-wrapper
+            = link_to edit_dashboard_listing_path, class: %i[button btn-info-outlined btn-expanded back] do
+              i.fa.fa-angle-left
+              = t('back')
+          .column.col-md-6
+          .column.col-md-3.col-sm-6.col-xs-12.next-btn-wrapper
+            = button_tag nil, name: '', class: %i[button btn-success btn-expanded] do
+              i.fa.fa-save
+              = t('save')
+            / = button_tag nil, name: '', class: %i[button btn-info btn-expanded next] do
+              = t('next')
+              i.fa.fa-angle-right

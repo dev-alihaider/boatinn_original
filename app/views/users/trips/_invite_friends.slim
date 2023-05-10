@@ -1,0 +1,7 @@
+.head-block
+  h2.title = t('dashboard.your_trip.title')
+  p = t('dashboard.your_trip.subtitle')
+  = link_to invite_dashboard_trips_path, class: %i[button btn-primary] do
+    i.fa.fa-envelope-o
+    = t('dashboard.your_trip.invite_btn')
+  hr

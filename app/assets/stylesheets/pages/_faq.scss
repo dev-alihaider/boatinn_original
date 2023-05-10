@@ -1,0 +1,238 @@
+.faq {
+	&-page {
+		padding-bottom: 100px;
+		position: relative;
+		&.fixed {
+			.faq-sidebar {
+				position: fixed;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				padding-top: 45px;
+			}
+			.faq-content {
+				padding-top: 130px;
+			}
+		}
+		&.absolute {
+			.faq-sidebar {
+				bottom: 100px;
+				top: auto
+			}
+		}
+		p, div {
+			color: $main-text-color;
+		}
+		h1, h3 {
+			color: $carbon;
+		}
+		a {
+			text-decoration: none;
+			&:hover, &:focus {
+				color: $turquoise;
+
+			}
+		}
+		.container {
+			max-width: 1190px;
+			width: 100%;
+		}
+	}
+	input[type="search"] {
+		padding-left: 33px;
+		padding-right: 48px;
+		box-sizing: border-box;
+	}
+	.title-block {
+		margin-bottom: 30px;
+	}
+	&-sidebar {
+		position: absolute;
+		top: 0;
+		width: 40%;
+		padding-top: 90px;
+		padding-left: 19%;
+		padding-right: 20px;
+		&.fixed {
+			
+		}
+		&.absolute {
+			
+		}
+	}
+	&-content {
+		padding-top: 155px;
+		width: 60%;
+		float: right;
+		&__item {
+			margin-bottom: rem-calc(55);
+			div, p {
+				line-height: rem-calc(25);
+			}
+			p:not(:last-child) {
+				margin-bottom: rem-calc(15);
+			}
+			.title {
+				padding: 19px 0;
+			}
+			ul, ol {
+				margin-bottom: 15px;
+				padding-left: 40px;
+			}
+		}
+	}
+}
+
+.accordion {
+	&-btn {
+		padding: 19px 0;
+		position: relative;
+		padding-left: 20px;
+		&::before {
+			position: absolute;
+			content: '\f054';
+			top: 50%;
+			left: 0;
+			transform: translateY(-50%);
+			font-family: FontAwesome;
+			color: $carbon;
+			font-size: rem-calc(18);
+		}
+	}
+	.panel {
+		display: none;
+		list-style: none;
+		a {
+			display: block;
+			padding: 5px 0;
+			color: $main-text-color;
+			&:hover, &:focus {
+				color: $turquoise;
+			}
+		}
+		> li {
+			&.active {
+				a {
+					color: $turquoise;
+				}
+			}
+		}
+	}
+	&-item {
+		&.active {
+			.accordion-btn {
+				&::before {
+					content: '\f078';
+				}
+			}
+			.panel {
+				display: block;
+			}
+		}
+	}
+}
+
+.search-input {
+	position: relative;
+	span {
+		top: 0;
+		position: absolute;
+		&.before, &.after {
+			font-size: rem-calc(16);
+			font-family: FontAwesome;
+			i {
+				position: absolute;
+				top: 14px;
+			}
+		}
+		&.before {
+			left: 17px;
+			i {
+				left: 0;
+			}
+		}
+		&.after {
+			right: 0;
+			width: 48px;
+			height: 100%;
+			background-color: $turquoise;
+			color: $white;
+			i {
+				left: 50%;
+				transform: translateX(-50%);
+			}
+
+		}
+	}
+}
+
+@include respond-to-max($desktop) {
+	.faq{
+		&-page {
+			.container {
+				width: 90%;
+			}
+		}
+		&-sidebar {
+			padding-left: 15%;
+
+		}
+	}
+}
+
+@include respond-to-max($notebook) {
+	.faq-sidebar {
+		padding-left: 5%;
+	}
+}
+
+@include respond-to-max($tablet) {
+	.faq-page {
+		padding-bottom: 30px;
+		h3 {
+			font-size: rem-calc(21);
+		}
+		a, p, .description, li {
+			font-size: rem-calc(14);
+		}
+	}
+	.accordion-btn {
+		&::before {
+			font-size: 0.925rem;
+		}
+	}
+	.faq-content__item {
+		margin-bottom: 1.6rem;
+	}
+}
+
+@include respond-to-max($mobile) {
+	.faq-page {
+		h1 {
+			font-size: rem-calc(30);
+		}
+		h3 {
+			font-size: rem-calc(18);
+		}
+		a, p, .description, li {
+			font-size: rem-calc(12);
+			line-height: rem-calc(20)
+		}
+
+		.accordion-link {
+			line-height: rem-calc(16);
+		}
+	}
+	.faq-content__item ul, .faq-content__item ol {
+		padding-left: 25px;
+	}
+}
+
+@include respond-to-max($small) {
+	.faq-sidebar {
+		padding-left: 4%;
+	}
+	.panel {
+		padding-left: 5px;
+	}
+}

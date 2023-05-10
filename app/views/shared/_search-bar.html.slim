@@ -1,0 +1,164 @@
+form.search-form action="#{search_path}"
+  .form-field.with-icon.icon-search
+    = text_field_tag 'location[name]', location[:name], id: 'location', placeholder: HomepageSetting.try(:last).search_bar_title, required: 'required'
+    = hidden_field_tag 'location[lat]', location[:lat], id: 'lat-value'
+    = hidden_field_tag 'location[lng]', location[:lng], id: 'lng-value'
+  .form-field.with-icon.icon-calendar
+    = text_field_tag 'check_in_date', check_in_date, id: 'from', class: 'datepicker-couple couple-from', placeholder: t('search_bar.check_in'), autocomplete: 'off'
+  .form-field.with-icon.icon-calendar
+    = text_field_tag 'check_out_date', check_out_date, id: 'to', class: 'datepicker-couple couple-to', placeholder: t('search_bar.check_out'), autocomplete: 'off'
+  .form-field.with-icon.icon-users
+    = number_field_tag 'passengers_count', passengers_count, id: 'passengers', placeholder: t('search_bar.passengers')
+  .form-field
+    = button_tag t('search_bar.search'), name: '', class: 'button btn-primary btn-expanded'
+
+javascript:
+  var input = document.getElementById('location');
+
+  var delay = (function(){
+    var timer = 0;
+    return function(callback, ms){
+      clearTimeout (timer);
+      timer = setTimeout(callback, ms);
+    };
+  })();
+
+  $(document).ready(function() {
+
+    $('#location').keypress(function(e) {
+      if(e.keyCode === 13){
+        e.preventDefault();
+        delay(function(){
+          var inputLocation = $('.search-form #location'),
+              startPHLocation = $('#location').prop('placeholder'),
+              emptyLocation = 'Select location from dropdown list';
+
+          if($('#lat-value').val() === '' && !($('#location').hasClass('.input-error'))) {
+              inputLocation.prop('placeholder', emptyLocation);
+              var firstResult = $(".pac-container .pac-item:first .pac-item-query").text();
+              inputLocation.val(firstResult);
+              $('.search-form').submit();
+          } else {
+            inputLocation.removeClass('input-error');
+            inputLocation.prop('placeholder', startPHLocation);
+            $('.search-form').submit();
+          };
+
+        }, 500);
+      }
+    });
+
+    $('#location').on('keypress', function(){
+      $('#lat-value').val('');
+      $('#lng-value').val('');
+      if($(this).val() != '') {
+        $(this).removeClass('input-error');
+        $(this).prop('placeholder', startPHLocation);
+      }
+    });
+
+    $('#location').on('focus', function(){
+      $(this).prop('placeholder', startPHLocation)
+    });
+
+    // Validation of search-form
+    var startPHLocation = $('#location').prop('placeholder'),
+        emptyLocation = 'Select location from dropdown list',
+
+        startPHFrom = $('#from').prop('placeholder'),
+        emptyFrom = 'Select date',
+
+        startPHTo = $('#to').prop('placeholder'),
+        emptyTo = 'Select date';
+
+    function locateValidation(){
+      var inputLocation = $('.search-form #location');
+          inputFrom = $('.search-form #from');
+          inputTo = $('.search-form #to');
+
+      if($('#lat-value').val() == '' && !($('#location').hasClass('.input-error'))) {
+        inputLocation.addClass('input-error');
+        inputLocation.val('');
+        inputLocation.prop('placeholder', emptyLocation);
+      } else {
+        inputLocation.removeClass('input-error');
+        inputLocation.prop('placeholder', startPHLocation);
+      };
+
+      // if(inputFrom.val() == '') {
+      //   if(!inputFrom.hasClass('input-error')) {
+      //     inputFrom.addClass('input-error');
+      //   };
+      //   inputFrom.prop('placeholder', emptyFrom);
+      // } else {
+      //   inputFrom.removeClass('input-error');
+      //   inputFrom.prop('placeholder', startPHFrom);
+      // };
+
+      // if(inputTo.val() == '') {
+      //   if(!inputTo.hasClass('input-error')) {
+      //     inputTo.addClass('input-error');
+      //   };
+      //   inputTo.prop('placeholder', emptyTo);
+      // } else {
+      //   inputTo.removeClass('input-error');
+      //   inputTo.prop('placeholder', startPHTo);
+      // };
+
+      if($('.search-form .input-error').length == 0) {
+        $('.search-form').submit();
+      }
+    };
+
+    $('.search-form button[type="submit"]').on('click', function(e){
+      e.preventDefault();
+      locateValidation();
+    })
+
+  });
+
+  function initMap() {
+    var autocomplete = new google.maps.places.Autocomplete(input);
+    autocomplete.addListener('place_changed', function() {
+      var place = autocomplete.getPlace();
+
+      if (!place.geometry) {
+        var firstResult = $(".pac-container .pac-item:first .pac-item-query").text();
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({"address":firstResult }, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            $('#lat-value').val(results[0].geometry.location.lat());
+            $('#lng-value').val(results[0].geometry.location.lng());
+
+            $(".pac-container .pac-item:first").addClass("pac-selected");
+            $(".pac-container").css("display","none");
+            $('#location').val(firstResult);
+            $(".pac-container").css("visibility","hidden");
+          }
+        });
+        return;
+      };
+
+      var address = '';
+      if (place.address_components) {
+        address = [
+          (place.address_components[0] && place.address_components[0].short_name || ''),
+          (place.address_components[1] && place.address_components[1].short_name || ''),
+          (place.address_components[2] && place.address_components[2].short_name || '')
+        ].join(' ');
+      };
+      // Set data for server
+      $('#lat-value').val(place.geometry.location.lat());
+      $('#lng-value').val(place.geometry.location.lng());
+    });
+
+    // Clean data, if input is empty
+    // $('#location').on('change', function(){
+    //   if($(this).val() == '') {
+    //     $('#lat-value').val('');
+    //     $('#lng-value').val('');
+    //   }
+    // });
+
+  }
+script async="" defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCK3l7AsKHTwtVByqkpAGCNOXzNv6nug2k&libraries=places&callback=initMap"

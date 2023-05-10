@@ -1,0 +1,7 @@
+= render 'users/shared/menu'
+
+.container
+  .flex-container.inbox-inner-container
+    = render partial: 'users/inbox/show/booking_sidebar_for_seller'
+    .content
+      .inner-content.reviews-content = concept('reviews/cell/form/review_about_guest', @review).()

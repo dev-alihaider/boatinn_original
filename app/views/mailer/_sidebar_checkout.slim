@@ -1,0 +1,150 @@
+td rowspan="6" style=("width: 51%; padding-left: 90px;") valign="top"
+  table style=("width: 100%; border-spacing: 0; border: 1px solid #d8d9dd;")
+    tr
+      td colspan="3"
+        table style=("border-bottom: 1px solid #d8d9dd;")
+          tr
+            td style=("padding: 0 40px; width: 63%;")
+              h2 style=("font-family: 'Cabin', Arial, sans-serif; font-size: 20px; color: #545454; margin-bottom: 8px; margin-top: 30px;")
+                = @travel.boat_hash[:name]
+              p style="font-family: 'Arial, sans-serif'; margin-top: 5px; margin-bottom: 32px; display: flex;"
+                = image_tag('emails/map-pin.png', alt: 'Map Pin Icon', width: '11', height: '16', style: 'display: inline-block; margin-right: 5px; position: relative;   top: 2px;')
+                span style=("font-size: 16px; font-family: 'Cabin', Arial, sans-serif; display: inline-block; margin-bottom: 20px;")
+                  = @travel.boat_hash[:location][:address]
+            td
+              div style=("overflow: hidden; position: relative; width: 90px; height: 90px; padding: 20px 0 35px; ")
+                = image_tag @travel.cover_src, style: "width: 100%; max-width: 100%; position: absolute; height: 90px; top: 50%; transform: translateY(-50%);"
+    tr
+      td style=("padding: 0 40px;")
+        table style=("width: 100%; font-family: 'Cabin', Arial, sans-serif; border-bottom: 1px solid #d8d9dd;")
+          tr
+            td style=("padding: 30px 0 30px;")
+              = image_tag('icon-guest.jpg', alt: 'Icon Guests', width: '30', height: '30')
+            td colspan="3" style=("padding: 30px 0 30px;")
+              span style=("font-size: 16px; color: #545454; font-family: 'Cabin', Arial, sans-serif; display: inline-block; margin-left: 5px;")
+                = @travel.guest_label
+          tr
+            td style=("padding-bottom: 30px;")
+              = image_tag('icon-calendar.png', alt: 'Icon Guests', width: '30', height: '30')
+            td colspan="3" style=("padding-bottom: 30px;")
+              span style=("font-size: 16px; color: #545454; font-family:'Cabin',  Arial, sans-serif; display: inline-block; margin-left: 5px;")
+                = l(@travel.check_in, format: :short_date_with_short_month)
+                - if @travel.rent_duration_in_days > 1
+                  = " > #{l(@travel.check_out, format: :short_date_with_short_month)}"
+    tr
+      td style=("padding: 0 40px;")
+        table style=("width: 100%; font-family: 'Cabin', Arial, sans-serif; border-bottom: 1px solid #d8d9dd; padding: 20px 0;")
+          tr
+            td style=("padding: 0px 0 5px 0;")
+              span style=("color: #545454; margin-right: 5px; font-size: 23px; display: inline-block; position: relative; top: 2px;")
+              span style=("font-size: 16px; font-family: 'Cabin', Arial, sans-serif;;")
+                = view_money(@travel.unit_price)
+                = " x #{@travel.unit_quantity} #{@travel.unit_label}"
+            td colspan="3" style=("padding: 0px 0 0 5px; text-align: right;")
+              span style=("font-size: 16px; font-family: 'Cabin', Arial, sans-serif; display: inline-block; margin-left: 5px; font-weight: bold; ")
+                = view_money(@travel.subtotal)
+
+          - if @travel.trip.cleaning_fee.positive?
+            tr
+              td style=("padding: 0px 30px 0px 0;")
+                span style=("font-size: 16px; font-family: 'Cabin', Arial, sans-serif;")
+                  = t('users.listings.edit.cleaning_fee')
+              td colspan="3" style=("padding: 0px 0 0px 20px; text-align: right;")
+                span style=("font-size: 16px; font-family: 'Cabin', Arial, sans-serif; display: inline-block; margin-left: 5px; font-weight: bold;")
+                  = view_money(@travel.trip.cleaning_fee)
+
+          - if @travel.trip.skipper_fee.positive?
+            tr
+              td style=("padding: 0px 30px 0px 0;")
+                span style=("font-size: 16px; font-family: 'Cabin', Arial, sans-serif;")
+                  = t('users.listings.edit.skipper_fee')
+              td colspan="3" style=("padding: 0px 0 0px 20px; text-align: right;")
+                span style=("font-size: 16px; font-family: 'Cabin', Arial, sans-serif; display: inline-block; margin-left: 5px; font-weight: bold;")
+                  = view_money(@travel.trip.skipper_fee)
+
+          tr
+            td style=("padding: 0px 30px 0px 0;")
+              span style=("font-size: 16px; font-family: 'Cabin', Arial, sans-serif;")
+                =  t('users.listings.show.booking_calculator.service_fee')
+            td colspan="3" style=("padding: 0px 0 0px 20px; text-align: right;")
+              span style=("font-size: 16px; font-family: 'Cabin', Arial, sans-serif; display: inline-block; margin-left: 5px; font-weight: bold;")
+                = @travel.current_user_client? ? view_money(@travel.client_fee) : view_money(@travel.seller_fee)
+
+
+    tr
+      td style=("padding: 0 40px;")
+        table style=("width: 100%; font-family: 'Cabin', Arial, sans-serif; border-bottom: 1px solid #d8d9dd; padding: 20px 0;")
+          tr
+            td style=("padding: 0 30px 0 0;")
+              span style=("font-size: 16px; font-family: 'Cabin', Arial, sans-serif;")
+                = t('users.inbox.show.booking_sidebar.total', currency: view_money(@travel.total, opts: { only_currency: true }))
+            td colspan="3" style=("padding: 0 0 0 20px; text-align: right;")
+              span style=("font-size: 16px; font-weight: 600; font-family: 'Cabin', Arial, sans-serif; display: inline-block; margin-left: 5px;")
+                = @travel.current_user_client? ? view_money(@travel.total) : view_money(@travel.earnings)
+
+    - if @travel.current_user_client?
+      - if @travel.paid_amount.positive? && (@travel.will_be_pay_deposit_amount.positive? || @travel.will_be_pay_prime_amount.positive?)
+        tr
+          td style=("padding: 0 40px;")
+            table style=("width: 100%; font-family: 'Cabin', Arial, sans-serif; border-bottom: 1px solid #d8d9dd; padding: 20px 0;")
+              tr
+                td style=("padding: 0 30px 0 0;")
+                  span style=("font-size: 16px; font-family: 'Cabin', Arial, sans-serif;")
+                    = t("bookings.due_now")
+                td colspan="3" style=("padding: 0px 0 0 20px; text-align: right;")
+                  span style=("font-size: 16px; font-weight: 600; font-family: 'Cabin', Arial, sans-serif; display: inline-block; margin-left: 5px;")
+                    = view_money(@travel.paid_amount)
+
+      - if @travel.will_be_pay_deposit_amount.positive?
+        tr
+          td style=("padding: 0 40px;")
+            table style=("width: 100%; font-family: 'Cabin', Arial, sans-serif; border-bottom: 1px solid #d8d9dd; padding: 20px 0;")
+              tr
+                td style=("padding: 0px 30px 0px 0;")
+                  span style=("font-size: 16px; font-family: 'Cabin', Arial, sans-serif;")
+                    p
+                      = t("bookings.deposit", date: l(@travel.date_next_deposit, format: :short_date, default: '-')) + '*'
+                    p
+                      = t("bookings.deposit_info", date: l(@travel.date_next_deposit, format: :short_date, default: '-'))
+                td colspan="3" style=("padding: 0px 0 0px 20px; text-align: right;")
+                  span style=("font-size: 16px; font-weight: 600; font-family: 'Cabin', Arial, sans-serif; display: inline-block; margin-left: 5px; font-weight: bold;")
+                    = view_money(@travel.will_be_pay_deposit_amount)
+
+      - if @travel.will_be_pay_prime_amount.positive?
+        tr
+          td style=("padding: 0 40px;")
+            table style=("width: 100%; font-family: 'Cabin', Arial, sans-serif; border-bottom: 1px solid #d8d9dd; padding: 20px 0;")
+              tr
+                td style=("padding: 0px 30px 0px 0;")
+                  span style=("font-size: 16px; font-family: 'Cabin', Arial, sans-serif;")
+                    p
+                      = t("bookings.due_date", date: l(@travel.date_next_prime, format: :short_date, default: '-')) + '*'
+                    p
+                      = t("bookings.due_date_info", date: l(@travel.date_next_prime, format: :short_date, default: '-'))
+                td colspan="3" style=("padding: 0px 0 0px 20px; text-align: right;")
+                  span style=("font-size: 16px; font-weight: 600; font-family: 'Cabin', Arial, sans-serif; display: inline-block; margin-left: 5px; font-weight: bold;")
+                    = view_money(@travel.will_be_pay_prime_amount)
+
+
+    tr
+      td style=("padding: 0 40px;")
+        table style=("width: 100%; font-family: 'Cabin', Arial, sans-serif; border-bottom: 1px solid #d8d9dd;")
+          - @travel.current_bookings.each do |booking|
+            tr
+              td style=("padding: 10px 30px 20px 0;")
+                span style=("font-size: 16px; font-family: 'Cabin', Arial, sans-serif;")
+                  = t("bookings.confirmation_code")
+              td colspan="3" style=("padding: 20px 0 30px 20px; text-align: right;")
+                span style=("font-size: 16px; font-family: 'Cabin', Arial, sans-serif; display: inline-block; margin-left: 5px; font-weight: bold;")
+                  = booking.reservation_code
+    tr
+      td style=("padding: 0 40px;")
+        table style=("width: 100%; font-family: 'Cabin', Arial, sans-serif; padding-bottom: 30px;")
+          tr
+            td style="padding-top: 20px;"
+              h3 style=("font-size: 21px; font-family: 'Cabin', Arial, sans-serif; font-weight: 400; margin-bottom: 0; color: #545454;")
+                = t("bookings.cancellations.#{@travel.cancellation_policy}_title")
+          tr
+            td style=""
+              p style=("font-size: 16px; line-height: 22px; font-family: 'Cabin', Arial, sans-serif; font-weight: normal; margin-top: 0;")
+                = t("bookings.cancellations.#{@travel.cancellation_policy}_desc", url: cancellation_policy_url(locale: I18n.locale)).html_safe

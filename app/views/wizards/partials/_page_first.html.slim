@@ -1,0 +1,84 @@
+.wizard-page#page01 data-stage='1'
+  = hidden_field_tag nil, '', class: 'status-text-val'
+  .col.left-column
+    .main-title
+      = t('wizards.index.greeting', user_name: user_name).html_safe
+    .row.custom-grid-row
+      .column.col-md-6.col-sm-12
+        .form-field.form-field 
+          = f.select :boat_type, options_for_select(boat_type_options, @boat.boat_type), {}, class: %i[select2], data: {placeholder: t('wizards.index.type_boat')}
+      .column.col-md-6.col-sm-12
+        .form-field
+          = f.select :passengers_count, options_for_select(passengers_count_options, @boat.passengers_count), {include_blank:true}, class: %i[select2], data: {placeholder: t('wizards.index.number_passenger')}
+    .form-field
+      = f.fields_for :location do |l|
+        = l.text_field :name, id: 'location',  placeholder: t('wizards.index.location')
+        = l.hidden_field :lat, id: 'lat-loc-value'
+        = l.hidden_field :lng, id: 'lng-loc-value'
+    = render 'wizards/partials/buttons', current_stage: 1, commit: false, backurl: prewizards_path, nexturl: '#'
+  .col.right-column.without-text
+    .lighthouse
+
+script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCK3l7AsKHTwtVByqkpAGCNOXzNv6nug2k&libraries=places"
+
+javascript:
+
+  function initAutocomplete() {
+
+    // Create the autocomplete object, restricting the search predictions to
+    // geographical location types.
+
+    var autocomplete = new google.maps.places.Autocomplete(document.getElementById('location'));
+
+    // When the user selects an address from the drop-down, populate the
+    // address fields in the form.
+    autocomplete.addListener('place_changed', function() {
+
+      var place = autocomplete.getPlace();
+
+      if (!place.geometry) {
+        window.alert("No details available for input: '" + place.name + "'");
+        return;
+      }
+
+      var address = '';
+      if (place.address_components) {
+        address = [
+          (place.address_components[0] && place.address_components[0].short_name || ''),
+          (place.address_components[1] && place.address_components[1].short_name || ''),
+          (place.address_components[2] && place.address_components[2].short_name || '')
+        ].join(' ');
+
+        var _city,
+            _country,
+            _shortAddress = place.address_components;
+
+        for (var i = _shortAddress.length - 1; i >= 0; i--) {
+          if (_shortAddress[i].types.indexOf("country") !== -1) {
+            _country = _shortAddress[i].long_name;
+            break;
+          }
+        };
+        for (var i = _shortAddress.length - 1; i >= 0; i--) {
+          if (_shortAddress[i].types.indexOf("locality") !== -1) {
+            _city = _shortAddress[i].long_name;
+            break;
+          }
+        };
+        if (_city && _country) {
+          $('#short-adr-value').val(_city + ', ' + _country);
+        } else if (_country) {
+          $('#short-adr-value').val(_country);
+        } else {
+          $('#short-adr-value').val('');
+        }
+      };
+
+      $('#lat-loc-value').val(place.geometry.location.lat());
+      $('#lng-loc-value').val(place.geometry.location.lng());
+    });
+  }
+
+  $(document).ready(function() {
+    setTimeout(function(){ initAutocomplete(); }, 1000);
+  });    

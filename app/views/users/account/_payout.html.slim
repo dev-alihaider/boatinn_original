@@ -1,0 +1,9 @@
+tr
+  td
+    .checkbox-wrapper
+      = radio_button_tag "payouts", payout.id, payout.payout_default.present?, data: {url: set_default_dashboard_payout_path(payout.id)}, class: :select_payout
+      = label_tag "payouts_#{payout.id}", payout.name
+  td = payout.details
+  td = t('ready')
+  / td = link_to t('edit'), edit_dashboard_payout_path(payout), remote: true, class: 'edit-link'
+  td = link_to t('delete'), dashboard_payout_path(payout), method: :delete, class: 'remove-link', data: { confirm: t('are_you_sure') }

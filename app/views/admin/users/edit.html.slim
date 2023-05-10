@@ -1,0 +1,187 @@
+= display_validation_errors(@user)
+
+.row
+  .col-lg-12
+    .ibox
+      .ibox-content
+        = form_for [:admin, @user], html: { multipart: true } do |f|
+          .title-block
+            h2.title--bordered Edit user "#{f.object.display_name}"
+            .btn-block
+              label.btn.btn-primary.btn-sm
+                = f.submit
+                i.fa.fa-floppy-o
+              = link_to(admin_users_path, class: %i(btn exit-btn)) do
+                i.fa.fa-reply
+          .hr-line-dashed
+
+          .form-group.row
+            = f.label :first_name, t('users.profile.first_name'), class: 'col-sm-2 col-form-label'
+            .col-sm-10 = f.text_field :first_name, value: @user.decorate.user_first_name, placeholder: t('users.profile.your_first_name'), class: 'form-control', maxlength: 200
+          .hr-line-dashed
+
+          .form-group.row
+            = f.label :last_name, t('users.profile.last_name'), class: 'col-sm-2 col-form-label'
+            .col-sm-10 = f.text_field :last_name, value: @user.decorate.user_last_name, placeholder: t('users.profile.your_last_name'), class: 'form-control', maxlength: 200
+          .hr-line-dashed
+
+          .form-group.row
+            = f.label :gender, t('users.profile.gender'), class: 'col-sm-2 col-form-label'
+            .col-sm-2 = f.select :gender, User.genders.keys.map { |role| [role.titleize, role] }, {}, class: 'select2 form-control'
+          .hr-line-dashed
+
+          .form-group.row
+            = f.label :birthday, t('users.profile.birthday.label'), class: 'col-sm-2 col-form-label'
+            .col-sm-3 = f.date_select :birthday, birthday_select_options.merge(date_separator: '</div><div class="col-sm-3">'), class: 'select2 form-control'
+          .hr-line-dashed
+
+          .form-group.row
+            = f.label :email, t('users.profile.email_adress'), class: 'col-sm-2 col-form-label'
+            .col-sm-3 = f.text_field :email, class: 'form-control'
+          .hr-line-dashed
+
+          .form-group.row
+            = f.label :phone_number, t('users.profile.phone_number'), class: 'col-sm-2 col-form-label'
+            .col-sm-3 = f.phone_field :phone_number, class: 'form-control', maxlength: 13
+            = label_tag 'user_phone_verified', class: 'label-check' do
+              = f.check_box :phone_verified
+              span.fa.fa-check
+            = label_tag 'user_phone_verified', 'Verified'
+          .hr-line-dashed
+
+          .form-group.row
+            = f.label :language, t('users.profile.language'), class: 'col-sm-2 col-form-label'
+            .col-sm-2 = f.select :language, available_locales_options, {}, class: 'select2 form-control'
+          .hr-line-dashed
+
+          .form-group.row
+            = f.label :currency, t('users.profile.currency'), class: 'col-sm-2 col-form-label'
+            .col-sm-2 = f.select :currency, currencies_for_footer, {}, class: 'select2 form-control'
+          .hr-line-dashed
+
+          .form-group.row
+            = f.label :where_you_live, t('users.profile.where_you_live'), class: 'col-sm-2 col-form-label'
+            .col-sm-10 = f.text_field :where_you_live, class: 'form-control', maxlength: 200
+          .hr-line-dashed
+
+          .form-group.row
+            = f.label :describe_yourself, t('users.profile.describe_yourself'), class: 'col-sm-2 col-form-label'
+            .col-sm-10 = f.text_area :describe_yourself, class: 'form-control', maxlength: 3000
+          .hr-line-dashed
+
+          .form-group.row
+            = f.label :password, t('admin.dashboard.users.password'), class: 'col-sm-2 col-form-label'
+            .col-sm-3 = f.password_field :password, autocomplete: 'new-password', class: 'form-control'
+            = f.label :password_confirmation, t('admin.dashboard.users.password_confirmation'), class: 'col-sm-2 col-form-label'
+            .col-sm-3 = f.password_field :password_confirmation, autocomplete: 'new-password', class: 'form-control'
+          .hr-line-dashed
+
+          .form-group.row
+            = f.label :created_at, t('admin.dashboard.users.created_at'), class: 'col-sm-2 col-form-label'
+            .col-sm-10
+              p.form-control-static = l(f.object.created_at, format: :long, default: '-')
+          .hr-line-dashed
+
+          .form-group.row
+            = f.label :confirmation_sent_at, t('admin.dashboard.users.confirmation_sent_at'), class: 'col-sm-2 col-form-label'
+            .col-sm-10
+              p.form-control-static = l(f.object.confirmation_sent_at, format: :long, default: '-')
+          .hr-line-dashed
+
+          .form-group.row
+            = f.label :confirmed_at, t('admin.dashboard.users.confirmed_at'), class: 'col-sm-2 col-form-label'
+            .col-sm-10
+              p.form-control-static = l(f.object.confirmed_at, format: :long, default: '-')
+          .hr-line-dashed
+
+          .form-group.row
+            = f.label :sign_in_count, t('admin.dashboard.users.sign_in_count'), class: 'col-sm-2 col-form-label'
+            .col-sm-10
+              p.form-control-static = f.object.sign_in_count
+          .hr-line-dashed
+
+          .form-group.row
+            = f.label :current_sign_in_at, t('admin.dashboard.users.sign_in_at'), class: 'col-sm-2 col-form-label'
+            .col-sm-10
+              p.form-control-static = l(f.object.current_sign_in_at, format: :long, default: '-')
+          .hr-line-dashed
+
+          .form-group.row
+            = f.label :last_sign_in_ip, t('admin.dashboard.users.last_sign_in_ip'), class: 'col-sm-2 col-form-label'
+            .col-sm-10
+              p.form-control-static = f.object.last_sign_in_ip
+          .hr-line-dashed
+
+          - if not_current_user?(@user)
+            .form-group.row
+              = f.label :admin, t('admin.dashboard.users.is_admin'), class: 'col-sm-2 col-form-label'
+              = label_tag 'user_admin', class: 'label-check' do
+                = f.check_box :admin
+                span.fa.fa-check
+            .hr-line-dashed
+
+          .form-group.row
+            = f.label :closed, t('admin.dashboard.users.closed_account'), class: 'col-sm-2 col-form-label'
+            = label_tag 'user_closed', class: 'label-check' do
+              = f.check_box :closed
+              span.fa.fa-check
+          .hr-line-dashed
+
+          - if f.object.image_url_facebook.present?
+            .form-group.row
+              = f.label :image_url_facebook, t('admin.dashboard.users.facebook_image'), class: 'col-sm-2 col-form-label'
+              .col-sm-10
+                p.form-control-static = link_to image_tag(f.object.image_url_facebook), f.object.image_url_facebook, target: :_blank
+            .hr-line-dashed
+
+          - if f.object.image_url_google_oauth2.present?
+            .form-group.row
+              = f.label :image_url_google_oauth2, t('admin.dashboard.users.google_image'), class: 'col-sm-2 col-form-label'
+              .col-sm-10
+                p.form-control-static = link_to image_tag(f.object.image_url_google_oauth2), f.object.image_url_google_oauth2, target: :_blank
+            .hr-line-dashed
+
+          - if f.object.facebook_data.present?
+            .form-group.row
+              = f.label :facebook_data, t('admin.dashboard.users.facebook_data_in_yaml_format'), class: 'col-sm-2 col-form-label'
+              .col-sm-10.form-control-static
+                / pre = JSON.pretty_generate(f.object.facebook_data)
+                pre = YAML.dump(f.object.facebook_data)
+            .hr-line-dashed
+
+          - if f.object.google_oauth2_data.present?
+            .form-group.row
+              = f.label :google_oauth2_data, t('admin.dashboard.users.google_data_in_yaml_format'), class: 'col-sm-2 col-form-label'
+              .col-sm-10.form-control-static
+                / pre = JSON.pretty_generate(f.object.google_oauth2_data)
+                pre = YAML.dump(f.object.google_oauth2_data)
+            .hr-line-dashed
+
+          .form-group.row
+            = f.label :image, t('users.profile.profile_photo'), class: 'col-sm-2 col-form-label'
+            .col-sm-10
+              p.form-control-static = image_tag user_image_url(@user)
+              = f.file_field :image
+          .hr-line-dashed
+
+          - @cvs[:cvs_select].each do |key, hash|
+            .form-group.row
+              = label_tag key, hash[:name], class: 'col-sm-2 col-form-label'
+              .col-sm-2 = select_tag "cv[#{key}]", options_for_select(hash[:options].map { |h| [h[1], h[0]] }, @current_cv.send(key)), class: 'select2 form-control'
+            .hr-line-dashed
+
+          .form-group.row
+            = label_tag @cvs[:cvs_license].keys[0], @cvs[:cvs_license].values[0][:name], class: 'col-sm-2 col-form-label'
+            .col-sm-3 = text_field_tag "cv[#{@cvs[:cvs_license].keys[0]}]", @current_cv.send(@cvs[:cvs_license].keys[0]), maxlength: 50, class: 'form-control'
+          .hr-line-dashed
+
+          .form-group.row
+            = label_tag @cvs[:cvs_country].keys[0], @cvs[:cvs_country].values[0][:name], class: 'col-sm-2 col-form-label'
+            .col-sm-3 = select_tag "cv[#{@cvs[:cvs_country].keys[0]}]", options_for_select(ISO3166::Country.all_names_with_codes,
+                                   @current_cv.send(@cvs[:cvs_country].keys[0])), class: 'select2 form-control'
+          .hr-line-dashed
+
+          .form-group.row
+            = label_tag @cvs[:cvs_description].keys[0], @cvs[:cvs_description].values[0][:name], class: 'col-sm-2 col-form-label'
+            .col-sm-10 = text_area_tag "cv[#{@cvs[:cvs_description].keys[0]}]", @current_cv.send(@cvs[:cvs_description].keys[0]), maxlength: 3000, class: 'form-control'
+          .hr-line-dashed

@@ -1,0 +1,51 @@
+.wizard-page.hidden#page12 data-stage='12'
+  = hidden_field_tag nil, t('wizards.index.page12.step_text'), class: 'status-text-val'
+  .col.left-column
+    .title =t('wizards.index.page12.title')
+    .row
+      .col-lg-12.column
+        .sortable-container
+          .sortable-drop
+          .thumbnails#thumbnails*{data: {confirmation_message: t('wizards.index.page12.confirmation_deleting_image')}}
+            - if @boat.images.present?
+              - images_by_priority = @boat.images.order(:priority)
+              - main_image = images_by_priority.first
+              .thumbnails-item.thumbnails-item__first
+                = image_tag images_by_priority.first.attachment&.url,
+                        data: {url: api_boat_image_path(boat_id: @boat.id, id: main_image.id, locale: nil)}
+                / TODO: Remove hidden input -> image/button tag `data-priority` attribute.
+                = hidden_field_tag "images_priorities[#{main_image.id}]", main_image.priority
+                = button_tag '', type: :button, class: %i[remove-btn js-remove-image],
+                        data: {url: api_boat_image_path(boat_id: @boat.id, id: main_image.id, locale: nil)}
+              = render partial: 'wizards/partials/image', collection: images_by_priority.drop(1)
+            .drop-photo
+              / TODO: This part must be refined with rails helpers and cocon gem
+              = file_field_tag :images,
+                  id: 'multipleImg',
+                  class: 'multipleImg',
+                  name:'images[]',
+                  multiple: 'multiple',
+                  accept: 'image/jpeg,image/png',
+                  data: { url: api_boat_images_path(boat_id: @boat.id, locale: nil),
+                          uploading_message: t('wizards.index.page12.uploading_boat_image'),
+                          uploaded_message: t('wizards.index.page12.successfully_uploaded_boat_image'),
+                          deleted_message: t('wizards.index.page12.successfully_deleted_boat_image') }
+              div.upload-text
+                div.button.btn-info
+                  i.icon-cloud
+                  i.fa.fa-plus
+                span.with-images = t('wizards.index.page12.upload')
+                span.no-images = t('wizards.index.page12.drag')
+        /.info-hint =t('wizards.index.page12.image_hint')
+      / button.button.btn-info[type="submit"]
+        i.fa.fa-save
+        = t('wizards.index.page09.save')
+
+    = render 'wizards/partials/buttons', current_stage: 12, commit: false, backurl: '#', nexturl: '#'
+  .col.right-column
+    hr /
+    .description.multiple
+      span.mark = t('wizards.index.page12.info') + ': '
+      = t('wizards.index.page12.description',
+          max_images_count: Boat::MAX_IMAGES,
+          max_image_size: number_to_human_size(BoatImage::MAX_ATTACHMENT_SIZE)).html_safe

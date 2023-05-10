@@ -1,0 +1,44 @@
+table.y-reservations
+  thead
+    tr
+      th = t('.transfer_date')
+      th = t('.details')
+      th = t('.amount')
+  tbody
+    - box.collection.each do |booking|
+      tr
+        td
+          p.dates= "#{booking.trip.transfer_at.day} #{short_month(booking.trip.transfer_at)} #{booking.trip.transfer_at.year}"
+          p.status= t('.confirmed')
+        td
+          - date_from = "#{booking.trip.check_in.day} #{short_month(booking.trip.check_in)}"
+          - date_to = "#{booking.trip.check_out.day} #{short_month(booking.trip.check_out)}  #{booking.trip.check_out.year}"
+          p.descr= "#{date_from} - #{date_to}. #{booking.client.display_name}. #{booking.reservation_code}"
+          P.links
+            = link_to t('.reservations_details'), dashboard_inbox_path(id: booking.trip_id), target: "_blank"
+            = ' | '
+            = link_to t('.download_bill'), dashboard_invoice_path(booking_id: booking.id), target: "_blank"
+        td
+          strong= view_money(booking.earnings)
+
+      - if booking.seller_penalty_amount.positive?
+        tr.empty
+        tr.penalty-info.custom-penalty-info
+          td &nbsp;
+          td.custom-penalty-td
+            = t('.cancellation_penalty')
+            = link_to t('.download_bill'),  dashboard_invoice_path(booking_id: booking.id, for_penalty: true), class: "penalty-invoice-show-link"
+          td
+            strong
+              = "-#{view_money(booking.seller_penalty_amount)}"
+        tr.empty
+        tr.penalty-info.custom-penalty-info.last
+          td &nbsp;
+          td.custom-penalty-td
+            = t('.total')
+          td
+            strong
+              = view_money(booking.earnings - booking.seller_penalty_amount)
+
+.remote-links data-target = '#booking-items'
+  = paginate box.collection, remote: true

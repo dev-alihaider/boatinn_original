@@ -1,0 +1,11 @@
+.rating-wrapper
+  .rating
+    .rating-full style='width: #{rate.to_f * 20.0}%;'
+      - 5.times
+        i.fa.fa-star
+    .rating-empty
+      - 5.times
+        i.fa.fa-star-o
+  - if defined?(count) && count
+    .review-count
+      = "(#{count})"

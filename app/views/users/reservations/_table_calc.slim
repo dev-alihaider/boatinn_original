@@ -1,0 +1,26 @@
+table.calc
+  - display = calc[:transfered_sum].positive? ? 'table-row' : 'none'
+  tr.transfered_sum style="display: #{display}"
+    td
+      = t('.transfered_sum')
+    td
+      strong
+        = view_money(calc[:transfered_sum])
+
+
+  - display = calc[:will_be_transfer].positive? ? 'table-row' : 'none'
+  tr.will_be_transfer style="display: #{display}"
+    td
+      = t('.will_be_transfer')
+    td
+      strong
+        = view_money(calc[:will_be_transfer])
+
+
+  - display = calc[:total].positive? ? 'table-row' : 'none'
+  tr.total style="display: #{display}"
+    td
+      = t('.total')
+    td
+      strong
+        = view_money(calc[:total])

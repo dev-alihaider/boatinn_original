@@ -1,0 +1,28 @@
+= render 'users/shared/menu'
+
+.container.statistics
+  .statistics-container.rating-page
+    h3.title = t('dashboard.statistics.main.rating_title')
+    .rating-block
+      .round-chart
+        .round-chart-inner
+          = render 'circle_chart', value: @statistic[:avg_rating], max_value: 5, inner_value: @statistic[:avg_rating], description: t('dashboard.statistics.ratings.overall')
+          = render 'circle_chart', value: @statistic[:reviews_count], max_value: @statistic[:reviews_count], inner_value: @statistic[:reviews_count], description: t('dashboard.statistics.ratings.total_reviews')
+          = render 'circle_chart', value: @statistic[:avg_sizes_by_grade][5][:size], max_value: @statistic[:reviews_count], inner_value: @statistic[:avg_sizes_by_grade][5][:size], description: t('dashboard.statistics.ratings.five_star')
+
+        .select-wrap
+          = select_tag :switch_listing, options_for_select([[t('dashboard.statistics.ratings.all_listings'), '',
+              { data: { path: ratings_dashboard_statistics_path } }]] + current_user_listings(@boats, :statistics_ratings),
+              params[:boat_id].presence), class: :select2
+
+      = render 'ratings_bar_graphs'
+
+
+    - if @reviews_box.collection.present?
+      .reviews-block
+        .reviews-about
+          h4#reviews.title = t('dashboard.statistics.ratings.reviews_about')
+          = render partial: 'review', collection: @reviews_box.collection, as: :review
+
+          section.views-pagination-wrapper
+            = paginate(@reviews_box.collection, params: { anchor: 'reviews' })

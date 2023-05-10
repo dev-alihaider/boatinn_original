@@ -1,0 +1,34 @@
+.boat.bordered
+  h2.title = t('users.listings.edit.the_boat')
+  ul
+    li
+      span.fa.fa-angle-right[aria-hidden="true"]
+      span = "#{t('users.listings.edit.sleep')}: #{@boat.guest_number}"
+    li
+      span.fa.fa-angle-right[aria-hidden="true"]
+      span = "#{t('users.listings.edit.bathrooms')}: #{@boat.bathrooms_count}"
+    li
+      span.fa.fa-angle-right[aria-hidden="true"]
+      span = "#{t('users.listings.edit.beds')}: #{@boat.beds_count}"
+    li
+      span.fa.fa-angle-right
+      span = "#{t('users.listings.edit.cabins')}: #{@boat.cabins_count}"
+
+    - Category.non_experience.each do |category|
+      - category.features.each do |feature|
+        - if @boat.feature_ids.include?(feature.id)
+          li
+            span.fa.fa-angle-right
+            span = feature.name
+    / li
+      span.fa.fa-male[aria-hidden="true"]
+      span Essential
+    / li
+      span.fa.fa-cutlery[aria-hidden="true"]
+      span Kitchen
+    / li
+      span.fa.fa-bath[aria-hidden="true"]
+      span Sink
+    / li
+      span.fa.fa-snowflake-o[aria-hidden="true"]
+      span Fridge

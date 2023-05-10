@@ -1,0 +1,7 @@
+section.section-block.how-it-works
+  .container-fluid
+    .row
+      .col-lg-12
+        hr
+        h2.section-title = prewizard_settings.rent_your_boat_title_main
+    .howitwork-descr = render partial: 'prewizards/rent_your_boat_part', locals: {prewizard_settings: prewizard_settings}, collection: @four

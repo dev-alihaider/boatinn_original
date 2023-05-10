@@ -1,0 +1,3 @@
+section.experience#experiences
+  .container-fluid
+    .row = render partial: 'homepages/experience_part', collection: @experience_images.order(:created_at)

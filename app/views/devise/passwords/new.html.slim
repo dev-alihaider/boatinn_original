@@ -1,0 +1,6 @@
+.popup
+  h3.title = t('devise.passwords.forgot_your_password')
+  = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post },format: :json, remote: true) do |f|
+    .error = devise_error_messages!
+    .form-field = f.email_field :email, autofocus: true, autocomplete: :email, placeholder: t('your_email')
+    .form-field.no-margin = f.submit t('devise.sessions.new.reset_password'), class: %i[button btn-danger btn-expanded]

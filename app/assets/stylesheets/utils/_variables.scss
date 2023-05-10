@@ -1,0 +1,105 @@
+/* Color palette */
+$white: #ffffff;
+$black: #000000;
+$transparent: transparent;
+
+$turquoise: #40d1bf;
+$turquoise-light:#A1D5CF;
+$turquoise-dark: #77C6BE;
+
+$steel: #969FA9;
+$steel-light: #C0C4CA;
+$steel-dark: #ABB1BA;
+
+$peru: #ff9600;
+$peru-light: #EAB372;
+$peru-dark: #E29942;
+
+$yellowgreen: #b6c54c;
+$yellowgreen-light: #D3DD94;
+$yellowgreen-dark: #C3D16A;
+
+$crimson: #c8345c;
+$crimson-light: #F2939B;
+$crimson-dark: #ED687A;
+
+$lemon: #FFE000;
+$lemon-light: #FFEC8D;
+$lemon-dark: #FFE65A;
+
+$teal: #009fbc;
+$teal-light: #96CFDF;
+$teal-dark: #64BFD4;
+
+$smoke: #EBEBEB;
+$smoke-light: #DADADA;
+$smoke-dark: #C6C6C6;
+
+$carbon: #3C4651;
+$carbon-light: #7F8089;
+$carbon-middle: #7c7c7c;
+$carbon-dark: #5C606B;
+$dimgray: #535353;
+
+/* Gallery colors */
+$gal-color01:#00ccff;
+$gal-color02:#92e4db;
+$gal-color03:#bd6e6e;
+$gal-color04:#d5a168;
+$gal-color05:#51a576;
+$gal-color06:#7791c5;
+$gal-color07:#bd6e6e;
+$gal-color08:#858c58;
+
+/* Warnings colors */
+$error-color: $crimson;
+$warning-color: $lemon;
+$success-color: #38E18A;
+
+/* Components colors */
+$main-color: $turquoise;
+/* $main-text-color: #939393; //maybe replace? */
+$main-text-color: #3C4651;
+$border-color: $steel-dark;
+$pre-title-color: #262626;
+$line-color: #00c2aa;
+$link: #6c8dc4;
+$section-gray: #F8F8F8;
+$facebook-color: #4267b2;
+$twitter-color: #009CDB;
+$input-back-color: #F8FAFC;
+
+/* Admin colors */
+$page-wrap: #f6f6f6;
+$admin-text: #6F6F6F;
+$admin-bgcolor01: #1d2d39;
+$admin-bgcolor02: #253949;
+$admin-active: #2184C3;
+$title-border: #39566C;
+$admin-error: #FB6B6F;
+$admin-success: $success-color;
+
+/* Additions color */
+$table-row-color: $page-wrap;
+
+/* Fonts */
+$main-font: Circular-Std-Book, Arial, sans-serif;
+$bold-font: Circular-Std-Bold, Arial, sans-serif;
+$light-font: OpenSans-Light, Arial, sans-serif;
+
+/* Sizes */
+$form-height: 2.9375rem; //43px
+$form-height-small: 1.4375rem; //27px
+$base-font-size: 16; //for rem-calculation
+
+/* Adaptive resolutions */
+$small: 360px; //ihpone5
+$mobile: 480px; //upper iphone6+
+$medium: 640px; //medium and landscape
+$tablet: 768px; //ipad
+$ipad_as_mobile: 770px; // ipad version such as mobile view (with MIN!)
+$ipad_as_desktop: 765px; // ipad version such as desktop view (with MIN!)
+$netbook: 992px; //bootstrap columns
+$notebook: 1024px; //ipad pro
+$desktop: 1280px; //desktop
+$full: 1400px; //desktop HD

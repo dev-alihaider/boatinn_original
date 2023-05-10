@@ -1,0 +1,16 @@
+.user-panel.row
+  = concept('notifies/cell/bell', current_user).()
+
+  = link_to '#', class: 'nav-anchor' do
+    .name = user_name
+    .avatar.img-block = image_tag(user_image_url)
+  nav.user-menu
+    ul
+      li = link_to t('header_popup_menu.edit_profile'), edit_dashboard_profile_index_path
+      li = link_to t('header_popup_menu.inbox'), dashboard_inbox_index_path
+      li = link_to t('header_popup_menu.account'), dashboard_account_index_path
+      li = link_to t('header_popup_menu.your_listings'), dashboard_listings_path
+      li = link_to t('header_popup_menu.wishlist'), dashboard_wishlist_index_path
+      - if current_user&.admin?
+        li = link_to t('header_popup_menu.go_to_admin_panel'), admin_root_path
+      li = link_to t('header_popup_menu.logout'), destroy_user_session_path, method: :delete

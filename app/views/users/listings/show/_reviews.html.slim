@@ -1,0 +1,23 @@
+.reviews#lst_reviews
+  h2.title = t('users.listings.show.reviews')
+  .reviews-inner
+    .review-list
+      ul.list
+        - %i[accuracy communication cleanliness location check_in value].each do |key|
+          li
+            span = t("users.listings.show.#{key}")
+            = render 'users/listings/show/rating', rate: @boat.rating_hash["#{key}_avg".to_sym]
+
+    .reviews-count
+      p
+        = "#{@boat.rating_hash[:count]}"
+        span = t('users.listings.show.reviews')
+
+  .reviews-block
+    ul.reviews-slider
+      - collection_portion(@boat.reviews, 2) do |collection|
+        li
+          = render partial: 'users/listings/show/review', collection: collection, as: :review
+
+    button.sliderNav.first[type="button"] |
+    button.sliderNav.last[type="button"] |

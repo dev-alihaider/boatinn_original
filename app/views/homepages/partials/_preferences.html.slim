@@ -1,0 +1,8 @@
+section.preferences#preferences
+  .container
+    .row
+      .column.col-lg-12
+        h2.title = t('homepage.community_preferences')
+    hr
+    .row = render partial: 'homepages/preferences_image_part', collection: @preferences_images
+    .row = render partial: 'homepages/preferences_title_part', collection: @eleven

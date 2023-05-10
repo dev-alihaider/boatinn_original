@@ -1,0 +1,16 @@
+form data-api-path = dashboard_calculate_earnings_path
+  .select-wrapper = select_tag :listing_id, options_for_select(earnings.options_for_listings, earnings.selected_listing_id), class: 'select2'
+  .sidebar-title = t('my_payments')
+  .sidebar-box
+    .row.custom-grid-row
+      .column.col-md-6
+        .select-wrapper
+          = select_tag :month, options_for_select(DateService.options_for_months, earnings.selected_month), class: 'select2'
+      .column.col-md-6
+        .select-wrapper
+          = select_tag :year, options_for_select(earnings.first_year..earnings.last_year, earnings.selected_year), class: 'select2'
+    .total-for-month = render 'users/reservations/table_calc', calc: earnings.calculate_for_month
+    .form-field
+      = label_tag 'select2', t('.view_full_year').html_safe
+      .select-wrapper = select_tag :full_year, options_for_select(earnings.first_year..earnings.last_year, earnings.selected_year), class: 'select2'
+    .total-for-year = render 'users/reservations/table_calc', calc: earnings.calculate_for_year

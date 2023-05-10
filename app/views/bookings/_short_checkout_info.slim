@@ -1,0 +1,16 @@
+- sidebar_dir = 'users/inbox/show/sidebar/'
+table.info-booking-table.not-bordered
+  / boat details
+  = render "#{sidebar_dir}boat_details"
+  tr
+    td colspan="2"
+      p
+        i.custom-icon-guests
+        = t("bookings.label_passengers_count", number: @travel.number_of_guests)
+      p
+        i.custom-icon-calendar
+        = l(@travel.check_in, format: :short_date)
+        - if @travel.rent_duration_in_days > 1
+          = " > #{l(@travel.check_out, format: :short_date)}"
+
+  = render "#{sidebar_dir}reservation_codes", with_details: false

@@ -1,0 +1,82 @@
+= render 'users/shared/menu'
+
+section.activate-sleeping
+  .listings-inner-page
+    .col.left-column
+      .title = t('users.listings.sleepin.title')
+      = form_for @boat, url: dashboard_listing_path, html: {id: :sleepin_form} do |f|
+        = f.hidden_field :sleepin, value: true
+        .row
+          .column.col-md-12.col-sm-12
+            .form-field
+              = f.label :listing_title, t('wizards.index.page03.name')
+              = f.text_field :listing_title
+            .form-field
+              = f.label :sleepin_description, t('wizards.index.page03.desc')
+              = f.text_area :sleepin_description
+            .row.custom-grid-row
+              .column.col-md-6.col-sm-6
+                .form-field
+                  .clnd-holder.clearfix
+                    .clnd-icon
+                      i.fa.fa-clock-o
+                    .clnd-input = f.select :sleepin_check_in_time, options_for_select(check_in_out_times, default_check_in_out(@boat.sleepin_check_in_time)), {}, class: :select2, placeholder: t('inn_time')
+              .column.col-md-6.col-sm-6
+                .form-field
+                  .clnd-holder.clearfix
+                    .clnd-icon
+                      i.fa.fa-clock-o
+                    .clnd-input = f.select :sleepin_check_out_time, options_for_select(check_in_out_times, default_check_in_out(@boat.sleepin_check_out_time)), {}, class: :select2, placeholder: t('out_time')
+            .form-field
+              = f.label :sleepin_min_rental_time, t('users.listings.edit.min_rent_time')
+              = f.select :sleepin_min_rental_time, options_for_select(minimum_rental_times_sleepin, @boat.sleepin_min_rental_time), {}, {class: :select2}
+            .row.custom-grid-row
+              .column.col-md-6.col-sm-6
+                .form-field
+                  = f.label :sleepin_max_passengers, t('users.listings.sleepin.max_number_of_passengers')
+                  = f.select :sleepin_max_passengers, options_for_select(passengers_count_options, @boat.sleepin_max_passengers), {include_blank: true}, {class: :select2}
+              .column.col-md-6.col-sm-6
+                .form-field
+                  = f.label :sleepin_per_night, t('users.listings.sleepin.price_per_night')
+                  .clnd-holder.clearfix
+                    .clnd-icon
+                      span.currency_symb = Money.default_currency.symbol
+                    .clnd-input = f.text_field :sleepin_per_night, value: number_with_precision(f.object.sleepin_per_night, precision: ListingsHelper::PRECISION, strip_insignificant_zeros: true), class: 'person-price', placeholder: '-----'
+            .row.custom-grid-row
+              .column.col-md-6.col-sm-6
+                .form-field
+                  = f.label :sleepin_extra_guests, t('users.listings.sleepin.for_each_guest_after')
+                  = f.select :sleepin_extra_guests, options_for_select(passengers_count_options, @boat.sleepin_extra_guests), {include_blank: true}, {class: :select2}
+              .column.col-md-6.col-sm-6
+                .form-field
+                  = f.label :sleepin_extra_price, t('users.listings.sleepin.extra_guest')
+                  .clnd-holder.clearfix
+                    .clnd-icon
+                      span.currency_symb = Money.default_currency.symbol
+                    .clnd-input = f.text_field :sleepin_extra_price, value: number_with_precision(f.object.sleepin_extra_price, precision: ListingsHelper::PRECISION, strip_insignificant_zeros: true), class: 'person-price', placeholder: '-----'
+            / .form-field
+              .checkbox-wrapper
+                = f.radio_button :instant_booking_sleepin, 1, checked: @boat.instant_booking_sleepin?, id: :instant_booking_enabled
+                = label_tag :instant_booking_enabled, t('users.listings.booking_settings.turn_on_instant_book')
+              .checkbox-wrapper
+                = f.radio_button :instant_booking_sleepin, 0, checked: !@boat.instant_booking_sleepin?, id: :instant_booking_disabled
+                = label_tag :instant_booking_disabled, t('users.listings.booking_settings.all_guests')
+            .form-field
+              = f.check_box :instant_booking_sleepin, class: 'agree-switcher'
+              = f.label :instant_booking_sleepin, t('users.listings.sharing.agree_text')
+        .buttons.row.custom-grid-row
+          .column.col-md-4.col-sm-12.prev-btn-wrapper
+            = link_to dashboard_listings_path, class: %i[button btn-info-outlined btn-expanded back] do
+              i.fa.fa-angle-left
+              = t('back')
+          .column.col-md-4.col-md-offset-4.col-sm-12.next-btn-wrapper
+            - save_button_classes = %i[button btn-success btn-expanded next]
+            - save_button_classes << 'btn-disabled' unless @boat.instant_booking_sleepin?
+            = button_tag nil, name: '', class: save_button_classes do
+              i.fa.fa-save
+              = t('save')
+    .col.right-column
+      hr /
+      .description.multiple
+        span.mark = "#{t('users.listings.sleepin.info')}: "
+        = t('users.listings.sleepin.description').html_safe

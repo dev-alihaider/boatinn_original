@@ -1,0 +1,4 @@
+= display_validation_errors(@faq)
+
+= form_for @faq, url: admin_faq_setting_path(@faq.id), class:'faq-form.faq-content__item' do |f|
+  = render 'admin/faq_settings/form', f:f

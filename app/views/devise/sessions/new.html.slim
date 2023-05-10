@@ -1,0 +1,40 @@
+.popup
+  .btn-close
+  .error
+    = devise_error_messages!
+
+  - remote = request.xhr? ? true : false
+  - format = request.xhr? ? :json : :html
+
+  / .actions
+  /   = link_to t('registrations.sign_up_omniauth', provider: 'Facebook'), user_facebook_omniauth_authorize_path,
+  /           class: 'button btn-primary btn-expanded'
+  /
+  / div = t('registrations.sign_up_or')
+  /
+  / h3 = t('registrations.sign_up_email')
+
+  = form_for(resource, as: resource_name, url: session_path(resource_name, format: format), html: {id: "login-in-user"}, format: format, remote: remote ) do |f|
+    .form-field.social-enter
+      = link_to user_facebook_omniauth_authorize_path, class: 'button btn-expanded btn-facebook' do
+        i.fa.fa-facebook
+        = t('devise.registrations.new.sign_up_omniauth', provider: 'Facebook')
+    .form-field.social-enter
+      = link_to user_google_oauth2_omniauth_authorize_path, class: 'button btn-expanded btn-google' do
+        i.fa.fa-google-plus
+        = t('devise.registrations.new.sign_up_omniauth', provider: 'Google')
+    .form-divide
+      span style="text-transform: uppercase;" = t('devise.registrations.new.sign_up_or')
+    .form-field.general-enter.no-margin
+      = link_to '#', class: 'button btn-expanded btn-danger btn-switch' do
+        i.fa.fa-envelope
+        = t('.login_with_email')
+    .form-field.simple-enter = f.email_field :email, autofocus: true, placeholder: t('.email_placeholder'), autocomplete: 'email'
+    .form-field.simple-enter.forgot-hide = f.password_field :password, autocomplete: 'off', placeholder: t('.password_placeholder')
+    - if devise_mapping.rememberable?
+      .form-field.simple-enter.forgot-hide
+        = f.check_box :remember_me
+        = f.label :remember_me
+    .form-field.simple-enter.forgot-hide = f.submit t('.log_in'), class: 'button btn-danger btn-expanded'
+    .form-field.forgot-show.no-margin.centered = link_to t('devise.sessions.new.reset_password'), '#', id: 'forgot-password-send', class: 'button btn-danger btn-expanded'
+    .form-field.simple-enter.no-margin.centered.forgot-hide = link_to t('devise.passwords.forgot_your_password'), '#', id: 'forgot-password-link'

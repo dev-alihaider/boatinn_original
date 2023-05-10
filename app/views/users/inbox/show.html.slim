@@ -1,0 +1,22 @@
+= render 'users/shared/menu'
+
+.container
+  .flex-container.inbox-inner-container
+    - if @travel.present?
+      = render "users/inbox/show/booking_sidebar_for_#{@travel.current_user_client? ? 'client' : 'seller'}"
+    .content
+      .booking-status = concept('travel/cell/travel_public_status', @travel).()
+
+      - if @travel.current_user_seller? || @travel.current_customer&.enabled?
+        = form_for @new_message, url: dashboard_inbox_path(id: @travel.trip.id) do |f|
+          .row
+            = f.text_area :content, placeholder: t('.say_something')
+          .row
+            = button_tag nil, class: %i[button btn-primary btn-send-message inbox-message-sent] do
+              i.fa.fa-telegram
+              = t('users.inbox.show.send')
+      .chat-window = render partial: 'users/inbox/show/message', collection: @travel.messages if @travel.present?
+
+
+- if @travel.present? && @travel.current_user_client? && @travel.has_urgent_payment?
+  = render "users/inbox/show/sidebar/pay_urgent_payment"

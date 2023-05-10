@@ -1,0 +1,6 @@
+.experience-box
+  = link_to experience_part.link  do
+    .img-wrap
+      = image_tag experience_part.image.attachment.url(:experience_gallery_wide_full)
+    h4.subtitle
+      = experience_part.title

@@ -1,0 +1,31 @@
+.review-box
+  .avatar-wrapper
+    .avatar.img-block = image_tag user_image_url(review.sender)
+  .review-body
+    .date
+      i.fa.fa-calendar
+      = l(review.reviewed_at, format: :long, default: '-')
+    .from = t('users.profile.review_from', reviewer: review.sender.display_name,
+            reviewer_link: show_profile_path(locale: locale, id: review.sender.id)).html_safe
+    p.review-text = review.public_review
+    .location
+      i.fa.fa-home
+      = review.trip.boat_hash[:location][:name]
+
+    - if review.reply_review.present?
+      .reply
+        .review-box
+          .avatar-wrapper
+            .avatar.img-block = image_tag user_image_url(review.receiver)
+          .review-body
+            .date
+              i.fa.fa-calendar
+              = l(review.replied_at, format: :long, default: '-')
+            .from = review.receiver.display_name
+            p.review-text = review.reply_review
+
+    - if user_signed_in? && review.receiver != current_user
+      .btn-block
+        button.button.btn-outlined.report-review-button type="button" data-toggle="modal" data-target="#reportModal" data-review-id="#{review.id}" data-reported-message="#{t('reports.successfully_sent_review_report')}"
+          span.fa.fa-flag-o[aria-hidden="true"]
+          =< t('reports.report')

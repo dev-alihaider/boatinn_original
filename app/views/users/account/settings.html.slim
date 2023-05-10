@@ -1,0 +1,11 @@
+= render 'users/shared/menu'
+
+.container
+  .flex-container.account-container
+    .sidebar = render 'menu'
+    .content
+      h3.title = t('settings')
+      h3.title.cancel-title = t('cancel_account')
+      .inner-content
+        = button_tag t('.cancel_my_account'), class: %i[button btn-danger btn-cancel-account]
+        = render 'users/account/cancel'

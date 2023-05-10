@@ -1,0 +1,15 @@
+.yl-box
+  = render 'users/listings/edit/header', stage: 15, title: t('.title')
+  .season-rates-container
+    table.season-rates-table
+      thead
+        tr
+          th = t('users.listings.edit.seasonal_rates.dates')
+          th = t('users.listings.edit.seasonal_rates.min_stay')
+          th = t('users.listings.edit.seasonal_rates.price_per')
+          th = t('users.listings.edit.seasonal_rates.half_day')
+          th = t('users.listings.edit.seasonal_rates.full_day')
+          th = t('users.listings.edit.seasonal_rates.night')
+          th = t('users.listings.edit.seasonal_rates.week')
+          th
+      tbody = render partial: 'users/listings/edit/season_rate', collection: @boat.season_rates

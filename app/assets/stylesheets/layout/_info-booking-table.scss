@@ -1,0 +1,66 @@
+.info-booking-table {
+  border-top: 1px solid $border-color;
+  border-bottom: 1px solid $border-color;
+  margin-bottom: 2rem;
+  &.not-bordered {
+    border: none;
+  }
+  tr {
+    &:not(.not-bordered) {
+      border-bottom: 1px solid $border-color;
+    }
+    &:nth-child(odd) {
+      background-color: $white;
+    }
+  }
+  td {
+    padding: 1rem 0;
+    vertical-align: middle;
+    &:not(:only-child):last-child {
+      text-align: right;
+    }
+    &.topped {
+      vertical-align: top;
+    }
+    &:first-child {
+      max-width: 190px;
+    }
+  }
+  p {
+    min-height: 1.5rem;
+    i {
+      position: relative;
+      top: 7px;
+    }
+    &.subtotal,
+    &.client_fee {
+      white-space: nowrap;
+    }
+  }
+  .total {
+    white-space: nowrap;
+  }
+  .info {
+    font-size: 0.8rem;
+    // margin-top: -1rem;
+    line-height: 1;
+  }
+  .note {
+    font-size: 0.8rem;
+  }
+  .img-block {
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+  }
+  .location-title {
+    font-size: 1.2rem;
+  }
+  .service-fee {
+    position: relative;
+    .tooltip {
+      bottom: 34px;
+      left: -66px;
+    }
+  }
+}

@@ -1,0 +1,35 @@
+.container
+<div>
+<div style="margin-top: 5%; margin-bottom: 1%">
+<img src="/assets/logo-small-e396d8d1adff33feb3b4dce3036b85e930308d1d5e460f1bceb16449af4f25e7.svg" alt="Logo small" style="height: 25%; display: block; margin-left: auto; margin-right: auto; width: 100px; padding-left: 20px;">
+</div>
+<br>
+<br>
+<h2 style="text-align:center">Bienvenido a boatINN</h2><br>
+<h3 style="text-align: center;">
+-if !params[:namec].nil?
+       = params[:namec].to_s
+-else
+   javascript:
+      location.replace("https://boatinn.net")
+</h3><br><br>
+<h4 style="text-align: center;margin-left: 10%;margin-right: 10%;">Te avisaremos en cuanto esté todo listo 😉</h4>
+<br>
+<h3 style="text-align: center;">⛵ 🚤 ✍️</h3>
+<br>
+<br>
+<div style="text-align: center">
+<a id="btn-go-home" class="button btn-expanded btn-secondary-outlined btn-go-back"  href="https://boatinn.net/">Home</a>
+</div>
+</div>
+== yield
+
+-if !params[:emailc].nil?
+   -  @nameclient =  params[:namec].to_s
+   -  @emailclient = params[:emailc].to_s
+   -  UserMailer.welcome_email_promo(@nameclient,@emailclient).deliver_later
+-else
+   javascript:
+      location.replace("https://boatinn.net")
+
+

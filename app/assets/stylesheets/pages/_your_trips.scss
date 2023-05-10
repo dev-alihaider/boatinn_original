@@ -1,0 +1,582 @@
+.container {
+	&.your-trip {
+		width: 95%;
+		@include respond-to-min($full) {
+			width: 1200px;
+		}
+	}
+}
+
+.your-trip, .trip-invite-container {
+	position: relative;
+	padding: 3rem 0px 3rem;
+	color: #545454;
+	.title {
+    width: 100%;
+    padding: 0 1.5rem 1.25rem 0;
+    color: $carbon;
+    font-size: rem-calc(25);
+  }
+  .subtitle {
+    font-size: 30px;
+  	margin-bottom: 30px;
+  }
+  hr {
+  	width: 100%;
+  	height: 1px;
+  	background-color: #B7B7B7;
+  }
+  .title-small {
+  	font-size: 16px;
+    padding: 0 1.5rem 1.25rem 0;
+    &--normal {
+    	font-weight: normal;
+    }
+  }
+}
+
+.your-trip-container {
+	hr {
+		margin: 45px 0;
+	}
+  .info {
+		text-transform: uppercase;
+		margin-bottom: 1rem;
+  }
+  .avatar {
+  	border: 10px solid #0086BC;
+  	width: 95px;
+  	height: 95px;
+  	padding-top: 0;
+  	margin: -47.5px auto 0;
+  	box-sizing: border-box;
+  	margin-bottom: 20px;
+  }
+  .links {
+  	display: flex;
+  	justify-content: space-between;
+  	a {
+  		color: #545454;
+  	}
+  }
+  .btn-invoice {
+    margin-top: 1rem;
+  }
+  .rating {
+ 		color: #db9600;
+ 		margin: 0 auto 1rem;
+  }
+  .head-block {
+  	padding-top: 34px;
+  	background-image: url(image-path('your-trip.png'));
+		background-size: 325px auto;
+		background-repeat: no-repeat;
+		background-position: 53% top;
+  	p {
+  		margin-bottom: 100px;
+  	}
+  	.button {
+  		text-transform: uppercase;
+  	}
+  	@include respond-to-max($desktop) {
+  		background-position-x: right;
+  	}
+  	@include respond-to-max($tablet) {
+  		background-size: 290px auto;
+  	}
+  	@include respond-to-max($medium) {
+  		background-image: none;
+  		text-align: center;
+  	}
+  }
+  .rating-wrapper {
+    height: 1.5rem;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+}
+
+.past-trips {
+	&-list {
+		list-style: none;
+		display: flex;
+		flex-wrap: wrap;
+		padding-left: 0;
+	}
+	&-item {
+		width: 22.9%;
+		text-align: center;
+		margin-right: 2.8%;
+		&:nth-child(4n+4) {
+			margin-right: 0;
+		}
+		.description {
+			border: 1px solid #D2D2D2;
+			border-top: 0;
+      padding: 0 1.2rem 1.2rem;
+		}
+		@include respond-to-max($desktop) {
+			width: 31.46666%;
+			&:nth-child(4n+4) {
+				margin-right: 2.8%;
+			}
+			&:nth-child(3n+3) {
+				margin-right: 0;
+			}
+		}
+		@include respond-to-max($tablet) {
+			width: 48.6%;
+			&:nth-child(3n+3) {
+				margin-right: 2.8%;
+			}
+			&:nth-child(2n+2) {
+				margin-right: 0;
+			}
+		}
+		@include respond-to-max($mobile) {
+			width: 100%;
+			margin-right: 0;
+			&:nth-child(3n+3) {
+				margin-right: 0;
+			}
+		}
+	}
+}
+
+.place-name {
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  height: 2.4rem;
+  overflow: hidden;
+	font-weight: 600; // For cyrillic
+	font-family: $bold-font;
+	margin-bottom: 1rem;
+}
+
+.trip-invite {
+	&-container {
+		display: flex;
+		justify-content: space-between;
+		hr {
+			margin: 35px 0;
+		}
+		.link-block {
+			width: 75.4%;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			@include respond-to-max($medium) {
+				width: 100%;
+			}
+		}
+	}
+	&-description {
+		width: 61.23%;
+		@media screen and (max-width: 767px) {
+			width: 100%;
+		}
+	}
+	&-image {
+		width: 34.34%;
+		img {
+			max-width: 100%;
+			display: block;
+		}
+		@media screen and (max-width: 767px) {
+			display: none;
+		}
+	}
+}
+
+.referral-block {
+	display: flex;
+	@include respond-to-max($medium) {
+		flex-wrap: wrap;
+	}
+}
+
+.referral-item {
+	width: 48.2%;
+	flex-shrink: 0;
+	font-size: rem-calc(14);
+	line-height: rem-calc(21);
+	padding-bottom: 5px;
+	&:first-child {
+		margin-right: 3.6%;
+	}
+	@include respond-to-max($medium) {
+		width: 100%;
+		&:first-child {
+			margin-bottom: 20px;
+		}
+	}
+}
+
+.invite-block {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 25px;
+	.btn-facebook, .btn-twitter {
+		width: 48.4%;
+		min-width: auto;
+	}
+	.btn-facebook {
+		margin-right: 3.2%;
+	}
+	p {
+		flex-shrink: 0;
+		width: 200px;
+	}
+	@include respond-to-max($medium) {
+		flex-wrap: wrap;
+		p {
+			width: 100%;
+			margin-bottom: 10px;
+		}
+	}
+}
+
+.share-block {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	input {
+		width: 75.4%;
+	}
+	label {
+		flex-shrink: 0;
+		width: 200px;
+	}
+	@include respond-to-max($medium) {
+		flex-wrap: wrap;
+		p {
+			width: 100%;
+			margin-bottom: 10px;
+		}
+		input {
+			width: 100%;
+		}
+	}
+}
+
+.your-reservation-body {
+  display: flex;
+  flex-wrap: wrap;
+  border-top: 1px solid black;
+  padding-top: 1.875rem;
+  justify-content: space-between;
+  padding-bottom: 1.875rem;
+}
+
+.reservation-img-holder {
+  flex: 0 0 100%;
+  max-width: 100%;
+  overflow: hidden;
+  position: relative;
+  height: 15.3125rem;
+
+  @include respond-to-min($tablet) {
+    flex: 0 0 34%;
+    max-width: 34%;
+    height: 9rem;
+  }
+
+  @include respond-to-min($netbook) {
+    height: 15.3125rem;
+  }
+
+  img {
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.reservation-data {
+  flex: 0 0 100%;
+  max-width: 100%;
+  line-height: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  color: #9a9a9a;
+  padding-top: 1.25rem;
+
+  @include respond-to-min($tablet) {
+    flex: 0 0 36%;
+    max-width: 36%;
+    padding-top: 0;
+  }
+}
+
+.reservation-btn-holder {
+  display: flex;
+  flex: 0 0 100%;
+  max-width: 100%;
+  flex-direction: row;
+  margin-top: 0.9375rem;
+  justify-content: center;
+
+  @include respond-to-min($tablet) {
+    flex: 0 0 26%;
+    max-width: 26%;
+    flex-direction: column;
+    margin-top: 0;
+    justify-content: flex-end;
+  }
+
+  @include respond-to-min($netbook) {
+    flex-direction: row;
+  }
+
+  .button {
+    &:first-child {
+      margin-right: 1rem;
+    }
+
+    @include respond-to-min($tablet) {
+      margin-bottom: 0.9375rem;
+    }
+
+    @include respond-to-min($netbook) {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.reservation-location {
+  margin-top: 1.4375rem;
+  color: #727272;
+}
+
+.reservation-location-title {
+  font-size: 18px;
+  color: #727272;
+  font-weight: 600;
+}
+
+.reservation-location-holder {
+  display: flex;
+  line-height: 1.25rem;
+
+  .fa {
+    color: $peru;
+  }
+}
+
+.reservation-location-name {
+  margin-left: 0.3125rem;
+  display: inline-block;
+}
+
+.reservation-info-holder {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid black;
+  padding-top: 1.875rem;
+  padding-bottom: 1.875rem;
+  border-top: 1px solid #c2c2c1;
+  flex-wrap: wrap;
+}
+
+.host-info-holder {
+  display: flex;
+  align-items: center;
+  flex: 0 0 100%;
+  max-width: 100%;
+
+  @include respond-to-min($netbook) {
+    flex: 0 0 44%;
+    max-width: 44%;
+    padding-right: 5rem;
+  }
+}
+
+.host-ava-holder {
+  width: 4.375rem;
+  height: 4.375rem;
+  flex: 0 0 4.375rem;
+  max-width: 4.375rem;
+  margin: 0 1.0625rem;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.host-ava {
+  max-width: 100%;
+  width: 100%;
+}
+
+.host-name {
+  font-size: 1.125rem;
+  color: #727272;
+  margin-bottom: 0.625rem;
+}
+
+.checkin-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  flex: 0 0 100%;
+  max-width: 100%;
+  margin-top: 15px;
+
+  @include respond-to-min($medium) {
+    padding-right: 3.125rem;
+    border-right: 1px solid #c2c2c1;
+  }
+
+  @include respond-to-min($netbook) {
+    flex: 0 0 56%;
+    max-width: 56%;
+    margin-top: 0;
+    border: none;
+  }
+
+}
+
+.checkin-item {
+  border-left: 1px solid #c2c2c1;
+  padding: 1.25rem 0.75rem 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  flex: 0 0 100%;
+  max-width: 100%;
+
+  @include respond-to-min($medium) {
+    padding: 1.25rem 0.75rem 1.25rem 2.5rem;
+    border-bottom: none;
+    flex: 0 0 auto;
+    max-width: none;
+  }
+
+  .icon {
+    font-size: 3.125rem;
+    margin-right: 0.875rem;
+  }
+}
+
+.checkin-title {
+  font-size: 0.9375rem;
+}
+
+.checkin-body {
+  margin-top: 0.625rem;
+  display: inline-block;
+}
+
+.payment-holder {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  border-top: 1px solid #c2c2c1;
+  padding-top: 1.875rem;
+  padding-bottom: 1.875rem;
+}
+
+.price-holder {
+  padding: 1.875rem 0 0 0;
+  flex: 0 0 100%;
+  max-width: 100%;
+
+  @include respond-to-min($netbook) {
+    padding: 1.875rem 5rem 1.25rem 0;
+    flex: 0 0 44%;
+    max-width: 44%;
+  }
+}
+
+.line-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.125rem;
+  line-height: 1.1875rem;
+  color: #6f6f6f;
+}
+
+.line-item-main {
+  font-weight: 600;
+  border-top: 1px solid #c2c2c1;
+  padding-top: 1.9375rem;
+  text-transform: uppercase;
+}
+
+.card-holder {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding-top: 20px;
+
+  @include respond-to-min($netbook) {
+    flex: 0 0 56%;
+    max-width: 56%;
+    border: none;
+    padding-top: 0;
+  }
+}
+
+.card-data-holder {
+  flex: 0 0 100%;
+  max-width: 100%;
+  display: flex;
+  color: #6f6f6f;
+  line-height: 1.5625rem;
+  align-items: center;
+  border-top: 1px solid #c2c2c1;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  @include respond-to-min($medium) {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding: 0 1.875rem 0 2.5rem;
+    border-top: none;
+    border-left: 1px solid #c2c2c1;
+  }
+
+  &:last-child {
+    @include respond-to-min($medium) {
+      border-right: 1px solid #c2c2c1;
+    }
+
+    @include respond-to-min($netbook) {
+      border-right: none;
+    }
+
+  }
+}
+
+.card-data {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 70%;
+  max-width: 70%;
+}
+
+.card-type {
+  flex: 0 0 6.25rem;
+  max-width: 6.25rem;
+  overflow: hidden;
+
+  img {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+.card-title {
+  margin-bottom: 0.9375rem;
+  font-weight: 600;
+}
+
+.card-price {
+  margin-top: 0.3125rem;
+  font-weight: 600;
+}

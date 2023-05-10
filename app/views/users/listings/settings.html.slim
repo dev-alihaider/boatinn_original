@@ -1,0 +1,47 @@
+= render 'users/shared/menu'
+
+.container
+  .booking-settings-container
+    h3.title = t('booking_settings')
+    .flex-container
+      .content
+        .yl-nav-links
+          = link_to t('listing_details'), edit_dashboard_listing_path, class: %i[listing-tab-link]
+          = link_to t('booking_settings'), settings_dashboard_listing_path, class: %i[listing-tab-link active]
+        .yl-box
+          h3.title = t('users.listings.booking_settings.how_instant_booking_works')
+          .checkbox-wrapper
+            = radio_button_tag :instant_booking_classic, true, @boat.instant_booking_classic?, id: :instant_booking_enabled, data: ajax_data_attrs(@boat, instant_booking_classic: true)
+            = label_tag :instant_booking_enabled, t('users.listings.booking_settings.some_guests'), class: "booking-set-label"
+            .recommended = t('users.listings.booking_settings.recommended')
+            p.annotation = t('users.listings.booking_settings.annotation_guests')
+          / .checkbox-wrapper
+            = radio_button_tag :instant_booking_classic, false, !@boat.instant_booking_classic?, id: :instant_booking_disabled, data: ajax_data_attrs(@boat, instant_booking_classic: false)
+            = label_tag :instant_booking_disabled, t('users.listings.booking_settings.all_guests')
+        .yl-box
+          h3.title = t('cancellation_policies')
+          p = t('users.listings.booking_settings.choose_policy')
+          p.view-d-text
+            = link_to t('users.listings.booking_settings.view_details'), cancellation_policy_path
+          .checkbox-wrapper
+            = radio_button_tag :cancellation, :flexible, @boat.flexible?, id: :cancellation_flexible, data: ajax_data_attrs(@boat, cancellation: :flexible)
+            = label_tag :cancellation_flexible, t('users.listings.booking_settings.flexible')
+            p.annotation = t('users.listings.booking_settings.flexible_text')
+          .checkbox-wrapper
+            = radio_button_tag :cancellation, :moderate, @boat.moderate?, id: :cancellation_moderate, data: ajax_data_attrs(@boat, cancellation: :moderate)
+            = label_tag :cancellation_moderate, t('users.listings.booking_settings.moderate')
+            p.annotation = t('users.listings.booking_settings.moderate_text')
+          .checkbox-wrapper
+            = radio_button_tag :cancellation, :strict, @boat.strict?, id: :cancellation_strict, data: ajax_data_attrs(@boat, cancellation: :strict)
+            = label_tag :cancellation_strict, t('users.listings.booking_settings.strict')
+            p.annotation = t('users.listings.booking_settings.strict_text')
+        .yl-box
+          h3.title = t('users.listings.booking_settings.rental_agreement')
+          p = t('users.listings.booking_settings.rental_agreement_text')
+      .sidebar
+        = select_tag :switch_listing, options_for_select(current_user_listings(@boats, :settings), @boat.id), class: :select2
+        .yl-box#instant_booking_block style="display: #{'none' if @boat.instant_booking_classic?}"*{data: {turned_on_message: t('users.listings.booking_settings.turned_on_message'), turned_off_message: t('users.listings.booking_settings.turned_off_message')}}
+          h3.title = t('users.listings.booking_settings.increase_earnings')
+          p.description = t('users.listings.booking_settings.increase_earnings_text')
+          = button_tag t('users.listings.booking_settings.turn_on_instant_book'), id: :enable_instant_booking_button,
+          class: %i[button btn-expanded btn-primary], type: 'button', data: ajax_data_attrs(@boat, instant_booking_classic: true)

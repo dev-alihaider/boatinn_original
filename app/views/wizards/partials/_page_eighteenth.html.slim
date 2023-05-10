@@ -1,0 +1,23 @@
+.wizard-page#page18 data-stage='18'
+  = hidden_field_tag nil, t('wizards.index.page18.step_text'), class: 'status-text-val'
+  .subtitle.bw-calendar-title = t('wizards.index.page18.title')
+  .bw-calendar-wrapper
+    = link_to '#', class: 'button btn-success btn-unlocking' do
+      span.unlock-text
+        i.fa.fa-unlock
+        = t('wizards.index.page18.unlock_btn')
+    = link_to '#', class: 'button btn-alert btn-locking' do
+      span.lock-text
+        i.fa.fa-lock
+        = t('wizards.index.page18.lock_btn')
+    / TODO: Front-end: use this data for availability calendar
+    / Availability calendar data for boat: calendar JS must be initialized for interval [first_year..last_year], with disabled dates from booking blockings/booking data
+    .bw-calendar*{ data: { first_year: current_user.calendar_started_at.year, last_year: current_user.calendar_available_until.year, booking_blockings: render(template: 'users/listings/show/booking_blockings.json'), bookings: render(template: 'users/listings/show/bookings.json') } }
+    = hidden_field_tag 'bw-calendar-val'
+    / TODO: Add correct Rails params for default forms saving/updating
+    / = f.hidden_field :calendars, id: 'bw-calendar-val-locked', value: ''
+    / = hidden_field_tag 'bw-calendar-val-locked-hard', '2018-02-28,2018-02-25'
+    = hidden_field_tag :calendars, '', id: 'bw-calendar-val-locked'
+    = hidden_field_tag 'bw-calendar-val-locked-hard', ''
+    = hidden_field_tag 'bw-calendar-val-locked-storage'
+    = render 'wizards/partials/buttons', current_stage: 18, commit: false, backurl: '#', nexturl: '#'

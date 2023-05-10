@@ -1,0 +1,17 @@
+.tr-wizard-step
+  .row
+    .col-md-12
+      h2.title = t("bookings.wizard.cancellation.select_reason")
+  .row
+    .col-md-12
+      .form-field
+        = label_tag(:cancel_subject, t("bookings.wizard.cancellation.subject_label"))
+        = select_tag 'cancel[subject]', options_for_select(options_from_enums(Travel::TripCancellation.subjects, 'bookings.cancellation_subjects')), class: 'select2'
+  .row
+    .col-md-12
+      .form-field
+        = label_tag(:cancel_reason, t("bookings.wizard.cancellation.reason_label", seller_name: @travel.seller.display_name))
+        = text_area_tag('cancel[reason]', '', placeholder: t("bookings.wizard.cancellation.reason_placeholder"))
+  .row
+    .col-md-4.sm-12
+      button.button.btn-primary.btn-expanded type='button' id="btn_cancel_booking_reason" = t('bookings.wizard.cancellation.continue')

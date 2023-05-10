@@ -1,0 +1,96 @@
+= render 'users/shared/menu'
+
+.container.your-trip
+  .your-reservation-container
+    h3.subtitle= t('dashboard.your_trip.reservation_receipt')
+    .your-reservation-body
+      .reservation-img-holder
+        = image_tag @travel.cover_src
+      .reservation-data
+        span=  @travel.check_in.strftime('%a') + ', ' + @travel.check_in.strftime('%b-%d-%Y').upcase
+        - @travel.current_bookings.each do |booking|
+          span= t('dashboard.your_trip.confirmation_code', code: booking.reservation_code)
+          span= t('dashboard.your_trip.receipt_number', number: booking.invoice.client_number)
+
+        .reservation-location
+          p.reservation-location-title= @travel.boat_hash[:name]
+          p.reservation-location-holder
+            i.fa.fa-map-marker
+            span.reservation-location-name= @travel.boat_hash[:location][:name]
+
+      .reservation-btn-holder
+        = link_to dashboard_receipt_path(@travel.trip, format: :pdf, download: 'receipt'), class: "button btn-outlined", target: '_blank' do
+          = t('dashboard.your_trip.save_to_pdf')
+        = link_to dashboard_receipt_path(@travel.trip, format: :pdf), class: "button btn-outlined" do
+          = t('dashboard.your_trip.print')
+
+    .reservation-info-holder
+      .host-info-holder
+        span.host-label= "#{t('dashboard.your_trip.your_host')}:"
+        .host-ava-holder.img-block
+          = image_tag user_image_url(@travel.seller), :class => 'host-ava'
+        .host-name-holder
+          h3.host-name= @travel.seller.display_name
+          p.host-duration= t('dashboard.your_trip.scince', year: @travel.seller.created_at.year)
+
+
+      .checkin-list
+        .checkin-item
+          span.icon.bt-icon-door-in
+          .checkin-data
+            h6.checkin-title= @travel.check_in.strftime('%A')
+            span.checkin-body= @travel.check_in.strftime('%B-%d-%Y')
+
+        .checkin-item
+          span.icon.bt-icon-door-in
+          .checkin-data
+            h6.checkin-title= @travel.check_out.strftime('%A')
+            span.checkin-body= @travel.check_out.strftime('%B-%d-%Y')
+
+        .checkin-item
+          span.icon.bt-icon-users
+          span.checkin-body= @travel.guest_label
+
+    .payment-holder
+      .price-holder
+        .line-item
+          .line-label= "#{view_money(@travel.trip.per_price)} x #{@travel.unit_quantity} #{@travel.unit_label}"
+          .line-value= view_money(@travel.current_customer.subtotal)
+
+        - if @travel.trip.cleaning_fee.positive?
+          .line-item
+            .line-label= t('users.listings.edit.cleaning_fee')
+            .line-value= view_money(@travel.trip.cleaning_fee)
+
+        - if @travel.trip.skipper_fee.positive?
+          .line-item
+            .line-label= t('users.listings.edit.skipper_fee')
+            .line-value= view_money(@travel.trip.skipper_fee)
+
+
+        .line-item
+          .line-label Service fee
+          .line-value= view_money(@travel.current_customer.client_fee)
+
+        .line-item.line-item-main
+          .line-label= t('dashboard.your_trip.total', symbol: view_money(@travel.current_customer.total, opts: {only_symbol: true}))
+          .line-value= view_money(@travel.current_customer.total)
+
+      .card-holder
+        - @travel.payments(order: :paid_date).each do |payment|
+          .card-data-holder
+            .card-data
+              span.card-title= payment.prime? ? t('dashboard.your_trip.final_payment') :  t('dashboard.your_trip.deposit_fee')
+              - if payment.paid?
+                span.card-name= t('dashboard.your_trip.paid_with', payment: payment_name(payment.source))
+                span.card-number= source_without_brand(payment.source)
+                span.card-date= (payment.captured_at || payment.created_at).strftime('%a') + ', ' + (payment.captured_at || payment.created_at).strftime('%b-%d-%Y').upcase
+                span.card-price= view_money(payment.total)
+                .card-type
+                  = image_tag payment_image(payment.source), :class => 'card-type-img'
+              - else
+                span.card-name= t('dashboard.your_trip.will_be_paid', payment: credit_card_name(current_user.current_credit_card))
+                span.card-date= payment.plan_charge_at.strftime('%a') + ', ' + payment.plan_charge_at.strftime('%b-%d-%Y').upcase
+                span.card-price= view_money(payment.total)
+                .card-type
+                  = image_tag payment_image(current_user.current_credit_card.brand), :class => 'card-type-img'

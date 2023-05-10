@@ -1,0 +1,31 @@
+/h2 A passenger has canceled his seat in your boat share listing
+/p The listing is active and other passengers still may join the trip
+/p= link_to 'View details', dashboard_inbox_url(id: @booking.trip_id)
+
+tbody
+  tr
+    td height="140" style=("width: 50%; padding-right: 5%;") valign="top"
+      h1 style=("font-family: 'Cabin', Arial, sans-serif; color: #545454; font-size: 29px; line-height: 35px; margin-bottom: 26px; margin-top: 10px;")
+        = t('.subject', @locals)
+      p style=("margin-top: 7px; font-family: 'Cabin', Arial, sans-serif; line-height: 23px;")
+        = t('.client_has_canceled', @locals)
+  tr style=""
+    td style=("border-bottom: 1px solid #b6b6b6;")
+  tr style=""
+    td
+      div style=("width: 150px; height: 150px; margin: 33px auto 5px; display: block; overflow: hidden; border-radius: 50%;")
+        = image_tag user_image_url(@client), style: "width: 100%; max-width: 100%"
+      p style=("text-align: center; font-weight: 600; font-family: 'Cabin', Arial, sans-serif; font-size: 21px; color: #545454;")
+        = @locals[:client_name]
+      p style=("text-align: center; font-family: 'Cabin', Arial, sans-serif; margin-top: 5px; margin-bottom: 0;")
+        = @locals[:address]
+      p style=("text-align: center; margin-top: 7px; text-align: center; font-family: 'Cabin', Arial, sans-serif;")
+        = t('.client_since_at', @locals.merge(seller_since_at: @seller.created_at.year))
+  tr style=""
+    td style=("border-bottom: 1px solid #b6b6b6;")
+  tr
+    td height="100" valign="top"
+      p style=("font-family: 'Cabin', Arial, sans-serif; line-height: 22px; color: #545454; font-size: 15px;")
+        = @reason
+
+

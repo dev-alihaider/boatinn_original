@@ -1,0 +1,7 @@
+tr
+  td
+    p
+      strong.location-title = link_to @travel.boat_hash[:name], listing_path(id: @travel.trip.boat_id)
+    p = link_to @travel.boat_hash[:location][:address], listing_path(id: @travel.trip.boat_id)
+  td
+    .img-block = link_to image_tag(@travel.cover_src), listing_path(id: @travel.trip.boat_id)

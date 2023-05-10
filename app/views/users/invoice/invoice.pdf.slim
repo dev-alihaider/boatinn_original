@@ -1,0 +1,64 @@
+.container
+  .row
+    table.invoice-table
+      tr.bordered
+        td
+          = t('invoice.host_number')
+          br
+          = @invoice_number
+        td
+          = t('invoice.service_address', service_name: t('service_name')).html_safe
+        td.custom-align
+          = wicked_pdf_image_tag 'logo', class: "invoice-logo"
+      tr
+        td
+          h4.invoice-title
+            = t('invoice.name')
+          = @member.display_name
+        td
+          h4.invoice-title
+            = t('invoice.address')
+          = @booking.trip.boat_hash[:location][:address]
+      tr
+        td
+          h4.invoice-title
+            = t('invoice.trip_date')
+          = @booking.trip.check_in.strftime('%d/%m/%y')
+        td
+          h4.invoice-title
+            = t('invoice.code')
+          = @booking.reservation_code
+        td
+          h4.invoice-title
+            = t('invoice.listing')
+          = @booking.trip.boat_hash[:name]
+      tr.bordered
+        td
+          h4.invoice-title
+            = t('invoice.vat_country')
+          = t('invoice.vat_country')
+        td
+          h4.invoice-title
+            = t('invoice.vat')
+          = "#{@booking.trip.vat_fee_percents.to_s.sub('.0', '')}%"
+        td
+          h4.invoice-title
+            =t('invoice.nie')
+          = @member.nie
+      tr
+        td colspan="3"
+          .invoice-super-title
+            = t('invoice.boatinn_sf')
+      tr.bordered
+        td
+          h4.invoice-title
+            = t('invoice.service_fee')
+          = view_money(@service_fee - @vat_fee)
+        td
+          h4.invoice-title
+            = t('invoice.vat')
+          = view_money(@vat_fee)
+        td
+          h4.invoice-title
+            = t('invoice.total')
+          = view_money(@service_fee)

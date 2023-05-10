@@ -1,0 +1,18 @@
+- @body_width_px = 900
+tbody
+  tr
+    td[valign="top" height="100"]
+      h1[style="font-family: 'Cabin', Arial, sans-serif; color: #545454; font-size: 29px; line-height: 35px; margin-bottom: 6px; margin-top: 10px;"]
+        = t('user_mailer.confirmation_instructions.dear_user', name: @resource.display_name, service_name: t('service_name'))
+
+    td[valign="top" rowspan="3" style="width: 50%; padding-left: 60px;" ]
+      = image_tag('emails/welcome-email.png', alt: 'Welcome email image', style: 'max-width: 100%;', width: '402', height: '606')
+    tr
+      td[valign="top"]
+        p[style="font-family: 'Cabin', Arial, sans-serif; line-height: 22px; color: #545454; font-size: 15px;"]
+          - confirm_url = confirmation_url(@resource, confirmation_token: @token)
+          - confirm_email_link = link_to t('user_mailer.confirmation_instructions.confirm_your_email'), confirm_url, style: 'font-family: Arial; line-height: 23px; color: #545454; font-size: 15px; font-weight: bold;'
+          - start_use_link = link_to t('user_mailer.confirmation_instructions.start_use'), root_url, style: 'font-family: Arial; line-height: 23px; color: #545454; font-size: 15px; font-weight: bold;'
+          = t('user_mailer.confirmation_instructions.thanks_for_join', confirm_email_link: confirm_email_link, start_use_link: start_use_link, service_name: t('service_name')).html_safe
+
+    = render 'mailer/primary_button', url: confirm_url, title: t('user_mailer.confirmation_instructions.confirm_email'), colspan: 1, align: :justify

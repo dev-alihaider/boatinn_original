@@ -1,0 +1,87 @@
+.wizard-page#page16 data-stage='16'
+  = hidden_field_tag nil, t('wizards.index.page16.step_text'), class: 'status-text-val'
+  .col.left-column
+    .title = t('wizards.index.page16.title_additional_fees')
+    .additional-feels
+      .row
+        .column.col-md-6.col-sm-12.checkbox-wrapper
+          = check_box_tag :cleaning_fee, nil, !f.object.cleaning_fee.to_f.zero?
+          = label_tag :cleaning_fee, t('users.listings.edit.cleaning_fee')
+        .column.col-md-4.col-sm-12
+          .form-field
+            .clnd-holder.clearfix
+              .clnd-icon
+                span.currency_symb = Money.default_currency.symbol
+              .clnd-input = f.text_field :cleaning_fee,
+                              value: price_or_nil(f.object.cleaning_fee),
+                              placeholder: '-----', class: "no-text-validation#{' disabled' if f.object.cleaning_fee.to_f.zero?}"
+      .row
+        .column.col-md-6.col-sm-12.checkbox-wrapper
+          = check_box_tag :skipper, nil, !f.object.skipper.to_f.zero?
+          = label_tag :skipper, t('users.listings.edit.skipper')
+        .column.col-md-4.col-sm-12
+          .form-field
+            .clnd-holder.clearfix
+              .clnd-icon
+                span.currency_symb = Money.default_currency.symbol
+              .clnd-input = f.text_field :skipper,
+                              value: price_or_nil(f.object.skipper),
+                              placeholder: '-----', class: "no-text-validation#{' disabled' if f.object.skipper.to_f.zero?}"
+
+      .title = t('wizards.index.page16.title_extras')
+      / .row
+        .column.col-md-6.col-sm-12.checkbox-wrapper
+          = check_box_tag :bedclothes_and_towels, nil, !f.object.bedclosers_and_towels.to_f.zero?
+          = label_tag :bedclothes_and_towels, t('users.listings.edit.bedclothes_and_towels')
+        .column.col-md-4.col-sm-12
+          .form-field
+            .clnd-holder.clearfix
+              .clnd-icon
+                span.currency_symb = Money.default_currency.symbol
+              .clnd-input = f.text_field :bedclosers_and_towels,
+                              value: price_or_nil(f.object.bedclosers_and_towels),
+                              placeholder: '-----', class: "no-text-validation#{' disabled' if f.object.bedclosers_and_towels.to_f.zero?}",
+                              id: :boat_bedclothes_and_towels
+      / .row
+        .column.col-md-6.col-sm-12.checkbox-wrapper
+          = check_box_tag :paddle_surf, nil, !f.object.paddle_surf.to_f.zero?
+          = label_tag :paddle_surf, t('users.listings.edit.paddle_surf')
+        .column.col-md-4.col-sm-12
+          .form-field
+            .clnd-holder.clearfix
+              .clnd-icon
+                span.currency_symb = Money.default_currency.symbol
+              .clnd-input = f.text_field :paddle_surf,
+                              value: price_or_nil(f.object.paddle_surf),
+                              placeholder: '-----', class: "no-text-validation#{' disabled' if f.object.paddle_surf.to_f.zero?}"
+      .row
+        .column.col-md-6.col-sm-12.checkbox-wrapper
+          = check_box_tag :welcome_pack, nil, !f.object.wellcome_pack.to_f.zero?
+          = label_tag :welcome_pack, t('users.listings.edit.welcome_pack')
+        .column.col-md-4.col-sm-12
+          .form-field
+            .clnd-holder.clearfix
+              .clnd-icon
+                span.currency_symb = Money.default_currency.symbol
+              .clnd-input = f.text_field :wellcome_pack,
+                              value: price_or_nil(f.object.wellcome_pack),
+                              placeholder: '-----', class: "no-text-validation#{' disabled' if f.object.wellcome_pack.to_f.zero?}",
+                              id: :boat_welcome_pack
+      .row
+        .column.col-md-6.col-sm-12.checkbox-wrapper
+          = check_box_tag :fuel, nil, !f.object.fuel.to_f.zero?
+          = label_tag :fuel, t('users.listings.edit.fuel')
+        .column.col-md-4.col-sm-12
+          .form-field
+            .clnd-holder.clearfix
+              .clnd-icon
+                span.currency_symb = Money.default_currency.symbol
+              .clnd-input = f.text_field :fuel,
+                              value: price_or_nil(f.object.fuel),
+                              placeholder: '-----', class: "no-text-validation#{' disabled' if f.object.fuel.to_f.zero?}"
+    = render 'wizards/partials/buttons', current_stage: 16, commit: false, backurl: '#', nexturl: '#'
+  .col.right-column
+    hr /
+    .description
+      span.mark = t('wizards.index.info') + ': '
+      = t('wizards.index.page16.description')

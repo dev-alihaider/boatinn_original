@@ -1,0 +1,23 @@
+header.header
+  .container-fluid
+    .flex-header
+      = link_to root_path, class: 'logo' do
+        = project_logo
+        = image_tag('logo-white.svg', class: 'sticky') if controller_name == 'homepages'
+      = link_to image_tag('logo-small.svg'), root_path, class: 'logo-small'
+      - if user_signed_in?
+        .btn-mobile-nav-switch
+          i.fa.fa-bars.inactive-icon
+          i.fa.fa-angle-down.active-icon
+      .header-search-wrapper
+        - unless %w[homepages search prewizards].include?(controller_name) || (controller_name == 'listings' && %w[show sleepin sharing].include?(action_name))
+          = render 'shared/search-bar'
+        - if controller_name == 'search' || (controller_name == 'listings' && action_name == 'show')
+          = render 'shared/search-bar-without-inner-autocomplete'
+      - if user_signed_in?
+        = render 'layouts/logged_in_user'
+      - else
+        - if controller_name == 'prewizards'
+          = render 'layouts/prewizard_part'
+        - else
+          = render 'layouts/logged_out_user'

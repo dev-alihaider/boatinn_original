@@ -1,0 +1,51 @@
+.wizard-page.hidden#page02 data-stage='2'
+  = hidden_field_tag nil, t('wizards.index.page02.step_text'), class: 'status-text-val'
+  .col.left-column
+    .title
+      =t('wizards.index.page02.title')
+    .row
+      .column.col-md-12.col-sm-12
+        .form-field
+          = label_tag 'builder', t('wizards.index.page02.builder')
+          = f.text_field :builders_name, placeholder: t('wizards.index.page02.builder_placeholder')
+    .row
+      .column.col-md-12.col-sm-12
+        .form-field
+          = label_tag 'model', t('wizards.index.page02.model')
+          = f.text_field :name_model, placeholder: t('wizards.index.page02.model_placeholder')
+    .row
+      .column.col-md-12.col-sm-12
+        .form-field
+          = label_tag 'boat[length]', t('wizards.index.page02.length'), class: "length-label"	
+          br
+    .row
+      .col-md-6.col-sm-6
+        .form-field
+          = label_tag 'boat[length]', t('wizards.index.page02.meters')
+          = f.number_field :length, placeholder: t('wizards.index.page02.length_placeholder'), min: 1, max: 100, step: 0.01
+      .col-md-6.col-sm-6
+        .form-field
+          = label_tag 'length_ft', t('wizards.index.page02.feet')
+          - if @boat.length
+            = number_field_tag :length_ft, (@boat.length / Boat::ONE_FEET_IN_METERS).round(2),  placeholder: t('wizards.index.page02.length_feet_placeholder'), step: 0.01
+          - else
+            = number_field_tag :length_ft, nil, placeholder: t('wizards.index.page02.length_feet_placeholder'), step: 0.01
+    .row
+      .column.col-md-12.col-sm-12
+        .form-field
+          = label_tag 'year_construction', t('wizards.index.page02.year_construction')
+          = f.number_field :year_of_construction, placeholder: Date.today.year, class: ''
+    = render 'wizards/partials/buttons', current_stage: 2, commit: false, backurl: '#', nexturl: '#'
+  .col.right-column
+    hr /
+    .description
+      span.mark
+        = t('wizards.index.info') + ': '
+      = t('wizards.index.page02.description')
+
+javascript:
+
+    var availableTags = #{raw builders_array}; 
+    $( "#boat_builders_name" ).autocomplete({
+      source: availableTags
+    });

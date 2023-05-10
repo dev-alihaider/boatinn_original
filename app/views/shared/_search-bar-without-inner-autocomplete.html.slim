@@ -1,0 +1,13 @@
+form.search-form action="#{search_path}"
+  .form-field.with-icon.icon-search
+    = text_field_tag 'location[name]', location[:name], id: 'location', placeholder: HomepageSetting.try(:last).search_bar_title, required: 'required'
+    = hidden_field_tag 'location[lat]', location[:lat], id: 'lat-value'
+    = hidden_field_tag 'location[lng]', location[:lng], id: 'lng-value'
+  .form-field.with-icon.icon-calendar
+    = text_field_tag 'check_in_date', check_in_date, id: 'from', class: 'datepicker-couple couple-from', placeholder: t('search_bar.check_in'), autocomplete: 'off'
+  .form-field.with-icon.icon-calendar
+    = text_field_tag 'check_out_date', check_out_date, id: 'to', class: 'datepicker-couple couple-to', placeholder: t('search_bar.check_out'), autocomplete: 'off'
+  .form-field.with-icon.icon-users
+    = number_field_tag 'passengers_count', passengers_count, id: 'passengers', placeholder: t('search_bar.passengers')
+  .form-field
+    = button_tag t('search_bar.search'), name: '', class: 'button btn-primary btn-expanded'

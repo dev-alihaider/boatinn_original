@@ -1,0 +1,36 @@
+html
+  head
+    link href="https://fonts.googleapis.com/css?family=Cabin:400,500,600,700&display=swap" rel="stylesheet" /
+
+    style[type="text/css"]
+      |  body { color: #7c7c7c; font-size: 16px;}
+      |  p a { color: #23cfbd !important;}
+
+  body
+    table style=("width: 100%;")
+      tbody
+        - # header
+        tr
+          td align="center" style=("width: 100%;")
+            = image_tag('logo.png', alt: 'Boatinn Logo', width: '145', height: '32', style: 'margin: 0 auto')
+        tr
+          td height="20"  &nbsp;
+        tr style=("width: 100%;")
+          td style=("height: 1px; border-bottom: 1px solid #b6b6b6;")
+        tr
+          td &nbsp;
+        tr
+          td
+            table style=("max-width: #{@body_width_px || 400}px; width: 100%; margin: 0 auto;")
+
+              - # email body
+              = yield
+
+        - # footer
+        tr
+          td style=("height: 100px;")  &nbsp;
+        tr
+          td style=("text-align: center; border-top: 1px solid #b6b6b6; padding-top: 40px;") colspan="100%"
+            = image_tag("#{image_url('logo-small.png')}?v=2", alt: 'Boatinn Footer Logo', width: '35', height: '42', style: 'margin: 0 auto')
+            p style=("font-family: 'Cabin', Arial, sans-serif; color: #545454;")
+              = "© #{Time.zone.now.year} BoatINNTheCommunity S.L.".html_safe

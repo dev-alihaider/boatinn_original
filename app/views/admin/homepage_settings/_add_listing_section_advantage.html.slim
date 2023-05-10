@@ -1,0 +1,21 @@
+- (1..4).each do |figure|
+  .form-group.tab-pane
+    label.col-sm-1.control-label
+      = "#{t('admin.dashboard.homepage.add_listing_section.advantage.advantage')} #{figure}"
+    .col-sm-11
+      .form-group.fg-mn.tab-pane
+        label.control-label
+          = "#{t('admin.dashboard.homepage.add_listing_section.advantage.title')} #{figure}"
+          - Boatinn::AVAILABLE_LOCALES_SHORT_FORMAT.each do |locale|
+            = f.globalize_fields_for locale do |ff|
+              = ff.text_field "add_listing_section_title_image_#{figure}".to_sym, class: for_globalize_hidden(locale), placeholder: t('admin.general.title_label', locale: locale.to_sym), minlength: '5', maxlength: '100', data: {lang: locale}
+        span.help-block.m-b-none
+          = t('admin.general.count_symbols_100')
+      .form-group.fg-mn.tab-pane
+        label.control-label
+          = "#{t('admin.dashboard.homepage.add_listing_section.advantage.descr')} #{figure}"
+          - Boatinn::AVAILABLE_LOCALES_SHORT_FORMAT.each do |locale|
+            = f.globalize_fields_for locale do |ff|
+              = ff.text_area "add_listing_section_title_descr_#{figure}".to_sym, class: for_globalize_hidden(locale), placeholder: t('admin.general.descr', locale: locale.to_sym), minlength: '5', maxlength: '300', data: {lang: locale}
+        span.help-block.m-b-none
+          = t('admin.general.count_symbols_300')

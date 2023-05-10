@@ -1,0 +1,21 @@
+- wizard_readiness_percentage = wizard_readiness_percentage(boat)
+/ Redirect user to next listing stage unless he on last stage.
+/ - boat.wizard_progress += 1 if boat.wizard_progress < ListingsHelper::WIZARD_TOTAL_STEPS - 1
+
+.y-listing-progress-box
+  .img-wrap.img-block
+    = link_to edit_wizard_path(boat, stage: boat.wizard_progress) do 
+      = image_tag boat_image_url(boat)
+  .description-wrap
+    .progress-bar
+      .progress-line
+        .progress-active style="width:#{wizard_readiness_percentage}%;"
+      .progress-text = t('dashboard.listings.index.readiness_percentage', readiness: wizard_readiness_percentage)
+    .name = boat.listing_title
+    .last-update
+      i.fa.fa-clock-o
+      = boat_last_update(boat.updated_at)
+    .buttons
+      = link_to t('dashboard.listings.index.finish_the_listing'), edit_wizard_path(boat, stage: boat.wizard_progress), class: %i[button btn-primary]
+      / = link_to t('dashboard.listings.index.preview'), listing_path(boat), class: %i[button btn-outlined]
+      = link_to t('dashboard.listings.index.delete_the_listing'), dashboard_listing_path(boat), class: %i[button btn-danger btn-delete-listing-inprogress], data: {question: t('dashboard.listings.index.delete_question'), boat: boat.id, deleted: t('dashboard.listings.index.deleted_listing')}

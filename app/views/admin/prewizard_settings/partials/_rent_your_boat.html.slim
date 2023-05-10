@@ -1,0 +1,10 @@
+.form-group.fg-mn
+  .title-block
+    h2.title--bordered =t('admin.dashboard.prewizard.rent_your_boat.title')
+    = render 'admin/shares/save_btn', f:f, return_url: admin_prewizard_settings_path
+  .action-block
+    = render 'admin/shares/breadcrumbs'
+    = render 'admin/shares/switch_block', f:f, switch_field: :rent_your_boat
+= render 'admin/shares/languages_tab_list'
+= render 'admin/prewizard_settings/forent_your_boat_main',f:f
+= render partial: 'admin/prewizard_settings/forent_your_boat',locals:{f:f}, collection: @four

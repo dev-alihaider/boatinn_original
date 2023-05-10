@@ -1,0 +1,23 @@
+.iti-flag {
+	background-image: image_url("flags.png");
+}
+
+.intl-tel-input {
+	width: 100%;
+	input {
+		padding-top: 10.5px;
+		padding-bottom: 10.5px;
+		box-shadow: none;
+		border-style: solid;
+		border-width: 1px;
+		width: 100%;
+	}
+}
+
+.intl-tel-input .selected-flag {
+	padding: 0 0 0 12px;
+}
+
+.intl-tel-input .selected-flag .iti-arrow {
+	right: 3px;
+}

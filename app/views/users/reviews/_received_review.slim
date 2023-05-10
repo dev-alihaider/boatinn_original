@@ -1,0 +1,37 @@
+.review-box
+  .avatar-wrapper
+    .avatar.img-block = link_to image_tag(user_image_url(review.sender)), show_profile_path(review.sender)
+  .review-body
+    .date
+      i.fa.fa-calendar
+      = l((review.reviewed_at || review.created_at), format: :long, default: '-')
+    .from = t('users.inbox.reviews.review_from_sender', sender_name: review.sender.display_name).html_safe
+
+    - if review.reviewed?
+      = link_to t('users.inbox.reviews.public_reply'), 'javascript:void(0)', class: 'button btn-primary btn-public-reply', data: { review: review.id }
+    .text = review.public_review
+
+    - if review.private_review.present?
+      .privat-review-title = t('.private_review')
+      .private-review = review.private_review
+
+    - if review.reviewed?
+      div class="send_reply send_to_#{review.id}"
+        = form_for [:dashboard, review], url: dashboard_review_create_reply_path(review_id: review.id) do |f|
+          = f.text_area :reply_review, class: 'textarea-small'
+          .buttons
+            = f.button t('users.inbox.reviews.send_reply'), class: 'button btn-primary'
+            = link_to t('.cancel'), 'javascript:void(0)', class: 'button btn-outlined btn-cancel'
+
+    - if review.replied?
+      .reply
+        .review-box
+          .avatar-wrapper
+            .avatar.img-block = link_to image_tag(user_image_url(review.receiver)), show_profile_path(review.receiver)
+          .review-body
+            .date
+              i.fa.fa-calendar
+              = l(review.replied_at, format: :long, default: '-')
+            .from = t('users.inbox.reviews.response_from_person', person_name: review.receiver.display_name).html_safe
+            .text = review.reply_review
+

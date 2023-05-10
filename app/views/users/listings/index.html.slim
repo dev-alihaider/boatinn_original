@@ -1,0 +1,27 @@
+= render 'users/shared/menu'
+
+.container
+  .your-listings-container
+
+    - if @boats_in_progress.present?
+      h3.title = t('dashboard.listings.index.in_progress')
+      = link_to new_wizard_path, class: %i[button btn-alert btn-add-boat] do
+        i.fa.fa-ship
+        = t('dashboard.listings.index.add_new_boat')
+      .y-listings-progress-wrapper
+        = render partial: 'boat_in_progress', collection: @boats_in_progress, as: :boat
+
+    - if @boats.present?
+      h3.title = t('dashboard.listings.index.your_listings')
+      = link_to new_wizard_path, class: %i[button btn-alert btn-add-boat] do
+        i.fa.fa-ship
+        = t('dashboard.listings.index.add_new_boat')
+      = concept('notifies/cell/notification', @payment_notify).() if @payment_notify
+      .y-listings-wrapper
+        = render partial: 'boat', collection: @boats
+
+    - if @boats_in_progress.blank? && @boats.blank?
+      h3.title = t('dashboard.listings.index.your_listings')
+      = link_to new_wizard_path, class: %i[button btn-alert btn-add-boat] do
+        i.fa.fa-ship
+        = t('dashboard.listings.index.add_new_boat')

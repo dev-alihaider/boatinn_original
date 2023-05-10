@@ -1,0 +1,23 @@
+- @body_width_px = 900
+
+tbody
+  tr
+    td height="100" valign="top"
+      h1 style=("font-family: 'Cabin', Arial, sans-serif; color: #545454; font-size: 29px; line-height: 35px; margin-bottom: 6px; margin-top: 10px;")
+        = t('.read_review', @locals)
+    td rowspan="4" style=("width: 43%; padding-left: 60px;") valign="top"
+      = image_tag('emails/review-mail.jpg', alt: 'Read Client Review Image', width: '403', height: '236')
+  tr
+    td height="10" style=("padding-bottom: 0;") valign="top"
+      p style=("font-family: 'Cabin', Arial, sans-serif; line-height: 22px; color: #545454; font-size: 17px;")
+        = t('.review_content', @locals)
+  tr
+    td height="100" style=("padding-bottom: 30px; padding-top: 30px;") valign="top"
+      p style=("font-family: 'Cabin', Arial, sans-serif; line-height: 22px; color: #545454; font-size: 17px; border: 1px solid #b6b6b6; height: 100px; padding: 20px;")
+        = @review.public_review
+  tr
+    td style=("padding-bottom: 0;") valign="top"
+      p style=("font-family: 'Cabin', Arial, sans-serif; line-height: 22px; color: #545454; font-size: 17px;")
+        = t('.review_will_public', service_name: t('service_name'))
+
+

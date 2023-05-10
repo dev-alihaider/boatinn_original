@@ -1,0 +1,22 @@
+i[class^="custom-icon-"] {
+  font-style: normal;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  margin-right: 0.5rem;
+}
+
+.custom-icon-guests {
+  background: image-url('icons/light-buddies.svg');
+  background-size: contain;
+}
+
+.custom-icon-calendar {
+  background: image-url('icons/clean-calendar.svg');
+  background-size: contain;
+}
+
+.custom-icon-info-green {
+  background: image-url('icons/info-green.svg');
+  background-size: contain;
+}

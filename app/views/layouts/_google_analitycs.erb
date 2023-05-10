@@ -1,0 +1,116 @@
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141508910-2"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-141508910-2');
+</script>
+
+<% if @metatitle.present? %>
+     <title><%= @metatitle%></title>
+     <meta property="og:title" content="<%= @metatitle%>" />
+     <meta name="twitter:title" content="<%= @metatitle%>" />
+
+<% elsif  request.fullpath.to_s.include? "search" or  request.fullpath.to_s.include? "experiencias-" %>
+     <% if  @location_short_name != '' %>
+       <title><%= t('users.listings.show.nautical_experience') + ' ' + @location_short_name + ', ' + t('homepage.rent_a_boat') %></title>
+       <meta property="og:title" content="<%=  t('users.listings.show.nautical_experience') + ' ' + @location_short_name + ', ' + t('homepage.rent_a_boat') %>" />
+       <meta name="twitter:title" content="<%=  t('users.listings.show.nautical_experience') + ' ' + @location_short_name + ', ' + t('homepage.rent_a_boat') %>" />
+       <% @location_short_name = '' %>
+     <% else %>
+       <title><%= t('search_bar.search')+ ' ' + t('users.listings.show.nautical_experience') + t('service_name') %></title>
+       <meta property="og:title" content="<%= t('search_bar.search')+ ' ' + t('users.listings.show.nautical_experience') + t('service_name') %>" />
+       <meta name="twitter:title" content="<%= t('search_bar.search')+ ' ' + t('users.listings.show.nautical_experience') + t('service_name') %>" />
+     <% end %>           
+<% elsif  request.fullpath.to_s.include? "profile" %>
+     <% @b_url_s = request.fullpath.to_s %>
+     <% @b_url_a = @b_url_s.split('/') %>
+     <% @b_url = @b_url_a.last %>
+     <title><%= t('users.account.profile') + ' ' + @b_url.to_s %></title>
+     <meta property="og:title" content="<%=  t('users.account.profile') + ' ' + @b_url.to_s %>" />
+     <meta name="twitter:title" content="<%= t('users.account.profile') + ' ' + @b_url.to_s %>" />
+<% else %>
+     <% @b_url_s = request.fullpath.to_s %>
+     <% @b_url_a = @b_url_s.split('/') %>
+     <% @b_url =  @b_url_a.size %>
+     <% if @b_url<3 %>
+           <title><%= t('homepage.title_home') %></title>
+           <meta property="og:title" content="<%= t('homepage.title_home') %>" />
+           <meta name="twitter:title" content="<%= t('homepage.title_home') %>" />
+     <% else %>
+           <title><%= @b_url_a.last.to_s %></title>
+           <meta property="og:title" content="<%= @b_url_a.last.to_s %>" />
+           <meta name="twitter:title" content="<%= @b_url_a.last.to_s %>" />
+     <% end %>
+<% end %>
+
+<% if @metadescription.present? || @metaswitch == 0 %>
+    <meta name="description" content="<%=  @metadescription %>"/>
+   <%  @metaswitch = 1 %>
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Boatinn" />
+    <meta property="og:description" content="<%= @metadescription %>"/>
+    <meta name="twitter:description" content="<%= @metadescription %>"/>
+
+<% else %>
+    <meta name="description" content="<%= t('meta_description')%>"/>
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Boatinn" />
+    <meta property="og:description" content="<%= t('meta_description') %>"/>
+    <meta name="twitter:description" content="<%= t('meta_description') %>"/>
+<% end %>
+
+
+<% if  request.fullpath.to_s.length == 1 or  request.fullpath.to_s.length == 3  %>
+    <link rel="canonical" href="<%= root_url() %>" />
+    <link rel="alternate" hreflang="en-gb" href="<%= root_url(locale: :en) %>" />
+    <link rel="alternate" hreflang="en-us" href="<%= root_url(locale: :en) %>" />
+    <link rel="alternate" hreflang="en" href="<%= root_url(locale: :en) %>" />
+    <link rel="alternate" hreflang="es" href="<%= root_url(locale: :es) %>" />
+    <meta property="og:url"  content="<%= root_url( ) %>" />
+    <meta name="twitter:url" content="<%= root_url( ) %>" />
+
+
+<% elsif  request.fullpath.to_s.include? "search" %>
+    <link rel="canonical" href="<%= root_url() + (request.fullpath.to_s.split('/')[2]).split('?')[0]  %>" />
+    <link rel="alternate" hreflang="en-gb" href="<%= root_url(locale: :en) + request.fullpath.to_s.split('/')[2] %>" />
+    <link rel="alternate" hreflang="en-us" href="<%= root_url(locale: :en) + request.fullpath.to_s.split('/')[2] %>" />
+    <link rel="alternate" hreflang="en" href="<%= root_url(locale: :en) + request.fullpath.to_s.split('/')[2] %>" />
+    <link rel="alternate" hreflang="es" href="<%= root_url(locale: :es) + request.fullpath.to_s.split('/')[2] %>" />
+    <meta property="og:url"  content="<%= root_url(locale: :en) + '/' + request.fullpath.to_s.split('/')[2]  %>" />
+    <meta name="twitter:url" content="<%= root_url(locale: :en) + '/' + request.fullpath.to_s.split('/')[2]  %>" />
+
+
+<% else %>
+    <% @path_use =  request.fullpath.to_s.sub('/'+I18n.locale.to_s+'/','').split('?')[0] %>
+    <link rel="canonical" href="<%= root_url()  + '/' +  @path_use.to_s  %>" />
+    <link rel="alternate" hreflang="en-gb" href="<%= root_url(locale: :en) + '/' + @path_use.to_s  %>" />
+    <link rel="alternate" hreflang="en-us" href="<%= root_url(locale: :en) + '/' + @path_use.to_s  %>" />
+    <link rel="alternate" hreflang="en" href="<%= root_url(locale: :en) + '/' + @path_use.to_s  %>" />
+    <link rel="alternate" hreflang="es" href="<%= root_url(locale: :es) + '/' + @path_use.to_s  %>" />
+    <meta property="og:url"  content="<%= root_url(locale: :en) + '/' + @path_use.to_s   %>" />
+    <meta name="twitter:url" content="<%= root_url(locale: :en) + '/' + @path_use.to_s   %>" />
+<% end %>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@boatinn_" />
+    <meta name="google-site-verification" content="GnIZw03AQ2K0W64txCgUe_lZFDojYEGI1apC4EMh9Tg" />
+<% if @boat.present?%>
+    <meta name="twitter:image:src" content="<%= boat_image_url(@boat) %>" />
+    <meta property="og:image" content="<%= boat_image_url(@boat) %>" />
+<% else  %>
+    <meta name="twitter:image:src" content="https://boatinn.net/assets/prewiz-bg1-3f2cac3857b24f128a1f997af11e486ac3c4590412db81687d6fd3a51151059b.jpg" />
+    <meta property="og:image" content= "https://boatinn.net/assets/prewiz-bg1-3f2cac3857b24f128a1f997af11e486ac3c4590412db81687d6fd3a51151059b.jpg" />
+<% end %>
+<!-- Facebook Pixel Code --> <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '772649536474097');
+  fbq('track', 'PageView'); </script> <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=772649536474097&ev=PageView&noscript=1" /></noscript>
+<!-- End Facebook Pixel Code -->

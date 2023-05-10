@@ -1,0 +1,15 @@
+/ = display_validation_errors(@boat)
+
+= form_for @boat, url: wizards_path, html: {role: 'form', id: 'wizard_form', type: 'new'}, multipart: true  do |f|
+  = f.hidden_field :wizard_progress
+  = hidden_field_tag :save_and_exit, false
+  = hidden_field_tag :action, action_name
+  = render 'wizards/partials/page_first', f: f
+  = render 'wizards/partials/page_second', f: f
+  = render 'wizards/partials/page_third', f: f
+  = render 'wizards/partials/page_fourth', f: f
+  = render 'wizards/partials/page_fifth', f: f
+  = render 'wizards/partials/page_sixth', f: f
+  = render 'wizards/partials/page_seventh', f: f
+= render 'wizards/partials/translation_errors'
+

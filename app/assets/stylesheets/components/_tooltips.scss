@@ -1,0 +1,85 @@
+sup {
+  font-size: 12px;
+  color: $turquoise;
+  cursor: pointer;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 52px;
+  left: -71px;
+  background-color: $white;
+  // width: 385px;
+  width: 305px;
+  padding: 15px 17px 15px 24px;
+  border: 1px solid $smoke-dark;
+  display: none;
+  .title {
+    font-weight: bold;
+    color: $turquoise;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 16px;
+    &-block {
+      margin-bottom: 15px;
+    }
+  }
+  span.fa {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 24px;
+    color: $turquoise;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  &-description {
+    // font-size: 18px;
+    // line-height: 22px;
+    font-size: 15px;
+    line-height: 20px;
+  }
+  .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 26px;
+  }
+  &::before, &::after {
+    position: absolute;
+    content: '';
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+  &::before {
+    bottom: -14px;
+    border-top: 14px solid #C6C6C6;
+    border-left: 14px solid transparent;
+    border-right: 14px solid transparent;
+    z-index: 100;
+  }
+  &::after {
+    bottom: -12px;
+    border-top: 12px solid #ffffff;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    z-index: 101;
+  }
+}
+@include respond-to-max($mobile) {
+  .tooltip {
+    bottom: 52px;
+    left: -23px;
+    width: 225px;
+    padding: 12px 13px 10px 16px;
+    span.fa {
+      font-size: 20px;
+    }
+    .title {
+      font-size: 15px;
+    }
+    &-description {
+      font-size: 13px;
+    }
+
+  }
+}

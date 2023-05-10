@@ -1,0 +1,27 @@
+.prices.bordered
+  h2.title = t('users.listings.edit.prices')
+
+  .tabs-container
+    ul
+      li class=(:hidden unless @boat.classic?)
+        a href="#pr-tab-1" data-tabname="classic" = t('classic_charter')
+      li class=(:hidden unless @boat.shared?)
+        a href="#pr-tab-2" data-tabname="shared" = t('boat_shared')
+      li class=(:hidden unless @boat.sleepin?)
+        a href="#pr-tab-3" data-tabname="sleepin" = t('sleepinn')
+    #pr-tab-1 class=(:hidden unless @boat.classic?)
+      ul.list
+        - [[t('users.listings.edit.price_per_half_day'), @boat.per_half_day],
+           [t('users.listings.edit.price_per_day'), @boat.per_day],
+           [t('users.listings.edit.price_per_night'), @boat.per_night],
+           [t('users.listings.edit.price_per_week'), @boat.per_week]].each do |price|
+          = render 'users/listings/show/price', name: price.first, price: price.last unless price.last.to_f.zero?
+    #pr-tab-2 class=(:hidden unless @boat.shared?)
+      ul.list
+        - [[t('price'), @boat.shared_price]].each do |price|
+          = render 'users/listings/show/price', name: price.first, price: price.last unless price.last.to_f.zero?
+    #pr-tab-3 class=(:hidden unless @boat.sleepin?)
+      ul.list
+        - [[t('users.listings.edit.price_per_night'), @boat.sleepin_per_night],
+           [t('users.listings.sleepin.extra_guest'), @boat.sleepin_extra_price]].each do |price|
+          = render 'users/listings/show/price', name: price.first, price: price.last unless price.last.to_f.zero?

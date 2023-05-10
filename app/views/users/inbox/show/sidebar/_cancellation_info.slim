@@ -1,0 +1,11 @@
+- if @travel.can_cancel?
+  - if @travel.current_user_seller?
+    .cancellation-small-text
+      p = t('bookings.cancellations.seller', support_link: link_to(t('support_contact'), @travel.cancellation_path)).html_safe
+
+  = link_to t('users.inbox.show.booking_sidebar.cancel_booking'), @travel.cancellation_path, class: 'button btn-secondary btn-expanded'
+
+  - if @travel.current_user_client?
+    .cancelation-text
+      h3.title = t("bookings.cancellations.#{@travel.cancellation_policy}_title")
+      p = t("bookings.cancellations.#{@travel.cancellation_policy}_desc", url: cancellation_policy_url).html_safe

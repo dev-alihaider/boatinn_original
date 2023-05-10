@@ -1,0 +1,33 @@
+.row
+  .col-lg-12
+    h2.title--bordered = t('admin.dashboard.users.sidebar_name')
+    = render 'admin/shares/breadcrumbs', active: t('admin.dashboard.users.sidebar_name')
+.row
+  .col-lg-12.wrapper.wrapper-content
+    .inbox.inbox-content
+      .input-group.search-form-container
+        = form_tag admin_users_path, method: :get, id: 'search_form', class: 'users-search-form' do
+          = text_field_tag 'search', params[:search].presence, id: 'location',
+              placeholder: t('admin.dashboard.users.search_placeholder'), class: %i[form-control search-input], autocomplete: 'off'
+          = button_tag nil, class: %i[btn btn image-label], name: nil do
+            i.fa.fa-search
+            =< t('admin.dashboard.users.search')
+          = link_to admin_users_path, class: %i[btn btn-danger] do
+            i.fa.fa-remove
+            / i.fa.fa-filter
+            =< t('admin.dashboard.users.clear_filters')
+      .table-responsive.scrolled-parent
+        table.table.table-striped.table-hover.manage-user-table.scrolled-child
+          thead
+            tr
+              th colspan="2" = sort_link 'display_name', t('admin.dashboard.users.name')
+              th colspan="2" = sort_link 'display_language', 'Lang'
+              th colspan="2" = sort_link 'email', t('admin.dashboard.users.email_address')
+              th colspan="2" = sort_link 'created_at', t('admin.dashboard.users.date_registered')
+              th.text-center = sort_link 'boats_owner', t('admin.dashboard.users.boat_owner')
+              th.text-center = sort_link 'boats_count', t('admin.dashboard.users.number_of_boats')
+              th.text-center = sort_link 'cancellation', t('admin.dashboard.users.cancellations')
+              th.text-center = sort_link 'blocked_at', t('admin.dashboard.users.block_unblock_user')
+              th.text-center = sort_link 'admin', 'Admin'
+              th = t('admin.dashboard.users.actions')
+          tbody = render partial: 'user', collection: @users

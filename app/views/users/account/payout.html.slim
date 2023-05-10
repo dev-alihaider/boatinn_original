@@ -1,0 +1,30 @@
+= stripe_javascript_tag
+= javascript_include_tag 'stripe_bank'
+= javascript_include_tag 'jquery.remotipart'
+= render 'users/shared/menu'
+
+.container
+  .flex-container.account-container
+    .sidebar = render 'menu'
+    .content
+      h3.title = t('payout_preferences')
+      .inner-content
+        br
+        p.description = t('.payout_description')
+        #button_verify_account = render 'users/account/verify'
+        .account-form
+          - unless @payouts.empty?
+            table#payout-methods-list
+              thead
+                tr
+                  th = t('method')
+                  th = t('details')
+                  th = t('status')
+                  th
+                  th
+              tbody = render partial: 'users/account/payout', collection: @payouts, as: :payout
+          = button_tag nil, class: %i[button btn-info btn-add-payout], type: :button, data: { target: '#add-payout-modal', toggle: :modal } do
+            i.fa.fa-plus
+            = t('.add_payout_method')
+          = render 'users/account/add_bank'
+          #modal-form-bank-account

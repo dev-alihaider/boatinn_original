@@ -1,0 +1,8 @@
+.row
+  .col-md-12
+    h2.title = t("bookings.wizard.cancellation.reservation_canceled")
+.row
+  .col-md-12
+    .confirm-cancellation-text = t('bookings.wizard.cancellation.text')
+.row
+  .col-md-4.sm-12 = link_to t("bookings.wizard.cancellation.finish"), dashboard_inbox_index_path, class: "button btn-primary btn-expanded"

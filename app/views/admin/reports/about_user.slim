@@ -1,0 +1,26 @@
+.row
+  .col-lg-12
+    h2.title--bordered = t('admin.dashboard.reports.manage_user_reports')
+    = render 'admin/shares/breadcrumbs', active: t('admin.dashboard.reports.manage_user_reports')
+
+    form.transactions-search-form
+      = box.search_field_text_for(:report_author, class: 'form-control', placeholder: t('admin.dashboard.reports.report_author'))
+      = box.search_field_text_for(:report_about, class: 'form-control', placeholder: t('admin.dashboard.reports.report_about'))
+      = box.search_field_text_for(:details, class: 'form-control', placeholder: t('admin.dashboard.reports.details'))
+      = button_tag t('admin.dashboard.bookings.search'), class: 'btn btn-sm btn-primary'
+      = hidden_field_tag :sort, box.current_order_field unless box.current_order_field.blank?
+      = hidden_field_tag :direction, box.current_direction
+
+    .table-responsive.scrolled-parent
+      table.table.table-striped.table-hover.manage-user-table.scrolled-child
+        thead
+          tr
+            th.text-center = box.sort_link :created_at, t('admin.dashboard.reports.report_created_at')
+            th.text-center = box.sort_link :report_author, t('admin.dashboard.reports.report_author')
+            th.text-center = box.sort_link :report_about, t('admin.dashboard.reports.report_about')
+            th.text-center = box.sort_link :reason, t('admin.dashboard.reports.reason')
+            th.text-center = box.sort_link :details, t('admin.dashboard.reports.details')
+            th.text-center = t('admin.dashboard.reports.report_details')
+            th.text-center = t('delete')
+        tbody = render partial: 'user_report', collection: box.collection, as: :report
+    = paginate box.collection

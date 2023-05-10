@@ -1,0 +1,23 @@
+/ ul.yl-box-list.seasonal-list
+  = render 'users/listings/edit/item', name: t('users.listings.edit.name'), value: season_rate.offer_name if season_rate.offer_name.present?
+  = render 'users/listings/edit/item', name: t('users.listings.edit.min_rent_time'), value: to_human(minimum_rental_times, season_rate.minimum_stay) if season_rate.minimum_stay.present?
+  = render 'users/listings/edit/item', name: t('from'), value: l(season_rate.started_at, format: :long, default: '-')
+  = render 'users/listings/edit/item', name: t('until'), value: l(season_rate.finished_at, format: :long, default: '-')
+  = render 'users/listings/edit/price', name: t('users.listings.edit.price_per_half_day'), price: season_rate.per_half_day if season_rate.per_half_day.present?
+  = render 'users/listings/edit/price', name: t('users.listings.edit.price_per_day'), price: season_rate.per_day if season_rate.per_day.present?
+  = render 'users/listings/edit/price', name: t('users.listings.edit.price_per_night'), price: season_rate.per_night if season_rate.per_night.present?
+  = render 'users/listings/edit/price', name: t('users.listings.edit.price_per_week'), price: season_rate.per_week if season_rate.per_week.present?
+
+tr
+  td
+    = "#{l(season_rate.started_at, format: :long, default: '-')} - #{l(season_rate.finished_at, format: :long, default: '-')}"
+    small = season_rate.offer_name
+  td = to_human(minimum_rental_times, season_rate.minimum_stay) if season_rate.minimum_stay.present?
+  td = ''
+  td = in_current_currency_with_sym(season_rate.per_half_day) unless season_rate.per_half_day.to_f.zero?
+  td = in_current_currency_with_sym(season_rate.per_day) unless season_rate.per_day.to_f.zero?
+  td = in_current_currency_with_sym(season_rate.per_night) unless season_rate.per_night.to_f.zero?
+  td = in_current_currency_with_sym(season_rate.per_week) unless season_rate.per_week.to_f.zero?
+  td = link_to edit_wizard_path(@boat, stage: 15), class: 'edit-link' do
+    i.fa.fa-edit
+    = t('edit')

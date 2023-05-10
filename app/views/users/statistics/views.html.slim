@@ -1,0 +1,15 @@
+= render 'users/shared/menu'
+
+.container.statistics
+  .statistics-container.review-page
+    h3.title = t('dashboard.statistics.main.view_title')
+    .view-block
+      .select-wrap
+        = select_tag :switch_listing, options_for_select([[t('dashboard.statistics.ratings.all_listings'), '',
+            { data: { path: views_dashboard_statistics_path } }]] + current_user_listings(@boats, :statistics_views),
+            params[:boat_id].presence), class: :select2
+      = render 'views_table'
+
+      = paginate(@collection)
+      section.views-pagination-wrapper
+        ul#views-pagination.pagination

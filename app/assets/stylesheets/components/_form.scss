@@ -1,0 +1,169 @@
+form {
+  .form-field {
+    margin-bottom: 0.8rem;
+    position: relative;
+
+    .form-field-input {
+      border: 1px solid $steel-dark;
+      padding: 15px;
+      height: 2.9375rem;
+    }
+
+    &.form-field__zip_code {
+      .form-field-input {
+        max-width: 5rem;
+      }
+    }
+
+    .StripeElement--invalid {
+      background-color: #F2939B;
+      border-color: #c8345c;
+    }
+
+    label {
+      color: $carbon;
+      margin: 1rem 0 0.5rem;
+      display: block;
+      cursor: pointer;
+      @include respond-to-max($full) {
+        margin-top: 1.5rem;
+      }
+      &.no-top-margin {
+        margin-top: 0;
+      }
+    }
+    &.no-margin {
+      margin: 0;
+    }
+    &.with-icon {
+      position: relative;
+      input {
+        padding-left: 3rem;
+        @include respond-to-max($tablet) {
+          text-align: center;
+        }
+      }
+      &:before {
+        content: "";
+        font-family: FontAwesome;
+        display: block;
+        position: absolute;
+        top: 13px;
+        left: 17px;
+        font-size: 1.2rem;
+        color: $main-text-color;
+      }
+      &.icon-search {
+        &:before {
+          content: "\f002";   
+        }
+      }
+      &.icon-calendar {
+        &:before {
+          content: "\f073";
+        }
+      }
+      &.icon-users {
+        &:before {
+          content: "\f0c0"; 
+        }
+      }
+    }
+    .field-error {
+      display: block;
+      position: absolute;
+      bottom: -1rem;
+      font-size: 0.8rem;
+      line-height: 1rem;
+      color: $crimson;
+    }
+    .no-text-validation + .field-error {
+      display: none;
+    }
+    .textarea-counter + .field-error {
+      bottom: 0;
+    }
+  }
+  .form-divide {
+    height: $form-height;
+    line-height: $form-height;
+    text-align: center;
+    font-size: 1.2rem;
+    color: $carbon;
+    margin-top: -1rem;
+  }
+
+  .link-holder {
+    text-align: center;
+    border-bottom: 1px solid #ABB1BA;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+  }
+
+  .link-to {
+    color: #6dc0b3;
+    cursor: pointer;
+  }
+
+  .note-title {
+    font-size: 15px;
+    text-align: center;
+  }
+
+  .note-text {
+    font-size: 15px;
+    line-height: 17px;
+    margin-bottom: 15px;
+    margin-top: 7px;
+    text-align: center;
+  }
+
+  .birthday-holder {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+
+    .select2 {
+      max-width: 32%;
+      min-width: 32%;
+      flex: 0 0 32%;
+      @include respond-to-min($tablet) {
+        max-width: 30%;
+        min-width: 30%;
+        flex: 0 0 30%;
+      }
+    }
+    #user_birthday_2i + .select2 {
+      max-width: 40%;
+      min-width: 40%;
+      flex: 0 0 40%;
+      @include respond-to-min($tablet) {
+        max-width: 30%;
+        min-width: 30%;
+        flex: 0 0 30%;
+      }
+    }
+    #user_birthday_3i + .select2 {
+      max-width: 24%;
+      min-width: 24%;
+      flex: 0 0 24%;
+      @include respond-to-min($tablet) {
+        max-width: 30%;
+        min-width: 30%;
+        flex: 0 0 30%;
+      }
+    }
+
+    .select2-container .select2-selection--single .select2-selection__arrow:before {
+      font-size: 1.5rem;
+      color: #ABB1BA;
+    }
+
+    .select2-container .select2-selection--single .select2-selection__arrow {
+      width: 1.3rem;
+    }
+
+  }
+}

@@ -1,0 +1,335 @@
+title= content_for?(:html_title) ? yield(:html_title) : "Default"
+.search-container
+  main.search-content
+    section.filters-nav
+      ul
+        li
+          = link_to '#type_boat' do
+            i.bt-icon.bt-icon-boat1
+            = t('type_of_boat')
+        li
+          = link_to '#type_rental' do
+            i.bt-icon.bt-icon-controls
+            = t('type_of_rental')
+          .rent-type-text
+        li
+          = link_to '#experience' do
+            i.bt-icon.bt-icon-diving
+            = t('experience')
+        li
+          = link_to '#with_captain' do
+            i.bt-icon.bt-icon-sailor-hat
+            = t('with_captain')
+
+    section.filter-price
+      .ui-slider-wrapper
+        .title
+          = t('.price')
+        #search-slider-range
+        .value-base
+          = t('minimum_price')
+        .value-base
+          = t('maximum_price')
+      = hidden_field_tag 'min-price-value'
+      = hidden_field_tag 'max-price-value'
+      = hidden_field_tag 'slider-currency', Money::Currency.new(current_currency.to_sym).symbol
+
+      = hidden_field_tag 'min-price-1', in_current_currency(@per_half_day_minimum)
+      = hidden_field_tag 'max-price-1', in_current_currency(@per_half_day_maximum)
+      = hidden_field_tag 'min-price-2', in_current_currency(@shared_price_minimum)
+      = hidden_field_tag 'max-price-2', in_current_currency(@shared_price_maximum)
+      = hidden_field_tag 'min-price-3', in_current_currency(@sleepin_per_night_minimum)
+      = hidden_field_tag 'max-price-3', in_current_currency(@sleepin_per_night_maximum)
+
+      - if @boats
+        = hidden_field_tag 'pagination[total_pages]',  @boats.total_pages
+        = hidden_field_tag 'pagination[total_count]',  @boats.total_count
+        = hidden_field_tag 'pagination[current_page]', @boats.current_page
+      - else
+        = hidden_field_tag 'pagination[total_pages]',  1
+        = hidden_field_tag 'pagination[total_count]',  1
+        = hidden_field_tag 'pagination[current_page]', 1
+
+      = hidden_field_tag 'current-user-id', current_user.id if user_signed_in?
+
+      = hidden_field_tag 'title-add-wishlist', t('.add_wishlist')
+      = hidden_field_tag 'title-delete-wishlist', t('.delete_wishlist')
+      = hidden_field_tag 'shared-number-of-seats-text', t('search.index.shared_number_of_seats')
+      = hidden_field_tag 'per-night-text', t('search.index.per_night')
+    - if params[:ciudad]
+        css:
+          .filters-nav {
+            display: none;}
+          .filter-price {
+              display: none;}
+			  
+
+    section#search-results.search-results
+      - if @boats
+        = render partial: 'search/search_result_box', collection: @boats, as: :boat
+      - else
+        div = t('search.index.choose_filters')
+
+
+    section.search-pagination-wrapper
+      ul#search-pagination.pagination
+  aside.search-sidebar
+    #search-map.aside-column
+    = hidden_field_tag 'icon-marker', image_url('marker.png')
+    #type_boat.search-filter-box.type_boat-filter.aside-column
+      .title
+        i.bt-icon.bt-icon-boat1
+        = t('type_of_boat')
+      .filters-content
+        / Drop first empty element.
+        - boat_type_options.drop(1).each_with_index do |boat_type, index|
+          .checkbox-wrap
+            = check_box_tag boat_type[1], nil, nil, data: {type: index}
+            = label_tag boat_type[1], boat_type[0]
+      .info
+        p
+          = t('.type_of_boat_text')
+      .buttons
+        = link_to t('.close'), '#', class: 'button btn-secondary btn-filter-close btn-expanded'
+        = link_to t('.apply_filters'), '#', class: 'button btn-primary btn-apply-filters btn-expanded'
+
+    #type_rental.search-filter-box.type_rental-filter.aside-column
+      .title
+        i.bt-icon.bt-icon-controls
+        = t('type_of_rental')
+      .filters-content
+         - case @r_t
+         - when 1
+            .checkbox-wrap
+               = radio_button_tag 'type_rental', 'classic_charter', true, data: {rental: '1'}
+               = label_tag 'type_rental_classic_charter', t('.classic_charter')
+            .checkbox-wrap
+               = radio_button_tag 'type_rental', 'boat_shared', nil, data: {rental: '2'}
+               = label_tag 'type_rental_boat_shared', t('.boat_shared')
+            .checkbox-wrap
+               = radio_button_tag 'type_rental', 'sleepinn', nil, data: {rental: '3'}
+               = label_tag 'type_rental_sleepinn', t('.sleepinn')
+         - when 2
+            .checkbox-wrap
+               = radio_button_tag 'type_rental', 'classic_charter', nil, data: {rental: '1'}
+               = label_tag 'type_rental_classic_charter', t('.classic_charter')
+            .checkbox-wrap
+               = radio_button_tag 'type_rental', 'boat_shared', true, data: {rental: '2'}
+               = label_tag 'type_rental_boat_shared', t('.boat_shared')
+            .checkbox-wrap
+               = radio_button_tag 'type_rental', 'sleepinn', nil, data: {rental: '3'}
+               = label_tag 'type_rental_sleepinn', t('.sleepinn')
+         - when 3
+            .checkbox-wrap
+               = radio_button_tag 'type_rental', 'classic_charter', nil, data: {rental: '1'}
+               = label_tag 'type_rental_classic_charter', t('.classic_charter')
+            .checkbox-wrap
+               = radio_button_tag 'type_rental', 'boat_shared', nil, data: {rental: '2'}
+               = label_tag 'type_rental_boat_shared', t('.boat_shared')
+            .checkbox-wrap
+               = radio_button_tag 'type_rental', 'sleepinn', true, data: {rental: '3'}
+               = label_tag 'type_rental_sleepinn', t('.sleepinn')
+         - else
+            .checkbox-wrap
+               = radio_button_tag 'type_rental', 'classic_charter', nil, data: {rental: '1'}
+               = label_tag 'type_rental_classic_charter', t('.classic_charter')
+            .checkbox-wrap
+               = radio_button_tag 'type_rental', 'boat_shared', true, data: {rental: '2'}
+               = label_tag 'type_rental_boat_shared', t('.boat_shared')
+            .checkbox-wrap
+               = radio_button_tag 'type_rental', 'sleepinn', nil, data: {rental: '3'}
+               = label_tag 'type_rental_sleepinn', t('.sleepinn')
+
+      .info
+        p
+          = t('.type_of_rental_text')
+      .buttons
+        = link_to t('.close'), '#', class: 'button btn-secondary btn-filter-close btn-expanded'
+        = link_to t('.apply_filters'), '#', class: 'button btn-primary btn-apply-filters btn-expanded'
+
+    #experience.search-filter-box.experience-filter.aside-column
+      .title
+        i.bt-icon.bt-icon-diving
+        = t('experience')
+      .filters-content
+        - Category.experience.each do |category|
+          - category.features.each do |feature|
+            .checkbox-wrap
+              = check_box_tag "#{feature.name}", nil, nil, data: {exp: "#{feature.id}"}
+              = label_tag "#{feature.name}"
+      .info
+        p
+          = t('.experience_text')
+      .buttons
+        = link_to t('.close'), '#', class: 'button btn-secondary btn-filter-close btn-expanded'
+        = link_to t('.apply_filters'), '#', class: 'button btn-primary btn-apply-filters btn-expanded'
+
+    #with_captain.search-filter-box.with_captain-filter.aside-column
+      .title
+        i.bt-icon.bt-icon-sailor-hat
+        = t('with_captain')
+      .filters-content
+        #filter_captain
+          .checkbox-wrap
+            = radio_button_tag 'captain', 'with'
+            = label_tag 'captain_with', t('.captain_with')
+          .checkbox-wrap
+            = radio_button_tag 'captain', 'without'
+            = label_tag 'captain_without', t('.captain_without')
+      .info
+        p
+          = t('.with_captain_text')
+      .buttons
+        = link_to t('.close'), '#', class: 'button btn-secondary btn-filter-close btn-expanded'
+        = link_to t('.apply_filters'), '#', class: 'button btn-primary btn-apply-filters btn-expanded'
+
+javascript:
+
+  var markerCluster;
+  var map;
+  var image = $('#icon-marker').val();
+  var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  var markers;
+  var markerCluster;
+  var locations = [];
+  var mobile = 0;
+  if($('.search-result-box').length == 0) {
+    locations.push({lat: 40, lng: -3});
+  };
+
+  if($('.search-result-box').data('lat') != 0) {
+    $('.search-result-box').each(function(){
+      locations.push({lat: +$(this).data('lat'), lng: +$(this).data('lng')});
+    });
+  }
+
+  function initMap(locu) {
+
+    if(locu !== undefined) {
+      locations = locu;
+    }
+
+    if(locations !== undefined) {
+
+      map = new google.maps.Map(document.getElementById('search-map'), {
+        zoom: 5,
+        center: locations[0]
+      });
+
+      if($('.search-result-box').length != 0) {
+        markers = locations.map(function(location, i) {
+          return new google.maps.Marker({
+            position: location,
+            // label: labels[i % labels.length],
+            label: "",
+            icon: image
+          });
+        });
+      };
+
+      markerCluster = new MarkerClusterer(map, markers, {
+        imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+      });
+
+    }
+
+    var input = document.getElementById('location');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+
+    autocomplete.addListener('place_changed', function() {
+
+      var place = autocomplete.getPlace();
+
+      if (!place.geometry) {
+        var firstResult = $(".pac-container .pac-item:first .pac-item-query").text();
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({"address":firstResult }, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            $('#lat-value').val(results[0].geometry.location.lat());
+            $('#lng-value').val(results[0].geometry.location.lng());
+
+            $(".pac-container .pac-item:first").addClass("pac-selected");
+            $(".pac-container").css("display","none");
+            $('#location').val(firstResult);
+            $(".pac-container").css("visibility","hidden");
+          }
+        });
+        return;
+      };
+
+      var address = '';
+      if (place.address_components) {
+        address = [
+          (place.address_components[0] && place.address_components[0].short_name || ''),
+          (place.address_components[1] && place.address_components[1].short_name || ''),
+          (place.address_components[2] && place.address_components[2].short_name || '')
+        ].join(' ');
+      }
+
+      // Set data for server
+      $('#lat-value').val(place.geometry.location.lat());
+      $('#lng-value').val(place.geometry.location.lng());
+
+    });
+
+    // $('.search-form button').on('click', function(e){
+    //   e.preventDefault();
+    //   google.maps.event.trigger(autocomplete, 'place_changed');
+    //   return false;
+    // });
+
+    // Clean data, if input is empty
+    // $('#location').on('focusout', function(){
+    //   if($(this).val() == '') {
+    //     $('#lat-value').val('');
+    //     $('#lng-value').val('');
+    //   } else {
+    //     $('#location').removeClass('input-error');
+    //     $('#location').parent().find('.field-error').detach();
+    //   }
+    // });
+    // May be one?
+    $('#location').on('keypress', function(){
+      $('#lat-value').val('');
+      $('#lng-value').val('');
+      if($(this).val() != '') {
+        $('#location').removeClass('input-error');
+        $('#location').parent().find('.field-error').detach();
+      }
+    });
+
+  }
+
+script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"
+script async="" defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCK3l7AsKHTwtVByqkpAGCNOXzNv6nug2k&libraries=places&callback=initMap"
+
+- if params[:ciudad]
+  - ciudad = 'search/' + params[:ciudad].to_s
+  - if lookup_context.template_exists?( params[:ciudad].to_s, "search", true)
+     = render partial: ciudad
+
+- if mobile_device == "mobile"
+  javascript:    
+    var mobile= 1;
+  
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document" style="width: 50%;left: 25%;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title" id="exampleModalLongTitle">Para buscar experiencias compartidas</h5>
+      </div>
+      <div class="modal-body">
+        = image_tag ("filtro_compartido.jpg"), :style =>"width: 90%;"
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

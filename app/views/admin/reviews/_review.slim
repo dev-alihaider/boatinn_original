@@ -1,0 +1,43 @@
+tr
+  td.text-center = l(review.created_at, format: :long, default: '-')
+  td.text-center = l(review.reviewed_at, format: :long, default: '-')
+  td.text-center = link_to review.trip.boat_hash[:name], listing_path(locale: locale, id: review.trip.boat_id), target: '_blank'
+  td.text-center = "inbox/#{review.trip.id}"
+  td.text-center = review.target.capitalize
+  td.text-center
+    => review.avg_grade
+    .ratings
+      .empty-stars
+      .full-stars style="width: #{review.avg_grade * 20.0}%"
+  td.text-center = review.status.capitalize
+  td.text-center.client-avatar
+    = link_to show_profile_path(locale: locale, id: review.sender.id), target: '_blank' do
+      = image_tag user_image_url(review.sender)
+      =< review.sender.display_name
+  td.text-center.client-avatar
+    = link_to show_profile_path(locale: locale, id: review.receiver.id), target: '_blank' do
+      = image_tag user_image_url(review.receiver)
+      =< review.receiver.display_name
+  td.text-center = review.reports_about.count
+  td.text-center
+    - if review.recommended?
+      span.label.label-primary
+        b = t('admin.dashboard.users.is_boat_owner')
+    - else
+      span.label.label-name = t('admin.dashboard.users.not_boat_owner')
+  td.text-center = review.public_review
+  td.text-center
+    .switch
+      .onoffswitch style="margin: 0 auto;" onclick="location.href='#{review.enabled? ? disable_admin_review_path(review.id) : enable_admin_review_path(review.id)}'"
+        = check_box_tag "review_#{review.id}_enabled_switcher", nil, review.enabled?, class: 'onoffswitch-checkbox'
+        label.onoffswitch-label for="review_#{review.id}_enabled_switcher"
+          span.onoffswitch-inner
+          span.onoffswitch-switch
+  td.text-center
+    = link_to edit_admin_review_path(id: review.id), class: %i[btn btn-sm btn-info] do
+      i.fa.fa-pencil
+  / td.text-center
+    = link_to url_for(action: :destroy, id: review.id), method: :delete,
+              data: { confirm: t('admin.dashboard.reviews.confirm_delete') },
+              class: %i[btn btn-sm btn-danger] do
+      i.fa.fa-times

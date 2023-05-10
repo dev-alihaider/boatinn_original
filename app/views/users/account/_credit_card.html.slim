@@ -1,0 +1,10 @@
+.card-box
+  p= "**** #{card[:last4]} (#{card[:month]}/#{card[:year]})"
+  .card-inf
+    .card-inf-left
+      / .radio-wrap
+        = radio_button_tag :default, card[:id], card[:credit_card_default], class: %i[select-default-card], data: {url: paypal_default_card_dashboard_account_index_path, id: card[:id] }
+        = label_tag "default_#{card[:id]}", t('default')
+      - if can_remove_card
+        p = link_to t('remove'), dashboard_payment_path(id: card[:id]), class: %i[remove-card], data: { confirm: t('are_you_sure'), method: :delete }
+    .card-inf-right = image_tag payment_image(card[:brand]), class: 'card-img'

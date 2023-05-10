@@ -1,0 +1,22 @@
+.tr-wizard-step
+  .row
+    .col-md-12
+      .note.info = t("bookings.wizard.boat_viewed_times", count: @boat_views_count).html_safe
+  .row
+    .col-md-12
+      h2.title = t("bookings.wizard.passengers_title")
+  .row
+    .col-md-4
+      .form-field
+        = form.label(:passenger_quantity, t("bookings.wizard.passenger_quantity_label"))
+        = form.select :number_of_guests, options_for_select(@travel.options_for_select_guests, @booking.number_of_guests), {}, class: 'select2'
+  .row
+    .col-md-12
+      .form-field
+        = label_tag :message, t("bookings.wizard.message_label")
+        p.help-text= t("bookings.wizard.message_help", name: @travel.seller.display_name)
+        = text_area_tag(:message, '', placeholder: t("bookings.wizard.message_placeholder"))
+  .row
+    .col-md-4.sm-12
+      button.button.btn-primary.btn-expanded type='button' id="btn_passenger_apply" class="next-booking-wizard"
+        = t('wizards.index.continue')

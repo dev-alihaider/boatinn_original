@@ -1,0 +1,40 @@
+.invoice-table {
+  margin-top: 5rem;
+  tr {
+    &.bordered {
+      border-bottom: 1px solid $border-color;
+    }
+    &:nth-child(odd) {
+      background-color: #fff;
+    }
+    td {
+      color: $carbon;
+      padding: 2rem 1rem;
+      &.custom-align {
+        text-align: right;
+        vertical-align: middle;
+      }
+      .button:last-child {
+        margin-left: 1rem;
+      }
+      .button:first-child {
+        margin-bottom: 1rem;
+        @include respond-to-min($tablet) {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+.invoice-logo {
+  width: 170px;
+  height: auto;
+}
+.invoice-title {
+  font-size: 1rem;
+  margin: 0 0 0.5rem;
+}
+.invoice-super-title {
+  font-size: 1.5rem;
+  font-family: $bold-font;
+}

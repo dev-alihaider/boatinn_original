@@ -1,0 +1,168 @@
+.toplinks {
+  background-color: $smoke;
+  height: auto;
+  border-bottom: 1px solid $border-color;
+  padding: 0.5rem 1rem 1rem ;
+  display: none;
+  position: absolute;
+  width: 100%;
+  top: 4.7rem;
+  z-index: 10;
+  @include respond-to-min($tablet + 1) {
+    height: $form-height;
+    padding: 0;
+    display: block;
+    position: relative;
+    top: auto;
+    z-index: 3;
+  }
+  ul {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    @include respond-to-max($tablet + 1) {
+      flex-direction: column;
+    }
+    li {
+      list-style-type: none;
+      @include respond-to-max($tablet + 1) {
+        border-bottom: 1px solid $border-color;
+      }
+      a {
+        display: block;
+        line-height: $form-height;
+        text-transform: uppercase;
+        color: $carbon;
+        font-size: 0.8rem;
+        overflow: hidden;
+        position: relative;
+        transition: color 0.2s linear;
+        i {
+          padding-right: 0.5rem;
+          font-size: 1rem;
+          position: relative;
+          top: 1px;
+        }
+        &:before {
+          content: '';
+          display: block;
+          background-color: $transparent;
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          height: 0.25rem;
+          transition: 0.2s background-color linear;
+        }
+        &:hover {
+          text-decoration: none;
+          //font-family: $bold-font;
+        }
+        @include respond-to-max($tablet + 1) {
+          width: 100%;
+        }
+      }
+      a.active, a:hover {
+        color: $yellowgreen;
+        &:before {
+          background-color: $yellowgreen;
+        }
+      }
+      &:nth-child(1) {
+        a.active, a:hover {
+          color: $teal;
+          &:before {
+            background-color: $teal;
+          }
+        }
+      }
+      &:nth-child(2) {
+        a.active, a:hover {
+          color: $crimson;
+          &:before {
+            background-color: $crimson;
+          }
+        }
+      }
+      &:nth-child(3) {
+        a.active, a:hover {
+          color: $teal-light;
+          &:before {
+            background-color: $teal-light;
+          }
+        }
+      }
+      &:nth-child(4) {
+        a.active, a:hover {
+          color: $peru;
+          &:before {
+            background-color: $peru;
+          }
+        }
+      }
+      &:nth-child(5) {
+        a.active, a:hover {
+          color: $teal;
+          &:before {
+            background-color: $teal;
+          }
+        }
+      }
+      &:nth-child(6) {
+        a.active, a:hover {
+          color: $peru;
+          &:before {
+            background-color: $peru;
+          }
+        }
+      }
+      &:nth-child(7) {
+        a.active, a:hover {
+          color: $crimson-light;
+          &:before {
+            background-color: $crimson-light;
+          }
+        }
+      }
+      &:nth-child(8) {
+        a.active, a:hover {
+          color: $yellowgreen;
+          &:before {
+            background-color: $yellowgreen;
+          }
+        }
+      }
+    }
+  }
+}
+
+.btn-mobile-nav-switch {
+  position: absolute;
+  left: 3rem;
+  top: 0.7rem;
+  font-size: 1.8rem;
+  display: none;
+  .active-icon {
+    font-size: 3rem;
+    position: relative;
+    top: -9px;
+    left: -4px;
+    display: none;
+  }
+  &.active {
+    .inactive-icon {
+      display: none;
+    }
+    .active-icon {
+      display: block;
+    }
+  }
+}
+.dashboard {
+  .btn-mobile-nav-switch {
+    display: block;
+    @include respond-to-min($tablet + 1) {
+      display: none;
+    }
+  }
+}

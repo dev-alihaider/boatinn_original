@@ -1,0 +1,54 @@
+/ TODO: Move this logic to helpers
+
+/ General variables for conditions.
+- is_image_uploading_stage = current_stage == 12
+- is_currency_stage = current_stage == 14
+- is_season_rate_stage = current_stage == 15
+- is_additional_fees_stage = current_stage == 16
+- is_edit_action = action_name == 'edit'
+- referer = session[:referer] || request.referer
+- is_referer_edit_listing = is_edit_action && referer.to_s.include?(edit_dashboard_listing_url(@boat))
+
+/ Conditions for central `Skip for now`/`Next` buttons.
+- is_hide_skip_next_buttons = is_image_uploading_stage && (@boat.images.blank? || is_referer_edit_listing)
+
+/ Conditions for central `Skip for now` button.
+- is_not_image_uploading_stage_and_not_season_rate_stage = !is_image_uploading_stage && !is_season_rate_stage && !is_additional_fees_stage
+- is_came_to_season_rate_stage_from_edit_listing = is_season_rate_stage && is_referer_edit_listing
+- is_hide_central_skip_button = is_hide_skip_next_buttons || is_not_image_uploading_stage_and_not_season_rate_stage || is_came_to_season_rate_stage_from_edit_listing
+
+/ Conditions for disabling `Next` button.
+- is_disable_next_button = is_currency_stage && !@boat.instant_booking_classic?
+
+/ Conditions for right `Skip for now` button
+- is_hide_right_skip_button = is_image_uploading_stage && (@boat.images.present? || is_referer_edit_listing)
+
+.buttons.row.custom-grid-row.custom-grid-row__referer*{data: {is_referer_edit_listing: is_referer_edit_listing.to_s}}
+  .column.col-md-4.col-sm-12.prev-btn-wrapper
+    - if is_image_uploading_stage && is_referer_edit_listing
+      = link_to referer, class: %i[button btn-info-outlined btn-expanded back] do
+        i.fa.fa-angle-left
+        = t('back')
+    - else
+      = button_tag nil, class: %i[button btn-info-outlined btn-expanded back],
+          type: 'button', data: {stage: current_stage, commit: commit, backurl: backurl} do
+        i.fa.fa-angle-left
+        = t('back')
+  .column.col-md-4.col-sm-12
+    = button_tag nil,
+        class: "button btn-secondary btn-expanded btn-skip btn-skip-central#{' hidden' if is_hide_central_skip_button}",
+        type: 'button', data: {stage: current_stage, commit: commit, validate: true} do
+      = t('skip_for_now')
+  .column.col-md-4.col-sm-12.next-btn-wrapper.btn-holder
+    = button_tag nil, id: 'btn-next', class: "button btn-info btn-expanded next#{' hidden' if is_hide_skip_next_buttons}#{' btn-disabled' if is_disable_next_button}",
+        type: 'button', data: {stage: current_stage, commit: commit, validate: true} do
+      = t('next')
+      i.fa.fa-angle-right
+    = button_tag nil, class: %i[button btn-success btn-expanded next btn-finish btn-disabled],
+        type: 'button', data: {stage: current_stage, commit: commit, validate: true} do
+      = t('finish')
+    = button_tag nil,
+        class: "button btn-secondary btn-expanded btn-skip btn-skip-right#{' hidden' if is_hide_right_skip_button}",
+        type: 'button', data: {stage: current_stage, commit: commit, validate: true} do
+      = t('skip_for_now')
+      i.fa.fa-angle-right

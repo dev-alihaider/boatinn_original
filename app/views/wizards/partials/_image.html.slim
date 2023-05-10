@@ -1,0 +1,6 @@
+.thumbnails-item
+  = image_tag image.attachment&.url, data: { url: api_boat_image_path(boat_id: @boat.id, id: image.id, locale: nil) }
+  / TODO: Remove hidden input -> image/button tag `data-priority` attribute.
+  = hidden_field_tag "images_priorities[#{image.id}]", image.priority
+  = button_tag '', type: :button, class: %i[remove-btn js-remove-image],
+      data: { url: api_boat_image_path(boat_id: @boat.id, id: image.id, locale: nil) }

@@ -1,0 +1,23 @@
+{
+  "name": "boatinn",
+  "private": true,
+  "dependencies": {},
+  "description": "This README would normally document whatever steps are necessary to get the application up and running.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.roobykon.com:roobykon/boatinn.git"
+  },
+  "keywords": [
+    "roobykon"
+  ],
+  "author": "roobykon",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp-imagemin": "^4.1.0"
+  }
+}

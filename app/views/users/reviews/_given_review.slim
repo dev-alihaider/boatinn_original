@@ -1,0 +1,35 @@
+.review-box
+  .avatar-wrapper
+    .avatar.img-block = link_to image_tag(user_image_url(review.receiver)), show_profile_path(review.receiver)
+  .review-body
+    .date
+      i.fa.fa-calendar
+      = l((review.reviewed_at || review.created_at), format: :long, default: '-')
+    .from = t('users.inbox.reviews.review_about_receiver', receiver_name: review.receiver.display_name, receiver_link: show_profile_path(review.receiver)).html_safe
+
+    - if review.pending?
+      = link_to t('users.inbox.reviews.leave_review'), dashboard_review_leave_review_path(review_id: review.id), class: 'button btn-info btn-leave-review'
+      .text
+        - if Reviews.pending_for_both_sides?(review)
+          = t('users.inbox.reviews.review_pending_both_sides', receiver_name: review.receiver.display_name, days_to_expire: Reviews.days_to_expire(review))
+        - else
+          = t('users.inbox.reviews.review_pending_for_sender', receiver_name: review.receiver.display_name, days_to_expire: Reviews.days_to_expire(review))
+
+    - else
+      .text = review.public_review
+
+      - if review.private_review.present?
+        .privat-review-title = t('.private_review')
+        .private-review = review.private_review
+
+      - if review.replied?
+        .reply
+          .review-box
+            .avatar-wrapper
+              .avatar.img-block = link_to image_tag(user_image_url(review.receiver)), show_profile_path(review.receiver)
+            .review-body
+              .date
+                i.fa.fa-calendar
+                = l(review.replied_at, format: :long, default: '-')
+              .from = t('users.inbox.reviews.response_from_person', person_name: review.sender.display_name).html_safe
+              .text = review.reply_review

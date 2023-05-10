@@ -1,0 +1,40 @@
+<link rel="stylesheet" href="/assets/lightbox/lightbox.css">
+<script src="/assets/lightbox/lightbox.js"></script>
+section.listing-page
+  - if @boat.images.present? && @boat.images.count > 1
+    .ls-slider-container
+      ul.listing-slider = render partial: 'users/listings/show/slider_image', collection: @boat.images.order(:priority)
+  - else
+    .img-block.main-img = image_tag boat_image_url(@boat)
+  .container
+    .listing-main
+      .listing-description#lst_overview
+        ul.anchor-list
+          li.active = link_to t('users.listings.show.overview'), '#lst_overview'
+          li = link_to t('users.listings.show.reviews'), '#lst_reviews'
+          li = link_to t('users.listings.show.the_host'), '#lst_host'
+          li = link_to t('users.listings.show.location'), '#lst_location'
+        = render 'users/listings/show/title'
+        = render 'users/listings/show/description'
+        = render 'users/listings/show/boat_info'
+        = render 'users/listings/show/experiences'
+        = render 'users/listings/show/details'
+        = render 'users/listings/show/prices'
+        = render 'users/listings/show/additional_fees'
+        = render 'users/listings/show/rental_requirements'
+        = render 'users/listings/show/cancellations'
+        = render 'users/listings/show/reviews' if @boat.reviews.present?
+        = render 'users/listings/show/skipper'
+        = render 'users/listings/show/port' if @boat.port.present?
+      = render 'users/listings/show/booking_calculator'
+    = render 'users/listings/show/location'
+    = render 'users/listings/show/similar_listings' if @similar_boats.present?
+= render 'users/listings/show/modal_report'
+/ = render 'users/listings/show/modal_helpful'
+
+- if current_user.blank?
+  javascript:
+   $("#new-booking-form").find("button").click(function(e){
+       e.preventDefault();
+       $("#sign-in").click();
+   });

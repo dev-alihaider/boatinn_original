@@ -1,0 +1,9 @@
+= render 'users/shared/menu'
+
+#inbox-container
+  = render 'users/inbox/shared/navigation'
+  .container
+    table.messages-table
+      tbody = render partial: 'users/inbox/index/conversation', collection: @travels, as: :travel
+    .mobile-messages-table
+  .remote-links = paginate(@trips)

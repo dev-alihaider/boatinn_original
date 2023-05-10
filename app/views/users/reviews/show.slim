@@ -1,0 +1,12 @@
+= render 'users/shared/menu'
+
+.container
+  .flex-container.inbox-inner-container
+    = render partial: 'users/inbox/show/booking_sidebar_for_client'
+
+    .content
+      .inner-content.reviews-content
+        - if @review.travel?
+          = concept('reviews/cell/form/review_about_travel', @review, only_read: true).()
+        - else
+          = concept('reviews/cell/form/review_about_guest', @review, only_read: true).()

@@ -1,0 +1,38 @@
+ul.description-list
+  li
+    span.bt-icon-more-users
+    span = "#{t('users.listings.show.passengers_count', count: @boat.passengers_count)}"
+  li
+    span.bt-icon-door
+    span = "#{t('users.listings.show.cabins_count', count: @boat.cabins_count)}"
+  li
+    span.bt-icon-bed
+    span = "#{t('users.listings.show.sleep_count', count: @boat.guest_number)}"
+  li
+    span.bt-icon-sailor-hat
+    span
+      - if @boat.with_captain?
+        = t('wizards.index.page05.with_captain')
+      - if @boat.without_captain?
+        = t('wizards.index.page05.without_captain')
+      - if @boat.with_or_without_captain?
+        = t('wizards.index.page05.with_or_without_captain')
+
+.description
+  h2.title = t('users.listings.show.description')
+  .tabs-container
+    ul
+      li class=(:hidden unless @boat.classic?)
+        a href="#desc-tab-1" data-tabname="classic" = t('classic_charter')
+      li class=(:hidden unless @boat.shared?)
+        a href="#desc-tab-2" data-tabname="shared" = t('boat_shared')
+      li class=(:hidden unless @boat.sleepin?)
+        a href="#desc-tab-3" data-tabname="sleepin" = t('sleepinn')
+    #desc-tab-1 class=(:hidden unless @boat.classic?)
+      .text
+        / p = @boat.listing_description
+        = markdown_line_break_to_paragraph(@boat.listing_description)
+    #desc-tab-2 class=(:hidden unless @boat.shared?)
+      .text = markdown_line_break_to_paragraph(@boat.shared_description)
+    #desc-tab-3 class=(:hidden unless @boat.sleepin?)
+      .text = markdown_line_break_to_paragraph(@boat.sleepin_description)

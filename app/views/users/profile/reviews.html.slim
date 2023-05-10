@@ -1,0 +1,23 @@
+= render 'users/shared/menu'
+
+.container
+  .flex-container.account-container
+    .sidebar = render 'menu'
+    .content
+      h3.title = t('users.profile.reviews')
+      .inner-content
+        / = t('users.inbox.reviews.create.write_a_review')
+        / TODO: Add target user when finished trips will be ready
+        = render 'users/inbox/shared/new_review_button'
+        .reviews-container
+          - if current_user.reviews_about.present?
+            .reviews-title = t('users.profile.reviews_about_you')
+            = render partial: 'shared/profile/review', collection: @reviews_about
+            - if current_user.reviews_about.count > UsersHelper::REVIEWS_TO_SHOW
+              = button_tag t('users.profile.view_more_reviews'), class: %i[button btn-primary]
+
+          - if current_user.reviews.present?
+            .reviews-title = t('users.profile.reviews_from_you')
+            = render partial: 'shared/profile/review', collection: @reviews
+            - if current_user.reviews.count > UsersHelper::REVIEWS_TO_SHOW
+              = button_tag t('users.profile.view_more_reviews'), class: %i[button btn-primary]

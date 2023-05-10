@@ -1,0 +1,67 @@
+.form-field#do-payment
+  .pay-with-label
+    = label_tag(t("bookings.wizard.pay_with"))
+    = image_tag('payments_type.png')
+
+  select.stripe-select(v-if="showChoice" v-model="selectedPaymentMethod" style="display:block;padding: 12px;width:100%;" name="source")
+    option(v-for="card in paymentMethods" :value="card.id") {{ formatCard(card) }}
+    option(value="__new") Add new Payment Method
+
+= render "stripe/new_payment_method", display: false
+
+- content_for :extra_javascript do
+  javascript:
+    window.doPaymentApp = new Vue({
+      el: "#do-payment",
+      data: function() {
+        return {
+          paymentMethods: [],
+          progress: false,
+          showNewPayment: false,
+          selectedPaymentMethod: '',
+          showChoice: false
+        }
+      },
+
+      mounted: function () {
+        this.fetchPaymentMethods()
+        window.onNewPaymentAdded = function() {
+          window.doPaymentApp.fetchPaymentMethods()
+        }
+      },
+
+      watch: {
+        selectedPaymentMethod: function(v){
+          var btn = document.getElementById("btn_payment_apply")
+          if (v === '__new') {
+            window.newPaymentApp.show();
+            if (btn) { btn.setAttribute("disabled", "disabled") }
+          } else {
+            window.newPaymentApp.hide();
+            if (btn) { btn.removeAttribute("disabled") }
+          }
+        }
+      },
+
+      methods: {
+        fetchPaymentMethods: function(){
+          fetch("/api/stripe/payment_methods").then(function(responce){
+            responce.json().then(function(json){
+              window.doPaymentApp.paymentMethods = json.data
+              if (window.doPaymentApp.paymentMethods.length) {
+                window.doPaymentApp.selectedPaymentMethod = window.doPaymentApp.paymentMethods[0].id
+              }
+              window.doPaymentApp.showChoice = true
+            })
+          })
+        },
+
+        formatCard: function(card) {
+          return `${card.brand.toUpperCase()} **** ${card.last4} (${card.month}/${card.year})`
+        },
+
+        showNewPaymentForm() {
+          window.newPaymentApp.show()
+        }
+      },
+    })

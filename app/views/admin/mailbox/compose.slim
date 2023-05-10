@@ -1,0 +1,38 @@
+.row
+  .col-lg-12
+    h2.title--bordered = t('admin.dashboard.mailbox.send_email')
+    = render 'admin/shares/breadcrumbs', active: t('admin.dashboard.mailbox.send_email')
+
+.row
+  .col-12
+    .mail-box
+      .mail-body
+        = form_tag url: admin_compose_email_path
+          .form-group.row
+            label.col-sm-2.col-form-label
+              = t('.to')
+            .col-sm-10
+              = select_tag :to, options_for_select(@recipient_groups), class: 'form-control'
+
+          .form-group.row.compose-emails-block
+            label.col-sm-2.col-form-label
+              = "#{t('.emails')}:"
+            .col-sm-10
+              = text_area_tag :emails, params[:emails], class: 'form-control'
+
+
+          .form-group.row
+            label.col-sm-2.col-form-label
+              = "#{t('.subject')}:"
+            .col-sm-10
+              = text_field_tag :subject, params[:subject], class: 'form-control'
+          .mail-text.h-200
+            = text_area_tag :content, params[:content], data: { provider: :summernote_compose_email }
+
+            .clearfix
+          .mail-body.text-right
+            = button_tag class: 'btn btn-primary' do
+              i.fa.fa-send &nbsp;
+              = t('admin.dashboard.mailbox.send_email_btn')
+
+      .clearfix

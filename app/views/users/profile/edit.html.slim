@@ -1,0 +1,109 @@
+= render 'users/shared/menu'
+
+.container
+  .flex-container.account-container
+    .sidebar = render 'menu'
+    .content
+      h3.title = t('users.profile.edit_profile')
+      .inner-content
+        = form_for @user, url: dashboard_profile_path(current_user), class: %i[notification-form account-form], html: {id: 'edit_profile_form'} do |f|
+          .row
+            .column.col-lg-8.col-sm-12
+              .form-field
+                = f.label :first_name, t('users.profile.first_name')
+                = f.text_field :first_name, value: @user.user_first_name, placeholder: t('users.profile.your_first_name'), maxlength: 200
+          .row
+            .column.col-lg-8.col-sm-12
+              .form-field
+                = f.label :last_name, t('users.profile.last_name')
+                = f.text_field :last_name, value: @user.user_last_name, placeholder: t('users.profile.your_last_name'), maxlength: 200
+          .row
+            .column.col-lg-8.col-sm-12
+              .form-field
+                = f.label :nie, t('users.profile.nie')
+                = f.text_field :nie, value: @user.nie, placeholder: t('users.profile.nie'), maxlength: 20
+          .row
+            .column.col-lg-4.col-sm-12
+              .form-field
+                = f.label :gender, t('users.profile.gender')
+                = f.select :gender, User.genders.keys.map { |role| [role.titleize, role] }, {}, class: :select2
+          .row
+            .column.col-lg-8.col-sm-12
+              .form-field
+                = f.label :birthday, t('users.profile.birthday.label')
+                .birthday-container
+                  = f.date_select :birthday, birthday_select_options, class: :select2
+          .row
+            .column.col-lg-8.col-sm-12
+              .form-field
+                = f.label :email, t('users.profile.email_adress')
+                = f.text_field :email
+          .row.number-verification-box
+            .column.col-lg-12.col-sm-12
+              = f.label :phone_number, t('users.profile.phone_number'), class: "single-label"
+            .column.col-lg-4.col-sm-12
+              .form-field
+                = f.phone_field :phone_number, id: 'phone-number-input', value: f.object.phone_number, data: { is_verified_number: current_user.phone_verified? }
+                span#number-verified-badge class="#{'hidden' unless current_user.phone_verified?}"
+                  i.fa.fa-check-circle.success
+                  =< t('users.profile.verified')
+            .column.col-lg-3.col-sm-12
+              .form-field
+                = button_tag type: 'button', id: 'send-code-button', class: "button btn-info #{' btn-disabled' if current_user.phone_verified?}", disabled: current_user.phone_verified? do
+                  i.fa.fa-telegram
+                  =< t('users.profile.verify_new_number_by_sms')
+          .row.number-verification-box
+            .column.col-lg-8.col-sm-12
+              #input-code-row.hidden
+                label.phone[for="verification-code-input"] = t('users.profile.introduce_5_digits_code')
+                .column
+                  .form-field
+                    input[type="text" id="verification-code-input" name="verification-code-input" maxlength="5" disabled]
+                .column
+                  .form-field.without-label
+                    = button_tag type: 'button', id: 'verify-code-button', class: 'button btn-info btn-disabled btn-expanded', disabled: true do
+                      i.fa.fa-check-circle-o
+                      =< t('users.profile.verify')
+                .column
+                  .form-field.without-label
+                    = button_tag type: 'button', id: 'cancel-verification-button', class: 'button btn-info btn-expanded' do
+                      i.fa.fa-times-circle-o
+                      =< t('cancel')
+          .row.number-verification-box
+            .column.col-lg-12.col-sm-12
+              .form-field
+                #status-message.hidden data-info="#{t('users.profile.info_about_sms_code')}"
+                  i.fa.fa-exclamation-triangle.warning
+                  | &nbsp;
+                  span#status-message-text
+          .row.change-password
+            .column.col-lg-12.col-sm-12
+              = f.label  t('devise.changepassword.change_password'), class: "single-label"
+              = link_to t('devise.changepassword.change_password'), edit_user_registration_path, class: "button btn-danger"
+          hr.edit-profile-devider
+
+          .row
+            .column.col-lg-4.col-sm-12
+              .form-field
+                = f.label :language, t('users.profile.language')
+                = f.select :language, available_locales_options, {}, class: :select2
+          .row
+            .column.col-lg-4.col-sm-12
+              .form-field
+                = f.label :currency, t('users.profile.currency')
+                = f.select :currency, currencies_for_footer, {}, class: :select2
+          .row
+            .column.col-lg-8.col-sm-12
+              .form-field
+                = f.label :where_you_live, t('users.profile.where_you_live')
+                = f.text_field :where_you_live, maxlength: 200
+          .row
+            .column.col-lg-8.col-sm-12
+              .form-field
+                = f.label :describe_yourself, t('users.profile.describe_yourself')
+                = f.text_area :describe_yourself, maxlength: 3000
+          .row
+            .column.col-lg-3.col-sm-12
+              = button_tag nil, class: %i[button btn-success btn-expanded btn-save] do
+                i.fa.fa-save
+                = t('save')

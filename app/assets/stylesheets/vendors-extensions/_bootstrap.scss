@@ -1,0 +1,69 @@
+.container-fluid, .container {
+  padding: 0;
+  margin: 0 auto;
+  .row {
+    padding: 0;
+    margin: 0 auto;
+    .column {
+      padding: 0;
+      margin: 0 auto;
+    }
+  }
+}
+
+.modal-dialog {
+  background-color: $white;
+  border: 0;
+  margin: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 2.5rem;
+  overflow: auto;
+  bottom: 0;
+
+  @include respond-to-min($tablet){
+    background-color: $white;
+    margin: 0;
+    position: fixed;
+    /* top: 25%; Modal aparece muy abajo en pantalla */
+    left: calc(50% - 190px);
+    border: 0;
+    width: 380px;
+    padding: 2.5rem;
+    bottom: auto;
+  }
+
+  .btn-close {
+    display: block;
+  }
+  &.modal-transparent {
+    background-color: $transparent;
+  }
+  &.modal-wide {
+    left: calc(50% - 300px);
+    width: 600px;
+    @include respond-to-max($tablet) {
+      left: calc(50% - 190px);
+      width: 380px;
+    }
+  }
+}
+
+/* For variable content. Popup with Flex always centered */
+.flex-wrapper-popup {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .modal-dialog {
+    position: relative;
+    top: auto;
+    left: auto;
+  }
+}

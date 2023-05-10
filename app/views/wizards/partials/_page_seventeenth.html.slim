@@ -1,0 +1,9 @@
+.wizard-page#page17 data-stage='17'
+  = hidden_field_tag nil, t('wizards.index.page17.step_text'), class: 'status-text-val'
+  .col.left-column
+    .title = t('wizards.index.page17.title')
+    .row
+      .column.col-md-12.col-sm-12 = t('wizards.index.page17.description').html_safe
+    = render 'wizards/partials/buttons', current_stage: 17, commit: false, backurl: '#', nexturl: '#'
+  .col.right-column.without-text
+    .people

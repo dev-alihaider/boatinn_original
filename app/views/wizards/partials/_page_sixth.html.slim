@@ -1,0 +1,32 @@
+.wizard-page.hidden#page06 data-stage='6'
+  = hidden_field_tag nil, t('wizards.index.page06.step_text'), class: 'status-text-val'
+  .col.left-column
+    .title
+      =t('wizards.index.page06.title')
+    .row.custom-grid-row
+      .column.col-md-6.col-sm-12
+        .form-field
+          .clnd-holder.clearfix
+            .clnd-icon
+              i.fa.fa-calendar
+            .clnd-input
+              = f.select :check_in_time, options_for_select(check_in_out_times, default_check_in_out(@boat.check_in_time)), {}, class: 'select2', data: {placeholder: t('wizards.index.check_in')}
+      .column.col-md-6.col-sm-12
+        .form-field
+          .clnd-holder.clearfix
+            .clnd-icon
+              i.fa.fa-calendar
+            .clnd-input
+              = f.select :check_out_time, options_for_select(check_in_out_times,  default_check_in_out(@boat.check_out_time)), {}, class: 'select2', data: {placeholder: t('wizards.index.check_out')}
+    .row
+      .column.col-md-12.col-sm-12
+        .form-field
+          = label_tag 'boat_minimum_rental_time', t('wizards.index.page06.min_rent_time')
+          = f.select :minimum_rental_time, options_for_select(minimum_rental_times, @boat.minimum_rental_time), {}, {class: 'select2'}
+    = render 'wizards/partials/buttons', current_stage: 6, commit: false, backurl: '#', nexturl: '#'
+  .col.right-column
+    hr /
+    .description
+      span.mark
+        = t('wizards.index.info') + ': '
+      = t('wizards.index.page06.description')

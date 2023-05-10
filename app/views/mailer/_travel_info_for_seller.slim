@@ -1,0 +1,32 @@
+tr
+  td height="140" style=("width: 44%; padding-bottom: 30px;") valign="top"
+    h1 style=("font-family: 'Cabin', Arial, sans-serif; color: #545454; font-size: 29px; line-height: 35px; margin-bottom: 26px; margin-top: 10px;")
+      = title
+    - if defined?(desc) && desc
+      p style=("margin-top: 7px; font-family: 'Cabin', Arial, sans-serif; line-height: 23px;")
+        = desc
+
+  = render 'mailer/sidebar_checkout'
+
+tr style=""
+  td style=("border-bottom: 1px solid #b6b6b6;")
+tr style=""
+  td
+    div style=("width: 150px; height: 150px; margin: 33px auto 5px; display: block; overflow: hidden; border-radius: 50%;")
+      = image_tag user_image_url(@client), style: "width: 100%; max-width: 100%"
+    p style=("text-align: center; font-weight: 600; font-family: 'Cabin', Arial, sans-serif; font-size: 21px; color: #545454;")
+      = @client.display_name
+    p style=("text-align: center; font-family: 'Cabin', Arial, sans-serif; margin-top: 5px; margin-bottom: 0;")
+      = @travel.boat_hash[:location][:address]
+    p style=("text-align: center; margin-top: 7px; text-align: center; font-family: 'Cabin', Arial, sans-serif;")
+      = t('.scince_at', service_name: t('service_name'), scince_at: @client.created_at.year)
+tr style=""
+  td style=("border-bottom: 1px solid #b6b6b6; padding-bottom: 30px;")
+
+- if @message_text.present?
+  tr
+    td style="" height="100" valign="top"
+      p style="padding-top: 20px; font-family: 'Cabin', Arial, sans-serif;"
+        = @message_text
+
+= render 'mailer/primary_button', url: dashboard_inbox_url(id: @booking.trip_id), title: t('.send_message_to', @locals), align: :justify, colspan: 1

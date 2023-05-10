@@ -1,0 +1,41 @@
+.container
+  .flex-container.profile-view-container
+    = render 'shared/profile/sidebar'
+    .content
+      h1.user-name = t('users.profile.show.name', username: user_name(@user))
+      .user-joined = t('users.profile.show.joined', joined: @user.joined_at)
+      p.user-status = @user.describe_yourself
+
+      - if current_user == @user
+        = link_to edit_dashboard_profile_index_path, class: 'edit-link' do
+          i.fa.fa-edit
+          = t('users.profile.edit_profile')
+      - elsif user_signed_in?
+        = link_to 'javascript:void(0)', class: 'report-link', id: 'report-user-button',
+            data: { toggle: 'modal', target: '#report-user-modal', user_id: params[:id],
+                    reported_message: t('reports.successfully_sent_user_report') } do
+          i.fa.fa-flag
+          = t('users.profile.show.report')
+      - else
+        = link_to new_user_session_path, data: { modal: true, remote: true }, class: 'report-link' do
+          i.fa.fa-flag
+          = t('users.profile.show.report')
+      - if @user.recommends_by_boat_owner_size.positive?
+        p.user-recommended = t('users.profile.recommended_by_hosts_size', username: @user.display_name, count: @user.recommends_by_boat_owner_size)
+      - if @reviews_box.collection.count.positive?
+        .reviews-container
+          - if current_user == @user
+            = link_to t('users.profile.show.reviews', review_count: @reviews_box.collection.total_count), dashboard_reviews_path, class: :title
+          - else
+            .reviews-title = t('users.profile.show.reviews', review_count: @reviews_box.collection.total_count)
+
+          #reviews-items = render partial: 'shared/profile/review', collection: @reviews_box.collection, as: :review
+
+          - if @reviews_box.collection.total_pages > 1
+            = button_tag t('users.profile.load_more_reviews'), class: %i[button btn-primary], id: 'load-reviews-more',
+                data: { pages: @reviews_box.collection.total_pages,
+                        current_page: @reviews_box.collection.current_page,
+                        path: show_profile_reviews_path(@user) }
+
+= render 'shared/profile/report_about_user_modal'
+= render 'users/listings/show/modal_report'

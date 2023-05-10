@@ -1,0 +1,19 @@
+- @travel.current_bookings.each do |booking|
+  tr
+    - if with_details
+      td
+        p
+          = t("bookings.reservation_code")
+          br
+          = l(booking.created_at, format: :shorter)
+        td
+          p = booking.reservation_code
+          = t("bookings.label_passengers_count", number: booking.number_of_guests)
+
+    - else
+      td
+        p
+          = t("bookings.reservation_code")
+      td
+        p
+          = booking.reservation_code

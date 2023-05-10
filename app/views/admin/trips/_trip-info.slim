@@ -1,0 +1,30 @@
+ul.list-inline.clearfix
+  li.boatname
+    = t('admin.dashboard.bookings.boat_name')
+    strong= link_to trip.boat_hash[:name], listing_path(id: trip.boat_id)
+
+  li.rental
+    = t('admin.dashboard.bookings.rental_type')
+    strong= t("admin.dashboard.bookings.rental_types.#{trip.rental}")
+
+  li.username
+    = t('admin.dashboard.bookings.seller_name')
+    strong= link_to trip.seller.display_name, show_profile_path(id: trip.seller_id)
+
+  li.date
+    = t('admin.dashboard.bookings.travels_at')
+    strong
+      = l(trip.check_in, format: :short_date)
+      = " - "
+      = l(trip.check_out, format: :short_date)
+
+  li.money
+    = t('admin.dashboard.bookings.price')
+    strong= view_money trip.total
+
+  li.status
+    = t('admin.dashboard.bookings.status')
+    strong= t("admin.dashboard.bookings.statuses.#{trip.status}")
+
+  li.edit
+    = link_to t('admin.dashboard.bookings.edit'), admin_trip_path(id: trip.id), class: 'btn btn-info btn-xs'

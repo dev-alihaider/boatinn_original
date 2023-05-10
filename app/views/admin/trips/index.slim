@@ -1,0 +1,77 @@
+.row
+  .col-lg-12
+    h2.title--bordered = t('admin.dashboard.bookings.sidebar_name')
+    = render 'admin/shares/breadcrumbs', active: t('admin.dashboard.bookings.sidebar_name')
+
+    form.transactions-search-form
+      = box.search_field_text_for(:boat, class: 'form-control', placeholder: t('admin.dashboard.bookings.boat_name'))
+      = box.search_field_text_for(:seller, class: 'form-control', placeholder: t('admin.dashboard.bookings.seller_name'))
+      = box.search_field_text_for(:client, class: 'form-control', placeholder: t('admin.dashboard.bookings.client_name'))
+      = box.search_field_text_for(:code, class: 'form-control', placeholder: t('admin.dashboard.bookings.reservation_code'))
+      = button_tag t('admin.dashboard.bookings.search'), class: 'btn btn-sm btn-primary'
+      = hidden_field_tag :sort, box.current_order_field unless box.current_order_field.blank?
+      = hidden_field_tag :direction, box.current_direction
+
+    .admin-trips
+      - box.collection.each do |trip|
+        .ibox
+          .ibox-footer
+            = render partial: 'trip-info', locals: {trip: trip}
+          .ibox-content
+            = render partial: 'bookings_table', locals: { bookings: trip.bookings }
+
+    = paginate box.collection
+
+  / .col-lg-12
+    .ibox.scrolled-parent
+
+      .ibox-content.scrolled-child style=""
+        table.table.table-striped
+          / thead
+          /   tr
+          /     th= box.sort_link :boat, t('admin.dashboard.bookings.boat_name')
+          /     th= box.sort_link :rental, t('admin.dashboard.bookings.rental_type')
+          /     th= box.sort_link :seller, t('admin.dashboard.bookings.seller_name')
+          /     th= box.sort_link :started, t('admin.dashboard.bookings.travels_at')
+          /     th= box.sort_link :price, t('admin.dashboard.bookings.price')
+          /     th= box.sort_link :status, t('admin.dashboard.bookings.status')
+          /     th= t('admin.dashboard.bookings.actions')
+
+          tbody
+            / form
+            /   tr
+            /     td.align-middle= box.search_field_text_for(:boat, class: 'form-control', placeholder: t('admin.dashboard.bookings.boat_name'))
+            /     td.align-middle
+            /     td.align-middle= box.search_field_text_for(:seller, class: 'form-control', placeholder: t('admin.dashboard.bookings.seller_name'))
+            /     td.align-middle= box.search_field_text_for(:client, class: 'form-control', placeholder: t('admin.dashboard.bookings.client_name'))
+            /     td.align-middle
+            /     td.align-middle
+            /     td.align-middle= box.search_field_text_for(:code, class: 'form-control', placeholder: t('admin.dashboard.bookings.reservation_code'))
+            /     td.align-middle
+            /     td.align-middle
+            /     td.align-middle= button_tag t('admin.dashboard.bookings.search'), class: 'btn btn-sm btn-primary'
+            /     = hidden_field_tag :sort, box.current_order_field unless box.current_order_field.blank?
+            /     = hidden_field_tag :direction, box.current_direction
+
+            - box.collection.each do |trip|
+              tr
+                td colspan='100%'
+                  = render partial: 'bookings_table', locals: {bookings: trip.bookings}
+
+              tr
+                td= link_to trip.boat_hash[:name], listing_path(id: trip.boat_id)
+                td= t("admin.dashboard.bookings.rental_types.#{trip.rental}")
+                td= link_to trip.seller.display_name, show_profile_path(id: trip.seller_id)
+                / td= link_to trip.client.display_name, show_profile_path(id: trip.client_id)
+                / td= l(trip.created_at, format: :short_date)
+                td
+                  = l(trip.check_in, format: :short_date)
+                  = " - "
+                  = l(trip.check_out, format: :short_date)
+                / td= booking.reservation_code
+                td= view_money trip.total
+                td= t("admin.dashboard.bookings.statuses.#{trip.status}")
+                td= link_to t('admin.dashboard.bookings.edit'), admin_booking_path(id: trip.id), class: 'btn btn-info btn-xs'
+
+
+      = paginate box.collection

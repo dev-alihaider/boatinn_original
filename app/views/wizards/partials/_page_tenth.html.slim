@@ -1,0 +1,46 @@
+.wizard-page.hidden#page10 data-stage='10'
+  = hidden_field_tag nil, t('wizards.index.page10.step_text'), class: 'status-text-val'
+  .col.left-column
+    - if current_user.phone_verified?
+      .row.flex-row
+        .col-lg-12.margin-bottom-2
+          .title = t('wizards.index.page10.title')
+          p.margin-bottom-2
+            = t('users.phone_verification.success.phone_number_verified')
+          p = t('wizards.index.page10.phone')
+          b = current_user.phone_number
+      .row.flex-row
+        .col-lg-12
+          = image_tag('wizard/verified_phone.png', alt: t('wizards.index.page10.phone'))
+    - else
+      .title = t('wizards.index.page10.title')
+      .subtitle = t('wizards.index.page10.subtitle')
+      .row.flex-row#input-phone-row.custom-grid-row
+        .column.col-md-8
+          .form-field
+            label.phone[for="phone-number-input"] = t('wizards.index.page10.phone')
+            input[type="tel" id="phone-number-input" name="phone-number-input" maxlength="10"]
+        .column.col-md-4
+          .form-field
+            = button_tag type: 'button', id: 'send-code-button', class: 'button btn-info btn-disabled btn-expanded', disabled: true do
+              = t('wizards.index.page10.send')
+      .row.flex-row#input-code-row.custom-grid-row
+        .column.col-md-4
+          .form-field
+            label.phone[for="verification-code-input"] = t('wizards.index.page10.code')
+            input[type="text" id="verification-code-input" name="verification-code-input" maxlength="5" disabled]
+        .column.col-md-4
+          .form-field
+            = button_tag type: 'button', id: 'verify-code-button', class: 'button btn-info btn-disabled btn-expanded', disabled: true do
+              = t('wizards.index.page10.verify')
+      .row.flex-row.hidden#status-message-row
+        .col-md-3
+          b = t('wizards.index.page10.status')
+        .col-md-9
+          #status-message
+    = render 'wizards/partials/buttons', current_stage: 10, commit: false, backurl: '#', nexturl: '#'
+  .col.right-column
+    hr /
+    .description
+      span.mark = t('wizards.index.info') + ': '
+      = t('wizards.index.page10.description')

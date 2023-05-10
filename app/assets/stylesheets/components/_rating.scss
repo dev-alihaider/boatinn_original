@@ -1,0 +1,54 @@
+.rating-wrapper {
+  display: flex;
+}
+.rating {
+  position: relative;
+  color: $white;
+  z-index: 3;
+  width: 6rem;
+  font-size: 1.2rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  i {
+    width: 1.2rem;
+  }
+  .rating-full, .rating-empty {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .rating-full {
+    z-index: 5;
+  }
+  .rating-empty {
+    z-index: 7;
+  }
+}
+.review-count {
+  padding-left: 0.2rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  font-size: 0.7rem;
+}
+.custom-design-var-2 {
+  .rating {
+    .fa-star-o {
+      color: $smoke-dark;
+      &:before {
+        content: "\f005";
+      }
+    }
+  }
+  .rating-full {
+    z-index: 7;
+  }
+  .rating-empty {
+    z-index: 5;
+  }
+}

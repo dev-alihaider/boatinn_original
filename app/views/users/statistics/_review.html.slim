@@ -1,0 +1,20 @@
+.author-data-holder
+  .avatar-holder
+    = image_tag(user_image_url(review.sender), alt: t('dashboard.statistics.reviews.author_alt'), class: 'avatar-img')
+  .data-holder
+    .data-name
+      span= t('dashboard.statistics.ratings.review_from')
+      span.data-author-name= review.sender.display_name
+    .data-date-holder.with-icon.icon-calendar
+      span.date-info= review.reviewed_at.strftime('%Y/%m/%d')
+      span.data-boat-name= review.trip.boat_hash[:name]
+h5.title.review-title=t('dashboard.statistics.reviews.public_review')
+p= review.public_review
+
+- if review.private_review.present?
+  h5.title.review-title.review-title-privet= t('dashboard.statistics.reviews.private_review')
+  p= review.private_review
+
+.review-block
+  - review.grade_fields.each do |field|
+    = render 'grade_item', field: field, value: review["#{field}_grade".to_sym].to_i

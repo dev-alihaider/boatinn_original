@@ -1,0 +1,41 @@
+- @body_width_px = 1000
+
+tbody
+  tr
+    td height="50" valign="top"
+      h1 style=("font-family: 'Cabin', Arial, sans-serif; color: #545454; font-size: 29px; line-height: 35px; margin-bottom: 6px; margin-top: 10px;")
+        = t('.subject', @locals)
+    td rowspan="4" style=("width: 56%; padding-left: 80px;") valign="top"
+      = image_tag('logo-small.png', alt: 'Boatinn Footer Logo', height: "416", style: "width: 100%; max-width: 100%;", width: "484")
+  tr
+    td height="10" style=("padding-bottom: 0;") valign="top"
+      p style=("font-family: 'Cabin', Arial, sans-serif; line-height: 22px; color: #545454; font-size: 17px;")
+        - date = @payment.transferred_at || Date.today
+        - sent_at = l_date_with_month(date)
+        = t('.sent_payment', sum: view_money(@payment.earnings), sent_at: sent_at)
+  tr
+    td
+      table style=("width: 100%; border-spacing: initial;")
+        thead
+          tr
+            th align="left" style=("border-bottom: 1px solid #b6b6b6; font-family: 'Cabin', Arial, sans-serif; padding-bottom: 14px;")
+              = t('.date')
+            th align="left" style=("border-bottom: 1px solid #b6b6b6; font-family: 'Cabin', Arial, sans-serif; padding-bottom: 14px;")
+              = t('.listing')
+            th align="right" style=("border-bottom: 1px solid #b6b6b6; font-family: 'Cabin', Arial, sans-serif; padding-bottom: 14px;")
+              = t('.Amount')
+        tbody
+          tr
+            td align="left" style=("font-family: 'Cabin', Arial, sans-serif; padding-top: 14px;")
+              = sent_at
+            td align="left" style=("font-family: 'Cabin', Arial, sans-serif; padding-top: 14px;")
+              = @payment.booking.trip.boat_hash[:name]
+            td align="right" style=("font-family: 'Cabin', Arial, sans-serif; padding-top: 14px;")
+              = view_money(@payment.earnings)
+  tr
+    td style=("font-family: 'Cabin', Arial, sans-serif; line-height: 22px; color: #545454; font-size: 17px;")
+      p
+        - transaction_history_link = link_to t('.transaction_history_link'), dashboard_earnings_url, style: "color: #40d1bf; text-decoration: none; font-family: 'Cabin', Arial, sans-serif;"
+        = t('.you_can_check', transaction_history_link: transaction_history_link).html_safe
+
+  = render 'mailer/service_thanks'

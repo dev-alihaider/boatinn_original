@@ -1,0 +1,29 @@
+= form_tag cancel_account_dashboard_account_index_path, method: :patch, data: { confirm: t('are_you_sure') } do
+  .cancel-content
+    .main
+      .reasons-list
+        .subtitle = t('users.account.tell_why')
+        - User.cancel_reasons_without_text.each do |key, value|
+          .radio-wrap
+            = radio_button_tag :notifications, key, false
+            = label_tag "notifications_#{key}", value
+      .textarea-wrap
+        = label_tag :reason_other_text, User.cancel_reasons_other_text.values&.first
+        = text_area :reason_other_text, nil
+      .can-contact
+        label = t('users.account.can_contact')
+        .radio-wrap
+          = radio_button_tag :can_contact, 'yes', true
+          = label_tag :can_contact_yes, t('yes')
+        .radio-wrap
+          = radio_button_tag :can_contact, 'no', false
+          = label_tag :can_contact_no, t('no')
+      .row.what-happen
+        .subtitle = t('users.account.what_happen')
+        ul
+          li = t('users.account.will_disappear')
+          li = t('users.account.miss_terribly')
+      .row.custom-grid-row
+        .column.col-md-6 = button_tag t('users.account.cancel_my_account'), class: %i[button btn-danger btn-cancel-account-hard btn-expanded]
+        .column.col-md-6 = link_to t('users.account.dont_cancel_my_account'), '#', class: %i[button btn-dont-cancel-account btn-outlined btn-expanded]
+    = render 'users/account/cancel_alternatives'

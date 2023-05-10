@@ -1,0 +1,13 @@
+= render 'users/shared/menu'
+
+.container
+  .flex-container.account-container
+    .sidebar = render 'users/profile/menu'
+    .content
+      h3.title = t('users.profile.reviews')
+      .inner-content
+        = render 'users/inbox/shared/new_review_button'
+        = render 'review_tabs'
+        #reviews-items = render 'reviews'
+      - if @box.collection.total_pages > 1
+        = button_tag t('users.profile.view_more_reviews'), class: %i[button btn-primary], data: { pages: @box.collection.total_pages, current_page: @box.collection.current_page }, id: 'load-reviews-more'

@@ -1,0 +1,24 @@
+.tr-wizard-step
+  .row
+    .col-md-12
+      .note.info = t('bookings.wizard.payment_note', service_name: t('service_name'))
+  .row
+    .col-md-12
+      h2.title = t("bookings.wizard.payment_title")
+  .row
+    .col-md-8
+      = render "stripe/do_payment"
+
+  .row
+    .col-md-12
+      .cancellation-text
+        p
+          strong = t("bookings.cancellations.#{@travel.trip.cancellation}.checkout_title")
+        p = t("bookings.cancellations.#{@travel.trip.cancellation}.checkout_desc")
+  .row
+    .col-md-12
+      .agree-text = (t('.agree_text1') + link_to(t('.agree_link1'), cancellation_policy_path) + t('.agree_text2') + link_to(t('.agree_link2'), cancellation_policy_path) + t('.agree_text3')).html_safe
+  .row
+    .col-md-4.sm-12
+      button.button.btn-primary.btn-expanded type='submit' id="btn_payment_apply" = t(".book_now")
+

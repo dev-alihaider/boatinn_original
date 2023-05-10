@@ -1,0 +1,46 @@
+.popup.wide-popup style = ('margin: 1rem auto 5rem; z-index: -50;')
+  h3 style=('color: #c8345c; text-align: center')
+    =  t('devise.changepassword.change_password')
+    br
+    br
+  = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+    #errord[style='color: #ED1C24; background-color: #000; text-align: left; font-size: small ']
+       = devise_error_messages!
+    br
+    / .field
+     / = f.label :email
+     / br
+     / = f.email_field :email, autofocus: true, autocomplete: 'email'
+    / - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+     / div
+      /  = t('.currently_waiting_confirmation_for')
+      /  = resource.unconfirmed_email
+    .field
+        = f.label t('devise.changepassword.current_password'), :style => ('font-weight: bold')
+        br
+        small style=('color: #c8345c; text-align: left; font-size: small ') = t('devise.registrations.edit.we_need_your_current_password_to_confirm_your_changes')
+        = f.password_field :current_password, autocomplete: 'off', title: t('devise.changepassword.current_password')
+    br
+    .field
+      = f.label t('devise.changepassword.new_password'), :style => ('font-weight: bold')
+      br
+      small style=('color: #c8345c; text-align: left; font-size: small ') =t('devise.registrations.edit.leave_blank_if_you_dont_want_to_change_it')
+      = f.password_field :password, autocomplete: "off", title: t('devise.changepassword.new_password')
+      - if @minimum_password_length
+        br
+        em
+        small[style='color: #c8345c; text-align: left; font-size: small ']
+           = @minimum_password_length
+           =< t('devise.passwords.characters_minimum')
+    br
+    .field
+      = f.label t('devise.changepassword.password_confirmation'), :style => ('font-weight: bold')
+      br
+      = f.password_field :password_confirmation, autocomplete: 'off', title: t('devise.changepassword.password_confirmation')
+    .actions
+      = link_to t('back'), edit_dashboard_profile_index_path, class: 'button btn-info-outlined back', style: ('float: left; margin-top: 15px'), "data-toggle" => "tooltip", "data-placement" => "top", "title" => "Return back"
+      = button_tag type: 'submit', class: 'button btn-danger', style: ('float: right; margin-top: 15px')  do
+        i.fa.fa-save
+        = t('.update')
+      br
+      br

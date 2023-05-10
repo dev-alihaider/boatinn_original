@@ -1,0 +1,7 @@
+.notification-item
+  h2.notification-item-title= t("notifies.events.#{event_name}.title", trip_locals).html_safe
+
+  .notification-content-holder
+    .notification-content
+      p.notification-text = t("notifies.events.#{event_name}.content", trip_locals).html_safe
+    = link_to t("notifies.events.#{event_name}.link_name", trip_locals), path_to_details, class:%i(button)

@@ -1,0 +1,20 @@
+tr
+  td.text-center = l(report.created_at, format: :long, default: '-')
+  td.text-center.client-avatar
+    = link_to show_profile_path(locale: locale, id: report.author.id), target: '_blank' do
+      = image_tag user_image_url(report.author)
+      =< report.author.display_name
+  td.text-center.client-avatar
+    = link_to show_profile_path(locale: locale, id: report.reportable.id), target: '_blank' do
+      = image_tag user_image_url(report.reportable)
+      =< report.reportable.display_name
+  td.text-center = "#{t("reports.user_modal.reason_section_#{reason_section(report)}")} - #{t("reports.#{report.reason < 4 ? 'review' : 'user'}_modal.reason_#{report.reason}_description")}"
+  td.text-center = report.details
+  td.text-center
+    = link_to admin_report_path(id: report.id), class: %i[btn btn-sm btn-info] do
+      i.fa.fa-eye
+  td.text-center
+    = link_to admin_report_path(report), method: :delete,
+              data: { confirm: t('are_you_sure') },
+              class: %i[btn btn-sm btn-danger] do
+      i.fa.fa-times

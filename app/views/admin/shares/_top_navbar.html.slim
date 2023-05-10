@@ -1,0 +1,48 @@
+.row
+  nav.navbar.navbar-static-top.white-bg[role="navigation" style="margin-bottom: 0"]
+    = link_to '#' , class: "navbar-minimalize minimalize-styl-2 btn btn-primary" do
+      i.fa.fa-bars
+    ul.nav.navbar-top-links.navbar-right
+      li.dropdown
+        a.dropdown-toggle.count-info[data-toggle="dropdown" href="#"]
+          i.fa.fa-bell
+          span.label.label-primary
+            | 8
+        ul.dropdown-menu.dropdown-alerts
+          li
+            a[href="mailbox.html"]
+
+            div
+              i.fa.fa-envelope.fa-fw
+              |  You have 16 messages 
+              span.pull-right.text-muted.small
+                | 4 minutes ago
+          li.divider
+          li
+            a[href="profile.html"]
+
+            div
+              i.fa.fa-twitter.fa-fw
+              |  3 New Followers 
+              span.pull-right.text-muted.small
+                | 12 minutes ago
+          li.divider
+          li
+            a[href="grid_options.html"]
+
+            div
+              i.fa.fa-upload.fa-fw
+              |  Server Rebooted 
+              span.pull-right.text-muted.small
+                | 4 minutes ago
+          li.divider
+          li
+            .text-center.link-block
+              a[href="notifications.html"]
+                strong
+                  | See All Alerts
+                i.fa.fa-angle-right
+      li
+        a[href="#{destroy_user_session_path}", data-method="delete"]
+          i.fa.fa-sign-out
+          |  Log out 

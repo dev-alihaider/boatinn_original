@@ -1,0 +1,4 @@
+- if @travel.current_user_client?
+  = render '/users/inbox/show/sidebar/checkout_details_for_client'
+- else
+  = render '/users/inbox/show/sidebar/checkout_details_for_seller'

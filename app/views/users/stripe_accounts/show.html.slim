@@ -1,0 +1,21 @@
+.container
+  .flex-container.account-container
+    .sidebar = render 'users/account/menu'
+    .content
+      h3.title = t('stripe_account.stripe_account')
+      .inner-content
+        - if service.user_connected?
+          h3.paypal-account-connected
+            = t("stripe_accounts.stripe_bank_connected")
+            = link_to(t('stripe_account.change_account_info'), onboarding_path, method: :post, class: "change-account-link")
+          p= t("stripe_account.payout_ready")
+        - elsif service.require_more_info?
+          p= t('stripe_account.require_more_info')
+          = link_to(t('stripe_account.add_info'), onboarding_path, method: :post, class: "change-account-link")
+        - elsif service.pending?
+          p= t('stripe_account.account_is_pending')
+          = link_to(t('stripe_account.change_account_info'), onboarding_path, method: :post, class: "change-account-link")
+        - else
+          p= t('stripe_account.require_account')
+          = link_to(t('stripe_account.connect_with_stripe'), onboarding_path, method: :post, class: "change-account-link")
+

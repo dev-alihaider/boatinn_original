@@ -1,0 +1,10 @@
+.yl-box
+  = render 'users/listings/edit/header', stage: 1, title: t('users.listings.edit.details')
+
+  ul.yl-box-list.details-list
+    = render 'users/listings/edit/item', name: t('users.listings.edit.type'), value: to_human(boat_type_options, @boat.boat_type)
+    = render 'users/listings/edit/item', name: t('users.listings.edit.year'), value: @boat.year_of_construction if @boat.year_of_construction.present?
+    = render 'users/listings/edit/item', name: t('users.listings.edit.model'), value: @boat.name_model if @boat.name_model.present?
+    = render 'users/listings/edit/item', name: t('users.listings.edit.length'), value: boat_length(@boat.length) if @boat.length.present?
+    = render 'users/listings/edit/item', name: t('users.listings.edit.passengers'), value: @boat.passengers_count if @boat.passengers_count.present?
+    = render 'users/listings/edit/item', name: t('users.listings.edit.builder'), value: @boat.builders_name if @boat.builders_name.present?

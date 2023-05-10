@@ -1,0 +1,11 @@
+ul.yl-box-list.additional-list
+
+.additional-fees.bordered
+  h2.title = t('users.listings.edit.additional_fees')
+  ul.list
+    - [[t('users.listings.edit.cleaning_fee'), @boat.cleaning_fee],
+       [t('users.listings.edit.skipper'), @boat.skipper],
+       [t('users.listings.edit.fuel'), @boat.fuel],
+       [t('users.listings.edit.welcome_pack'), @boat.wellcome_pack],
+       [t('users.listings.edit.bedclothes_and_towels'), @boat.bedclosers_and_towels]].each do |price|
+      = render 'users/listings/show/price', name: price.first, price: price.last unless price.last.to_f.zero?

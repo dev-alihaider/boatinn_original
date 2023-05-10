@@ -1,0 +1,12 @@
+.info-box-wrapper data-id= travel.last_event&.id
+  .info-box
+    .icon-info
+      h3.subtitle
+        = title
+      p.text
+        = description
+
+      - actions.each do |action|
+        .inbox-btn-holder
+          = link_to action[:name], action[:path], method: action[:method], class: action[:class], data: action[:data]
+

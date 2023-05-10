@@ -1,0 +1,34 @@
+section.community
+  .container
+    .row
+      .column.col-lg-12
+        - if @homepage_settings.marketplace_slogan_enabled
+          h3.title = @homepage_settings.community_for_sharing_title
+        = custom_hr(@homepage_settings.community_for_sharing_color)
+        - if @homepage_settings.community_for_sharing
+          h2.subtitle
+            = @homepage_settings.community_for_sharing_descr
+      - if @homepage_settings.community_for_sharing
+        .column.col-lg-12
+          .row
+            .column.col-lg-4
+              .community-box
+                i.bt-icon-search
+                h4.title
+                  = @homepage_settings.community_for_sharing_title_image_1
+                p.description
+                  = @homepage_settings.community_for_sharing_descr_image_1
+            .column.col-lg-4
+              .community-box
+                i.bt-icon-users
+                h4.title
+                  = @homepage_settings.community_for_sharing_title_image_2
+                p.description
+                  = @homepage_settings.community_for_sharing_descr_image_2
+            .column.col-lg-4
+              .community-box
+                i.bt-icon-piggy-bank
+                h4.title
+                  = @homepage_settings.community_for_sharing_title_image_3
+                p.description
+                  = @homepage_settings.community_for_sharing_descr_image_3

@@ -1,0 +1,11 @@
+.container.checkout-header
+  / = image_tag "logo-small.svg", class: "checkout-header-logo"
+  = render '/shared/breadcrumbs', items: [{t_key: '.select_reason', url: '#select_url'}, {t_key: '.confirm_cancellation', url: '#confirm_cancellation'}]
+.container
+  .flex-container
+    .content
+      = form_tag @travel.cancellation_path, id: 'new_trip_cancellation' do |form|
+        #wizard_steps
+          = render 'trip_cancellation/wizard/cancellation_reason'
+          = render 'trip_cancellation/wizard/cancellation_agreement'
+    .sidebar = render 'bookings/checkout_info'

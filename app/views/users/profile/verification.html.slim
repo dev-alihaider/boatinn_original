@@ -1,0 +1,67 @@
+= render 'users/shared/menu'
+
+.container
+  .flex-container.account-container
+    .sidebar = render 'menu'
+    .content
+      h3.title = t('users.profile.verification')
+      .inner-content.profile-verification-content
+        .pv-block
+          h6.subtitle
+            i.fa.fa-envelope-o
+            =< t('users.profile.email_adress')
+          p.description
+            - if current_user.confirmed?
+              => t('users.profile.email_confirmed', email: current_user.email).html_safe
+              i.fa.fa-check-circle.success
+            - else
+              i.fa.fa-exclamation-triangle.warning
+              / fa-times-circle / fa-exclamation-circle
+              =< t('devise.failure.unconfirmed', email: current_user.email).html_safe
+        .pv-block
+          h6.subtitle
+            i.fa.fa-mobile
+            =< t('users.profile.phone_number')
+          p.description
+            - if current_user.phone_verified?
+              => t('users.profile.phone_confirmed', number: current_user.phone_number).html_safe
+              i.fa.fa-check-circle.success
+            - else
+              i.fa.fa-exclamation-triangle.warning
+              =< t('users.profile.phone_not_confirmed', number: current_user.phone_number).html_safe
+        .pv-block
+          h6.subtitle
+            i.fa.fa-facebook-square
+            =< t('users.profile.omniauth.facebook')
+          p.description = t('users.profile.omniauth.facebook_description')
+          .switcher-wrapper
+            - if current_user.facebook_data.blank?
+              p.description
+                i.fa.fa-exclamation-triangle.warning
+                =< t('users.profile.omniauth.same_emails_warning', provider: 'Facebook')
+            = check_box_tag 'facebook_connect_switcher', nil, current_user.facebook_data.present?, class: %i[switcher]
+            = label_tag 'facebook_connect_switcher', omniauth_connect_label(current_user.facebook_data.present?),
+                class: 'omniauth-connect-switcher-label',
+                data: { connect: user_facebook_omniauth_authorize_path(locale: nil),
+                        provider: 'facebook',
+                        connected_label: t('users.profile.omniauth.connected'),
+                        disconnected_label: t('users.profile.omniauth.disconnected'),
+                        disconnected_message: t('users.profile.omniauth.disconnected_message', provider: 'Facebook') }
+        .pv-block
+          h6.subtitle
+            i.fa.fa-google
+            =< t('users.profile.omniauth.google')
+          p.description = t('users.profile.omniauth.google_description')
+          .switcher-wrapper
+            - if current_user.google_oauth2_data.blank?
+              p.description
+                i.fa.fa-exclamation-triangle.warning
+                =< t('users.profile.omniauth.same_emails_warning', provider: 'Google')
+            = check_box_tag 'google_connect_switcher', nil, current_user.google_oauth2_data.present?, class: %i[switcher]
+            = label_tag 'google_connect_switcher', omniauth_connect_label(current_user.google_oauth2_data.present?),
+                class: 'omniauth-connect-switcher-label',
+                data: { connect: user_google_oauth2_omniauth_authorize_path(locale: nil),
+                        provider: 'google',
+                        connected_label: t('users.profile.omniauth.connected'),
+                        disconnected_label: t('users.profile.omniauth.disconnected'),
+                        disconnected_message: t('users.profile.omniauth.disconnected_message', provider: 'Google') }

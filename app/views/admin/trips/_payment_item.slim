@@ -1,0 +1,28 @@
+.col-lg-4
+  .panel.panel-default
+    .panel-heading
+      .small.pull-right= payment.booking.reservation_code
+      = link_to payment.booking.client.display_name, show_profile_path(id: payment.booking.client.id)
+    .panel-body
+      .row
+        .col-md-4
+          .card
+            = image_tag payment_image(payment.source) if payment.source.present?
+        .col-md-8
+          strong= payment.prime? ? t('dashboard.your_trip.final_payment') :  t('dashboard.your_trip.deposit_fee')
+          br /
+          strong= "#{payment_name(payment.source)} #{source_short_format(payment.source)}"
+          br /
+          strong = view_money(payment.total)
+          br /
+          strong
+            - if payment.payment_intent_id.present?
+              = link_to(payment.intent_status, "https://dashboard.stripe.com/test/payments/#{payment.payment_intent_id}", target: :_blank)
+            - else
+              = payment.intent_status
+
+          br /
+          strong
+            = (payment.plan_charge_at || payment.created_at).strftime('%D')
+            | &nbsp
+            = (payment.plan_charge_at || payment.created_at).strftime('%T')

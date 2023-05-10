@@ -1,0 +1,103 @@
+.select2-container {
+  .select2-selection--single {
+    height: $form-height;
+    outline: none;
+    background-color: $input-back-color;
+    border: 1px solid $border-color;
+    border-radius: 0;
+    .select2-selection__placeholder {
+      color: $main-color;
+    }
+    .select2-selection__rendered {
+      padding-left: 1rem;
+      padding-right: 1rem;
+      line-height: $form-height;
+    }
+    .select2-selection__arrow {
+      height: $form-height;
+      top: 0;
+      right: 0;
+      width: 2rem;
+      &:before {
+        content: "\f107";
+        font-family: FontAwesome;
+        font-size: 2.5rem;
+        color: $border-color;
+        text-align: center;
+        line-height: $form-height;
+      }
+      b {
+        display: none;
+      }
+    }
+  }
+}
+
+.select2-container--default.select2-container--open {
+  .select2-selection--single {
+    .select2-selection__arrow {
+      &:before {
+        content: "\f106";
+      }
+    }
+  }
+}
+
+.select2-dropdown {
+  background-color: $white;
+  border: 1px solid $border-color;
+  border-radius: 0;
+}
+
+.select2-container--default {
+  .select2-results__option {
+    line-height: $form-height;
+    padding: 0 1rem;
+    background-color: $white;
+    transition: 0.2s all linear;
+    &.select2-results__option--highlighted[aria-selected] {
+      background-color: $main-color;
+      color: $white;
+    }
+    &.select2-results__option[aria-selected=true] {
+      background-color: $turquoise-dark;
+      color: $white;
+    }
+  }
+}
+
+select.input-error + .select2-container {
+  .select2-selection--single {
+    background-color: $crimson-light;
+    border-color: $crimson;
+  }
+  .select2-selection__placeholder {
+    color: $white;
+  }
+}
+
+/* Fixes for full width */
+.select2 {
+  min-width: 100%;
+  max-width: 100%; //one case for inbox sidebar
+}
+.select2-outer-wrapper { //parent for .select2
+  position: relative;
+}
+.select2-container {
+  @include respond-to-max($tablet) {
+    min-width: 100%;
+  }
+}
+body > .select2-container {
+  @include respond-to-max($tablet) {
+    min-width: auto;
+  }
+}
+.select-wrap {
+  .select2-container {
+    @include respond-to-max($tablet) {
+      width: 100% !important;
+    }
+  }
+}

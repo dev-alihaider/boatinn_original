@@ -1,0 +1,84 @@
+.row
+  .col-lg-12
+    h2.title--bordered Home Page Settings
+    = render 'admin/shares/breadcrumbs'
+  .col-lg-12.main-homepage
+    .ibox.float-e-margins
+      .ibox-content
+        table.table.table-striped
+          thead
+            tr
+              th
+                h3 Module Name
+              th
+                h3 Status
+              th
+          tbody
+            tr
+              td Header settings
+              td
+                span.status class="#{turn_on_of('header_settings', @homepage_setting)}"
+                  = turn_on_of('header_settings', @homepage_setting).capitalize
+              td
+                = link_to edit_admin_homepage_setting_path(@homepage_setting, view_type: 'header_settings') do
+                  i.fa.fa-pencil[aria-hidden="true"]
+            tr
+              td Cover photo slideshow
+              td
+                span.status class="#{turn_on_of('cover_photo_slideshow', @homepage_setting)}"
+                  = turn_on_of('cover_photo_slideshow', @homepage_setting).capitalize
+              td
+                = link_to edit_admin_homepage_setting_path(@homepage_setting, view_type: 'cover_photo_slideshow') do
+                  i.fa.fa-pencil[aria-hidden="true"]
+            tr
+              td Search bar location
+              td
+                span.status class="#{turn_on_of('search_bar_location', @homepage_setting)}"
+                  = turn_on_of('search_bar_location', @homepage_setting).capitalize
+              td
+                = link_to edit_admin_homepage_setting_path(@homepage_setting, view_type: 'search_bar_location') do
+                  i.fa.fa-pencil[aria-hidden="true"]
+            tr
+              td Marketplace slogan
+              td
+                span.status class="#{turn_on_of('marketplace_slogan_enabled', @homepage_setting)}"
+                  = turn_on_of('marketplace_slogan_enabled', @homepage_setting).capitalize
+              td
+                = link_to edit_admin_homepage_setting_path(@homepage_setting, view_type: 'market_place_slogan') do
+                  i.fa.fa-pencil[aria-hidden="true"]
+            tr
+              td HTML block
+              td
+              td
+            tr.subtable
+              td Community for sharing
+              td
+                span.status class="#{turn_on_of('community_for_sharing', @homepage_setting)}"
+                  = turn_on_of('community_for_sharing', @homepage_setting).capitalize
+              td
+                = link_to edit_admin_homepage_setting_path(@homepage_setting, view_type: 'community_for_sharing') do
+                  i.fa.fa-pencil[aria-hidden="true"]
+            tr.subtable
+              td Community preferences
+              td
+                span.status class="#{turn_on_of('community_preferences', @homepage_setting)}"
+                  = turn_on_of('community_preferences', @homepage_setting).capitalize
+              td
+                = link_to edit_admin_homepage_setting_path(@homepage_setting, view_type: 'community_preferences') do
+                  i.fa.fa-pencil[aria-hidden="true"]
+            tr.subtable
+              td Add listing section
+              td
+                span.status class="#{turn_on_of('add_listing_section', @homepage_setting)}"
+                  = turn_on_of('add_listing_section', @homepage_setting).capitalize
+              td
+                = link_to edit_admin_homepage_setting_path(@homepage_setting, view_type: 'add_listing_section') do
+                  i.fa.fa-pencil[aria-hidden="true"]
+            tr.subtable
+              td Experience section
+              td
+                span.status class="#{turn_on_of('experience_section', @homepage_setting)}"
+                  = turn_on_of('experience_section', @homepage_setting).capitalize
+              td
+                = link_to edit_admin_homepage_setting_path(@homepage_setting, view_type: 'experience_section') do
+                  i.fa.fa-pencil[aria-hidden="true"]

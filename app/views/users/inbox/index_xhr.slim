@@ -1,0 +1,6 @@
+= render 'users/inbox/shared/navigation'
+
+.container
+  table.messages-table
+    tbody = render partial: 'users/inbox/index/conversation', collection: @travels, as: :travel
+.remote-links = paginate(@trips)

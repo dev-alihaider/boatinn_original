@@ -1,0 +1,16 @@
+.form-group
+  label.col-sm-1.control-label
+    = "#{t('admin.general.preference_label')} #{figure}"
+  .col-sm-11
+    .form-group.fg-mn.tab-pane
+      label.control-label
+        = "#{t('admin.general.title_label')} #{figure}"
+        - Boatinn::AVAILABLE_LOCALES_SHORT_FORMAT.each do |locale|
+          = f.globalize_fields_for locale do |ff|
+            = ff.text_field "compre_title_#{figure}".to_sym, class: for_globalize_hidden(locale), placeholder: t('activerecord.attributes.homepage_setting.search_bar.title', locale: locale.to_sym), minlength: '5', maxlength: '100', data: {lang: locale}
+      span.help-block.m-b-none
+        = t('admin.general.count_symbols_100')
+    .form-group.fg-mn
+      label.control-label
+        = "#{t('admin.general.link_label')} #{figure}"
+      = f.text_field "compre_link_#{figure}".to_sym, label: false, placeholder: t('activerecord.attributes.homepage_setting.community_preferences.commpre_title.link'), type: 'url', class: %i(form-control tab-content)

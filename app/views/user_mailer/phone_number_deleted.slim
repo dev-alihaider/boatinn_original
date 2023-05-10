@@ -1,0 +1,22 @@
+- @body_width_px = 420
+tbody
+  tr
+    td height="100" valign="top"
+      h1 style=("font-family: 'Cabin', Arial, sans-serif; color: #545454; font-size: 29px; line-height: 35px; margin-bottom: 6px; margin-top: 10px;")
+        = t('.subject')
+  tr
+    td style=("padding-bottom: 0;") valign="top"
+      p style=("font-family: 'Cabin', Arial, sans-serif; line-height: 22px; color: #545454; font-size: 17px;")
+        = t('.we_detected')
+
+  tr
+    td style=("font-family: 'Cabin', Arial, sans-serif; line-height: 22px; color: #545454; font-size: 17px; padding-bottom: 0;")
+      p style=("font-weight: bold; font-size: 20px; margin-bottom: 0;")
+        = t('.number_was_eliminated')
+      p style=("font-weight: bold; margin-top: 8px;")
+        = @phone_number
+
+  tr style=("width: 100%;")
+    td style=("height: 1px; border-bottom: 1px solid #b6b6b6;")
+
+  = render 'mailer/primary_button', url: edit_dashboard_profile_index_url, title: t('.i_didnt_do'), colspan: 1, align: :justify

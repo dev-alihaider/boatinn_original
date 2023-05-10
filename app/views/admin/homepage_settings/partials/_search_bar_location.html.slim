@@ -1,0 +1,19 @@
+.form-group.fg-mn
+  .title-block
+    h2.title--bordered
+      = t('admin.dashboard.homepage.search_bar_location.h2_title')
+    = render 'admin/shares/save_btn', f:f, return_url: admin_homepage_settings_path
+  .action-block
+    = render 'admin/shares/breadcrumbs'
+    = render 'admin/shares/switch_block',  f:f, switch_field: :search_bar_location
+= render 'admin/shares/languages_tab_list'
+.form-group.tab-pane
+  label.col-sm-1.control-label
+    = t('admin.general.title_label')
+  .col-sm-11
+    div
+      - Boatinn::AVAILABLE_LOCALES_SHORT_FORMAT.each do |locale|
+        = f.globalize_fields_for locale do |ff|
+          = ff.text_field :search_bar_title, class: for_globalize_hidden(locale), placeholder: t('activerecord.attributes.homepage_setting.search_bar.title',locale: locale.to_sym), minlength: '5', maxlength: '100', data: { lang: locale }
+    span.help-block.m-b-none
+      = t('admin.general.count_symbols_100')

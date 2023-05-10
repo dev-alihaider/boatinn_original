@@ -1,0 +1,28 @@
+.skipper#lst_host.bordered
+  .skipper-head
+    .title-block
+      h2.title
+        = "#{t('users.listings.edit.skipper')} "
+        = link_to "#{user_name(@boat.user)}", show_profile_path(id: @boat.user_id)
+      .places
+        span.fa.fa-map-marker[aria-hidden="true"]
+        span = "#{@boat.user.where_you_live} - #{t('users.profile.show.joined', joined: @boat.user.decorate.joined_at)}"
+    .photo-block
+      = link_to show_profile_path(id: @boat.user_id) do
+        .img-block = image_tag user_image_url(@boat.user)
+      .review-desc
+        - if current_user?(@boat.user)
+          = link_to cv_dashboard_profile_index_path do
+            span.fa.fa-pencil-square-o[aria-hidden="true"]
+        span = t('users.listings.show.reviews_count', count: @boat.rating_hash[:count])
+  .description
+    p = @boat.user.describe_yourself
+  ul.list
+    li
+      span = "#{t('users.listings.show.languages')}: #{locale_name(@boat.user.language)}"
+    - if @response_rate.positive?
+      li
+        span = "#{t('users.listings.show.response_rate')}: #{@response_rate}%"
+    - if @response_time.positive?
+      li
+        span = "#{t('users.listings.show.response_time')}: #{display_response_time(@response_time)}"

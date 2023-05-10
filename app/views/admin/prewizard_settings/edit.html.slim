@@ -1,0 +1,5 @@
+= display_validation_errors(@prewizard_setting)
+.row
+  .col-lg-12
+    = form_for [:admin, @prewizard_setting], html: { role: "form", data:{status: 'edit'}, multipart: true , class:'community-form form-horizontal'} do |f|
+      = render "admin/prewizard_settings/partials/#{@view_type}", f: f, view_type: @view_type

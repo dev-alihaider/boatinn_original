@@ -1,0 +1,18 @@
+.container.checkout-header
+  / = image_tag "logo-small.svg", class: "checkout-header-logo"
+  = render '/shared/breadcrumbs', items: [{t_key: '.cancel_booking'}]
+.container
+  .flex-container
+    .content
+      .tr-wizard-step
+        .row
+          .col-md-12
+            h2.title = t('.title')
+        .row
+          .col-md-12 = t('.description')
+        .row
+          .col-md-12
+            strong.cancel-contacts = t('.contacts').html_safe
+        .row
+          .col-md-4.col-sm-12 = link_to t('.back'), '#', id: "btn-go-back", class: "button btn-expanded btn-secondary-outlined btn-go-back"
+    .sidebar = render 'bookings/checkout_info'

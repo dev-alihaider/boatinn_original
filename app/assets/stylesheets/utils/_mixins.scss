@@ -1,0 +1,22 @@
+@mixin respond-to-max($custom) {
+  @media only screen and (max-width: $custom + 1) {
+    @content;
+  }
+}
+
+@mixin respond-to-min($custom) {
+  @media only screen and (min-width: $custom) {
+    @content;
+  }
+}
+
+@mixin respond-min-max($custom2, $custom3) {
+  @media only screen and (min-width: $custom2) and (max-width: $custom3) {
+    @content;
+  }
+}
+
+@function rem-calc($size) {
+  $remSize: $size / $base-font-size; 
+  @return #{$remSize}rem;
+}

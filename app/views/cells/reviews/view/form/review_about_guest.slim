@@ -1,0 +1,42 @@
+= form_for [:dashboard, review] do |f|
+
+  h3.subtitle
+    = t('users.inbox.reviews.create.public_review_header')
+  p.note.lll
+    = t('users.inbox.reviews.create.public_review_description')
+  
+  .form-field
+    = f.text_area :public_review, placeholder: t('users.inbox.reviews.create.review_placeholer'), class: "textarea-small", disabled: only_read?
+
+  h3.subtitle
+    = t('users.inbox.reviews.create.private_review_header')
+  p.note
+    = t('users.inbox.reviews.create.private_review_description')
+  .form-field
+    = f.text_area :private_review, placeholder: t('users.inbox.reviews.create.review_placeholer'), class: "textarea-small", disabled: only_read?
+
+  .row
+    - %w[cleanliness_grade communication_grade boat_rules_grade].each do |field|
+      = render view: 'form/_grade_input', locals: {f: f, field: field,  prefix: :about_guest, disabled: only_read?}
+
+
+  .row
+    .column.col-lg-6.col-sm-12
+      .review-rating-box
+        h3.subtitle
+          = t('users.inbox.reviews.create.recommend_grade')
+        p.note
+          = t('users.inbox.reviews.create.recommend_grade_description')
+        .recommend-box
+          = link_to "#", class: "recommend-btn rec-smile" do
+            i.fa.fa-smile-o
+            span Yes
+          = link_to "#", class: "recommend-btn rec-frown" do
+            i.fa.fa-frown-o
+            span No
+          = f.hidden_field :recommended
+
+  - unless only_read?
+    .row
+      = link_to t('users.inbox.reviews.create.submit'), "#", class: %i[button btn-primary btn-send-review]
+

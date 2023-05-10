@@ -1,0 +1,5 @@
+.row.register-box.authform.kandiski class=(request.xhr? ? '' : %W{page-view})
+  .popup-icon
+    i.icon-bs.icon-mail
+  p.notice = t('devise.registrations.after_signup_popup.notice')
+  = link_to t('devise.registrations.after_signup_popup.homepage'), root_path, class: 'expanded button'

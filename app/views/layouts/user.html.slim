@@ -1,0 +1,67 @@
+doctype html
+= "\n"
+|<!--
+            _____                  _______                  _____            _____                   _____                   _____                   _____
+           /\    \                /::\    \                /\    \          /\    \                 /\    \                 /\    \                 /\    \
+          /::\    \              /::::\    \              /::\    \        /::\    \               /::\    \               /::\____\               /::\____\
+         /::::\    \            /::::::\    \            /::::\    \       \:::\    \              \:::\    \             /::::|   |              /::::|   |
+        /::::::\    \          /::::::::\    \          /::::::\    \       \:::\    \              \:::\    \           /:::::|   |             /:::::|   |
+       /:::/\:::\    \        /:::/~~\:::\    \        /:::/\:::\    \       \:::\    \              \:::\    \         /::::::|   |            /::::::|   |
+      /:::/__\:::\    \      /:::/    \:::\    \      /:::/__\:::\    \       \:::\    \              \:::\    \       /:::/|::|   |           /:::/|::|   |
+     /::::\   \:::\    \    /:::/    / \:::\    \    /::::\   \:::\    \      /::::\    \             /::::\    \     /:::/ |::|   |          /:::/ |::|   |
+    /::::::\   \:::\    \  /:::/____/   \:::\____\  /::::::\   \:::\    \    /::::::\    \   ____    /::::::\    \   /:::/  |::|   | _____   /:::/  |::|   | _____
+   /:::/\:::\   \:::\ ___\|:::|    |     |:::|    |/:::/\:::\   \:::\    \  /:::/\:::\    \ /\   \  /:::/\:::\    \ /:::/   |::|   |/\    \ /:::/   |::|   |/\    \
+  /:::/__\:::\   \:::|    |:::|____|     |:::|    /:::/  \:::\   \:::\____\/:::/  \:::\____/::\   \/:::/  \:::\____/:: /    |::|   /::\____/:: /    |::|   /::\____\
+  \:::\   \:::\  /:::|____|\:::\    \   /:::/    /\::/    \:::\  /:::/    /:::/    \::/    \:::\  /:::/    \::/    \::/    /|::|  /:::/    \::/    /|::|  /:::/    /
+   \:::\   \:::\/:::/    /  \:::\    \ /:::/    /  \/____/ \:::\/:::/    /:::/    / \/____/ \:::\/:::/    / \/____/ \/____/ |::| /:::/    / \/____/ |::| /:::/    /
+    \:::\   \::::::/    /    \:::\    /:::/    /            \::::::/    /:::/    /           \::::::/    /                  |::|/:::/    /          |::|/:::/    /
+     \:::\   \::::/    /      \:::\__/:::/    /              \::::/    /:::/    /             \::::/____/                   |::::::/    /           |::::::/    /
+      \:::\  /:::/    /        \::::::::/    /               /:::/    /\::/    /               \:::\    \                   |:::::/    /            |:::::/    /
+       \:::\/:::/    /          \::::::/    /               /:::/    /  \/____/                 \:::\    \                  |::::/    /             |::::/    /
+        \::::::/    /            \::::/    /               /:::/    /                            \:::\    \                 /:::/    /              /:::/    /
+         \::::/    /              \::/____/               /:::/    /                              \:::\____\               /:::/    /              /:::/    /
+          \::/____/                ~~                     \::/    /                                \::/    /               \::/    /               \::/    /
+           ~~                                              \/____/                                  \/____/                 \/____/                 \/____/
+
+   https://boatinn.net/
+   by: Rafael Fuentes CTO
+   email: rfs@boatinn.net
+= "\n"
+= "\n"
+|-->
+= "\n"
+html lang= current_locale
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    meta content="width=device-width, initial-scale=1" name="viewport" /
+
+    = csrf_meta_tags
+    - if asset_exists? controller_js_name
+      = javascript_include_tag(controller_js_name)
+    - else
+      = javascript_include_tag 'application'
+    - if asset_exists? action_css_name
+      = stylesheet_link_tag action_css_name, media: 'all'
+    - else
+      = stylesheet_link_tag 'global', media: 'all'
+
+    = render 'layouts/google_analitycs' if Rails.env.production?
+    - if request.url.match(/created_success/)
+      = render 'layouts/google_target'
+
+    = content_for(:head)
+
+    link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"
+
+body class="#{controller_name} #{action_name} #{'dashboard' if request.path.include?('dashboard')}"
+  - if controller_name == 'wizards'
+    = render 'layouts/header_wizard'
+  - else
+    = render 'layouts/header' unless %w[bookings invoice].include?(controller_name)
+  #flash_messages = render 'shared/flashes'
+  = yield
+  = render 'layouts/footer' unless %w[wizards bookings invoice].include?(controller_name)
+  #modal-container aria-labelledby="myLargeModalLabel" role="dialog"
+  = render 'layouts/cookie_consent'
+
+  = content_for :extra_javascript

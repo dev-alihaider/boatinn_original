@@ -1,0 +1,7 @@
+.res-ear-menu
+  = link_to dashboard_reviews_path, class: @current_tab == :received ? 'res-ear-btn active' : 'res-ear-btn' do
+    span= t('users.inbox.reviews.received_reviews')
+  = link_to given_dashboard_reviews_path, class: @current_tab == :given ? 'res-ear-btn active' : 'res-ear-btn' do
+    span= t('users.inbox.reviews.given_reviews')
+    - if @pending_given_review_size.positive?
+      span.unread= "(#{@pending_given_review_size})"

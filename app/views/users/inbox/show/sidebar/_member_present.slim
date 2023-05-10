@@ -1,0 +1,9 @@
+= link_to show_profile_path(customer.client), class: 'chat-member' do
+  .avatar.img-block = image_tag(user_image_url(customer.client))
+  .user-info
+    .name = customer.client.display_name if show_name
+    .friends
+      - if customer.number_of_guests > 1
+        = "#{customer.number_of_guests} #{t('users.inbox.show.booking_sidebar.friends')}"
+      - else
+        = "#{customer.number_of_guests} #{t('users.inbox.show.booking_sidebar.friend')}"

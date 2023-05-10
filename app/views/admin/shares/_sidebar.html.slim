@@ -1,0 +1,148 @@
+nav.navbar-default.navbar-static-side[role="navigation"]
+  .sidebar-collapse
+    ul#side-menu.nav.metismenu
+      li.nav-header
+        .dropdown.profile-element
+          .img-block
+            = image_tag('avatar-missing.png', alt: 'profile')
+          .profile-action
+            a.dropdown-toggle[data-toggle="dropdown" href="#"]
+              span.clear
+                span.block.m-t-xs
+                  strong.font-bold
+                    | David Williams
+                span.text-muted.text-xs.block
+                  | Art Director
+                  b.caret
+            ul.dropdown-menu.animated.fadeInRight.m-t-xs
+              li
+                a[href="profile.html"]
+                  | Profile
+              li
+                a[href="contacts.html"]
+                  | Contacts
+              li
+                a[href="mailbox.html"]
+                  | Mailbox
+              li.divider
+              li
+                a[href="login.html"]
+                  | Logout
+        / .logo-element
+        /   |  IN+
+      li
+        a[href="#"]
+          i.fa.fa-users
+          span.nav-label
+            | Users and Transactions
+          span.fa.arrow
+        ul.nav.nav-second-level.collapse
+          li class="#{active_menu_item('users')}" = link_to t('admin.dashboard.users.sidebar_name'), admin_users_path
+          li class="#{active_menu_item('trips')}" = link_to t('bookings.admin.view_bookings'), admin_trips_path(direction: :desc, sort: :booked)
+          li class="#{active_menu_item('reviews')}" = link_to t('admin.dashboard.reviews.sidebar_name'), admin_reviews_path
+          li
+            a href="#"
+              = t('admin.dashboard.reports.sidebar_name')
+              span.fa.arrow
+            ul.nav.nav-third-level.collapse.in
+              li class="#{:active if controller_name == 'reports' && action_name == 'about_review'}"
+                = link_to t('admin.dashboard.reports.sidebar_about_review'), about_review_admin_reports_path
+              li class="#{:active if controller_name == 'reports' && action_name == 'about_user'}"
+                = link_to t('admin.dashboard.reports.sidebar_about_user'), about_user_admin_reports_path
+        li
+          a[href="#"]
+            i.fa.fa-envelope
+            span.nav-label
+              = t('admin.dashboard.mailbox.mailbox')
+            span.fa.arrow
+          ul.nav.nav-second-level.collapse
+            li = link_to t('admin.dashboard.mailbox.send_email'), admin_compose_email_path
+
+      li
+        a[href="#"]
+          i.fa.fa-cogs
+          span.nav-label
+            | Configuration
+          span.fa.arrow
+        ul.nav.nav-second-level.collapse
+          li
+            a[href="#"]
+              | Basic details
+          li
+            a[href="#"]
+              | Design
+          li
+            = link_to admin_homepage_settings_path do
+              = t('admin.dashboard.homepage.sidebar_name')
+          li
+            = link_to admin_prewizard_settings_path do
+              = t('admin.dashboard.prewizard.sidebar_name')
+          li
+            a[href="#"]
+              | Wizzard settings
+          li
+            a[href="#"]
+              | Listing filters and fields
+          li
+            a[href="#"]
+              | Order types
+          li
+            a[href="#"]
+              | Social media
+          li
+            a[href="#"]
+              | Articles
+          li
+            = link_to admin_faq_settings_path do
+              = t('admin.dashboard.faq.sidebar_name')
+          li
+            a[href="#"]
+              | Settings
+      li
+        a[href="#"]
+          i.fa.fa-th-large
+          span.nav-label
+            | New menu
+          span.fa.arrow
+        ul.nav.nav-second-level.collapse
+          li
+            a[href="#"]
+              | Submenu 1
+          li
+            a[href="#"]
+              | Submenu 2
+          li
+            a[href="#"]
+              | Submenu 3
+      li
+        a[href="#"]
+          i.fa.fa-th-large
+          span.nav-label
+            | New menu
+          span.fa.arrow
+        ul.nav.nav-second-level.collapse
+          li
+            a[href="#"]
+              | Submenu 1
+          li
+            a[href="#"]
+              | Submenu 2
+          li
+            a[href="#"]
+              | Submenu 3
+      li
+        a[href="#"]
+          i.fa.fa-th-large
+          span.nav-label
+            | New menu
+          span.fa.arrow
+        ul.nav.nav-second-level.collapse
+          li
+            a[href="#"]
+              | Submenu 1
+          li
+            a[href="#"]
+              | Submenu 2
+          li
+            a[href="#"]
+              | Submenu 3

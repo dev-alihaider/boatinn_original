@@ -1,0 +1,36 @@
+.row#bank-errors
+.row
+  .column.col-md-12 = hidden_field_tag :bank_card_token, ''
+.row.custom-grid-row
+  .column.col-md-6.col-sm-12
+    .form-field
+      = label_tag :country_name, t('.country_name')
+      = select_tag :country_name, options_for_select(all_stripe_countries), class: :select2
+  .column.col-md-6.col-sm-12
+    .form-field
+      = label_tag :currency, t('.currency')
+      = select_tag :currency, options_for_select(all_stripe_currencies), class: :select2
+.row.custom-grid-row
+  .column.col-md-12.col-sm-12
+    .form-field
+      = label_tag :account_number, t('.account_number')
+      = text_field_tag :account_number, '', required: 'required'
+.row.custom-grid-row
+  .column.col-md-6.col-sm-12
+    .form-field
+      = label_tag :account_holder_name, t('.account_holder_name'), class: 'no-top-margin'
+      = text_field_tag :account_holder_name, '', required: 'required'
+  .column.col-md-6.col-sm-12
+    .form-field
+      = label_tag :account_holder_type, t('.account_holder_type')
+      = select_tag :account_holder_type, options_for_select(stripe_account_type), class: :select2
+.row.custom-grid-row
+  .column.col-md-12.col-sm-12
+    .form-field
+      = check_box_tag :agree, 1, true, required: 'required'
+      = label_tag :agree, t('.agree')
+.row.buttons.custom-grid-row
+  .column.col-md-6.col-sm-6
+    = button_tag t('cancel'), class: %i[button btn-default btn-expanded], data: {dismiss: :modal}, type: :button
+  .column.col-md-6.col-sm-6.align-right
+    = button_tag t('save'), class: %i[button btn-primary btn-expanded], type: :submit

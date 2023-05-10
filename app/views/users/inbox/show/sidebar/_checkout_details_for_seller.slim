@@ -1,0 +1,71 @@
+tr
+  td colspan="2"
+    p
+      i.custom-icon-guests
+      span.guest_label= @travel.guest_label
+    p
+      i.custom-icon-calendar
+      = l(@travel.check_in, format: :short_date)
+      - if @travel.rent_duration_in_days > 1
+        = " > #{l(@travel.check_out, format: :short_date)}"
+  tr
+    td
+      p
+        = view_money(@travel.unit_price)
+        = " x #{@travel.number_of_periods} #{@travel.rental_type_label}"
+
+      - if @travel.trip.cleaning_fee.positive?
+        p= t('users.listings.edit.cleaning_fee')
+
+      - if @travel.trip.skipper_fee.positive?
+        p= t('users.listings.edit.skipper_fee')
+
+
+      div.service-fee
+        span.tooltip-trigger
+          = t('.service_fee')
+          sup ?
+        .tooltip
+          .title-block
+            span.fa.fa-lightbulb-o[aria-hidden="true"]
+            h5.title = t('users.listings.show.booking_calculator.service_fee_tooltip.title')
+          .tooltip-description = t('.description')
+          button.close-btn[type="button"] &times;
+    td
+      p
+        = view_money(@travel.current_user_client? ? @travel.subtotal : @travel.subtotal)
+
+      - if @travel.trip.cleaning_fee.positive?
+        p= view_money(@travel.trip.cleaning_fee)
+
+      - if @travel.trip.skipper_fee.positive?
+        p= view_money(@travel.trip.skipper_fee)
+      p
+        = view_money(@travel.current_user_client? ? @travel.client_fee : @travel.seller_fee)
+  tr
+    td
+      p
+        = t('users.inbox.show.booking_sidebar.earn', currency: view_money(@travel.total, opts: { only_currency: true }))
+    td
+      p
+        strong
+          = view_money(@travel.earnings)
+
+  - if @travel.can_transfer_earnings?
+
+    - date = "#{short_month(@travel.trip.transfer_at)} #{@travel.trip.transfer_at.strftime('%d %Y')}"
+    tr
+      td
+        p
+          = t('users.inbox.show.booking_sidebar.due_transfer', date: date)
+      td
+        p
+          strong
+            = view_money(@travel.earnings)
+    tr
+      td colspan=2
+        p= t('users.inbox.show.booking_sidebar.due_transfer_desc', date: date)
+
+
+
+

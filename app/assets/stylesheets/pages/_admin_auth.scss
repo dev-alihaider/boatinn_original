@@ -1,0 +1,35 @@
+body.registrations.new,
+body.sessions.new {
+  footer {
+    border-top: 1px solid $border-color;
+  }
+  header {
+    border-bottom: 1px solid $border-color;
+    .logo {
+      img {
+        &.sticky {
+          opacity: 1;
+        }
+        &.normal {
+          // opacity: 0;
+        }
+      }
+      display: none;
+    }
+    .logo-small {
+      display: block;
+    }
+    // .auth-panel {
+    //   display: none;
+    // }
+  }
+  .popup {
+    //margin: calc((100vh - 692px) / 2) auto;
+    margin: 5rem auto;
+    .subsidiary {
+      p:last-child {
+        display: none;
+      }
+    }
+  }
+}

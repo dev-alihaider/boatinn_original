@@ -1,0 +1,12 @@
+.wizard-page.hidden#page07 data-stage='7'
+  = hidden_field_tag nil, t('wizards.index.page07.step_text'), class: 'status-text-val'
+  .col.left-column
+    .title = t('wizards.index.page07.title')
+    - @experience&.each do |category|
+      = render 'wizards/partials/feature_row', f:f, category: category, no_category_name: true
+    = render 'wizards/partials/buttons', current_stage: 7, commit: true, backurl: '#', nexturl: '#'
+  .col.right-column
+    hr /
+    .description
+      span.mark = t('wizards.index.info') + ': '
+      = t('wizards.index.page07.description')

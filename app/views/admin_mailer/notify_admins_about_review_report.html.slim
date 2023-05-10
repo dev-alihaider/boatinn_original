@@ -1,0 +1,22 @@
+h2 = t('reports.email_subjects.review_report')
+
+p = "The reporting reason: #{t("reports.review_modal.reason_#{@report.reason}")}"
+p = "Reason description: #{t("reports.review_modal.reason_#{@report.reason}_description")}"
+p
+  | Report author:
+  =< link_to @report.author.display_name, show_profile_url(id: @report.author.id)
+p = link_to t('admin.dashboard.reports.report_details'), admin_report_url(id: @report.id)
+p = link_to t('admin.dashboard.reports.manage_review_reports'), about_review_admin_reports_url
+
+hr
+
+p = "The review text: #{@report.reportable.public_review}"
+p = "The review private text: #{@report.reportable.private_review}"
+p
+  | Boat owner:
+  =< link_to @report.reportable.receiver.display_name, show_profile_url(id: @report.reportable.receiver.id)
+p
+  | Review author:
+  =< link_to @report.reportable.sender.display_name, show_profile_url(id: @report.reportable.sender.id)
+p = link_to t('admin.dashboard.reports.edit_review'), edit_admin_review_url(id: @report.reportable.id)
+p = link_to t('admin.dashboard.reviews.sidebar_name'), admin_reviews_url

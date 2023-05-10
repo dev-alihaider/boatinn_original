@@ -1,0 +1,93 @@
+.container.your-trip style="font-family: Circular-Std-Book, Arial, sans-serif; color: #545454;"
+  .your-reservation-container
+    h3.subtitle= t('dashboard.your_trip.reservation_receipt')
+    .your-reservation-body.clearfix style="border-top: 1px solid #c2c2c1; padding-top: 1.875rem; justify-content: space-between; padding-bottom: 1.875rem;"
+      .reservation-img-holder style="float: left; margin-right: 40px; height: 15.3125rem; width: 420px; overflow: hidden; position: relative; max-width: 45%"
+        = wicked_pdf_image_tag @travel.cover_src
+      .reservation-data style="float: left; max-width: 40%; padding-top: 0; line-height: 1.25rem; color: #9a9a9a;"
+        p style="display: block;"=  @travel.check_in.strftime('%a') + ', ' + @travel.check_in.strftime('%b-%d-%Y').upcase
+        - @travel.current_bookings.each do |booking|
+          p style="display: block;"= t('dashboard.your_trip.confirmation_code', code: booking.reservation_code)
+          p style="display: block;"= t('dashboard.your_trip.receipt_number', number: booking.invoice.client_number)
+
+        .reservation-location style="margin-top: 1.4375rem; color: #727272;"
+          p.reservation-location-title style="font-size: 18px; color: #727272; font-weight: 600;"= @travel.boat_hash[:name]
+          p.reservation-location-holder style="display: flex; line-height: 1.25rem;"
+            i.fa.fa-map-marker
+            span.reservation-location-name style="margin-left: 0.3125rem; display: inline-block;"= @travel.boat_hash[:location][:name]
+
+    .reservation-info-holder.clearfix
+      .host-info-holder.clearfix
+        .host-ava-holder
+          = wicked_pdf_image_tag user_image_url(@travel.seller, false)
+        .host-name-holder
+          .host-label
+            = "#{t('dashboard.your_trip.your_host')}:"
+          h3.host-name = @travel.seller.display_name
+          p.host-duration= t('dashboard.your_trip.scince', year: @travel.seller.created_at.year)
+
+
+      .checkin-list.clearfix
+        .checkin-item
+          .img-holder style="line-height: 70px; float: left; margin-top: 20px;"
+            = wicked_pdf_image_tag 'icon-exit.jpg', :style => "width: 35px; height: 35px; margin-right: 5px;"
+          .checkin-data style="float: left;"
+            h6.checkin-title style="padding-top: 15px; font-size: 15px; margin-bottom: 0; font-weight: 600; margin: 0;" = @travel.check_in.strftime('%A')
+            p.checkin-body style="margin-top: 5px;"= @travel.check_in.strftime('%B-%d-%Y')
+
+        .checkin-item
+          .img-holder style="line-height: 70px; float: left; margin-top: 20px;"
+            = wicked_pdf_image_tag 'icon-exit.jpg', :style => "width: 35px; height: 35px; margin-right: 5px;"
+          .checkin-data style="float: left;"
+            h6.checkin-title style="padding-top: 15px; font-size: 15px; font-weight: 600; margin: 0;" = @travel.check_out.strftime('%A')
+            p.checkin-body style="margin-top: 5px;"= @travel.check_out.strftime('%B-%d-%Y')
+
+        .checkin-item
+          .img-holder style="line-height: 70px; float: left; margin-top: 20px;"
+            = wicked_pdf_image_tag 'icon-guest.jpg', :style => "width: 35px; height: 35px; margin-right: 5px;"
+          .checkin-data style="float: left;"
+            h6.checkin-title style="padding-top: 15px; font-size: 15px; font-weight: 600; opacity: 0; margin: 0;" t
+            p.checkin-body style="margin-top: 5px;"= @travel.guest_label
+
+    .payment-holder.clearfix
+      .price-holder
+        .line-item.clearfix style="line-height: 40px; height: 40px;"
+          .line-label = "#{view_money(@travel.trip.per_price)} x #{@travel.unit_quantity} #{@travel.unit_label}"
+          .line-value = view_money(@travel.current_customer.subtotal)
+
+        - if @travel.trip.cleaning_fee.positive?
+          .line-item style="line-height: 40px; height: 40px;"
+            .line-label= t('users.listings.edit.cleaning_fee')
+            .line-value= view_money(@travel.trip.cleaning_fee)
+
+        - if @travel.trip.skipper_fee.positive?
+          .line-item style="line-height: 40px; height: 40px;"
+            .line-label= t('users.listings.edit.skipper_fee')
+            .line-value= view_money(@travel.trip.skipper_fee)
+
+        .line-item.clearfix style="line-height: 40px; height: 40px;"
+          .line-label Service fee
+          .line-value = view_money(@travel.current_customer.client_fee)
+
+        .line-item.clearfix.line-item-main
+          .line-label = t('dashboard.your_trip.total', symbol:  view_money(@travel.current_customer.total, opts: {only_symbol: true}))
+          .line-value = view_money(@travel.current_customer.total)
+
+      .card-holder.clearfix
+        - @travel.payments(order: :paid_date).each do |payment|
+          .card-data-holder
+            .card-data
+              h6.card-title style="font-size: 16px; font-weight: 600p; margin: 10px 0 15px;"= payment.prime? ? t('dashboard.your_trip.final_payment') :  t('dashboard.your_trip.deposit_fee')
+              - if payment.paid?
+                p.card-name style="margin: 0;"= t('dashboard.your_trip.paid_with', payment: payment_name(payment.source))
+                p.card-number style="margin: 0;"= source_without_brand(payment.source)
+                p.card-date style="margin: 0;"= (payment.captured_at || payment.created_at).strftime('%a') + ', ' + (payment.captured_at || payment.created_at).strftime('%b-%d-%Y').upcase
+                p.card-price style="margin: 15px 0 0; font-size: 16px; font-weight: 600;"= view_money(payment.total)
+                .card-type
+                  = wicked_pdf_image_tag payment_image(payment.source), :class => 'card-type-img'
+              - else
+                p.card-name style="margin: 0;"= t('dashboard.your_trip.will_be_paid', payment: credit_card_name(current_user.current_credit_card))
+                p.card-date style="margin: 0;"= payment.plan_charge_at&.strftime('%a') + ', ' + payment.plan_charge_at&.strftime('%b-%d-%Y').upcase
+                p.card-price style="margin: 15px 0 0; font-size: 16px; font-weight: 600;"= view_money(payment.total)
+                .card-type
+                = wicked_pdf_image_tag payment_image(current_user.current_credit_card.brand), :class => 'card-type-img'

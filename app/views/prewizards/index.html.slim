@@ -1,0 +1,53 @@
+section.section-block.main-prewiz
+  .img-wrap = image_tag('prewiz-bg1.jpg')
+  .main-descr
+    h1.section-title = t('prewizard.section_title')
+    - if user_signed_in?
+      = link_to t('prewizard.get_started'), new_wizard_path, class: 'button btn-primary prewiz-btn'
+    - else
+      = link_to t('prewizard.get_started'), new_user_registration_path, data: { modal: true, remote: true }, class: 'button btn-primary prewiz-btn'
+  .container-fluid
+    .row
+      .col-lg-4.col-md-4.col-sm-4.descr-block
+        h2.descr-title = t('prewizard.rent_your_boat')
+        .descr-text
+          p = t('prewizard.no_matter_what')
+      .col-lg-4.col-md-4.col-sm-4.descr-block
+        h2.descr-title = t('prewizard.you_are_in_control')
+        .descr-text
+          p = t('prewizard.with_boatINN_you_are')
+      .col-lg-4.col-md-4.col-sm-4.descr-block
+        h2.descr-title = t('prewizard.we_look_after_you')
+        .descr-text
+          p = t('prewizard.boatINN_offers_tools')
+- if @prewizard_settings.rent_your_boat
+  = render 'prewizards/rent_your_boat', prewizard_settings: @prewizard_settings
+
+- if @prewizard_settings.explain_settings
+  = render 'prewizards/explain', prewizard_settings: @prewizard_settings
+
+- if @prewizard_settings.safety_settings
+  = render 'prewizards/safety', prewizard_settings: @prewizard_settings
+
+- if @faqs.present?
+  section.section-block.prewiz-faq
+    .container-fluid
+      h2.section-title = t('prewizard.frequently_asked_questions')
+      hr
+      .row.faq
+        - @faqs.in_groups(2, false).each do |group|
+          .col-lg-6.col-md-6.col-sm-6
+            ul
+              - group.each do |faq|
+                li = link_to faq.title, faq_index_path + "##{faq.id}", class: 'faq-link', target: '_blank'
+section.section-block.prewiz-create
+  .img-wrap
+    = image_tag("prewiz-bg3.jpg")
+    .main-descr
+      h2.section-title = t('prewizard.start_creating_your_listing')
+      - if user_signed_in?
+        = link_to t('prewizard.get_started'), new_wizard_path, class: 'button btn-primary prewiz-btn'
+      - else
+        = link_to t('prewizard.get_started'), new_user_registration_path, data: { modal: true, remote: true }, class: 'button btn-primary prewiz-btn'
+section.la-farola
+  .img-wrap = image_tag('banner_lafarola.jpg')

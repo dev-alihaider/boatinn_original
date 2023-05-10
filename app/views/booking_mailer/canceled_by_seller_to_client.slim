@@ -1,0 +1,36 @@
+/h2= "#{@booking.client.display_name} has canceled your reservation"
+/p= "If you want you can find similar listings"
+/p= link_to 'Watch similar listings', search_url
+
+tbody
+  = render 'mailer/header', title: t('.seller_has_canceled', @locals)
+
+  tr style=("width: 100%;")
+    td style=("height: 25px;")
+      div style=("width: 150px; height: 150px; margin: 33px auto 5px; display: block; overflow: hidden; border-radius: 50%;")
+        = image_tag(user_image_url(@seller), style: 'width: 100%; max-width: 100%;')
+      p style=("font-weight: 600; font-family: 'Cabin', Arial, sans-serif; text-align: center; font-size: 21px; color: #545454;")
+        = @locals[:seller_name]
+      p style=("font-family: 'Cabin', Arial, sans-serif; text-align: center; margin-bottom: 0; font-size: 16px;")
+        = @locals[:address]
+      p style=("margin-top: 7px; text-align: center; font-family: 'Cabin', Arial, sans-serif; font-size: 16px;")
+        = t('.seller_since_at', @locals.merge(seller_since_at: @seller.created_at.year))
+
+  tr style=("width: 100%;")
+    td style=("height: 25px; border-bottom: 1px solid #b6b6b6;")
+
+  tr
+    td
+      h4 style="font-family: 'Cabin', Arial, sans-serif; margin-top: 30px; font-size: 23px; color: #545454; margin-bottom: 0;" =t('.similar_lisitings_title')
+
+  = render 'mailer/primary_button', url: @similar_listings_url, title: t('.similar_lisitings'), justify: 'true', colspan: 1
+
+  /tr
+  /  td height="100" style=("padding-bottom: 0;") valign="top"
+  /    p style=("font-family: 'Cabin', Arial, sans-serif; line-height: 22px; color: #545454; font-size: 17px;")
+  /      | Hola Teresa, he tenido que anular tu reserva debido a un compromiso personal. Nos pondremos en contacto más adelante para volver a concretar otra fecha.
+  /
+  /tr
+  /  td style=("padding-bottom: 0;") valign="top"
+  /    p style=("font-family: 'Cabin', Arial, sans-serif; line-height: 22px; color: #545454; font-size: 17px;")
+  /      | Disculpa las molestias, un saludo.

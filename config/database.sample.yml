@@ -1,0 +1,25 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: localhost
+  username: # ADD DATABASE USERNAME
+  password: # ADD DATABASE PASSWORD
+
+development:
+  <<: *default
+  database: boatinn_development
+
+test:
+  <<: *default
+  database: boatinn_test
+
+staging:
+  <<: *default
+  pool: 30
+  timeout: 10000
+
+production:
+  <<: *default
+  pool: 30
+  timeout: 10000

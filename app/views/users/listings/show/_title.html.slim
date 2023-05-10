@@ -1,0 +1,15 @@
+- if captain_level_professional?(@boat.user)
+  .professional-item = t('users.listings.show.boat_handled_by_a_professional').html_safe
+h1.title = @boat.listing_title
+.info
+  .places
+    - if @boat.location.present?
+      span.fa.fa-map-marker[aria-hidden="true"]
+      span = @boat.location.name
+  .review
+    .rating
+      / TODO: Add boat rating count later!
+      = render 'users/listings/show/rating', rate: avg_boat_rating(@boat)
+    .review-desc
+      / TODO: Add boat reviews count later!
+      span = t('users.listings.show.reviews_count', count: @boat.rating_hash[:count])

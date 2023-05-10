@@ -1,0 +1,22 @@
+#reportModal.modal.fade.listing-page-modal[tabindex="-1" role="dialog" aria-labelledby="reportModalLabel" aria-hidden="true"]
+  .flex-wrapper-popup
+    .modal-dialog.modal-wide[role="document"]
+      .btn-close data-dismiss='modal'
+
+      h3.report-popup-title = t('reports.review_modal.title')
+      p.report-popup-description = t('reports.review_modal.description')
+
+      .report-reasons-container
+        .report-reason-box.one-reason
+          .report-reason-content
+            - (1..3).each do |index|
+              .report-reason-check
+                = radio_button_tag :report_reason, index, index == 1
+                = label_tag "report_reason_#{index}", class: "report-reason-label" do
+                  = t("reports.review_modal.reason_#{index}")
+                  .report-reason-description = t("reports.review_modal.reason_#{index}_description")
+
+      .buttons
+        = button_tag type: 'button', id: 'send-report-button', class: 'button btn-primary report-reason-btn' do
+          i.fa.fa-telegram
+          =< t('reports.submit')

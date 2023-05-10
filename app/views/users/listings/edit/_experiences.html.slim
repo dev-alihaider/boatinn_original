@@ -1,0 +1,10 @@
+.yl-box
+  = render 'users/listings/edit/header', stage: 7, title: t('users.listings.edit.experience')
+
+  ul.yl-box-list.experience-list
+    - Category.experience.each do |category|
+      - category.features.each do |feature|
+        - if @boat.feature_ids.include?(feature.id)
+          li
+            i.fa.fa-angle-right
+            = feature.name

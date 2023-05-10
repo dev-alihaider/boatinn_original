@@ -1,0 +1,12 @@
+//= require cookieconsent.min.js
+//= require jquery
+//= require jquery_ujs
+//= require ../jquery-ui-custom.min
+//= require ../jquery.ui.touch-punch.min
+//= require ../bootstrap-datepicker.min
+//= require ../select2.min
+//= require ../slick.min
+//= require ../flash
+//= require cocoon
+//= require ../modal
+//= require ../main

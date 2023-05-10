@@ -1,0 +1,125 @@
+.listing-action
+  = form_tag '/', method: 'get', id: 'new-booking-form',
+      data: { api_path: calculate_subtotal_api_boat_path(id: @boat.id, locale: nil),
+              rental_type: rental_type,
+              current_user_id: user_signed_in? ? current_user.id : nil,
+              title_add_wishlist: t('search.index.add_wishlist'),
+              title_delete_wishlist: t('search.index.delete_wishlist'),
+              booking_blockings: render(template: 'users/listings/show/booking_blockings.json'),
+              bookings: render(template: 'users/listings/show/bookings.json'),
+              min_rental_time: @boat.minimum_rental_time,
+              sleepin_min_rental_time: @boat.sleepin_min_rental_time} do |form|
+    = hidden_field_tag 'boat_id', @boat.id
+    = hidden_field_tag :authenticity_token, form_authenticity_token
+    .price-min
+      / = t('users.listings.show.booking_calculator.from')
+      / span = in_current_currency_with_sym(min_price(@boat))
+      / span.currency = Money::Currency.new(current_currency.to_sym).symbol
+    .listing-action-inner
+      .dates
+        .input-group
+          .dates-item
+            label[for="dateFrom"] = t('users.listings.show.booking_calculator.check_in')
+            input.form-control.form-control-date.datepicker-couple#dateFrom[type="text" placeholder="--/--/----" name="dateFrom" autocomplete="off" value="#{params[:check_in_date].presence}"]
+          .dates-item
+            label[for="dateTo"] = t('users.listings.show.booking_calculator.check_out')
+            input.form-control.form-control-date.datepicker-couple#dateTo[type="text" placeholder="--/--/----" name="dateTo" autocomplete="off" value="#{params[:check_out_date].presence}"]
+      .parameters
+        .captain
+          label = t('users.listings.show.booking_calculator.captain')
+          #skipper_included_full
+            - if @boat.with_captain?
+              select#skipper_included.select2.captain-select.disabled.disabled-hard name="skipper_included"
+                option value="true" = t('yes')
+            - if @boat.without_captain?
+              select#skipper_included.select2.captain-select.disabled.disabled-hard name="skipper_included"
+                option value="false" = t('no')
+            - if @boat.with_or_without_captain?
+              select#skipper_included.select2.captain-select.disabled name="skipper_included"
+                option value="false" = t('no')
+                option value="true" = t('yes')
+          #skipper_included_no.skipper_stub = t('no')
+          #skipper_included_yes.skipper_stub = t('yes')
+        .price
+          label = t('users.listings.show.booking_calculator.rental_type')
+          = select_tag :price_type, options_for_select(price_type_options(@boat), price_type_selected_option), class: %i[select2 price-select]
+      .ws-wrapper data-night="no"
+        = link_to '#', class: "ws-link want-sleep" do
+          i.bt-icon-moon
+          span = t('.want_sleep')
+        = link_to '#', class: "ws-link dont-want-sleep" do
+          i.bt-icon-moon
+          span = t('.dont_want_sleep')
+      #calc-table
+        .passengers-item
+          .passengers-count
+            input.passengers-input*{type: :number, name: "passengers_count", value: params[:passengers_count].presence || 1, min: 1, max: max_passengers_count(@boat),
+              data: {id: @boat.id, after_value: @boat.sleepin_extra_guests, extra_price: in_current_currency(@boat.sleepin_extra_price)}}
+            span = t('users.listings.show.booking_calculator.passengers')
+          .passengers-price
+            span#pricePerPassenger.quantity-price
+            span.currency = Money::Currency.new(current_currency.to_sym).symbol
+            div = t('users.listings.show.booking_calculator.price_per_passenger')
+        .total-pass-price
+          .total-pass-item
+            span.pass-count
+            span.label-name
+            span &times;
+            span#quantityPrice.quantity-price
+            span.currency = Money::Currency.new(current_currency.to_sym).symbol
+          .total-pass-item
+            span.price-no-fee
+            span.currency = Money::Currency.new(current_currency.to_sym).symbol
+        - if @boat.with_or_without_captain? || @boat.with_captain?
+          .skipper-fee-wrapper
+            .skipper-fee.custom-fee-row
+              = t(".skipper_fee")
+              .skipper-fee-item
+                span.skipper-fee-number
+                span.currency = Money::Currency.new(current_currency.to_sym).symbol
+        - if @boat.cleaning_fee?
+          .cleaning-fee.custom-fee-row
+            = t(".cleaning_fee")
+            .skipper-fee-item
+              span.cleaning-fee-number
+              span.currency = Money::Currency.new(current_currency.to_sym).symbol
+        .service-fee
+          span.tooltip-trigger
+            = "#{t('users.listings.show.booking_calculator.service_fee')}"
+            sup ?
+          .tooltip
+            .title-block
+              span.fa.fa-lightbulb-o[aria-hidden="true"]
+              h5.title = t('users.listings.show.booking_calculator.service_fee_tooltip.title')
+            .tooltip-description= t('users.listings.show.booking_calculator.service_fee_tooltip.description')
+            button.close-btn[type="button"] &times;
+          .service-fee-item
+            span.service-fee-number
+            span.currency = Money::Currency.new(current_currency.to_sym).symbol
+        .price-item
+          label = t('users.listings.show.booking_calculator.total')
+          .price-total
+            span.total
+            span.currency = Money::Currency.new(current_currency.to_sym).symbol
+            label = t('users.listings.show.booking_calculator.you_wont_be_charged_yet')
+        .message-action
+          / = link_to booking_button_text(@boat), 'javascript:void(0)',
+          / data: instant_booking_button_data_attrs(@boat), class: %i[button btn-primary]
+          = button_tag booking_button_text(@boat),
+              name: nil,
+              data: instant_booking_button_data_attrs(@boat),
+              class: %i[button btn-primary calculator-action-btn hide-on-zero-price]
+          -# leave commented code below until 4th milestone:
+          span.hide-on-zero-price = t('users.listings.show.booking_calculator.or')
+          = button_tag t('users.listings.show.booking_calculator.message_to_owner'),
+              class: %i[button btn-primary-outlined], type: :button, id: :switch_message_form,
+              data: { path: create_message_to_owner_bookings_path, method: 'POST' }
+          .message-form
+            / = form_for @conversation, url: create_conversation_dashboard_inbox_index_path do |f|
+            /   = f.fields_for :conversation_members do |recipient|
+            /     = recipient.hidden_field :user_id
+            /   = f.fields_for :messages do |message|
+            /     = message.hidden_field :user_id
+            .row
+              = text_area_tag :message, '', placeholder: t('users.listings.show.booking_calculator.message_placeholder')
+            = button_tag t('users.listings.show.booking_calculator.send'), class: %i[button btn-primary message_form_send]

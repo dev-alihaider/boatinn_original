@@ -1,0 +1,36 @@
+= render 'users/shared/menu'
+
+.container.calendar-container
+  - if current_user.boats.blank?
+    h3.title = t('users.calendar.no_boats_found')
+    = link_to new_wizard_path, class: %i[button btn-alert btn-add-boat] do
+      i.fa.fa-ship
+      = t('dashboard.listings.index.add_new_boat')
+  - elsif @finished_boats.blank?
+    h3.title = t('users.calendar.no_finished_boats_found')
+    = link_to dashboard_listings_path, class: %i[button btn-alert btn-add-boat] do
+      i.fa.fa-ship
+      = t('users.calendar.finish_boat')
+  - else
+    .flex-container
+      .content
+        .dsh-type-header
+          / = link_to t('users.calendar.tab_all'), '#', class: 'type-switch-link', data: {type: 'all'}
+          = link_to t('classic_charter'), '#', class: 'type-switch-link active', data: {type: 'classic'}
+          = link_to t('sleepinn'), '#', class: 'type-switch-link', data: {type: 'sleepin'}
+          = link_to t('boat_shared'), '#', class: 'type-switch-link', data: {type: 'shared'}
+        .dsh-calendar-wrapper.type-classic-view
+          .dsh-calendar-body.dsh-calendar *{ data: { first_year: current_user.calendar_started_at.year,
+                                                     last_year: current_user.calendar_available_until.year,
+                                                     cannot_modify_booked_dates: t('users.calendar.cannot_modify_booked_dates') } }
+
+        ul.book-palette-list
+          li.book-palette-item.half-day = t('.half_day')
+          li.book-palette-item.full-day = t('.full_day')
+          li.book-palette-item.day-night = t('.day_night')
+          li.book-palette-item.sleepin = t('sleepinn')
+          li.book-palette-item.shared = t('.shared')
+          li.book-palette-item.booked = t('.booked')
+          li.book-palette-item.blocked = t('.blocked')
+
+      .sidebar = render 'users/calendar/sidebar'

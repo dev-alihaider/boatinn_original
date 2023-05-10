@@ -1,0 +1,194 @@
+.button {
+  display: inline-block;
+  height: $form-height;
+  line-height: $form-height;
+  min-width: 7.8125rem; //125px
+  background-color: $carbon;
+  color: $white;
+  text-align: center;
+  font-size: 1rem;
+  border-radius: 0;
+  transition: 0.2s color linear, 0.2s background-color linear;
+  cursor: pointer;
+  padding: 0 1rem;
+  border: none;
+  outline: none;
+  &:hover, &:visited, &:active, &:focus {
+    color: $white;
+    background-color: $carbon-dark;
+    text-decoration: none;
+  }
+  &.btn-primary {
+    background-color: $main-color;
+    &:hover {
+      background-color: $turquoise-dark;
+    }
+  }
+  &.btn-secondary {
+    background-color: $steel;
+    &:hover {
+      background-color: $steel-dark;
+    }
+  }
+  &.btn-alert {
+    background-color: $peru;
+    &:hover {
+      background-color: $peru-dark;
+    }
+  }
+  &.btn-success {
+    background-color: $yellowgreen;
+    &:hover {
+      background-color: $yellowgreen-dark;
+    }
+  }
+  &.btn-danger {
+    background-color: $crimson;
+    &:hover {
+      background-color: $crimson-dark;
+    }
+  }
+  &.btn-warning {
+    background-color: $lemon;
+    color: $black;
+    &:hover {
+      background-color: $lemon-dark;
+      color: $white;
+    }
+  }
+  &.btn-info {
+    background-color: $teal;
+    &:hover {
+      background-color: $teal-dark;
+    }
+  }
+  &.btn-disabled {
+    background-color: $smoke;
+    color: $carbon;
+    cursor: default;
+    pointer-events: none;
+  }
+  &[class*='outlined'] {
+    background-color: transparent;
+    border-width: 1px;
+    border-style: solid;
+    &:hover {
+      color: $white;
+    }
+  }
+  &.btn-outlined {
+    border-color: $border-color;
+    color: $border-color;
+    &:hover {
+      background-color: $carbon-dark;
+      border-color: $carbon-dark;
+    }
+  }
+  &.btn-primary-outlined {
+    border-color: $main-color;
+    color: $main-color;
+    &:hover {
+      background-color: $turquoise-dark;
+      border-color: $turquoise-dark;
+    }
+  }
+  &.btn-secondary-outlined {
+    border-color: $steel;
+    color: $steel;
+    &:hover {
+      background-color: $steel-dark;
+      border-color: $steel-dark;
+    }
+  }
+  &.btn-alert-outlined {
+    border-color: $peru;
+    color: $peru;
+    &:hover {
+      background-color: $peru-dark;
+      border-color: $peru-dark;
+    }
+  }
+  &.btn-success-outlined {
+    border-color: $yellowgreen;
+    color: $yellowgreen;
+    &:hover {
+      background-color: $yellowgreen-dark;
+      border-color: $yellowgreen-dark;
+    }
+  }
+  &.btn-danger-outlined {
+    border-color: $crimson;
+    color: $crimson;
+    &:hover {
+      background-color: $crimson-dark;
+      border-color: $crimson-dark;
+    }
+  }
+  &.btn-warning-outlined {
+    border-color: $lemon;
+    color: $lemon;
+    &:hover {
+      background-color: $lemon-dark;
+      border-color: $lemon-dark;
+      color: $white;
+    }
+  }
+  &.btn-info-outlined {
+    border-color: $teal;
+    color: $teal;
+    &:hover {
+      background-color: $teal-dark;
+      border-color: $teal-dark;
+    }
+  }
+  &.btn-negative {
+    background-color: $transparent;
+    border: 1px solid $white;
+    &:hover {
+      background-color: $white;
+      color: $black;
+    }
+  }
+  &.btn-expanded {
+    width: 100%;
+  }
+  &.btn-small {
+    height: $form-height-small;
+    line-height: $form-height-small;
+    font-size: 0.7rem;
+  }
+  &.btn-facebook {
+    background-color: $facebook-color;
+    color: $white;
+    &:hover {
+      background-color: $teal;
+    }
+  }
+  &.btn-twitter {
+    background-color: $twitter-color;
+    color: $white;
+    &:hover {
+      background-color: $teal;
+    }
+  }
+  &.btn-google {
+    background-color: $white;
+    color: $black;
+    border: 1px solid $crimson;
+    &:hover {
+      background-color: $crimson;
+      color: $white;
+    }
+  }
+  i {
+    padding-right: 0.5rem;
+    &.before-text {
+      padding-left: 0;
+      padding-right: 0.5rem;
+    }
+    &.after-text {
+      padding-left: 0.5rem;
+      padding-right: 0;
+    }
+  }
+}

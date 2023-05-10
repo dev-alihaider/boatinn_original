@@ -1,0 +1,10 @@
+.row
+  .column.col-md-12.col-sm-12
+    - unless local_assigns[:no_category_name]
+      .subtitle = category.name
+    .row
+      = f.collection_check_boxes(:feature_ids,  category.features, :id, :to_s) do |b|
+        .column.col-md-6.col-sm-6.checkbox-wrapper
+          = b.check_box
+          = b.label do
+            = b.object.name

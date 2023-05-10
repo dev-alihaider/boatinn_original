@@ -1,0 +1,21 @@
+= form_for [:dashboard, review] do |f|
+  h3.subtitle
+    = t('users.inbox.reviews.create.public_review_header')
+  p.note
+    = t('users.inbox.reviews.create.will_be_public_to_host')
+  = f.text_area :public_review, placeholder: t('users.inbox.reviews.create.review_placeholer'), class: "textarea-small", required: true, disabled: only_read?
+
+  h3.subtitle
+    = t('users.inbox.reviews.create.private_review_to_host')
+  p.note
+    = t('users.inbox.reviews.create.private_review_description')
+  = f.text_area :private_review, placeholder: t('users.inbox.reviews.create.review_placeholer'), class: "textarea-small", disabled: only_read?
+
+  .row
+    - %w[accuracy_grade communication_grade cleanliness_grade location_grade check_in_grade value_grade].each do |field|
+      = render view: 'form/_grade_input', locals: { f: f, field: field, prefix: :about_travel, disabled: only_read?}
+
+  - unless only_read?
+    .row
+      = button_tag t('users.inbox.reviews.create.submit'), class: %i[button btn-primary btn-send-message]
+

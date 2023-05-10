@@ -1,0 +1,25 @@
+- sidebar_dir = 'users/inbox/show/sidebar/'
+
+.sidebar
+  - if @travel.shared?
+    .subtitle = t('users.inbox.show.booking_sidebar.about_guests')
+    .chat-members = render partial: "#{sidebar_dir}member_present", collection: @travel.customers, as: :customer, locals: { show_name: true }
+  - else
+    = render "#{sidebar_dir}user_present", user: @travel.last_other_user
+
+  .subtitle = t('users.inbox.show.booking_sidebar.reservation_details')
+
+  table.info-booking-table
+    = render "#{sidebar_dir}boat_details"
+    = render "#{sidebar_dir}checkout_details"
+    = render "#{sidebar_dir}reservation_codes", with_details: @travel.shared?
+
+  - if @boat_list.present?
+
+    .select2-outer-wrapper = select_tag :boat_id, options_for_select(@boat_list, @travel.trip.boat_id), class: :select2
+
+    .book-inbox-calendar*{ data: { first_year: current_user.calendar_started_at.year, last_year: current_user.calendar_available_until.year, booking_blockings: render(template: 'users/listings/show/booking_blockings.json'), bookings: render(template: 'users/listings/show/bookings.json') } }
+
+    = link_to t('users.inbox.show.booking_sidebar.view_full_calendar_to_edit'), dashboard_calendar_index_path(boat_id: @travel.trip.boat_id)
+
+  = render "#{sidebar_dir}cancellation_info"

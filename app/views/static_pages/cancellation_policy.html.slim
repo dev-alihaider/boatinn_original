@@ -1,0 +1,31 @@
+.container
+  .row
+    .col-md-12
+      h3.title = t('.title')
+  .row
+    .col-md-12
+      p.description = t('.description_1')
+      p.description = t('.description_2')
+  .row
+    .col-md-12
+      .tabs-cp-container
+        ul
+          li = link_to t('.flexible'), '#cp-tab-1'
+          li = link_to t('.moderate'), '#cp-tab-2'
+          li = link_to t('.strict'), '#cp-tab-3'
+        #cp-tab-1
+          ul.cancellation-list
+            - t('.flexible_cancellations').each do |cancellation|
+              li = cancellation
+        #cp-tab-2
+          ul.cancellation-list
+            - t('.moderate_cancellations').each do |cancellation|
+              li = cancellation
+        #cp-tab-3
+          ul.cancellation-list
+            - t('.strict_cancellations').each do |cancellation|
+              li = cancellation
+  .row
+    .col-md-2.col-sm-12
+      = link_to t('.back'), 'javascript:window.history.back();', id: 'btn-go-back',
+                class: 'button btn-expanded btn-secondary-outlined btn-go-back'

@@ -1,0 +1,41 @@
+- include_stripe_js
+- include_vue_js
+
+#pay-urgent-payment.modal aria-hidden='true' aria-labelledby='add-payout-modal' role='dialog' tabindex='-1'
+  .modal-dialog role='document'
+    .btn-close data-dismiss='modal'
+    = form_tag('#') do
+      = render("stripe/do_payment")
+      = button_tag(t("bookings.do_payment"), id: "btn_payment_apply", class: "button btn-primary stripe-btn")
+
+- content_for :extra_javascript do
+  javascript:
+    confirmPayment = function (response) {
+      if (response.should_confirm) {
+        stripe.confirmCardPayment(response.client_secret, {
+          payment_method: response.payment_method
+        }).then(function (result) {
+          if (result.error) {
+            alert(result.error.message);
+          } else {
+            $.post(response.continue_path, function (response) {
+              confirmPayment(response)
+            })
+          }
+        });
+      } else if (response.redirect_to) {
+        window.location.href = response.redirect_to
+      } else {
+        alert(response.message)
+      }
+    }
+
+    $("#pay-urgent-payment form").submit(function (e) {
+      e.preventDefault();
+      var data = $(this).serialize()
+      console.log(data)
+      $.post('#{pay_urgent_payment_api_booking_path(id: @travel.trip.bookings.first.id)}', data, function (response) {
+        confirmPayment(response)
+      })
+    })
+

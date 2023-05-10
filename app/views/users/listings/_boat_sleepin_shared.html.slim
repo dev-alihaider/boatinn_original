@@ -1,0 +1,37 @@
+.y-listing-box.y-listing-additions-box data-mode=mode
+  .img-wrap.img-block = image_tag boat_image_url(boat)
+  .description-wrap
+    .type = mode == :sleepin ? t('dashboard.listings.index.sleepin') : t('dashboard.listings.index.boat_shared')
+    .name = boat.listing_title
+    - if boat.location.present?
+      .location
+        i.fa.fa-map-marker
+        =< boat.location.short_name
+    .last-update
+      i.fa.fa-clock-o
+      = boat_last_update(boat.updated_at)
+    .toolbar
+      .tool-online
+        = check_box_tag "disable_#{mode}_#{boat.id}", nil, 1, class: %i[switcher online_switcher]
+        = label_tag "disable_#{mode}_#{boat.id}", t('dashboard.listings.index.online'), class: 'online-switch-label-additional',
+            data: {id: boat.id, enabled_text: t('dashboard.listings.index.online'), disabled_text: t('dashboard.listings.index.offline')}
+      .tool-link
+        = link_to edit_dashboard_listing_path(boat, rental_type: mode), class: %i[button btn-primary-outlined] do
+          i.fa.fa-edit
+          = t('dashboard.listings.index.manage_listing')
+      .tool-link
+        = link_to dashboard_calendar_index_path(boat_id: boat.id), class: %i[button btn-primary-outlined] do
+          i.fa.fa-calendar
+          = t('dashboard.listings.index.calendar')
+      / .tool-link
+        = link_to '#', class: %i[button btn-primary-outlined] do
+          i.fa.fa-eye
+          = t('dashboard.listings.index.preview')
+      .yl-tooltip-wrapper
+        .tool-lightning
+          - lightning_button_classes = %i[btn-lightning]
+          - lightning_button_classes << :active if boat.send("instant_booking_#{mode}?")
+          = link_to mode == :sleepin ? sleepin_dashboard_listing_path(boat) : sharing_dashboard_listing_path(boat), class: lightning_button_classes do
+            i.fa.fa-bolt
+        - if mode == :shared
+          .tooltip = t('.tooltip_boat_shared')

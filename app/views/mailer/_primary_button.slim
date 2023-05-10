@@ -1,0 +1,15 @@
+- align = (defined?(align) && align) ? align : :left
+- colspan = defined?(colspan) ? colspan : '100%'
+
+/ - case align
+/ - when :justify
+/   - style = "width: 100%; color: #fff; text-decoration: none; border: 1px solid #23cfbd; background: #23cfbd; display: block; text-align: center; padding: 10px 22px;font-family: 'Cabin', Arial, sans-serif; margin-top: 30px; box-sizing: border-box;"
+/ - else
+/   - style = "max-width: 300px; margin-left: auto; margin-right: auto; color: #fff; text-decoration: none; border: 1px solid #40d1bf; background: #40d1bf; margin-top: 40px; display: block; text-align: center; padding: 10px 22px; font-family: 'Cabin', Arial, sans-serif; margin-top: 30px; box-sizing: border-box;"
+
+- style = "width: auto; color: #fff; text-decoration: none; border: 1px solid #23cfbd; background: #23cfbd; display: inline-block; text-align: center; padding: 10px 22px;font-family: 'Cabin', Arial, sans-serif; margin-top: 30px; box-sizing: border-box;"
+
+tr
+  td valign="top" align="center" colspan="#{colspan}"
+    = link_to title, url, style: style  
+

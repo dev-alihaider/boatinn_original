@@ -1,0 +1,53 @@
+- include_stripe_js
+- include_vue_js
+
+.container.checkout-header
+  / = image_tag "logo-small.svg", class: "checkout-header-logo"
+  = render '/shared/breadcrumbs', items: presenter.wizard_step_items
+.container
+  .flex-container
+    .content
+      = form_for @travel.trip, url: bookings_path do |form|
+        = form.hidden_field :boat_id
+        = form.hidden_field :rental
+        = form.hidden_field :check_in
+        = form.hidden_field :check_out
+        = hidden_field_tag :skipper_included, @travel.trip.skipper_included?
+        #wizard_steps
+          = render 'bookings/wizard/rule', presenter: presenter, form: form
+          = render 'bookings/wizard/passengers', presenter: presenter, form: form
+          = render 'bookings/wizard/payment', presenter: presenter, form: form
+    .sidebar = render 'bookings/checkout_info'
+
+- content_for :extra_javascript do
+  javascript:
+    confirmPayment = function(response){
+      if (response.should_confirm) {
+        stripe.confirmCardPayment(response.client_secret, {
+          payment_method: response.payment_method
+        }).then(function (result) {
+          if (result.error) {
+            // display error
+            alert(result.error.message);
+          } else {
+            $.post(response.continue_path, { message: $("#message").val() }, function(response){
+              confirmPayment(response)
+            })
+          }
+        });
+      } else if (response.redirect_to) {
+        window.location.href = response.redirect_to
+      } else {
+        alert(response.message)
+      }
+    }
+
+    $("form#new_travel_trip").submit(function(e) {
+      e.preventDefault();
+      var data = $(this).serialize()
+      $.post('#{api_bookings_path}', data, function(response){
+        confirmPayment(response)
+      })
+    })
+
+

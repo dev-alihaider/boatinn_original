@@ -1,0 +1,11 @@
+.yl-box
+  h3.title = t('wizards.index.page05.with_or_without_captain')
+  ul.yl-box-list.space-list
+    li
+      i.fa.fa-angle-right
+      - if @boat.with_captain?
+        = t('wizards.index.page05.with_captain')
+      - if @boat.without_captain?
+        = t('wizards.index.page05.without_captain')
+      - if @boat.with_or_without_captain?
+        = t('wizards.index.page05.with_or_without_captain')

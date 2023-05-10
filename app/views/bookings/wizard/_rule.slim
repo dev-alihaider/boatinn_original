@@ -1,0 +1,18 @@
+.tr-wizard-step.visible
+  .row
+    .col-md-12
+      .note
+        i.fa.fa-lightbulb
+        = t("bookings.wizard.boat_viewed_times", count: @boat_views_count).html_safe
+  .row
+    .col-md-12
+      h2.title = t("bookings.wizard.rule_title")
+  .row
+    .col-md-12
+      ul.info-check
+        li.check-in = t("bookings.wizard.check_in_time", date: l(@travel.trip.check_in, format: :hours_only))
+        li.check-out = t("bookings.wizard.check_out_time", date: l(@travel.trip.check_out, format: :hours_only))
+  .row
+    .col-md-4.col-sm-12
+      button.button.btn-primary.btn-expanded type='button' id="btn_rule_apply" class="next-booking-wizard"
+        = t('.agree')

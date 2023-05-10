@@ -1,0 +1,18 @@
+ul.account-menu
+  li = link_to t('notifications'), notifications_dashboard_account_index_path,
+          class: active_menu_subitem('notifications')
+
+  / li = link_to t('payout_preferences'), payout_dashboard_account_index_path,
+  /         class: active_menu_subitem('payout')
+
+  li = link_to t('stripe_account.stripe_account'), dashboard_stripe_account_path,
+          class: active_menu_subitem('show', 'stripe_accounts')
+
+  li = link_to t('payment_methods'), payment_dashboard_account_index_path,
+          class: active_menu_subitem('payment')
+  li = link_to t('settings'), settings_dashboard_account_index_path,
+          class: active_menu_subitem('settings')
+
+  - if current_user.penalization.present?
+    li = link_to t('penalization'), penalization_dashboard_account_index_path,
+      class: active_menu_subitem('penalization')

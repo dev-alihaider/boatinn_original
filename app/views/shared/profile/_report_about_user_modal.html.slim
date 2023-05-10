@@ -1,0 +1,56 @@
+#report-user-modal.modal.fade.listing-page-modal[tabindex="-1" role="dialog" aria-labelledby="report-user-modal-label" aria-hidden="true"]
+  .flex-wrapper-popup
+    .modal-dialog.modal-wide[role="document"]
+      .btn-close data-dismiss='modal'
+
+      h3.report-popup-title
+        = t('reports.user_modal.title')
+      p.report-popup-description
+        = t('reports.user_modal.description')
+
+      .report-reasons-container
+
+        .rs-page.active data-stage="1"
+          .report-reason-title
+            = radio_button_tag "part-reason", 1, true
+            = label_tag "part-reason_1", t('reports.user_modal.reason_section_1')
+          .report-reason-title
+            = radio_button_tag "part-reason", 2
+            = label_tag "part-reason_2", t('reports.user_modal.reason_section_2')
+          .report-reason-title
+            = radio_button_tag "part-reason", 3
+            = label_tag "part-reason_3", t('reports.user_modal.reason_section_3')
+
+        .rs-page data-stage="2"
+          .report-reason-content
+            #rs1.report-reason-section
+              - (4..8).each do |index|
+                .report-reason-check
+                  = radio_button_tag :report_reason, index, index == 4
+                  = label_tag "report_reason_#{index}", class: "report-reason-label" do
+                    = t("reports.user_modal.reason_#{index}_description")
+            #rs2.report-reason-section
+              - (9..11).each do |index|
+                .report-reason-check
+                  = radio_button_tag :report_reason, index, index == 4
+                  = label_tag "report_reason_#{index}", class: "report-reason-label" do
+                    = t("reports.user_modal.reason_#{index}_description")
+            #rs3.report-reason-section
+              - (12..16).each do |index|
+                .report-reason-check
+                  = radio_button_tag :report_reason, index, index == 4
+                  = label_tag "report_reason_#{index}", class: "report-reason-label" do
+                    = t("reports.user_modal.reason_#{index}_description")
+
+        .rs-page data-stage="3"
+          = text_area_tag :details, nil, placeholder: t('reports.user_modal.details_placeholder'), class: "textarea-small"
+
+      .buttons.pg1
+        = link_to t('.prev'), "#", class: "button btn-primary btn-reason-prev"
+        = link_to t('.next'), "#", class: "button btn-primary btn-reason-next"
+        
+        / = button_tag type: 'button', id: 'send-user-report-button', class: 'button btn-info report-reason-btn' do
+        /   i.fa.fa-telegram
+        /   =< t('reports.submit')
+
+    

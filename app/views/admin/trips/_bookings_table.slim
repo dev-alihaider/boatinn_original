@@ -1,0 +1,18 @@
+table.table.table-striped.booking-table
+  thead
+    tr
+      th = t('admin.dashboard.bookings.client_name')
+      th = t('admin.dashboard.bookings.booked_at')
+      th = t('admin.dashboard.bookings.number_of_guests')
+      th = t('admin.dashboard.bookings.reservation_code')
+      th = t('admin.dashboard.bookings.price')
+      th = t('admin.dashboard.bookings.status')
+
+    - bookings.each do |booking|
+      tr
+        td.username = link_to booking.client.display_name, show_profile_path(id: booking.client_id)
+        td.date = l(booking.created_at, format: :short_date)
+        td.number = booking.number_of_guests
+        td.code = booking.reservation_code
+        td.money = view_money booking.total
+        td = t("admin.dashboard.bookings.statuses.#{booking.status}")

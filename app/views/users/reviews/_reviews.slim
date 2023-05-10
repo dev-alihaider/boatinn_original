@@ -1,0 +1,5 @@
+- @box.collection.each do |review|
+  - if review.sender == current_user
+    = render 'given_review', review: review
+  - elsif review.receiver == current_user
+    = render 'received_review', review: review

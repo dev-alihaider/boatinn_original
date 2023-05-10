@@ -1,0 +1,38 @@
+tbody
+  tr
+    td height="50" valign="top"
+      h1 style=("font-family: 'Cabin', Arial, sans-serif; color: #545454; font-size: 29px; line-height: 35px; margin-bottom: 6px; margin-top: 10px;")
+        = t('.have_you_deactivate')
+  tr style=("width: 100%;")
+    td style=("border-bottom: 1px solid #b6b6b6;")
+  tr
+    td height="10" style=("padding-bottom: 0;") valign="top"
+      p style=("font-family: 'Cabin', Arial, sans-serif; line-height: 22px; color: #545454; font-size: 17px;")
+        = t('.we_noticed')
+  tr style=("width: 100%;")
+    td
+      table style=("padding-bottom: 20px;")
+        tr
+          td rowspan="3" width="50%"
+            = image_tag(boat_image_url(@boat, :medium), alt: 'Listing Image', height: "116", style: "width: 100%; max-width: 100%", width: "187")
+          td valign="top" width="50%" style=("padding-left: 10px;")
+            table
+              tr
+                td height="55" valign="top"
+                  span style=("font-family: 'Cabin', Arial, sans-serif; line-height: 22px; color: #545454; font-size: 14px;")
+                    = @boat.listing_title
+              tr
+                td
+                  div style="display: flex;"
+                    span style=("font-family: 'Cabin', Arial, sans-serif; display: inline-block; float: left; width: 19px; line-height: 22px; color: #545454; font-size: 14px;")
+                      = image_tag('emails/map-pin.png', alt: 'Map Pin Icon', width: '11', height: '16', style: 'display: inline-block; margin-right: 5px;')
+                    span style=("font-family: 'Cabin', Arial, sans-serif; display: inline-block; line-height: 22px; color: #545454; font-size: 14px; float: left; width: calc(100% - 19px);")
+                      = @boat.location&.name
+              tr
+                td
+                  div style="display: flex;"
+                    = image_tag('emails/clock.png', alt: 'Clock Icon', width: '15', height: '16', style: 'display: inline-block; margin-right: 5px;  float: left; width: 19px; ')
+                    span style=("font-family: 'Cabin', Arial, sans-serif; line-height: 22px; color: #545454; font-size: 14px; float: left; width: calc(100% - 19px);")
+                      = "#{t('.last_update')}: #{@boat.updated_at.strftime('%d/%m/%y')}"
+
+  = render 'mailer/primary_button', url: '', title: t('.did_not_do'), colspan: 1, align: :justify

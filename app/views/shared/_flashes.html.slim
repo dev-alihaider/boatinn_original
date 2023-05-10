@@ -1,0 +1,5 @@
+- flash.each do |name, message|
+  - next unless message.is_a? String
+  .alert class="alert-#{name}"
+    .alert-text = message
+    button.alert-close.button.btn-negative = t('close')

@@ -1,0 +1,49 @@
+tbody
+  = render 'mailer/header', title: t('.reservation_canceled')
+
+  tr style=("width: 100%;")
+    td style=("padding-top: 20px;")
+      p style=("font-weight: 600; font-family: 'Cabin', Arial, sans-serif; font-size: 21px; color: #545454; margin-bottom: 0")
+        | #{@booking.trip.boat_hash[:name]}
+      p style=("font-family: 'Arial, sans-serif'; margin-top: 5px; margin-bottom: 32px;")
+        = image_tag('emails/map-pin.png', alt: 'Map Pin Icon', width: '11', height: '16', style: 'display: inline-block; margin-right: 5px; position: relative;   top: 2px;')
+        span style=("font-family: 'Cabin', Arial, sans-serif;") = @booking.trip.boat_hash[:location][:address]
+      p style=("text-transform: uppercase; font-family: 'Cabin', Arial, sans-serif;")
+        |#{@booking.trip.check_in.strftime('%d/%m/%y')} - #{@booking.trip.check_out.strftime('%d/%m/%y')}
+
+  tr style=("width: 100%;")
+    td style=("border-bottom: 1px solid #b6b6b6; padding-top: 20px;")
+
+  tr
+    td style=("padding-bottom: 20px; padding-top: 20px;") valign="top"
+      p style=("font-family: 'Cabin', Arial, sans-serif; line-height: 22px; color: #545454; font-size: 17px;")
+        = t('.we_have_issued', source: "#{payment_name(@source_name)} #{source_short_format(@source_name)}", refund_amount: view_money(@refund_amount))
+
+  tr style=("width: 100%;")
+    td style=("border-bottom: 1px solid #b6b6b6;")
+
+  tr
+    td style=("padding-bottom: 0; padding-top: 20px;") valign="top"
+      p style=("font-family: 'Cabin', Arial, sans-serif; line-height: 22px; color: #545454; font-size: 17px; font-weight: bold; padding-bottom: 11px;")
+        = t('.about_refund')
+      table style=("width: 100%; font-family: 'Cabin', Arial, sans-serif;")
+        tr
+          td style=("width: 60%; padding-bottom: 20px;")
+            = t('.reservation_price')
+          td style=("text-align: right; width: 40%;; padding-bottom: 20px;")
+            |#{view_money(@booking.reservation_amount)}
+        tr
+          td style=("width: 60%; padding-bottom: 20px;")
+            = t('.service_fee')
+          td style=("text-align: right; width: 40%;; padding-bottom: 20px;")
+            |#{view_money(@booking.client_fee)}
+        tr
+          td style=("width: 60%; padding-bottom: 20px;")
+            = t('.total_refund')
+          td style=("text-align: right; width: 40%;; padding-bottom: 20px;")
+            |#{view_money(@refund_amount)}
+
+  tr style=("width: 100%;")
+    td style=("border-bottom: 1px solid #b6b6b6;")
+
+  = render 'mailer/primary_button', url: dashboard_inbox_url(id: @booking.trip_id), title: t('.see_receipt'), colspan: 1

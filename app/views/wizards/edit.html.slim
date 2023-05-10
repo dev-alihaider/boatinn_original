@@ -1,0 +1,38 @@
+= display_validation_errors(@boat)
+
+= form_for @boat, url: wizard_path, html: {role: 'form', id: 'wizard_form', type: 'edit'}, multipart: true  do |f|
+  = f.hidden_field :wizard_progress, value: @target_stage
+  = hidden_field_tag :save_and_exit, false
+  = hidden_field_tag :action, action_name
+  / TODO: add switching to current user step from URL param/cookie/DB
+    -  Example:
+    -  = render "wizards/partials/page_#{current_user.current_wizard_step}"
+  = render 'wizards/partials/page_first', f: f
+  = render 'wizards/partials/page_second', f: f
+  = render 'wizards/partials/page_third', f: f
+  = render 'wizards/partials/page_fourth', f: f
+  = render 'wizards/partials/page_fifth', f: f
+  = render 'wizards/partials/page_sixth', f: f
+  = render 'wizards/partials/page_seventh', f: f
+
+  = render 'wizards/partials/final_first', f: f
+  = render 'wizards/partials/page_ninth', f: f
+  = render 'wizards/partials/page_tenth', f: f
+  = render 'wizards/partials/page_eleven', f: f
+  = render 'wizards/partials/page_twelve', f: f
+
+  //13
+  = render 'wizards/partials/final_second', f: f
+
+  = render 'wizards/partials/page_fourteenth', f: f
+  = render 'wizards/partials/page_fifteenth', f: f
+
+  //additional fees
+  = render 'wizards/partials/page_sixteenth', f: f
+  = render 'wizards/partials/page_seventeenth', f: f
+  = render 'wizards/partials/page_eighteenth', f: f
+
+  //19
+  = render 'wizards/partials/final_third', f: f
+  
+= render 'wizards/partials/translation_errors'

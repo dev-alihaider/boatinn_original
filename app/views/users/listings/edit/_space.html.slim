@@ -1,0 +1,16 @@
+.yl-box.no-brd
+  = render 'users/listings/edit/header', stage: 5, title: t('users.listings.edit.the_space')
+
+  ul.yl-box-list.space-list
+    li
+      i.fa.fa-angle-right
+      = "#{t('users.listings.edit.sleep')}: #{@boat.guest_number}"
+    li
+      i.fa.fa-angle-right
+      = "#{t('users.listings.edit.cabins')}: #{@boat.cabins_count}"
+    li
+      i.fa.fa-angle-right
+      = "#{t('users.listings.edit.beds')}: #{@boat.beds_count}"
+    li
+      i.fa.fa-angle-right
+      = "#{t('users.listings.edit.bathrooms')}: #{@boat.bathrooms_count}"

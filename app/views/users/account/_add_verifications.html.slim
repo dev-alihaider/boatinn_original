@@ -1,0 +1,21 @@
+#add-verifications-modal.modal aria-hidden="true" aria-labelledby="add-verifications-modal" role="dialog" tabindex="-1"
+  .modal-dialog.modal-wide role="document"
+    .btn-close data-dismiss="modal"
+    = form_tag verification_dashboard_payout_index_path, method: :patch, remote: true, id: :stripe_form_verification, html: { multipart: true }, authenticity_token: true do
+      .row
+        .column.col-md-12
+          - current_user.stripe_account.field_for_verification.each do |f|
+            .form-field
+              - if f != 'legal_entity.additional_owners'
+                = label_tag f, t(f)
+              - if f == 'legal_entity.verification.document'
+                = file_field_tag "verification[#{f}]"
+              - if f == 'legal_entity.additional_owners'
+                = hidden_field_tag "verification[#{f}]", ''
+              - else
+                = text_field_tag "verification[#{f}]", ''
+      .row.buttons
+        .column.col-md-6.col-sm-6
+          = button_tag t('cancel'), class: %i[button btn-default], data: { dismiss: :modal }, type: :button
+        .column.col-md-6.col-sm-6.align-right
+          = button_tag t('save'), class: %i[button btn-primary], type: :submit

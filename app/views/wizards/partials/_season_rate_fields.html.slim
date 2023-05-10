@@ -1,0 +1,64 @@
+.nested-fields
+  .nf-switch
+    = link_to_remove_association 'x', f
+    = link_to f.object.offer_name.presence || t('wizards.index.page15.season_name'), '#', class: 'btn-switcher'
+  .nf-content
+    .row
+      .column.col-md-12.col-sm-12
+        .form-field
+          = label_tag :offer_name, t('wizards.index.page15.name_offer')
+          = f.text_field :offer_name, class: 'offer-name'
+    .row
+      .column.col-md-12.col-sm-12
+        .row.datepicker-wrapper
+          .column.col-md-6.col-sm-12
+            .form-field
+              = label_tag :from, t('from')
+              .clnd-holder.clearfix
+                .clnd-icon
+                  i.fa.fa-calendar
+                .clnd-input = f.text_field :started_at, placeholder: '--/--/--', class: %i[datepicker-season dt-season-from]
+          .column.col-md-6.col-sm-12
+            .form-field
+              = label_tag :until, t('until')
+              .clnd-holder.clearfix
+                .clnd-icon
+                  i.fa.fa-calendar
+                .clnd-input = f.text_field :finished_at, placeholder: '--/--/--', class: %i[datepicker-season dt-season-until]
+          = hidden_field_tag nil, nil, class: 'date-range-val'
+        .row
+          .column.col-md-12.col-sm-12
+            .form-field.margin-bottom-4
+              = label_tag :min_stay, t('wizards.index.page15.min_state'), class: 'no-top-margin'
+              = f.select :minimum_stay, options_for_select(minimum_rental_times, f.object.minimum_stay), {}, {class: :select2}
+        .row.prices-sep-wrapper
+          .column.col-md-6.col-sm-6
+            .form-field.margin-bottom-2
+              = label_tag :per_half_day, t('per_half_day'), class: 'no-top-margin'
+              .clnd-holder.clearfix
+                .clnd-icon
+                  span.currency_symb = Money.default_currency.symbol
+                .clnd-input = f.text_field :per_half_day, value: price_or_nil(f.object.per_half_day), placeholder: '-----', class: 'season-rate-price'
+          .column.col-md-6.col-sm-6
+            .form-field.margin-bottom-2
+              = label_tag :per_day, t('.per_day'), class: 'no-top-margin'
+              .clnd-holder.clearfix
+                .clnd-icon
+                  span.currency_symb = Money.default_currency.symbol
+                .clnd-input = f.text_field :per_day, value: price_or_nil(f.object.per_day), placeholder: '-----', class: 'season-rate-price'
+          .column.col-md-6.col-sm-6
+            .form-field.margin-bottom-2
+              = label_tag :per_night, t('.per_night'), class: 'no-top-margin'
+              .clnd-holder.clearfix
+                .clnd-icon
+                  span.currency_symb = Money.default_currency.symbol
+                .clnd-input = f.text_field :per_night, value: price_or_nil(f.object.per_night), placeholder: '-----', class: 'season-rate-price'
+              p
+                small = t('.per_night_details')
+          .column.col-md-6.col-sm-6
+            .form-field.margin-bottom-2
+              = label_tag :per_week, t('per_week'), class: 'no-top-margin'
+              .clnd-holder.clearfix
+                .clnd-icon
+                  span.currency_symb = Money.default_currency.symbol
+                .clnd-input = f.text_field :per_week, value: price_or_nil(f.object.per_week), placeholder: '-----', class: 'season-rate-price'

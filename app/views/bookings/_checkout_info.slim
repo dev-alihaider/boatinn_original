@@ -1,0 +1,11 @@
+- sidebar_dir = 'users/inbox/show/sidebar/'
+table.info-booking-table.not-bordered#dynamic-checkout*{ data: { api_path: calculate_subtotal_api_boat_path({ id: @travel.trip.boat_id }) } }
+  / boat details
+  = render "#{sidebar_dir}boat_details"
+
+  / checkout details
+  = render "#{sidebar_dir}checkout_details"
+
+.cancelation-text
+  h3.title = t("bookings.cancellations.#{@travel.cancellation_policy}_title")
+  p = t("bookings.cancellations.#{@travel.cancellation_policy}_desc", url: cancellation_policy_path).html_safe

@@ -1,0 +1,5 @@
+- unless %w[sessions registrations].include?(controller_name)
+  .auth-panel
+    = link_to t('homepage.login'), new_user_session_path, data: { modal: true, remote: true }, id: 'sign-in'
+    = link_to t('homepage.sign_up'), new_user_registration_path,  data: { modal: true, remote: true}
+= link_to t('homepage.list_your_boat'), prewizards_path, class: 'button btn-primary btn-list-y-boat'

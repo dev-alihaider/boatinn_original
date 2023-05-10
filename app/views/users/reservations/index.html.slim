@@ -1,0 +1,9 @@
+= render 'users/shared/menu'
+
+.container.reservations-container
+  h4.title = t("users.account.#{@title}")
+  .flex-container
+    .content
+      = render 'users/shared/ear_menu'
+      #booking-items = render 'users/reservations/table_booking', box: box
+    .sidebar = render 'users/reservations/sidebar', earnings: earnings

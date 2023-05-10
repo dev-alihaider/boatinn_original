@@ -1,0 +1,16 @@
+.cc-theme-classic {
+  .cc-btn {
+    @extend .button;
+    @extend .btn-primary;
+  }
+  .cc-link {
+    color: $black;
+    outline: none;
+  }
+}
+.cc-window.cc-floating {
+  background-color: $white; 
+  color: $main-text-color;
+  border-radius: 0;
+  border: 1px solid $main-color;
+}

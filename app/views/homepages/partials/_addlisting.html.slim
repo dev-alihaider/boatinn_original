@@ -1,0 +1,69 @@
+section.addlisting
+  .container
+    .row.wrap-boxes
+      .column.col-md-6.left-addlisting-box
+        h2.title = @homepage_settings.add_listing_section_title
+        = custom_hr(@homepage_settings.add_listing_section_strip_color)
+        h3.subtitle = @homepage_settings.add_listing_section_descr
+        <!-- Button trigger modal -->
+        <div style="text-align: center; width: 100%; height: 100%;">
+        <span style="display: block; font-size: 1.5em; margin-block-start: 0.83em; margin-block-end: 0.83em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;">
+          = t('admin.dashboard.homepage.add_listing_section.general.howwork')
+        </span>
+        <button type="button" class="btn btn-primary video-btn" id='video-btn' data-toggle="modal" data-src="https://www.youtube.com/embed/NgxUG4Hv9JE" data-target="#myModal">
+          = image_tag ('video-boatinn-owners.png')
+        </div>
+        </button>
+        br
+        br
+        <div style="text-align: center; width: 100%; height: 100%;">
+          = link_to t('homepage.list_your_boat'), prewizards_path, class: 'button btn-primary'
+        </div>
+        <!-- Modal -->
+        <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+           <div class="modal-dialog" role="document" style="width: 100%; height: 100%;position: relative; margin:0 auto; display:table; left: 0; right:0; top: 50%; border:1px solid; -webkit-transform:translateY(-50%); -moz-transform:translateY(-50%); -ms-transform:translateY(-50%); -o-transform:translateY(-50%); transform:translateY(-50%);">
+              <div class="modal-content" style="width: 100%; height: 100%;">
+                 <div class="modal-body" style="width: 100%; height: 100%;">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true" style="position:fix; top: -5px; color: #000">&times;</span>
+                    </button>     
+                    <!-- 16:9 aspect ratio -->
+                    <div class="embed-responsive embed-responsive-16by9"  style="width: 100%; height: 100%;">
+                       <iframe class="embed-responsive-item" src="" id="video"  allowscriptaccess="always" allowfullscreen="allowfullscreen" allow="autoplay" style="width: 100%; height: 100%;"></iframe>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+      .column.col-md-6.right-addlisting-box
+        ul.advantages = render partial: 'homepages/addlisting_part', collection: @four
+
+
+
+javascript:
+
+  $(document).ready(function() {    
+     var $videoSrc;
+     $('#video-btn').click(function() {
+         $videoSrc = $(this).data( "src" );
+     });
+ 
+     $('#myModal').on('shown.bs.modal', function (e) { 
+      
+         $("#video").attr('src',$videoSrc + "?autoplay=1&amp;modestbranding=1&amp;showinfo=0" );
+     })
+      
+  
+  
+     $('#myModal').on('hide.bs.modal', function (e) {
+      
+         $("#video").attr('src',$videoSrc);
+     })
+
+     $( "#video-btn" ).hover(function() {
+        $( this ).fadeOut( 100 );
+        $( this ).fadeIn( 500 );
+     });
+      
+   });      
+

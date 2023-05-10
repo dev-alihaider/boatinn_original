@@ -1,0 +1,30 @@
+.faq-page
+  .faq-sidebar
+    .title-block
+      h1 = t('faq.title')
+    .accordion
+      - if @faqs_general.present?
+        .accordion-item.active
+          h3.accordion-btn = t('faq.general')
+          ul.panel
+            - @faqs_general.each_with_index do |faq, index|
+              li*{class: ('active' if index.zero?)} = link_to faq.title, "##{faq.id}", class: 'accordion-link'
+      - if @faqs_for_renters.present?
+        .accordion-item
+          h3.accordion-btn = t('faq.for_renters')
+          ul.panel
+            - @faqs_for_renters.each do |faq|
+              li = link_to faq.title, "##{faq.id}", class: 'accordion-link'
+      - if @faqs_for_owners.present?
+        .accordion-item
+          h3.accordion-btn = t('faq.for_owners')
+          ul.panel
+            - @faqs_for_owners.each do |faq|
+              li = link_to faq.title, "##{faq.id}", class: 'accordion-link'
+  .container
+    .faq-content
+      .faq-content__inner
+        - (@faqs_general + @faqs_for_renters + @faqs_for_owners).each do |faq|
+          .faq-content__item*{ id: faq.id }
+            h3.title = faq.title
+            .description = raw faq.description

@@ -1,0 +1,65 @@
+it:
+  date:
+    abbr_day_names:
+      - dom
+      - lun
+      - mar
+      - mer
+      - gio
+      - ven
+      - sab
+    abbr_month_names:
+      -
+      - gen
+      - feb
+      - mar
+      - apr
+      - mag
+      - giu
+      - lug
+      - ago
+      - set
+      - ott
+      - nov
+      - dic
+    day_names:
+      - domenica
+      - lunedì
+      - martedì
+      - mercoledì
+      - giovedì
+      - venerdì
+      - sabato
+    formats:
+      default: "%d/%m/%Y"
+      long: "%d %B %Y"
+      short: "%d %b"
+    month_names:
+      -
+      - gennaio
+      - febbraio
+      - marzo
+      - aprile
+      - maggio
+      - giugno
+      - luglio
+      - agosto
+      - settembre
+      - ottobre
+      - novembre
+      - dicembre
+    order:
+      - :day
+      - :month
+      - :year
+  time:
+    am: am
+    pm: pm
+    formats:
+      default: "%a %d %b %Y, %H:%M:%S %z"
+      long: "%d %B %Y %H:%M"
+      short: "%d %b %H:%M"
+      shorter: "%B %e at %H:%M"
+      short_date: "%B %e, %Y"
+      shortest_date: "%^b %e, %Y"
+      hours_only: "%l:%M %P"

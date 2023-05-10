@@ -1,0 +1,82 @@
+.form-group.row
+  = label_tag :reason, t('admin.dashboard.reports.reason'), class: 'col-sm-2 col-form-label'
+  .col-sm-10
+    p.form-control-static = t("reports.review_modal.reason_#{@report.reason}")
+.hr-line-dashed
+
+.form-group.row
+  = label_tag :boat, t('admin.dashboard.reports.boat_name'), class: 'col-sm-2 col-form-label'
+  .col-sm-10
+    p.form-control-static = link_to @report.reportable.trip.boat_hash[:name], listing_path(locale: locale, id: @report.reportable.trip.boat_id), target: '_blank'
+.hr-line-dashed
+
+.form-group.row
+  = label_tag :boat, t('admin.dashboard.reports.seller_name'), class: 'col-sm-2 col-form-label'
+  .col-sm-10
+    p.form-control-static
+      = link_to show_profile_path(locale: locale, id: @report.reportable.trip.seller.id), target: '_blank' do
+        = image_tag user_image_url(@report.reportable.trip.seller), style: 'width: 200px'
+        =< @report.reportable.trip.seller.display_name
+.hr-line-dashed
+
+.form-group.row
+  = label_tag :boat, t('admin.dashboard.reports.review_author'), class: 'col-sm-2 col-form-label'
+  .col-sm-10
+    p.form-control-static
+      = link_to show_profile_path(locale: locale, id: @report.reportable.sender.id), target: '_blank' do
+        = image_tag user_image_url(@report.reportable.sender), style: 'width: 200px'
+        =< @report.reportable.sender.display_name
+.hr-line-dashed
+
+.form-group.row
+  = label_tag :boat, t('admin.dashboard.reports.review_created_at'), class: 'col-sm-2 col-form-label'
+  .col-sm-10
+    p.form-control-static = l(@report.reportable.created_at, format: :long, default: '-')
+.hr-line-dashed
+
+.form-group.row
+  = label_tag :ratings,  class: 'col-sm-2 col-form-label' do
+    = t('admin.dashboard.reviews.rating')
+    h5.title = t('admin.dashboard.reviews.average')
+    => @report.reportable.avg_grade
+    .ratings
+      .empty-stars
+      .full-stars style="width: #{@report.reportable.avg_grade * 20.0}%"
+
+  .col-sm-10
+    - @report.reportable.grade_fields.each do |field|
+      .col-sm-2
+        h5.title = t("dashboard.statistics.reviews.grades.#{field}")
+        .ratings
+          .empty-stars
+          .full-stars style="width: #{@report.reportable["#{field}_grade".to_sym].to_i * 20.0}%"
+.hr-line-dashed
+
+.form-group.row
+  = label_tag :public_review, t('dashboard.statistics.reviews.public_review'), class: 'col-sm-2 col-form-label'
+  .col-sm-10 = @report.reportable.public_review
+.hr-line-dashed
+
+.form-group.row
+  = label_tag :private_review, t('dashboard.statistics.reviews.private_review'), class: 'col-sm-2 col-form-label'
+  .col-sm-10 = @report.reportable.private_review
+.hr-line-dashed
+
+.form-group.row
+  = label_tag :reply_review, t('users.inbox.reviews.public_reply'), class: 'col-sm-2 col-form-label'
+  .col-sm-10 = @report.reportable.reply_review
+.hr-line-dashed
+
+.form-group.row
+  = label_tag :recommended, t('admin.dashboard.reviews.recommended'), class: 'col-sm-2 col-form-label'
+  = label_tag 'review_recommended', class: 'label-check' do
+    = check_box_tag 'review_recommended', true, @report.reportable.recommended?, readonly: 'readonly', disabled: 'disabled'
+    span.fa.fa-check
+.hr-line-dashed
+
+.form-group.row
+  = label_tag :edit_review, t('admin.dashboard.reports.edit_review'), class: 'col-sm-2 col-form-label'
+  .col-sm-10
+    = link_to edit_admin_review_path(id: @report.reportable_id), class: %i[btn btn-sm btn-info] do
+      i.fa.fa-pencil
+.hr-line-dashed

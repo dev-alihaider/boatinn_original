@@ -1,0 +1,15 @@
+- @body_width_px = 900
+
+tbody
+  tr
+    td height="100" valign="top"
+      h1 style=("font-family: 'Cabin', Arial, sans-serif; color: #545454; font-size: 29px; line-height: 35px; margin-bottom: 6px; margin-top: 10px;")
+        = t('.subject', @locals)
+    td rowspan="4" style=("width: 43%; padding-left: 60px;") valign="top"
+      = image_tag('emails/review-mail.jpg', alt: 'Read Owner Review Image', width: '403', height: '236')
+  tr
+    td height="10" style=("padding-bottom: 0;") valign="top"
+      p style=("font-family: 'Cabin', Arial, sans-serif; line-height: 22px; color: #545454; font-size: 17px;")
+        = t('.evaluations', @locals)
+
+  = render 'mailer/primary_button', url: dashboard_review_leave_review_url(review_id: @review_responce.id), title: t('.write_evaluation'), colspan: 1, align: :justify

@@ -1,0 +1,11 @@
+tbody
+  tr
+    td height="100" valign="top"
+      h1 style=("font-family: 'Cabin', Arial, sans-serif; color: #545454; font-size: 29px; line-height: 35px; margin-bottom: 6px; margin-top: 10px;")
+        = t('.title', @locals)
+  tr
+    td height="10" style=("padding-bottom: 0;") valign="top"
+      p style=("font-family: 'Cabin', Arial, sans-serif; line-height: 22px; color: #545454; font-size: 17px;")
+        = t('.need_some_details')
+
+  = render 'mailer/primary_button', url: edit_wizard_url(id: @boat.id, stage: @boat.wizard_progress), title: t('.complete_listing'), colspan: 1, align: :justify

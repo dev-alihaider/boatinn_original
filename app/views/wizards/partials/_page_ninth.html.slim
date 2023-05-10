@@ -1,0 +1,34 @@
+.wizard-page.jsWrap.hidden#page09 data-stage='9'
+  = hidden_field_tag nil, t('wizards.index.page09.step_text'), class: 'status-text-val'
+  .col.left-column
+    .title
+      =t('wizards.index.page09.title')
+    .image-group
+      .img-block
+        img.loadImage[src="#{user_image_url}"]
+      .row
+        .col-md-8
+          - if session[:is_facebook_picture_imported] #|| current_user.image.attachment.exists?
+            button.button.btn-expanded.btn-disabled[type="button"]
+              i.fa.fa-facebook-square
+              = t('wizards.index.page09.facebook')
+          - else
+            = link_to wizard_import_facebook_picture_path(params[:id]), class: 'button btn-expanded btn-facebook' do
+              i.fa.fa-facebook-square
+              = t('wizards.index.page09.facebook')
+        .col-md-4
+          label.label-file.button.btn-primary
+            i.fa.fa-upload[aria-hidden="true"]
+            = t('wizards.index.page09.upload')
+            = f.file_field :image, class: 'inputImg hidden-input-file', name: 'user[image]'
+          / button.button.btn-info[type="submit"]
+          /   i.fa.fa-save
+          /   = t('wizards.index.page09.save')
+
+    = render 'wizards/partials/buttons', current_stage: 9, commit: false, backurl: '#', nexturl: '#'
+  .col.right-column
+    hr /
+    .description
+      span.mark
+        = t('wizards.index.info') + ': '
+      = t('wizards.index.page09.description')

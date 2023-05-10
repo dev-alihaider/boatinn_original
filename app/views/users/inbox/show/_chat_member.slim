@@ -1,0 +1,7 @@
+= link_to show_profile_path(member), class: 'chat-member' do
+  .avatar.img-block = image_tag(user_image_url(member))
+  .user-info
+    .name = member.display_name
+    / .friends = '3 friends'
+- unless member == current_user
+  = render 'users/inbox/shared/new_review_button', target_user: member.id

@@ -1,0 +1,28 @@
+.wizard-page.hidden#page05 data-stage='5'
+  = hidden_field_tag nil, t('wizards.index.page05.step_text'), class: 'status-text-val'
+  .col.left-column
+    .title = t('wizards.index.page05.are_boating_with_captain')
+    .row
+      .column.col-md-12.col-sm-12
+        .form-field = f.select :captain, options_for_select(with_captain_options, @boat.captain), {}, class: :select2
+    .title.custom-title = t('wizards.index.page05.title')
+    .row
+      .column.col-md-12.col-sm-12
+        .form-field
+          / = label_tag 'boat[cabins_count]', t('wizards.index.page05.cabins')
+          = f.text_field :cabins_count, type: 'number', placeholder: t('wizards.index.page05.cabins')
+        .form-field
+          / = label_tag 'boat[beds_count]', t('wizards.index.page05.beds')
+          = f.text_field :beds_count, type: 'number', placeholder: t('wizards.index.page05.beds')
+        .form-field
+          / = label_tag 'boat[guest_number]', t('wizards.index.page05.guests')
+          = f.text_field :guest_number, type: 'number', placeholder: t('wizards.index.page05.guests')
+        .form-field
+          / = label_tag 'boat[bathrooms_count]', t('wizards.index.page05.bathrooms')
+          = f.text_field :bathrooms_count, type: 'number', placeholder: t('wizards.index.page05.bathrooms')
+    = render 'wizards/partials/buttons', current_stage: 5, commit: false, backurl: '#', nexturl: '#'
+  .col.right-column
+    hr /
+    .description
+      span.mark = t('wizards.index.info') + ': '
+      = t('wizards.index.page05.description')

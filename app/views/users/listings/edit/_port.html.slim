@@ -1,0 +1,4 @@
+.yl-box.no-brd
+  = render 'users/listings/edit/header', link: port_dashboard_listing_path(@boat), title: t('users.listings.edit.the_port')
+  .port-description
+    p = @boat.port

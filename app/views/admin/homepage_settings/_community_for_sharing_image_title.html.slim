@@ -1,0 +1,26 @@
+.form-group.tab-pane
+  label.col-sm-1.control-label
+    = title_for_sharing(figure)
+  .col-sm-11
+    div
+      - Boatinn::AVAILABLE_LOCALES_SHORT_FORMAT.each do |locale|
+        = f.globalize_fields_for locale do |ff|
+          = ff.text_field fields_for_sharing_title(figure), class: for_globalize_hidden(locale), placeholder: t('admin.general.title_label', locale: locale.to_sym), minlength: '5', maxlength: '100', data: {lang: locale}
+    span.help-block.m-b-none
+      = t('admin.general.count_symbols_100')
+-if show_color_on_sharing(figure)
+  .form-group
+    label.col-sm-1.control-label
+      | Strip color
+    .col-sm-3
+      = f.text_field :community_for_sharing_color, label:false, class: %i(form-control), placeholder: t('admin.dashboard.homepage.community_for_sharing.general.strip_color'), minlength: '5', maxlength: '100', data: { lang: 'en' }
+.form-group.tab-pane
+  label.col-sm-1.control-label
+    = descr_for_sharing(figure)
+  .col-sm-11
+    div
+      - Boatinn::AVAILABLE_LOCALES_SHORT_FORMAT.each do |locale|
+        = f.globalize_fields_for locale do |ff|
+          = ff.text_area fields_for_sharing_descr(figure), class: for_globalize_hidden(locale), placeholder: t('admin.general.descr', locale: locale.to_sym), minlength: '5', maxlength: '300', data: {lang: locale}
+    span.help-block.m-b-none
+      = t('admin.general.count_symbols_300')

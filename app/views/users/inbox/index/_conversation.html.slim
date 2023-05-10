@@ -1,0 +1,28 @@
+tr class="messages-row #{travel.unread_status}"
+  td
+    .msg-info
+      .avatar.img-block = image_tag user_image_url(travel.last_other_user)
+      .userinfo
+        .name.fading-line = link_to travel.boat_hash[:name], travel.conversation_link
+        p.date
+          i.fa.fa-calendar
+          = travel.last_activity_date.strftime('%d/%m/%y')
+  td.main-info
+    .msg-conversation
+      = link_to "#{travel.last_message_or_event&.content}", travel.conversation_link, class: 'content fading-line'
+      = link_to travel.conversation_link, class: 'title-wrapper' do
+        .title.fading-line = travel.boat_hash[:name]
+        - start_bk_date = l(travel.check_in, format: :shortest_date)
+        - end_bk_date = l(travel.check_out, format: :shortest_date)
+        - if (start_bk_date == end_bk_date)
+          .date = start_bk_date
+        - else
+          .date.double = "#{start_bk_date} - #{end_bk_date}"
+
+  td
+    .msg-type = t("users.inbox.type_of.#{travel.type_of}")
+
+  td
+    .msg-status
+      span class=travel.current_status
+        = t("users.inbox.states.#{travel.current_status}")

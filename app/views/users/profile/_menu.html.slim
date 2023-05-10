@@ -1,0 +1,8 @@
+ul.account-menu
+  li = link_to t('users.profile.menu.edit_profile'), edit_dashboard_profile_index_path, class: active_menu_subitem('edit')
+  li = link_to t('users.profile.menu.photos'), photos_dashboard_profile_index_path, class: active_menu_subitem('photos')
+  li = link_to t('users.profile.menu.trust_and_verification'), verification_dashboard_profile_index_path, class: active_menu_subitem('verification')
+  li = link_to t('users.profile.menu.reviews'), dashboard_reviews_path, class: active_menu_subitem(nil, 'reviews')
+  li = link_to t('users.profile.menu.your_cv'), cv_dashboard_profile_index_path, class: active_menu_subitem('cv')
+/ = link_to t('users.profile.menu.view_profile'), show_profile_path(current_user), class: active_menu_subitem('show')
+= link_to t('users.profile.menu.view_profile'), show_profile_path(current_user), class: 'button btn-outlined btn-show-profile', target: '_blank'

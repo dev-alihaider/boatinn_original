@@ -1,0 +1,23 @@
+= render 'users/shared/menu'
+
+.container
+  .flex-container.account-container
+    .sidebar = render 'menu'
+    .content
+      h3.title = t('penalization')
+        span.penalty-total = "#{t('current_penalty')} #{view_money(@penalization.current_penalty)}"
+      .inner-content
+        .penalty-info = t("your_penalization_period", from: l(@penalization.period_started_at, format: :short, default: '-'), to: l(@penalization.period_end_at, format: :short, default: '-'))
+        h4.penalty-subtitle = t("cancellations")
+        table.penalty-table
+          thead
+            tr
+              th = t('travel')
+              th = t('canceled_at')
+              th = t('penalty')
+          tbody
+            - @trips.each do |trip|
+              tr
+                td = link_to trip.boat_hash[:name], dashboard_inbox_path(id: trip.id)
+                td = trip.trip_cancellation.created_at.strftime('%d/%m/%y')
+                td = view_money(trip.trip_cancellation.penalty)

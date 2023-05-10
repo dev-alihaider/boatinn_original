@@ -1,0 +1,21 @@
+.wizard-page#page15 data-stage='15'
+  = hidden_field_tag nil, t('wizards.index.page15.step_text'), class: 'status-text-val'
+  .col.left-column
+    .subheading
+      =t('wizards.index.page15.title')
+    .season_rates_wrapper
+      #season_rates
+        = hidden_field_tag 'tab-count', '1'
+        = link_to_add_association '+ Add new', f, :season_rates,
+            partial: 'wizards/partials/season_rate_fields',
+            class: 'button btn-default', data:{'association-insertion-method': :append}
+        = f.fields_for :season_rates do |season_rate|
+          = render 'wizards/partials/season_rate_fields', f: season_rate
+
+    = render 'wizards/partials/buttons', current_stage: 15, commit: false, backurl: '#', nexturl: '#'
+  .col.right-column
+    hr /
+    .description
+      span.mark
+        = t('wizards.index.info') + ': '
+      = t('wizards.index.page15.description')

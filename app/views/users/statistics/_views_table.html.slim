@@ -1,0 +1,20 @@
+.views-table
+  table
+    thead
+      tr
+        th = t('dashboard.statistics.main.table_head1')
+        th = t('dashboard.statistics.main.table_head2')
+        th = t('dashboard.statistics.main.table_head3')
+        th = t('dashboard.statistics.main.table_head4')
+        th = t('dashboard.statistics.main.table_head5')
+    tbody
+      - @views.each do |views|
+        tr
+          td= views[:month].strftime('%^b %Y')
+          td= views[:views_count]
+          td= views[:request_count]
+          td 0
+          td= views[:reservation_count]
+
+section.views-pagination-wrapper
+  ul#views-pagination.pagination

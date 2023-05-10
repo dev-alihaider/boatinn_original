@@ -1,0 +1,11 @@
+.cancellations.bordered
+  h2.title = t('users.listings.show.cancellations')
+  - if @boat.flexible?
+    strong = t('users.listings.booking_settings.flexible')
+    p = t('users.listings.booking_settings.flexible_text')
+  - if @boat.moderate?
+    strong = t('users.listings.booking_settings.moderate')
+    p = t('users.listings.booking_settings.moderate_text')
+  - if @boat.strict?
+    strong = t('users.listings.booking_settings.strict')
+    p = t('users.listings.booking_settings.strict_text')

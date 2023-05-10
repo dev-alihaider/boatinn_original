@@ -1,0 +1,16 @@
+- @body_width_px = 900
+tbody
+  tr
+    td height="100" valign="top"
+      h1 style=("font-family: 'Cabin', Arial, sans-serif; color: #545454; font-size: 29px; line-height: 35px; margin-bottom: 6px; margin-top: 10px;")
+        = t('.dear_user', @locals)
+    td rowspan="3" valign="top" style="width: 50%; padding-left: 60px;"
+      = image_tag('emails/welcome-2.png', alt: 'Boatinn Welcome Image', width: '418', height: '421', style: 'margin: 0 auto')
+
+  tr
+    td valign="top"
+      p style=("font-family: 'Cabin', Arial, sans-serif; line-height: 22px; color: #545454; font-size: 15px;")
+        span Congratulations, your account has been verified and activated. Check the following links to &nbsp;
+        span style="font-weight: bold;" start your new trip.
+      p
+        = link_to root_url, root_url(locale: I18n.locale), style: "color: #40d1bf; text-decoration: none; text-align: center; font-family: 'Cabin', Arial, sans-serif;"

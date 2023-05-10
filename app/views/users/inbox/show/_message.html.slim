@@ -1,0 +1,18 @@
+.message-box*{class: "#{input_output_message_class(message)}-mes", data: { message_id: message[:id] } }
+  - if message[:context] == 'transition'
+    .transition-message
+      .transition-text
+        i.custom-icon-info-green
+        = transition_event_status(message)
+      hr.custom-think-line
+  - else
+    .avatar.img-block
+      = link_to show_profile_path(id: message.sender.id) do
+        = image_tag user_image_url(message.sender)
+        span= message.sender.display_name
+    .text
+      p = message.content
+      .row
+        .date
+          i.fa.fa-clock-o
+          = l(message.created_at, format: :long)

@@ -1,0 +1,12 @@
+<% if @error %>
+   var form_ver = document.getElementById('stripe_form_verification');
+   var btn_ver = $("button[type=submit]", form_ver);
+   btn_ver.prop('disabled', false);
+   btn_ver.text('Save');
+   alert('<%= j @error %>');
+<% else %>
+  $('#add-verifications-modal').modal('hide');
+  $('#button_verify_account').html('<%= j render 'users/account/verify' %>');
+  stripe_form_verification();
+  $('#add-verifications-modal').modal('show');
+<% end %>

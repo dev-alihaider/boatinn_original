@@ -1,0 +1,853 @@
+$tools-height: rem-calc(32);
+
+.listings.edit {
+  @include respond-to-max($tablet) {
+    .container {
+      width: 98%;
+      margin: 0 auto;
+    }
+
+  }
+}
+
+.your-listings-container {
+  position: relative;
+  padding: 3rem 0 3rem;
+  .title {
+    width: 100%;
+    padding: 1.5rem 1.5rem 1.5rem 0;
+    border-bottom: 1px solid $border-color;
+    color: $carbon;
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+    @include respond-to-max($tablet) {
+      text-align: center;
+    }
+  }
+  .btn-add-boat {
+    position: absolute;
+    top: 58px;
+    right: 0;
+    text-transform: uppercase;
+    @include respond-to-max($tablet) {
+      position: relative;
+      top: auto;
+      right: auto;
+      margin: 0 auto;
+      display: block;
+      width: 90%;
+    }
+  }
+  .img-wrap.img-block.main-img {
+    height: 500px;
+    @include respond-to-max($medium) {
+      height: 300px;
+    }
+  }
+}
+
+.y-listing-box {
+  position: relative;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid $border-color;
+  display: flex;
+  padding-top: 1.5rem;
+  .img-wrap {
+    height: 167px;
+    //width: 305px;
+    max-width: 26%;
+    flex: 0 0 26%;
+  }
+  .description-top {
+    font-size: 0.875rem;
+    @include respond-to-min($netbook) {
+      font-size: 1rem;
+    }
+
+    @include respond-to-min($ipad_as_mobile) {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+  }
+  .description-wrap {
+    color: $carbon;
+    padding-left: 1.5rem;
+    max-width: 74%;
+    flex: 0 0 74%;
+    @include respond-to-max($tablet) {
+      padding: 0 2rem;
+      max-width: 100%;
+      flex: 0 0 100%;
+    }
+    .activate-tools {
+      text-transform: uppercase;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 0.3125rem;
+      label {
+        margin-right: 1rem;
+        font-size: 0.6875rem;
+        line-height: 1.25rem;
+        padding-bottom: 0;
+
+        &:before {
+          top: 0;
+          height: 1.125rem;
+        }
+
+        &:after {
+          top: 2px;
+          width: 0.875rem;
+          height: 0.875rem;
+        }
+
+        @include respond-to-min($netbook) {
+          font-size: 0.75rem;
+          line-height: 1.125rem;
+        }
+      }
+
+      .switcher-wrapper {
+        display: flex;
+        & ~ .switcher-wrapper {
+          margin-left: 1rem;
+        }
+      }
+
+
+      @include respond-to-max($desktop) {
+        label {
+          display: block;
+          margin: 0 auto;
+        }
+      }
+    }
+    .name {
+      font-family: $bold-font;
+      font-size: 1.4rem;
+      margin: 0.5rem 0 0.5rem 0;
+    }
+    .location {
+      line-height: 1.5;
+      i {
+        color: $peru;
+        padding-right: 0.5rem;
+      }
+    }
+    .last-update {
+      line-height: 1.5;
+      i {
+        color: $peru;
+        padding-right: 0.5rem;
+      }
+    }
+    .toolbar {
+      position: absolute;
+      width: 74%;
+      padding-left: 1.5rem;
+      bottom: 1.5rem;
+      right: 0;
+      display: flex;
+      .tool-online {
+        text-transform: uppercase;
+        padding-top: 10px;
+        min-width: 7.5rem;
+      }
+      .tool-link {
+        padding: 0 0.6rem;
+        .button {
+          height: $tools-height;
+          line-height: $tools-height;
+          color: $main-text-color;
+          min-width: auto;
+          padding: 0 0.6rem;
+          i {
+            color: $main-color;
+            padding-left: 0;
+            transition: 0.2s all linear;
+          }
+          &:hover {
+            color: $white;
+            i {
+              color: $white;
+            }
+          }
+        }
+      }
+      .btn-lightning {
+        width: $tools-height;
+        height: $tools-height;
+        line-height: $tools-height;
+        display: block;
+        border-radius: 50%;
+        border: 1px solid $carbon;
+        text-align: center;
+        transition: 0.2s all linear;
+        font-size: 1.2rem;
+        color: $carbon;
+        margin-left: 0.6rem;
+        &:hover {
+          background-color: $main-color;
+          border-color: $main-color;
+          i {
+            color: $white;
+          }
+        }
+        &.active {
+          background-color: $peru;
+          border-color: $peru;
+          color: $white;
+        }
+      }
+    }
+  }
+  &.y-listing-additions-box {
+    margin: 0 auto;
+    .img-wrap {
+      height: 125px;
+      width: 125px;
+    }
+    .description-wrap {
+      .type {
+        line-height: 1.8;
+        border-bottom: 3px solid $yellowgreen;
+        position: absolute;
+        top: 1.2rem;
+      }
+      .name {
+        margin-top: 3rem;
+      }
+      .toolbar {
+        justify-content: flex-end;
+        width: 60%;
+        @include respond-to-max($desktop) {
+          width: 80%;
+        }
+        @include respond-to-max($tablet) {
+          width: 100%;
+        }
+      }
+    }
+    &:first-child {
+      position: relative;
+      top: -1px;
+      &:after {
+        content: '';
+        display: block;
+        @include respond-to-max($tablet) {
+          display: none;
+        }
+        width: 0;
+        height: 0;
+        border-left: 14px solid $transparent;
+        border-right: 14px solid $transparent;
+        border-top: 16px solid $white;
+        position: absolute;
+        top: -2px;
+        left: 12%;
+      }
+      &:before {
+        content: '';
+        display: block;
+        @include respond-to-max($tablet) {
+          display: none;
+        }
+        width: 0;
+        height: 0;
+        border-left: 14px solid $transparent;
+        border-right: 14px solid $transparent;
+        border-top: 16px solid $border-color;
+        position: absolute;
+        top: 0;
+        left: 12%;
+      }
+    }
+  }
+  @include respond-to-min($desktop) {
+    width: 85%;
+  }
+  @include respond-to-max($tablet) {
+    flex-direction: column;
+    .img-wrap {
+      width: 90%;
+      max-width: none;
+      margin: 0 auto 1rem;
+    }
+    .description-wrap {
+      .type {
+        left: 1rem;
+      }
+      .activate-tools {
+        position: relative;
+        right: auto;
+        top: auto;
+        margin-top: 1rem;
+        label {
+          // text-align: center;
+        }
+      }
+      .toolbar {
+        position: relative;
+        width: auto;
+        padding-left: 0;
+        bottom: auto;
+        right: auto;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        > * {
+          margin: 0.5rem auto;
+        }
+      }
+    }
+  }
+}
+
+.y-listings-progress-wrapper {
+  margin-bottom: 2rem;
+}
+
+.y-listing-progress-box {
+  position: relative;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid $border-color;
+  display: flex;
+  padding-top: 1.5rem;
+  .img-wrap {
+    height: 167px;
+    width: 305px;
+    max-width: 26%;
+  }
+  .description-wrap {
+    color: $carbon;
+    padding-left: 1.5rem;
+    width: 74%;
+    .name {
+      font-family: $bold-font;
+      font-size: 1.4rem;
+      margin: 0.5rem 0 0.5rem 0;
+    }
+    .last-update {
+      line-height: 1.5;
+      i {
+        color: $peru;
+        padding-right: 0.5rem;
+      }
+    }
+    .progress-bar {
+      width: 100%;
+      text-align: center;
+      .progress-line {
+        height: 4px;
+        background-color: $smoke;
+        position: relative;
+        z-index: 3;
+        .progress-active {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          background-color: $teal;
+          z-index: 5;
+        }
+      }
+      .progress-text {
+        margin: 1rem auto;
+      }
+    }
+    .buttons {
+      position: absolute;
+      width: 74%;
+      padding-left: 1.5rem;
+      bottom: 1.5rem;
+      right: 0;
+      display: flex;
+      .button {
+        margin-right: 1rem;
+      }
+    }
+  }
+  @include respond-to-max($tablet) {
+    flex-direction: column;
+    .img-wrap {
+      width: 90%;
+      margin: 0 auto 1rem;
+      max-width: none;
+    }
+    .description-wrap {
+      padding-left: 0;
+      width: 90%;
+      margin: 0 auto;
+      text-align: center;
+      .buttons {
+        position: relative;
+        width: auto;
+        padding-left: 0;
+        margin-top: 1rem;
+        bottom: auto;
+        right: auto;
+        display: flex;
+        justify-content: space-between;
+        .button {
+          margin: 0;
+          width: calc(50% - 0.5rem);
+        }
+      }
+    }
+  }
+}
+
+.yl-nav-links {
+  margin-bottom: 2rem;
+  position: relative;
+  .listing-tab-link {
+    color: $main-text-color;
+    margin-right: 2rem;
+    display: inline-block;
+    position: relative;
+    line-height: $form-height;
+    font-size: 1.2rem;
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 3px;
+      width: 100%;
+      background-color: $main-text-color;
+      opacity: 0;
+    }
+    &:hover {
+      text-decoration: none;
+      color: $main-color;
+      &:after {
+        background-color: $main-color;
+        opacity: 1;
+      }
+    }
+    &.active {
+      color: $peru;
+      font-family: $bold-font;
+      &:after {
+        background-color: $peru;
+        opacity: 1;
+      }
+    }
+  }
+  .select2-wrapper {
+    position: absolute;
+    right: 0;
+    top: 0;
+    max-width: 355px;
+    width: 100%;
+    @include respond-to-max($medium) {
+      position: relative !important;
+      margin-top: 20px;
+      max-width: 100%;
+    }
+  }
+}
+
+.yl-box {
+  position: relative;
+  color: $carbon;
+  border-bottom: 1px solid $border-color;
+  &.no-brd {
+    border-bottom: 0;
+  }
+  .btn-edit {
+    position: absolute;
+    right: 0;
+    top: 1rem;
+    z-index: 2;
+    @include respond-to-max($mobile) {
+      position: relative;
+      width: 100px;
+      top: auto;
+      right: auto;
+    }
+  }
+  .ui-tabs {
+    .btn-edit {
+      top: 4rem;
+      color: $white;
+      @include respond-to-max($mobile) {
+        top: auto;
+        right: auto;
+      }
+    }
+    // .ui-tabs-nav .ui-tabs-anchor {
+    //   @include respond-to-max($small) {
+    //     padding: 0.5em 0.5em;
+    //     font-size: 14px;
+    //   }
+    // }
+  }
+  .title {
+    border-bottom: none;
+    padding-bottom: 0rem;
+    margin-bottom: 1rem;
+  }
+  .ui-tabs-panel {
+    min-height: 5.6rem;
+    width: calc(100% - 9rem);
+     @include respond-to-max($mobile) {
+      width: 100%;
+     }
+  }
+}
+
+.yl-box-list {
+  padding: 0;
+  list-style-type: none;
+  max-width: 45%;
+  padding-bottom: 2rem;
+  @include respond-to-max($mobile) {
+    max-width: 100%;
+  }
+  li {
+    width: 50%;
+    i.fa.fa-angle-right {
+      font-weight: 700;
+    }
+  }
+  &.boat-list {
+    max-width: 55%;
+    li {
+      width: 33%;
+    }
+    @include respond-to-max($notebook) {
+      max-width: 73%;
+    }
+    @include respond-to-max($tablet) {
+      max-width: 100%;
+    }
+    @include respond-to-max($mobile) {
+      li {
+        width: 50%;
+      }
+    }
+  }
+  &.experience-list {
+    max-width: 55%;
+    li {
+      width: 33%;
+    }
+    @include respond-to-max($tablet) {
+      max-width: 100%;
+    }
+  }
+  &.cancellation-list {
+    max-width: 100%;
+    li {
+      width: 100%;
+    }
+  }
+  &.requirements-list {
+    li {
+      width: 100%;
+    }
+  }
+  &.prices-list {
+    width: 100%;
+    li {
+      width: 100%;
+    }
+  }
+  &.details-list {
+    max-width: 55%;
+    li {
+      width: 50%;
+    }
+  }
+  &.additional-list {
+    @include respond-to-max($notebook) {
+      max-width: 60%;
+    }
+    @include respond-to-max($small) {
+      li {
+        width: 100%;
+      }
+    }
+  }
+  &.prices-list, &.details-list, &.space-list, &.additional-list {
+    @include respond-to-max($tablet) {
+      max-width: 420px;
+    }
+    @include respond-to-max($mobile) {
+      max-width: 100%;
+    }
+  }
+  &.location-list {
+    max-width: 100%;
+    li {
+      width: 100%;
+    }
+  }
+  li {
+    display: inline-block;
+    line-height: 1.5;
+    padding-bottom: 0.8rem;
+    vertical-align: top;
+  }
+  i.fa {
+    color: $peru;
+    padding-right: 0.5rem;
+  }
+}
+
+
+.yld-gallery {
+  display: flex;
+  // justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0.5rem 0 1.5rem;
+  .photos-box {
+    display: block;
+    // width: calc((100% - 7.5rem)/6);
+    width: 15%;
+    margin-bottom: 1.5rem;
+    outline: none;
+    margin-right: 2%;
+    height: 171px;
+    position: relative;
+    overflow: hidden;
+    @include respond-to-max($tablet) {
+      margin-bottom: 1em;
+    }
+    @include respond-to-max($mobile) {
+      margin-bottom: 0.5em;
+    }
+    &:nth-child(6n+6) {
+      margin-right: 0;
+    }
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      height: 100%;
+    }
+    @include respond-to-max($notebook) {
+      height: 145px;
+    }
+    @include respond-to-max($tablet) {
+      height: 112px;
+    }
+    @include respond-to-max($mobile) {
+      width: 22.5%;
+      height: 79px;
+      &:nth-child(6n+6) {
+        margin-right: 2%;
+      }
+      &:nth-child(4n+4) {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+.port-description {
+  p {
+    padding-bottom: 1.5rem;
+    width: 50%;
+  }
+}
+
+.listings-inner-page {
+  .select-range {
+    display: flex;
+    justify-content: space-between;
+    @include respond-to-max($small) {
+      flex-wrap: wrap;
+    }
+    .select2 {
+      @include respond-to-max($tablet) {
+        max-width: 200px;
+      }
+      @include respond-to-max($small) {
+        max-width: 100%;
+      }
+    }
+    &__item {
+      @include respond-to-max($small) {
+        margin-bottom: 10px;
+      }
+    }
+  }
+  .field-action {
+    display: flex;
+    justify-content: space-between;
+    @include respond-to-max($small) {
+      flex-wrap: wrap;
+    }
+    .select2 {
+      max-width: 378px;
+    }
+    &__item {
+      &:first-child {
+        width: 54%;
+        @include respond-to-max($small) {
+          margin-bottom: 10px;
+          width: 100%;
+        }
+      }
+      &:last-child {
+        width: 115px;
+        @include respond-to-max($small) {
+          width: 100%;
+        }
+      }
+    }
+  }
+  .form-field {
+    // margin-bottom: 0.5rem;
+    label {
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+  }
+  .col.right-column .description.multiple p {
+    margin: 10px 0;
+  }
+}
+
+.booking-settings-container {
+  padding: 3rem 0 3rem;
+  .title {
+    width: 100%;
+    padding: 1.5rem 1.5rem 1.5rem 0;
+    border-bottom: 1px solid $border-color;
+    color: $carbon;
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+    @include respond-to-max($tablet) {
+      text-align: center;
+    }
+  }
+  .yl-box {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    .title {
+      border-bottom: none;
+      padding-bottom: 0rem;
+      margin-bottom: 1rem;
+    }
+  }
+  .checkbox-wrapper {
+    position: relative;
+    margin-bottom: 1.6rem;
+    .recommended {
+      color: $main-text-color;
+      position: absolute;
+      right: 0;
+      top: -8px;
+      padding: 0.6rem 0.8rem;
+      border: 1px solid $border-color;
+      @include respond-to-max($small) {
+        position: static;
+        margin-left: 25px;
+        width: 50%;
+        text-align: center;
+      }
+    }
+    .annotation {
+      color: $main-text-color;
+      padding-left: 24px;
+      padding-top: 0.3rem;
+    }
+    input[type="radio"] + label {
+      @include respond-to-max($desktop) {
+        max-width: 70%;
+        display: block;
+      }
+      @include respond-to-max($small) {
+        max-width: 100%;
+        display: block;
+      }
+
+    }
+    &:first-of-type {
+      input[type="radio"] + label {
+        @include respond-to-max($small) {
+          margin-bottom: 15px;
+        }
+      }
+    }
+  }
+  .view-d-text {
+    margin-bottom: 2rem;
+  }
+  .sidebar {
+    padding-left: 2rem;
+    width: 33%;
+    position: relative;
+    overflow: hidden;
+    .yl-box {
+      padding: 1.5rem;
+      border: 1px solid $border-color;
+    }
+    .select2 {
+      margin-bottom: 2rem;
+      @include respond-to-max($small) {
+        width: 100% !important;
+      }
+    }
+    @include respond-to-max($tablet) {
+      width: 50%;
+    }
+    @include respond-to-max($medium) {
+      width: 365px;
+    }
+    @include respond-to-max($small) {
+      width: 300px;
+      padding-left: 0;
+      margin: 0 auto;
+    }
+  }
+  .content {
+    width: 66%;
+    @include respond-to-max($tablet) {
+      width: 90%;
+      margin: 0 auto;
+    }
+  }
+  .yl-nav-links {
+    border-bottom: 1px solid $border-color;
+  }
+}
+
+// port page
+
+.port {
+  .listings-inner-page {
+    padding: 5rem 0;
+  }
+  .wrapper {
+    max-width: 674px;
+    width: 100%;
+    margin: 0 auto;
+    @include respond-to-max($tablet) {
+      width: 96%;
+    }
+  }
+}
+
+.yl-tooltip-wrapper {
+  position: relative;
+  .tool-lightning {
+    &:hover + .tooltip {
+      display: block;
+    }
+  }
+  .tooltip {
+    width: 12rem;
+    left: -4.4rem;
+    font-size: 0.8rem;
+    padding: 1rem;
+    line-height: 1.4;
+  }
+}

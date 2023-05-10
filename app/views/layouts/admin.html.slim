@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    title Boatinn-Admin
+    = csrf_meta_tags
+    = javascript_include_tag 'admin'
+    = stylesheet_link_tag 'admin', media: 'all'
+
+body class="#{controller_name} #{action_name}"
+  #flash_messages = render 'shared/flashes'
+  #wrapper
+    = render 'admin/shares/sidebar'
+    #page-wrapper[style="min-height: 949px;"]
+      = render 'admin/shares/top_navbar'
+      .wrapper.wrapper-content
+        = yield

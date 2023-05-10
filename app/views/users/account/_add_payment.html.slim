@@ -1,0 +1,11 @@
+#add-payment-modal.modal aria-hidden='true' aria-labelledby='add-payout-modal' role='dialog' tabindex='-1'
+  .modal-dialog role='document'
+    .btn-close data-dismiss='modal'
+    = form_tag dashboard_payments_path do |f|
+      = render("stripe/new_payment_method", display: true)
+
+- content_for :extra_javascript do
+  javascript:
+    window.onNewPaymentAdded = function(){
+      document.location.reload();
+    }

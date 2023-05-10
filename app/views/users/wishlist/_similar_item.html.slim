@@ -1,0 +1,16 @@
+li.wishlist-item.search-result-box
+  .img-wrap = link_to image_tag(boat_image_url(boat, :medium)), listing_path(id: boat.id)
+  .inf-wrap
+    .title = link_to boat.listing_title, listing_path(id: boat.id)
+
+    .price
+      span.price-number = view_money(boat.minimum_rental[:price])
+      = " / "
+      = t(boat.minimum_rental[:rental])
+
+    - if boat.location.present?
+      .location
+        i.fa.fa-map-marker
+        = boat.location.short_name
+
+    .custom-design-var-2 = render 'users/listings/show/rating', rate: avg_boat_rating(boat), count: boat.rating_hash[:count]

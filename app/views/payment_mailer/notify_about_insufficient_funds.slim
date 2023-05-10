@@ -1,0 +1,24 @@
+- @body_width_px = 900
+
+tr
+  td height="140" style=("width: 50%;") valign="top"
+    h1 style=("font-family: 'Cabin', Arial, sans-serif; color: #545454; font-size: 29px; line-height: 35px; margin-bottom: 26px; margin-top: 10px;")
+      = t('.dear_client', recipient_name: @recipient.display_name, payment_sum: view_money(@payment.total))
+    p style=("margin-top: 7px; font-family: 'Cabin', Arial, sans-serif; line-height: 23px;")
+      = t('.check_bank', payment_sum: view_money(@payment.total))
+    p style=("margin-top: 7px; font-family: 'Cabin', Arial, sans-serif; line-height: 23px;")
+      span
+        = t('.prefer_to_use')
+      span style=("margin-top: 7px; font-family: 'Cabin', Arial, sans-serif; line-height: 23px; font-weight: bold;")
+        = t('.prefer_to_use2')
+      span style=("margin-top: 7px; font-family: 'Cabin', Arial, sans-serif; line-height: 23px;")
+        = t('.prefer_to_use3')
+    p style=("margin-bottom: 40px; margin-top: 7px; font-family: 'Cabin', Arial, sans-serif; line-height: 23px;")
+      = t('.contact_to_service', service_name: t('service_name'))
+    div style=("padding: 38px 20px 22px 20px; width: 200px; margin: 0 auto; background: #f8f8f8; text-align: center; border: 1px solid #d8d9dd;")
+      p style=("margin: 0;")
+        = "#{payment_name(@payment.source)} #{source_without_brand(@payment.source)}"
+      = image_tag(payment_image(@payment.source), alt: 'Icon Guests', width: '128', height: '80')
+
+
+    = render 'mailer/sidebar_checkout'

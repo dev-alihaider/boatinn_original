@@ -1,0 +1,74 @@
+/ TODO: Front-end: replace this code with used previously
+css:
+  .ratings {
+    position: relative;
+    vertical-align: middle;
+    display: inline-block;
+    color: #b1b1b1;
+    overflow: hidden;
+  }
+
+  .full-stars {
+    position: absolute;
+    left: 0;
+    top: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #fde16d;
+  }
+
+  .empty-stars:before,
+  .full-stars:before {
+    content: "\2605\2605\2605\2605\2605";
+  }
+
+  .empty-stars:before {
+    -webkit-text-stroke: 1px #848484;
+  }
+
+  .full-stars:before {
+    -webkit-text-stroke: 1px orange;
+  }
+
+  /* Webkit-text-stroke is not supported on firefox or IE */
+  /* Firefox */
+  @-moz-document url-prefix() {
+    .full-stars {
+      color: #ECBE24;
+    }
+  }
+
+.row
+  .col-lg-12
+    h2.title--bordered = t('admin.dashboard.reviews.sidebar_name')
+    = render 'admin/shares/breadcrumbs', active: t('admin.dashboard.reviews.sidebar_name')
+
+    form.transactions-search-form
+      = box.search_field_text_for(:boat, class: 'form-control', placeholder: t('admin.dashboard.bookings.boat_name'))
+      = box.search_field_text_for(:sender, class: 'form-control', placeholder: t('admin.dashboard.reviews.left_by'))
+      = box.search_field_text_for(:receiver, class: 'form-control', placeholder: t('admin.dashboard.reviews.left_for'))
+      = button_tag t('admin.dashboard.bookings.search'), class: 'btn btn-sm btn-primary'
+      = hidden_field_tag :sort, box.current_order_field unless box.current_order_field.blank?
+      = hidden_field_tag :direction, box.current_direction
+
+    .table-responsive.scrolled-parent
+      table.table.table-striped.table-hover.manage-user-table.scrolled-child
+        thead
+          tr
+            th.text-center = box.sort_link :created_at, t('admin.dashboard.reviews.created_at')
+            th.text-center = box.sort_link :reviewed_at, t('admin.dashboard.reviews.reviewed_at')
+            th.text-center = box.sort_link :boat, t('admin.dashboard.reviews.boat_name')
+            th.text-center = t('admin.dashboard.reviews.inbox_link')
+            th.text-center = box.sort_link :target, t('admin.dashboard.reviews.about')
+            th.text-center = box.sort_link :ratings, t('admin.dashboard.reviews.rating')
+            th.text-center = box.sort_link :status, t('admin.dashboard.reviews.status')
+            th.text-center = box.sort_link :sender, t('admin.dashboard.reviews.left_by')
+            th.text-center = box.sort_link :receiver, t('admin.dashboard.reviews.left_for')
+            th.text-center = box.sort_link :reports, t('admin.dashboard.reviews.reports')
+            th.text-center = box.sort_link :recommended, t('admin.dashboard.reviews.recommended')
+            th.text-center = box.sort_link :public_review, t('dashboard.statistics.reviews.public_review')
+            th.text-center = box.sort_link :enabled, t('admin.dashboard.reviews.show_hide')
+            th.text-center = t('edit')
+            / th.text-center = t('delete')
+        tbody = render partial: 'review', collection: box.collection
+    = paginate box.collection

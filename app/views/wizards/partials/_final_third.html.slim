@@ -1,0 +1,17 @@
+.wizard-page#page-final03 data-stage='19'
+  = hidden_field_tag nil, '', class: 'status-text-val'
+  .col.left-column
+    .subheading = t('wizards.index.page-final03.title')
+    p = t('wizards.index.page-final03.description').html_safe
+    .subheading = t('wizards.index.page-final03.title_contract')
+    .checkbox-wrapper
+      = check_box_tag 'agree'
+      = label_tag 'agree', (link_to t('wizards.index.page-final03.agree'), terms_path,target: '_blank')
+    ul
+      li = t('wizards.index.page-final03.agr01')
+      li = t('wizards.index.page-final03.agr02')
+      li = t('wizards.index.page-final03.agr03')
+      li = t('wizards.index.page-final03.agr04')
+    = render 'wizards/partials/buttons', current_stage: 19, commit: true, backurl: '#', nexturl: '#'
+  .col.right-column.without-text
+    .sailor

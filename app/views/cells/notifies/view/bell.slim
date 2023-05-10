@@ -1,0 +1,31 @@
+.new-message-holder
+  .new-message-link
+    i.fa.fa-bell-o
+    - if bell_notify_size.positive?
+      .counter= bell_notify_size
+
+  - # messages section
+  .dropdown-messages
+    .messages-holder
+      .label
+        = link_to t('notifies.messages_with_count', count: unread_messages_size), dashboard_inbox_index_path
+      .links= link_to t('notifies.view_all'), dashboard_inbox_index_path
+      - if unread_messages.count.positive?
+        .unread-messages
+          - unread_messages.each do |message|
+            = link_to dashboard_inbox_path(id: message.trip_id) do
+              .message-author.avatar
+                = image_tag(user_image_url(message.sender))
+              .message-content
+                /.message.meta= "#{message.sender.display_name}, #{date_ago_in_words(message.created_at)} #{t('notifies.ago')}"
+                .message.meta
+                  span.message.meta-name= "#{message.sender.display_name},"
+                  span.message.meta-time= "#{date_ago_in_words(message.created_at)} #{t('notifies.ago')}"
+                .message.body= message.content
+
+    - # notifications block
+    .notifications-holder
+      .label
+        = link_to t('notifies.events_with_count', count: notifications_size), dashboard_notifications_path
+      .links= link_to t('notifies.view_all'), dashboard_notifications_path
+

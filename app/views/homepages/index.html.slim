@@ -1,0 +1,11 @@
+= render 'homepages/partials/slider'
+- if @homepage_settings.community_preferences
+  = render 'homepages/partials/preferences'
+= render 'homepages/partials/community'
+- if @homepage_settings.experience_section
+  = render 'homepages/partials/experience'
+- if @homepage_settings.add_listing_section
+  = render 'homepages/partials/addlisting'
+section.la-farola
+  .img-wrap = image_tag('banner_lafarola.jpg')
+

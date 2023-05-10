@@ -1,0 +1,3 @@
+- if current_user.stripe_account&.unverified?
+  = button_tag t('users.account.payout.account_is_not_verified'), class: %i[button btn-info btn-add-payout], type: 'button', data: { target: '#add-verifications-modal', toggle: 'modal' } do
+  = render 'users/account/add_verifications'

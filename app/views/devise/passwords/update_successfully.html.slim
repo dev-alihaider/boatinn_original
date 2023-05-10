@@ -1,0 +1,6 @@
+.row.register-box.authform.kandiski.page-view
+  button.close-button aria-label=("Close alert") type='button'
+    span aria-hidden='true'  &times;
+  h3 = t('.title')
+  p.notice.container-mh = t('.notice').html_safe
+  = link_to t('devise.sessions.new.log_in'), new_user_session_path, data: { modal: true, remote: true }, class: %i(button expanded)

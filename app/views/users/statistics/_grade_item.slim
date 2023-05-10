@@ -1,0 +1,6 @@
+.review-block-item
+  h5.title.review-title= t("dashboard.statistics.reviews.grades.#{field}")
+  .star-block
+    - 5.times do |i|
+      i.fa.fa-star class = "#{i < value ? 'active' : ''}"
+

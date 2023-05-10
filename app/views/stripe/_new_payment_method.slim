@@ -1,0 +1,103 @@
+- # should be include in parent or layout
+- # https://js.stripe.com/v3/
+- #
+#new-payment-form(:style="{display: display ? 'block' : 'none'}")
+  .errors(v-if="lastError") {{ lastError }}
+  .stripe-card-container
+    #card-element
+  button#add-new-payment.button.btn-info.stripe-btn type="button" v-on:click.prevent="submitHandle"
+    | Add Card
+
+- content_for :extra_javascript do
+  javascript:
+    var styles = {
+      base : {
+        border: '1px solid #000'
+      }
+    }
+
+    window.newPaymentApp = new Vue({
+      el: '#new-payment-form',
+      data: function(){
+        return {
+          progress: false,
+          clientSecret: null,
+          lastError: null,
+          display: #{display},
+        }
+      },
+
+      mounted: function() {
+        if (this.display) {
+          this.fetchClientSecret()
+          this.setupStripeElements()
+        }
+      },
+
+      methods: {
+        show: function(){
+          if (!this.clientSecret) { this.fetchClientSecret() }
+          if (!this.cardElement) { this.setupStripeElements() }
+          this.display = true
+        },
+
+        hide: function(){
+          this.display = false;
+        },
+
+        reset: function(){
+          if (this.cardElement) {
+            this.stripeElements = null
+            this.cardElement.unmount();
+            this.cardElement = null;
+          }
+          this.clientSecret = null
+          this.lastError = ''
+
+          if (this.display) { this.show() }
+        },
+
+        fetchClientSecret: async function(){
+          try {
+            const response = await fetch("/api/stripe/setup_intent", {method: 'POST'})
+            const json = await response.json();
+            if (json.client_secret) {
+              this.clientSecret = json.client_secret
+            }
+          } catch(e) {
+            this.lastError = e
+          }
+        },
+
+        setupStripeElements: function(){
+          this.stripeElements = stripe.elements();
+          this.cardElement = this.stripeElements.create('card', { style: styles} );
+          this.cardElement.mount('#card-element');
+
+          this.cardElement.on('change', function (event) {
+            console.log(event)
+            if (event.error) {
+              window.newPaymentApp.lastError = event.error.message
+            } else {
+              window.newPaymentApp.lastError = null
+            }
+          });
+        },
+
+        submitHandle: function () {
+          stripe.confirmCardSetup(this.clientSecret, {
+              payment_method: {card: this.cardElement},
+            }
+          ).then(function (result) {
+            if (result.error) {
+              window.newPaymentApp.lastError = result.error.message;
+            } else {
+              if (window.onNewPaymentAdded) {
+                window.onNewPaymentAdded()
+              }
+              window.newPaymentApp.reset()
+            }
+          });
+        }
+      }
+   })

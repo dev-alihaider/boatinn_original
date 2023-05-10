@@ -1,0 +1,31 @@
+.select-boat-wrapper = select_tag :switch_listing, options_for_select(current_user_listings(@finished_boats, :calendar), params[:boat_id].presence), class: :select2
+
+.sidebar-box
+  .clnd-title = label_tag 'dt-season-from', t('users.calendar.dates')
+  .clnd-select-date
+    .form-field
+      .clnd-holder.clearfix
+        .clnd-icon
+          i.fa.fa-calendar
+        .clnd-input = text_field_tag 'avail-from', nil, placeholder: '--/--/--', class: 'datepicker-avail avail-from', autocomplete: 'off'
+    .form-field
+      .clnd-holder.clearfix
+        .clnd-icon
+          i.fa.fa-calendar
+        .clnd-input = text_field_tag 'avail-to', nil, placeholder: '--/--/--', class: 'datepicker-avail avail-to', autocomplete: 'off'
+  .row
+    #avail_error
+  .status-switcher-box
+    .checkbox-wrapper
+      = radio_button_tag 'boat_status', '1', true, class: "input-boat-status"
+      = label_tag 'boat_status_1', t('users.calendar.available')
+    .checkbox-wrapper
+      = radio_button_tag 'boat_status', '2', nil, class: "input-boat-status"
+      = label_tag 'boat_status_2', t('users.calendar.blocked')
+    .checkbox-wrapper
+      = radio_button_tag 'boat_status', '3', nil, class: "input-boat-status"
+      = label_tag 'boat_status_3', t('users.calendar.block_this_dates_in_all_calendars')
+
+  .buttons
+    = link_to t('save'), '#', class: 'button btn-primary btn-save btn-change-avail btn-disabled'
+    = link_to t('cancel'), '#', class: 'button btn-outlined btn-cancel'

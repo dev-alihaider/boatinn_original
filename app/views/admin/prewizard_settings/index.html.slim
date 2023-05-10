@@ -1,0 +1,40 @@
+.row
+  .col-lg-12
+    h2.title--bordered Prewizard Settings
+    = render 'admin/shares/breadcrumbs'
+  .col-lg-12.main-homepage
+    .ibox.float-e-margins
+      .ibox-content
+        table.table.table-striped
+          thead
+            tr
+              th
+                h3 Module Name
+              th
+                h3 Status
+              th
+          tbody
+            tr
+              td Rent your boat
+              td
+                span.status class="#{turn_on_of('rent_your_boat', @prewizard_setting)}"
+                  = turn_on_of('rent_your_boat', @prewizard_setting).capitalize
+              td
+                = link_to edit_admin_prewizard_setting_path(@prewizard_setting, view_type: 'rent_your_boat') do
+                  i.fa.fa-pencil[aria-hidden="true"]
+            tr
+              td Explain settings
+              td
+                span.status class="#{turn_on_of('explain_settings', @prewizard_setting)}"
+                  = turn_on_of('explain_settings', @prewizard_setting).capitalize
+              td
+                = link_to edit_admin_prewizard_setting_path(@prewizard_setting, view_type: 'explain_settings') do
+                  i.fa.fa-pencil[aria-hidden="true"]
+            tr
+              td Safety settings
+              td
+                span.status class="#{turn_on_of('safety_settings', @prewizard_setting)}"
+                  = turn_on_of('safety_settings', @prewizard_setting).capitalize
+              td
+                = link_to edit_admin_prewizard_setting_path(@prewizard_setting, view_type: 'safety_settings') do
+                  i.fa.fa-pencil[aria-hidden="true"]

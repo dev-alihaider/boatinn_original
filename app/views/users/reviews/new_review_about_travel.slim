@@ -1,0 +1,9 @@
+= render 'users/shared/menu'
+
+.container
+  .flex-container.inbox-inner-container
+    - @hide_cancellation = true
+    = render partial: 'users/inbox/show/booking_sidebar_for_client'
+
+    .content
+      .inner-content.reviews-content = concept('reviews/cell/form/review_about_travel', @review).()

@@ -1,0 +1,10 @@
+.experience.bordered
+  h2.title = t('experience')
+  ul.list
+    - Category.experience.each do |category|
+      - category.features.each do |feature|
+        - if @boat.feature_ids.include?(feature.id)
+          li
+            span
+              | &nbsp;
+              = "#{feature.name}"

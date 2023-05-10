@@ -1,0 +1,47 @@
+.alert {
+  width: 100%;
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  color: $white;
+  text-align: center;
+  line-height: $form-height;
+  line-height: 5rem;
+  height: 5rem;
+  overflow: hidden;
+  font-size: 1.2rem;
+  &.alert {
+    background-color: $peru;
+  }
+  &.info {
+    background-color: $main-color;
+  }
+  .alert-text {
+    display: inline;
+  }
+  .alert-close {
+    margin-left: 2rem;
+  }
+  @media screen and (max-width: 480px) {
+    font-size: 14px;
+    max-width: 480px;
+    height: auto;
+    line-height: normal;
+    text-align: center;
+    padding: 20px 10px;
+    .alert-text {
+      display: block;
+    }
+    .alert-close {
+      line-height: normal;
+      margin-top: 10px;
+      min-height: 20px;
+      height: auto;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      margin-left: 0;
+    }
+  }
+}

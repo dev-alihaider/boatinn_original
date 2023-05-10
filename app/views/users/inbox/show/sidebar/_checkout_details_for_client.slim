@@ -1,0 +1,93 @@
+tr
+  td colspan="2"
+    p
+      i.custom-icon-guests
+      span.guest_label= @travel.guest_label
+
+    p
+      i.custom-icon-calendar
+      = l(@travel.check_in, format: :short_date)
+      - if @travel.rent_duration_in_days > 1
+        = " > #{l(@travel.check_out, format: :short_date)}"
+  tr
+    td
+      p
+        = view_money(@travel.unit_price)
+        = " x #{@travel.unit_quantity} #{@travel.unit_label}"
+
+      - if @travel.trip.cleaning_fee.positive?
+        p= t('users.listings.edit.cleaning_fee')
+
+      - if @travel.trip.skipper_fee.positive?
+        p= t('users.listings.edit.skipper_fee')
+
+      div.service-fee
+        span.tooltip-trigger
+          = t('.service_fee')
+          sup ?
+        .tooltip
+          .title-block
+            span.fa.fa-lightbulb-o[aria-hidden="true"]
+            h5.title = t('users.listings.show.booking_calculator.service_fee_tooltip.title')
+          .tooltip-description = t('.description')
+          button.close-btn[type="button"] &times;
+    td
+      p.subtotal
+        = view_money(@travel.subtotal)
+
+      - if @travel.trip.cleaning_fee.positive?
+        p= view_money(@travel.trip.cleaning_fee)
+
+      - if @travel.trip.skipper_fee.positive?
+        p= view_money(@travel.trip.skipper_fee)
+
+      p.client_fee
+        = view_money(@travel.client_fee)
+  tr
+    td
+      p
+        = t('users.inbox.show.booking_sidebar.total', currency: view_money(@travel.total, opts: { only_currency: true }))
+    td
+      p
+        strong.total
+          = view_money(@travel.total)
+
+  - if @travel.paid_amount.positive? && (@travel.will_be_pay_deposit_amount.positive? || @travel.will_be_pay_prime_amount.positive?)
+    tr
+      td
+        p
+          = t("bookings.due_now")
+      td
+        p
+          strong.will_be_pay_deposit_amount
+            = view_money(@travel.paid_amount)
+
+
+  - if @travel.will_be_pay_deposit_amount.positive?
+    tr
+      td
+        p.text-nowrap
+          = t("bookings.deposit", date: l(@travel.date_next_deposit, format: :short_date, default: '-')) + '*'
+        p.info
+          = t("bookings.deposit_info", date: l(@travel.date_next_deposit, format: :short_date, default: '-'))
+      td
+        p
+          strong.will_be_pay_deposit_amount
+            = view_money(@travel.will_be_pay_deposit_amount)
+
+  - if @travel.will_be_pay_prime_amount.positive?
+    tr
+      td
+        p.text-nowrap
+          = t("bookings.due_date", date: l(@travel.date_next_prime, format: :short_date, default: '-')) + '*'
+        p.info
+          = t("bookings.due_date_info", date: l(@travel.date_next_prime, format: :short_date, default: '-'))
+      td
+        p
+          strong.will_be_pay_amount
+            = view_money(@travel.will_be_pay_prime_amount)
+
+  - if @travel.has_urgent_payment?
+    tr
+      td= link_to t("bookings.pay_urgent_payment"), "#", data: { target: '#pay-urgent-payment', toggle: 'modal' }
+

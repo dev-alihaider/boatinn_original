@@ -1,0 +1,18 @@
+- @body_width_px = 900
+tbody
+  tr
+    td height="100" valign="top" style="padding-right: 60px;"
+      h1 style=("font-family: 'Cabin', Arial, sans-serif; color: #545454; font-size: 29px; line-height: 35px; margin-bottom: 6px; margin-top: 10px;")
+        = t('.subject')
+    td rowspan="3" valign="top"
+      = image_tag('emails/banned-user-email.png', alt: 'Banned User Image', width: '300', height: '300')
+
+  tr
+    td valign="top" style="padding-right: 60px;"
+      p style=("font-family: 'Cabin', Arial, sans-serif; line-height: 22px; color: #545454; font-size: 15px;")
+        = t('.contact_to_team')
+
+
+  = render 'mailer/primary_button', url: '#', title: t('.contact_with_service', service_name: t('service_name')), colspan: 1, align: :justify
+
+

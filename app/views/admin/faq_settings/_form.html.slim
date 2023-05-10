@@ -1,0 +1,29 @@
+.form-group.fg-mn
+  .title-block
+    h2.title--bordered FAQ create/edit
+    = render 'admin/shares/save_btn', f: f, return_url: admin_faq_settings_path
+  .action-block = render 'admin/shares/breadcrumbs'
+.row.faq-item
+  .col-sm-12.faq-action
+    label.control-label Visibility on Prewizard
+    label.label-check
+      = f.check_box :visible
+      span.fa.fa-check[aria-hidden="true"]
+    label.control-label Choose group
+    = f.select :category, Faq.categories.keys.map { |category| [category.humanize, category] }
+    label.control-label Sort order
+    = f.text_field :order, type: :number, class: 'form-control', min: '0'
+
+  - Boatinn::AVAILABLE_LOCALES_SHORT_FORMAT.each do |locale|
+    .col-sm-12
+      .nav-tabs.language-tabs = locale_image(locale, style: 'margin-right: 5px;')
+      h2.title--bordered = locale
+    .col-sm-12
+      label.control-label Title
+      = f.globalize_fields_for locale do |ff|
+        = ff.text_field :title, class: 'form-control', minlength: '5', maxlength: '100', data: { lang: locale }
+
+    .col-sm-12.editor-block
+      label.control-label Description
+      = f.globalize_fields_for locale do |ff|
+        = ff.text_area :description, minlength: '5', maxlength: '300', data: { lang: locale, provider: :summernote }

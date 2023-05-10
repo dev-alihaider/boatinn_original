@@ -1,0 +1,14 @@
+.yl-box
+  = render 'users/listings/edit/header', link: settings_dashboard_listing_path(@boat.id), title: t('users.listings.edit.cancellation_policy')
+  ul.yl-box-list.cancellation-list
+    li
+      i.fa.fa-angle-right
+      - if @boat.flexible?
+        b => t('users.listings.booking_settings.flexible')
+        = t('users.listings.booking_settings.flexible_text')
+      - if @boat.moderate?
+        b => t('users.listings.booking_settings.moderate')
+        = t('users.listings.booking_settings.moderate_text')
+      - if @boat.strict?
+        b => t('users.listings.booking_settings.strict')
+        = t('users.listings.booking_settings.strict_text')

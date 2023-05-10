@@ -1,0 +1,36 @@
+= render 'users/shared/menu'
+
+.container
+  .flex-container.account-container
+    .sidebar = render 'menu'
+    .content
+      h3.title = t('users.profile.profile_photo')
+      .inner-content.jsWrap.photos-content
+        .image-group
+          = button_tag nil, type: :button, class: %i[remove-btn] , id: 'remove-avatar-button',
+              style: ('display: none' if current_user.image.blank?),
+              data: { url: destroy_photo_dashboard_profile_index_path,
+                      default_image: image_url('avatar-missing.png'),
+                      deleted_message: t('users.profile.deleted_profile_image') } do
+            i.fa.fa-trash-o
+          .img-block.profile-avatar
+            = image_tag user_image_url, class: :loadImage
+          / - if current_user.image.blank?
+            - if current_user.image_url_facebook.present?
+              p.description
+                i.fa.fa-exclamation-triangle.warning
+                =< t('users.profile.default_omniauth_image_displayed', provider: 'Facebook')
+            - elsif current_user.image_url_google_oauth2.present?
+              p.description
+                i.fa.fa-exclamation-triangle.warning
+                =< t('users.profile.default_omniauth_image_displayed', provider: 'Google')
+
+        .image-control
+          p.text 
+            = t('users.profile.profile_photo_description')
+          .row.buttons.custom-grid-row
+            .column.col-lg-4
+              label.label-file.button.btn-outlined.btn-expanded
+                = form_for current_user, url: photo_update_dashboard_profile_index_path, remote: true, html: { multipart: true }, method: :patch do |f|
+                  = t('users.profile.upload_image')
+                  = f.file_field :image, class: :inputImg

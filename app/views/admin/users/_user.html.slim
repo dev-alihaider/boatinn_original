@@ -1,0 +1,60 @@
+tr
+  td.client-avatar = image_tag(user_image_url(user))
+  td = link_to user_name(user), show_profile_path(id: user, locale: locale), class: 'client-link', target: '_blank'
+
+  td = user.language
+  td.contact-type
+    i.fa.fa-envelope
+  td = user.email
+
+  td.contact-type
+    i.fa.fa-calendar
+  td = l(user.created_at, format: :short)
+
+  td.text-center
+    - if user.boats.count.positive?
+      span.label.label-primary
+        b = t('admin.dashboard.users.is_boat_owner')
+    - else
+      span.label.label-name = t('admin.dashboard.users.not_boat_owner')
+
+  td.text-center = user.boats.count
+
+  td.cancellation.text-center = user.penalization.present? ? user.penalization.current_cancellations : 0
+
+  td.text-center
+    - if not_current_user?(user)
+      - if user.blocked?
+        = link_to unblock_admin_user_path(user.id), class: %i[btn btn-sm btn-primary float-right],
+                  title: t('admin.dashboard.users.blocked_at', datetime: l(user.blocked_at, format: :short, default: '-')) do
+          i.fa.fa-unlock
+          =< t('admin.dashboard.users.unblock')
+      - else
+        = link_to block_admin_user_path(user.id), class: %i[btn btn-sm btn-danger float-right] do
+          i.fa.fa-lock
+          =< t('admin.dashboard.users.block')
+
+  td.text-center
+    - if not_current_user?(user)
+      = label_tag "admin_#{user.id}", class: 'label-check' do
+        = check_box_tag "admin_#{user.id}", 1, user.admin?, onclick: "location.href='#{user.admin? ? revoke_admin_admin_user_path(user.id) : make_admin_admin_user_path(user.id)}'"
+        span.fa.fa-check
+
+  td
+    - if not_current_user?(user)
+      = link_to sign_in_as_user_admin_user_path(user.id), class: %i[btn btn-sm btn-danger] do
+        i.fa.fa-sign-in
+        / | &nbsp;
+        / strong = " as #{user_name(user)}"
+    = link_to edit_admin_user_path(user.id), class: %i[btn btn-sm btn-info] do
+      i.fa.fa-pencil
+
+  / td.contact-type
+    i.fa.fa-phone
+  / td = user.phone_number
+
+  / td = user.sign_in_count
+  / td = l(user.current_sign_in_at, format: :short, default: '-')
+  / td = user.last_sign_in_ip
+
+

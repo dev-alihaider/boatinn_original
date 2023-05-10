@@ -1,0 +1,12 @@
+.rating-chart
+  .main-block
+    - 10.times do
+      span
+    .charts-block
+      - @statistic[:avg_sizes_by_grade].each do |grade, values|
+        .chart-item
+          .chart-item-inner style="height: #{values[:percents]}%"
+          span.number = "#{values[:percents]}%"
+          .star-block
+            - (grade).times do
+              i.fa.fa-star

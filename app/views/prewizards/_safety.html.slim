@@ -1,0 +1,4 @@
+section.section-block.prewiz-protection
+  .container-fluid
+    h2.section-title = raw prewizard_settings.safety_settings_title_main
+    .row = render partial: 'prewizards/safety_part', locals: {prewizard_settings: prewizard_settings}, collection: @three

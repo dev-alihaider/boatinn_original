@@ -1,0 +1,1996 @@
+en:
+  service_name: BoatINN
+  customer_service: 'customer service'
+  back: 'Back'
+  next: 'Next'
+  aggree: 'Yes'
+  disagree: 'No'
+  skip_for_now: 'Skip for now'
+  inn_time: 'Check-INN time'
+  out_time: 'Check-OUT time'
+  per_half_day: 'Per half day'
+  per_day: 'Per day'
+  per_night: 'Per night'
+  per_week: 'Per week'
+  from: 'From'
+  until: 'Until'
+  help: 'Help'
+  save_exit: 'Save & Exit'
+  step: 'Step'
+  finish: 'Finish'
+  price: 'Price'
+  navigation: 'Navigation'
+  email: 'Email'
+  your_email: 'Your email'
+  save: 'Save'
+  cancel: 'Cancel'
+  notifications: 'Notifications'
+  payout_preferences: 'Payout Preferences'
+  payment_methods: 'Payment Methods'
+  settings: 'Settings'
+  penalization: "Penalty Balance"
+  your_penalization_period: "Your current penalization period from %{from} to %{to}"
+  current_penalty: 'current penalty'
+  cancellations: "Your cancellations"
+  travel: "Travel"
+  canceled_at: "Canceled at"
+  penalty: "Penalty"
+  cancel_account: 'Cancel my account'
+  account_canceled: 'Your account has successfully been closed'
+  you_need_close_trips: 'You need to close all your open reservations first to close an account'
+  card_changed: 'Default card was changed successfully'
+  method: 'Method'
+  details: 'Details'
+  status: 'Status'
+  paypal: 'PayPal'
+  ready: 'Ready'
+  are_you_sure: 'Are you sure?'
+  bank_account: 'Bank Account'
+  edit: 'Edit'
+  remove: 'Remove'
+  delete: 'Delete'
+  close: 'Close'
+  default: 'Default'
+  booking_settings: 'Booking settings'
+  listing_details: 'Listing details'
+  your_listings: 'Your listings'
+  cancellation_policies: 'Cancellation policies'
+  type_of_boat: 'Type of Boat'
+  type_of_rental: 'Type of Rental'
+  experience: 'Experiences'
+  with_captain: 'With captain'
+  classic_charter: 'Classic charter'
+  sleepinn: 'SleepINN'
+  boat_shared: 'Boat shared'
+  minimum_price: 'Minimum price'
+  maximum_price: 'Maximum price'
+  all_listings: 'All listings'
+  support_contact: 'Support contact'
+  meta_description: "boatINN We are the only marketplace to enjoy nautical experiences, we offer experiences in boats of all types, all driven by local skippers."
+  stripe:
+    disconnect: 'Disconnect Stripe'
+    connect: 'Stripe connect'
+  activerecord:
+    errors:
+      template:
+        header: "Error. Please fix the following item and try again:"
+      messages:
+        too_many_attachments: 'is too many (maximum is %{count} attachments)'
+    attributes:
+      homepage_setting:
+        edit:
+          save_button: ""
+        search_bar:
+          title: 'Title'
+        community_preferences:
+          commpre_title:
+            title: 'Title'
+            link: 'Link'
+          image:
+            title: "Title image"
+            link: "Link"
+  braintree:
+    cc_not_found: Credit Card not found
+  legal_entity:
+    dob:
+      day: 'Day of birthday'
+      month: 'Month of birthday'
+      year: 'Year of birthday'
+  users:
+    shared:
+      ear_menu:
+        upcoming_reservations: Upcoming Reservations
+        payment_history: Payment History
+    cv:
+      boating_experience: Boating experience
+      boating_experience_options:
+        under_1: Under 1 Year
+        one_year: 1 Year
+        more_that_one_year: More than 1 Year
+        from_1_to_5: From 1 to 5 years
+        from_5_to_10: From 5 to 10 years
+        plus_10: +10 years
+      your_level: Your level
+      your_level_options:
+        never_sailed: Never sailed
+        begginer: Beginner
+        intermediate: Intermediate
+        very_good: Very good
+        pro: Pro
+        amateur: Amateur
+      your_preference: Your Preference
+      your_preference_options:
+        sail_boat: Sail Boat
+        power_boat: Power Boat
+        motorboat: Motorboat
+      hold_license: Do you hold a license?
+      hold_license_options:
+        costal: Costal
+        offshore: Offshore
+      name_license: Please, name your license
+      country_expedition: Country of residence
+      description: Description
+    payments:
+      card_number: "Card number *"
+      expires_on: "Expires on *"
+      security_cod: "Security code *"
+      add_card: Add card
+      card_not_present: 'Card not present'
+      first_name: First name
+      last_name: Last name
+      zip_code: "Zip code *"
+      country: "Country"
+      select_a_country: 'Select a country'
+      delete_credit_card: "You can't delete the last credit card"
+      holder_name: 'First name and Last name *'
+    notifications:
+      choose_options_to_communicate:  Choose your options to communicate with you.
+      phone_description: We use your phone number to contact you and for the guests that have already confirmed their reservation.
+      sms: SMS
+      sms_description: We will send you SMS notifications about your reservations status.
+      email_description: We will use your email to send notifications related to your account.
+      to_update_phone_email: To update your phone or email go to
+    confirmations:
+      confirmed:
+        notice: You´ve activated your account. <br /> Explore hundreds of unique spaces and list your own.
+    phone_verification:
+      sms_message: "Your BoatINN phone verification code: %{verification_code}"
+      success:
+        sent_verification_code: 'A verification code has been sent to your phone.'
+        phone_number_verified: 'Your phone number has been verified successfully.'
+      failure:
+        invalid_phone_number: 'Phone number is invalid.'
+        phone_number_already_verified: 'Sorry but this phone number is already verified.'
+        verification_code_cooldown: 'Please wait a few minutes before requesting a new verification code.'
+        verification_code_expired: 'Your verification code has expired. Please request another.'
+        verification_code_incorrect: 'Sorry but this verification code is incorrect.'
+    account:
+      inbox: 'Inbox'
+      statistics: 'Statistics'
+      your_trip: 'Trips'
+      your_listings: 'Listings'
+      calendar: 'Calendar'
+      earning: 'Earning'
+      earnings: 'Earnings'
+      your_reservations: 'Your Reservations'
+      account: 'Account'
+      profile: 'Profile'
+      notifications: 'Notifications'
+      getcode: 'Get the phone code'
+      code: 'Code'
+      configurations: 'Configurations'
+      add_payout_method: 'Add payout method'
+      add_payment_method: 'Add payment method'
+      payment_description: 'Payouts for reservations are released to you the day after your guests check in,and it takes some additional time for the money to arrive depending on your payout method'
+      cancel_my_account: 'Cancel my account'
+      dont_cancel_my_account: "Don't cancel my account"
+      tell_why: 'Tell us why you’re leaving'
+      reas_safety: 'I have safety concerns'
+      reas_privacy: 'I have privacy concerns'
+      reas_useful: 'I don’t find useful'
+      reas_understand: 'I don’t understand how to use it'
+      reas_temp: 'It’s temporary. I’ll be back'
+      reas_other: 'Other'
+      reas_other_text: 'Care to tell us more?'
+      care_tall: 'Care to tell us more?'
+      can_contact: 'Can we contact you for more details?'
+      what_happen: 'What’s going to happen'
+      will_disappear: 'Your profile and any listings will disappear'
+      miss_terribly: 'We’ll miss you terribly'
+      alternatives: 'Alternatives to canceling'
+      adjust_settings: 'Adjust my privacy settings'
+      adjust_settings_text: 'Turn off search indexing on your listing, preventing search engines such Google and Bing from displaying your listing in their search results.'
+      change_preferences: 'Change notification preferences'
+      change_preferences_text: 'Are we sending too much email? Change your notification preferences.'
+      hide_listings: 'Hide my listings'
+      hide_listings_text: 'Remove your listings from being viewed or found in search to stop hosting on BoatINN.'
+      reservations: 'Reservations'
+      payout:
+        payout_description: 'Payouts for reservations are released to you the day your guests check in, and it takes 5-7 business days for the money to arrive depending on your payout method'
+        add_payout_method: 'Add payout method'
+        account_is_not_verified: 'Account is not verified'
+      payment:
+        add_payment_method: 'Add payment method'
+        payment_description: 'Payouts for reservations are released to you the day after your guests check in,and it takes some additional time for the money to arrive depending on your payout method'
+      settings:
+        cancel_my_account: 'Cancel my account'
+      form_bank_account:
+        account_holder_name: 'Account holder name'
+        account_holder_type: 'Account holder type'
+        account_number: 'Account number (or IBAN)'
+        routing_number: 'Routing number'
+        currency: 'Currency'
+        country_name: 'Country name'
+        agree: 'I Agree with Stripe Connected Account Agreement'
+        bank_name: 'Bank name'
+    inbox:
+      travel_not_found: 'Travel not found'
+      type_of:
+        shared: 'Boat shared'
+        sleepin: 'Sleepin'
+        classic: 'Classic'
+      states:
+        accepted: 'Accepted'
+        canceled: 'Cancelled'
+        completed: 'Completed'
+        aborted: 'Canceled'
+        free: 'Message'
+      travelling_title: 'Travelling'
+      reservations_title: 'Reservations'
+      filter: 'Filter:'
+      all: 'All(%{count_msg})'
+      readed: 'Read(%{count_msg})'
+      unread: 'Unread(%{count_msg})'
+      reservations: 'Reservations(%{reservations_msg})'
+      pending: 'Pending(%{pending_msg})'
+      statuses:
+        for_client:
+          reserved_title: "Reservation confirmed."
+          reserved_desc: "Your host %{seller_name} is available to answer any questions about your trip"
+          canceled_by_seller_title: "Unfortunately your reservation has been cancelled by %{seller_name}."
+          canceled_by_seller_desc: ""
+          canceled_by_seller_desc2: "The %{service_name} team is working to offer you some similar listing, we will get back to you as soon as we have the most suitable offers for you."
+          canceled_by_client_title: "Your reservation has been cancelled."
+          canceled_by_client_desc: "You will receive a full refund of %{total_amount} based on %{seller_name}`s %{cancellation_policy} cancellation policy. You should expect to receive this amount in your %{source_name} in 10 business days."
+          joined_title: "Reservation confirmed."
+          joined_desc: "This chat contains all the information since it was created. Make sure you read all the previous messages to be up to date with the rest of the crew."
+          urgent_payment_title: "Problem with payment."
+          urgent_payment_desc: "Dear %{sender_name}, unfortunately there was a problem with processing your card for a payment %{urgent_amount}. You can use another card to make a payment. After card was added, it will be automatically charged. Also you can add money to your card and then press button 'Make payment'. You have 48 hours to make that or the booking would be cancelled automatically"
+          finished_title: 'You have finished your trip.'
+          finished_desc: 'You have %{days_to_expire_review} days to write a review to %{seller_name}. In the unlikely event that you have any issues please contact our %{customer_service_link}.'
+          finished_shared_title: 'You have finished your trip.'
+          finished_shared_desc: 'You have %{days_to_expire_review} days to write a review to %{seller_name}. In the unlikely event that you have any issues please contact our %{customer_service_link}.'
+          finished_and_reviewed_title: "Trip successfully finished"
+          finished_and_reviewed_desc: "Hope you enjoyed your trip and had a great experience! Thank you for choosing BoatINN!"
+          free_title: 'Chat with %{seller_name}'
+          free_desc: 'Your host %{seller_name} is available to answer any questions about your trip.'
+        for_seller:
+          reserved_title: "Confirmed! %{sender_name} arrives on %{human_date_check_in}."
+          reserved_desc: "Don’t forget to send a message to %{sender_name} with all the details"
+          canceled_by_seller_title: "You have cancelled this reservation."
+          canceled_by_seller_desc: ""
+          canceled_by_client_title: "%{sender_name} has cancelled this reservation."
+          canceled_by_client_desc: "You will received a payment for this transaction based on the cancellation policy you have chosen."
+          joined_title: "Congratulations %{sender_name} has confirmed %{added_guests} passengers."
+          joined_desc: "You have <strong>%{all_guests} passengers</strong> at the moment but remember you boat shared listing has been activated so it will be more visible for passengers now."
+          joined_first_title: "Your boat shared listing has been confirmed."
+          joined_first_desc: "You have <strong>%{all_guests} passengers</strong> at the moment but remember you boat shared listing has been activated so it will be more visible for passengers now."
+          boat_full_title: "Congratulations your boat is fully booked now."
+          boat_full_desc: "You have <strong>%{all_guests} passengers</strong>"
+          shared_canceled_by_client_title: "%{sender_name} has cancelled his reservation."
+          shared_canceled_by_client_desc: "You have <strong>%{all_guests} passengers</strong>, remember you boat shared listing has been activated so it will be more visible for passengers now."
+          finished_title: '%{client_name} has finished his trip.'
+          finished_desc: 'You have %{days_to_expire_review} days to write a review to %{review_receiver_name}. In the unlikely event that you have any issues please contact our %{customer_service_link}.'
+          finished_shared_title: 'You have finished your trip.'
+          finished_shared_desc: 'You have %{days_to_expire_review} days to write a review to your clients. In the unlikely event that you have any issues please contact our %{customer_service_link}.'
+          finished_and_reviewed_title: "Trip successfully finished"
+          finished_and_reviewed_desc: "Hope you enjoyed your trip and had a great experience! Thank you for choosing BoatINN!"
+          free_title: 'Chat with %{sender_name}'
+          free_desc: 'Don’t forget to send a message to %{sender_name} with all the details'
+      show:
+        say_something: "Say something..."
+        send: 'Send'
+        filter_from_all_participants: 'All participants'
+        new_message_sms_notification: "%{sender_name} send a new message in BoatINN chat: %{chat_url}"
+        transitions:
+          joined: "%{author_name} joined %{date}"
+          joined_many: "%{author_name} has joined with %{guests} friends %{date}"
+          reserved: "Reservation confirmed %{date}"
+          canceled: "%{author_name} has cancelled his reservation %{date}"
+        booking_sidebar:
+          ver_rev_count: '%{ver_count} verifications • %{rev_count} reviews'
+          email: Email
+          phone_number: Phone number
+          reservation_details: Reservation details
+          deluxe_boat: 'Deluxe boat <br/> in %{city}'
+          note: ''
+          total: 'Total (%{currency})'
+          earn: 'Total (%{currency})'
+          due_date: Due date
+          due_transfer: Due %{date}*
+          due_now: Due now
+          due_transfer_desc: "* We`ll automatically transfer the balance payment on %{date}"
+          cancel_booking: Cancel this booking
+          about_guest: "About the guest"
+          about_guests: "About the guests"
+          need_cancel: "If you need to cancel this listing click in the following link. Support contact"
+          members: "Boat shared members"
+          friend: "friend"
+          friends: "friends"
+          booking_canceled: "Booking cancelled"
+          view_full_calendar_to_edit: View full calendar to edit
+        sidebar:
+          checkout_details_for_client:
+            description: "This helps us run out platform an offer services like 24/7 support on your reservation. It includes taxes."
+          checkout_details_for_seller:
+            description: "Service fee is a commission, that would be taken by the BoatINN for providing protection of the Deal"
+        booking_status:
+          cancellation_reason: "Cancellation reason"
+      reviews:
+        received_reviews: 'Reviews about you'
+        given_reviews: 'Reviews by you'
+        review_about_receiver: 'Review about <a href="%{receiver_link}"><strong>%{receiver_name}</strong></a>'
+        review_from_sender: 'Review from %{sender_name}'
+        leave_review: 'Leave a review'
+        public_reply: 'Public reply'
+        send_reply: 'Send'
+        response_from_person: 'Response from %{person_name}'
+        review_pending_both_sides: >
+          We hope that you have had the best experience with %{receiver_name}. Now is time for both of
+          you to tell us a bit more about each other. You won't be able to read %{receiver_name}'s
+          review until you leave a review. You have %{days_to_expire} days to leave the review after that you won't be
+          able to leave a review.
+        review_pending_for_sender: >
+          %{receiver_name}' already left a review about you. If you would like to see %{receiver_name}''s review you
+           have to leave a review about %{receiver_name}'. You have %{days_to_expire} days left to leave a review
+           after that, you won't be able to leave a review about %{receiver_name}'.
+        create:
+          write_a_review: 'Write a review'
+          review_placeholer: 'Say something'
+          submit: 'Submit'
+          public_review_header: 'Describe your experience'
+          public_review_description: 'Your review will be public in the guest profile'
+          private_review_header: 'Private guest feedback'
+          private_review_description: "We won't make it public"
+          will_be_public_to_host: 'Your review will be public in the host profile'
+          private_review_to_host: 'Private owner feedback'
+          review_saved: 'Review added'
+          cleanliness_grade: 'Cleanliness'
+          cleanliness_grade_about_travel: 'Did the owner respect the cleanliness rules?'
+          cleanliness_grade_about_guest: 'Did the guest respect the cleanliness rules?'
+          communication_grade: 'Communication'
+          communication_grade_about_travel: 'How clear was the owner communication?'
+          communication_grade_about_guest: 'How clear was the client communication, questions and concerns?'
+          boat_rules_grade: 'Boat rules'
+          boat_rules_grade_about_guest: 'Did the guest respect the boat rules?'
+          accuracy_grade: 'Accuracy'
+          accuracy_grade_about_travel: 'What the experience accurate to the offer?'
+          location_grade: 'Location'
+          location_grade_about_travel: 'How would you rate the location of the boat?'
+          check_in_grade: 'Check In'
+          check_in_grade_about_travel: 'Did the owner respect the check in time?'
+          value_grade: 'Value'
+          value_grade_about_travel: 'What is your average rate for this experience?'
+          recommend_grade: 'Would you recommend this guest?'
+          recommend_grade_description: 'Did the guest respect the boat rules?'
+      index:
+        accept: 'Accept'
+        cancel: 'Cancel'
+    listings:
+      boat_sleepin_shared:
+        tooltip_boat_shared: "Boat shared is only available with instant book"
+      show:
+        boat_rental: 'Rent a boat in '
+        nautical_experience: 'Nautical experience in '
+        description: 'Description'
+        overview: 'Overview'
+        reviews: 'Reviews'
+        the_host: 'The Host'
+        location: 'Location'
+        boat_handled_by_a_professional: '<p>Boat handled by a <span>professional captain</span></p>'
+        reviews_count: '%{count} reviews'
+        guests_count: '%{count} guests'
+        passengers_count: 'Passengers: %{count}'
+        cabins_count: 'Cabins: %{count}'
+        beds_count: '%{count} beds'
+        sleep_count: 'Sleep: %{count}'
+        cancellations: 'Cancellations'
+        accuracy: 'Accuracy'
+        communication: 'Communication'
+        boat_rules: 'Boat rules'
+        cleanliness: 'Cleanliness'
+        check_in: 'Check in'
+        value: 'Value'
+        languages: 'Languages'
+        response_rate: 'Response Rate'
+        response_time: 'Response time'
+        similar_listings: 'Similar listings'
+        booking_calculator:
+          from: 'From'
+          check_in: 'Check in'
+          check_out: 'Check out'
+          price: 'Price'
+          rental_type: 'Rental type'
+          captain: 'With captain'
+          cleaning_fee: "Cleaning fee"
+          skipper_fee: "Skipper fee"
+          want_sleep: "I want to sleep aboard"
+          dont_want_sleep: "I don't want to sleep aboard"
+          sum_caption:
+            half_day: 'half day'
+            full_day: 'full day'
+            night: 'night'
+            sleepin: 'sleepin'
+            week: 'week'
+            shared: 'shared'
+          price_type:
+            half_day_short: 'Half day'
+            half_day: 'Half day (4 hours)'
+            full_day_short: 'Full day'
+            full_day: 'Full day (8 hours)'
+            per_night: 'Per night'
+            per_week: 'Per week'
+            boat_shared: 'Boat shared'
+            sleepinn: 'SleepINN'
+          passengers: 'Passengers'
+          price_per_passenger: 'Price per passenger'
+          service_fee: 'Service fee'
+          service_fee_tooltip:
+            title: 'Why service fee?'
+            description: 'This helps us run out platform an offer services like 24/7 support on your reservation. It includes taxes.'
+          subtotal: 'Subtotal'
+          total: 'Total'
+          you_wont_be_charged_yet: "You won't be charged yet"
+          instant_book: 'Instant Book'
+          request_a_book: 'Request a book'
+          or: 'or'
+          message_to_owner: 'Message to owner'
+          message_placeholder: 'Your message...'
+          send: 'Send'
+      not_found:
+        title: "The page you were looking for doesn't exist."
+        description1: 'You may have mistyped the address or the page may have moved.'
+        description2: 'If you are the application owner check the logs for more information.'
+      edit:
+        about_the_listing: 'About the listing'
+        the_space: 'The space'
+        prices: 'Prices'
+        security_deposit: 'Security deposit'
+        skipper: 'Skipper'
+        the_port: 'The port'
+        accommodates: 'Accommodates'
+        sleep: 'Sleep'
+        cabins: 'Cabins'
+        beds: 'Beds'
+        bathrooms: 'Bathrooms'
+        guests_number: 'Guest number'
+        the_boat: 'The boat'
+        location: 'Location'
+        photos: 'Photos'
+        rental_requirements: 'Rental requirements'
+        check_in_time_is: 'Check in time is'
+        check_out_time_is: 'Check out time is'
+        minimum_to_stay: 'Minimum stay'
+        additional_fees: 'Additional fees'
+        fuel: 'Fuel'
+        bedclothes_and_towels: 'Bedclothes + towels'
+        per_person: 'per person'
+        cleaning_fee: 'Cleaning fee'
+        skipper_fee: 'Skipper fee'
+        paddle_surf: 'Paddle surf'
+        welcome_pack: 'Welcome pack'
+        others: 'Others'
+        details: 'Details'
+        type: 'Type'
+        year: 'Year'
+        model: 'Model'
+        length: 'Length'
+        passengers: 'Passengers'
+        builder: 'Builder'
+        experience: 'Experience'
+        name: 'Name'
+        min_rent_time: 'Minimum rental time'
+        price_per_half_day: 'Price per half day'
+        price_per_day: 'Price per day'
+        price_per_night: 'Price per night'
+        price_per_week: 'Price per week'
+        cancellation_policy: 'Cancellation policy'
+        seasonal_rates:
+          title: 'Seasonal rates'
+          dates: 'Dates'
+          min_stay: 'Min. Stay'
+          price_per: 'Price per:'
+          half_day: 'Half day'
+          full_day: 'Full day'
+          night: 'Night'
+          week: 'Week'
+      booking_settings:
+        how_instant_booking_works: 'How instant booking works'
+        some_guests: 'Guests who meet all your requirements can book without requesting approval'
+        all_guests: 'All guests must send reservation request'
+        annotation_guests: 'Anyone else must send a reservation request'
+        recommended: 'Recommended'
+        choose_policy: 'Choose your policy for trip cancellations by guests.'
+        view_details: 'View the full details for these cancellation policies'
+        flexible: 'Flexible'
+        moderate: 'Moderate'
+        strict: 'Strict'
+        flexible_text: 'Full refund up to 15 days prior to arrival'
+        moderate_text: 'Full refund up to 30 days prior to arrival'
+        strict_text: 'Full refund up to 60 days prior to arrival'
+        rental_agreement: 'Rental agreement'
+        rental_agreement_text: ''
+        increase_earnings: 'Increase your earnings with Instant Book'
+        increase_earnings_text: 'Instant book can give your listing an edge. Not only do guests prefer to book instantly, we are promoting instant book listing in search results'
+        turn_on_instant_book: 'Turn on Instant Book'
+        turned_on_message: 'You have turned on Instant booking for Classic charter'
+        turned_off_message: 'You have turned off Instant booking for Classic charter'
+      sleepin:
+        title: 'Boat sleepINN listing'
+        max_number_of_passengers: 'Max. number of passengers'
+        price_per_night: 'Price per night'
+        for_each_guest_after: 'For each guest after'
+        extra_guest: 'Extra guest price'
+        info: 'Info'
+        description: '<span>choose a minimum number of passengers that you consider is worth to charter your boat and cover the boat expenses of the day.</span><p>Bear in mind that if you manage to fill up the boat you get an extra income compare to the classic charter.</p>'
+      sharing:
+        title: 'Boat shared listing'
+        boat_starts: 'Boat shared starts at:'
+        boat_finish: 'Boat shared finish at:'
+        min_number_of_passengers: 'Min. number of passengers'
+        max_number_of_passengers: 'Max. number of passengers'
+        price_per_person: 'Price per person'
+        agree_text: 'I agree to use Instant booking'
+        info: 'Info'
+        description: "<span>choose a minimum number of passengers that you consider is worth to charter your boat and cover the boat expenses of the day.</span><p>Bear in mind that if you manage to fill up the boat you get an extra income compare to the classic charter.</p><p>Remember to update your calendar with the dates you're willing to offer the boat shared charter.</p>"
+      port:
+        title: 'The port'
+        subtitle: 'Describe your port'
+      wishlist:
+        index:
+          wish_list: 'Wish list'
+    calendar:
+      tab_all: 'All'
+      month: 'Month'
+      year: 'Year'
+      dates: 'Dates'
+      available: 'Available'
+      blocked: 'Blocked'
+      block_this_dates_in_all_calendars: 'Block these dates in all calendars'
+      index:
+        half_day: "Half day"
+        full_day: "Full day"
+        day_night: "Full day & night"
+        sleepin: "Sleepinn"
+        shared: "Boat shared"
+        booked: "Booked"
+        blocked: "Blocked"
+      no_boats_found: No boats found
+      no_finished_boats_found: No finished boats found
+      finish_boat: Finish boat
+      cannot_modify_booked_dates: You can't block/unblock these dates because they have bookings.
+    profile:
+      menu:
+        edit_profile: edit profile
+        photos: Photos
+        trust_and_verification: Trust and Verification
+        reviews: Reviews
+        your_cv: Your CV
+        view_profile: View profile
+      profile_photo: Profile photo
+      profile_photo_description: It's better to add photos of the face that are sharp and straight out. Make sure to use a photo in which you can see your face well.
+      default_omniauth_image_displayed: Default %{provider} image displayed.
+      upload_image: Upload image
+      deleted_profile_image: Profile image successfully deleted!
+      verified_info: 'Verified info'
+      email_adress: 'Email address'
+      phone_number: 'Phone number'
+      verified: Verified
+      verify_new_number_by_sms: SMS verification
+      verify: Verify
+      introduce_5_digits_code: Introduce 5 digits code
+      info_about_sms_code: 'We’ll send to your phone a 5 digit number to confirm. Sending code cooldown: 1 minute, verification code expiring: 10 minutes.'
+      review_from: 'Review from <a href="%{reviewer_link}"><strong>%{reviewer}</strong></a>'
+      verification: 'Your verified info'
+      email_confirmed: "Your email address has been confirmed <b>%{email}</b>"
+      phone_confirmed: "Your phone number <b>%{number}</b> has been confirmed"
+      phone_not_confirmed: "Your phone number <b>%{number}</b> hasn't been confirmed"
+      omniauth:
+        same_emails_warning: Email address in BoatINN account and %{provider} must be same otherwise new BoatINN account will be created
+        facebook: Facebook
+        facebook_description: Sign in Facebook and discover your trusted connections
+        google: Google
+        google_description: Sign in Google and discover your trusted connections
+        connected: Connected
+        disconnected: Disconnected
+        disconnected_message: Your %{provider} account successfully disconnected and public data deleted.
+      gender: 'Gender'
+      birthday:
+        label: Birth date
+        prompt_month: Month
+        prompt_day: Day
+        prompt_year: Year
+      language: 'Preferred language'
+      currency: 'Preferred currency'
+      where_you_live: 'Where you live'
+      describe_yourself: 'Describe yourself'
+      recommended_by_hosts_size: '%{username} is recommended by %{count} hosts'
+      edit_profile: 'Edit profile'
+      first_name: 'First Name'
+      your_first_name: 'Your first name'
+      last_name: 'Last Name'
+      your_last_name: 'Your last name'
+      nie: 'NIE (only if you need billing)'
+      reviews: 'Reviews'
+      your_cv: 'Your CV'
+      check_email: 'Please check your email for confirm new email.'
+      reviews_about_you: 'About you'
+      reviews_from_you: 'From you'
+      view_more_reviews: 'View more'
+      load_more_reviews: 'Load more'
+      private_review: 'Private review'
+      joined: 'Joined - %{joined}'
+      show:
+        listings: 'Listings (%{count})'
+        name: "Hi! I'm %{username}"
+        joined: 'Joined in %{joined}'
+        report: 'Report this user'
+        reviews: 'Reviews (%{review_count})'
+    reservations:
+      sidebar:
+        view_full_year: <strong>View full year</strong>
+      transfer_date: 'Transfer date'
+      table_booking:
+        reservations_details: 'Reservation details'
+        download_bill: 'View Invoice'
+        transfer_date: 'Transfer date'
+        details: Details
+        amount: Amount
+        confirmed: 'Confirmed'
+        cancellation_penalty: 'Cancellation penalty'
+        total: 'Total'
+      table_calc:
+        total: 'Total'
+        will_be_transfer: 'Upcoming reservations'
+        transfered_sum: 'Completed earnings'
+    reviews:
+      given_review:
+        private_review: "Private review"
+      received_review:
+        private_review: "Private review"
+  reports:
+    report: Report
+    submit: Submit
+    review_modal:
+      title: Do you want to anonymously report this review?
+      description: If so, please choose one of the following reasons
+      reason_1: Inappropriate Content
+      reason_1_description: This review contains violent, graphic, promotional, or otherwise offensive content
+      reason_2: Dishonest or hateful content
+      reason_2_description: This review is purposefully malicious and assaulting
+      reason_3: Fake content
+      reason_3_description: This review contains false information or may be fake
+    user_modal:
+      title: What's happening?
+      description: This will only be shared with BoatINN
+      details_placeholder: Enter here detailed description of the problem
+      reason_section_1: I think they are scamming or spamming me
+      reason_4_description: They asked me to pay outside of BoatINN
+      reason_5_description: They asked me to communicate outside of BoatINN
+      reason_6_description: They advertised or solicited something
+      reason_7_description: They collect fees or deposits outside of BoatINN
+      reason_8_description: They offered another listing
+      reason_section_2: They are being offensive
+      reason_9_description: They’re being discriminatory
+      reason_10_description: They’re being inappropriate
+      reason_11_description: They’re being abusive or hostile
+      reason_section_3: Something else
+      reason_12_description: The host is unresponsive
+      reason_13_description: They collect fees or deposits outside of BoatINN
+      reason_14_description: My host is asking me to cancel
+      reason_15_description: I’m concerned they’re hosting in my neighborhood
+      reason_16_description: Something on this page is broken
+    email_subjects:
+      review_report: New report about review
+      user_report: New report about user
+    successfully_sent_review_report: Your review report has been sent successfully.
+    successfully_sent_user_report: Your report successfully sent to our support team. Thank you!
+  registrations:
+    errors:
+      email: "Please, enter your email"
+      password: "Please, enter your password"
+      first_name: 'Please, enter your first name'
+      last_name: 'Please, enter your last name'
+      birthday_not_set: 'Birthday not selected'
+      birthday_old: 'You must be 18 or older'
+  admin:
+    mailbox:
+      compose:
+        to: 'To'
+        subject: 'Subject'
+        emails: 'Emails'
+      emails_blank: 'Recipient not found'
+      subject_or_conent_blank: 'Subject and content can`t be blank'
+      emails_sent: 'Emails sent'
+      groups:
+        all: 'All users'
+        owners: 'Only sellers'
+        clients: 'Only buyers'
+        manual: 'Type an email of the user'
+    general:
+      check_user:
+        not_admin_message: "You don't have administration permissions"
+      count_symbols_100: 'Must be 5 - 100 characters'
+      count_symbols_300: 'Must be 5 - 300 characters'
+      image_label: 'Image'
+      choose_image: 'Choose image'
+      delete_image: 'Delete image'
+      title_image: 'Title image'
+      link_image: 'Link image'
+      title_label: 'Title'
+      preference_label: 'Preference'
+      link_label: 'Link'
+      descr: 'Description'
+      strip_color: 'Strip color'
+    dashboard:
+      homepage:
+        search_bar_location:
+          h2_title: 'Search bar location'
+        sidebar_name: 'Home page settings'
+        marketplace_slogan:
+          h2_title: 'Marketplace slogan'
+        experience_section:
+          h2_title: 'HTML Block/Experience section'
+        community_preferences:
+          h2_title: 'HTML Block/Most popular experiences'
+        community_for_sharing:
+          general:
+            title: 'Title'
+            descr: 'Description'
+            strip_color: 'Strip color'
+        add_listing_section:
+          general:
+            title: 'Title'
+            descr: 'Description'
+            strip_color: 'Strip color'
+            howwork: 'What is boatINN and how does it work?'
+          advantage:
+            advantage: 'Advantage'
+            title: 'Title'
+            descr: 'Description'
+      prewizard:
+        sidebar_name: 'Prewizard settings'
+        rent_your_boat:
+          title: 'Rent your boat'
+        explain_settings:
+          title: 'Explain settings'
+        safety_settings:
+          title: 'Safety settings'
+      faq:
+        sidebar_name: 'FAQs'
+        successfully_updated_faq: 'Successfully updated'
+        successfully_added_faq: 'Successfully created'
+        edit_question: 'Edit Question'
+        checkbox_visibility: 'Visibility on Prewizard'
+        sort_order: 'Sort order'
+        description: 'Description'
+      mailbox:
+        mailbox: 'Mailbox'
+        send_email: 'Send email'
+        send_email_btn: 'Send email'
+      users:
+        sidebar_name: 'Manage users'
+        search: 'Search'
+        search_placeholder: 'Search by email/name'
+        clear_filters: 'Clear filters'
+        name: 'Name'
+        email_address: 'E-mail address'
+        date_registered: 'Date registered'
+        block_unblock_user: 'Block/Unblock user'
+        block: 'Block'
+        user_is_blocked: 'User is blocked!'
+        unblock: 'Unblock'
+        user_is_unblocked: 'User is unblocked.'
+        blocked_at: 'Blocked at %{datetime}'
+        boat_owner: 'Boat owner'
+        is_boat_owner: 'Yes'
+        not_boat_owner: 'No'
+        number_of_boats: 'Number of boats'
+        sign_in_count: 'Sign in count'
+        sign_in_at: 'Sign in at'
+        last_sign_in_ip: 'Last sign in IP'
+        cancellations: 'Cancellations'
+        log_in_as_user: 'Log in as user'
+        user_became_admin: 'User has became an administrator.'
+        user_revoked_admin: 'Administrator has became an user.'
+        cannot_perform_action_yourself: 'You cannot perform this action on yourself!'
+        actions: Actions
+        password: Password
+        password_confirmation: Password confirmation
+        created_at: Created at
+        confirmation_sent_at: Confirmation sent at
+        confirmed_at: Confirmed at
+        is_admin: Is admin
+        closed_account: Closed account
+        facebook_image: Facebook image
+        google_image: Google image
+        facebook_data_in_yaml_format: Facebook data in YAML format
+        google_data_in_yaml_format: Google data in YAML format
+      bookings:
+        sidebar_name: "View transactions"
+        boat_name: "Listing name"
+        rental_type: "Rental type"
+        check_in: 'Check in'
+        check_out: 'Check out'
+        rental_types:
+          sleepin: "sleepin"
+          week: "per week"
+          half_day: "half day"
+          one_day: "full day"
+          shared: 'shared'
+          night: "per night"
+        seller_name: "Boat owner"
+        client_name: "Client"
+        booked_at: 'Booked at'
+        travels_at: "Travel dates"
+        check_in_at: 'Check in'
+        reservation_code: 'Reservation code'
+        seller_code: 'Owner code'
+        client_code: 'Client code'
+        number_of_guests: 'Guests'
+        price: 'Total cost'
+        status: 'Status'
+        search: "Search"
+        edit: 'edit'
+        actions: 'actions'
+        quests: 'Guests'
+        per_quantity: 'Duration'
+        cancellation: 'Cancellation'
+        cancel_as_seller: 'Cancel like seller!'
+        canceled_by_seller: 'Booking cancelled by seller'
+        canceled_by_client: 'Booking cancelled by client'
+        cancellations:
+          flexible: 'flexible'
+          moderate: 'moderate'
+          strict: 'strict'
+        statuses:
+          accepted: "accepted"
+          canceled: "cancelled"
+          open: 'Open'
+          closed: 'Closed'
+        subtotal: 'Subtotal'
+        service_fee: 'BoatINN earn'
+        client_fee: 'Fee from client'
+        seller_fee: 'Fee from seller'
+        client_paid: 'Total for client'
+        seller_earnings: 'Seller earnings'
+      reviews:
+        sidebar_name: 'Manage reviews'
+        created_at: Created at
+        reviewed_at: Reviewed at
+        boat_name: Boat name
+        inbox_link: Inbox link
+        about: About
+        rating: Rating
+        status: Status
+        left_by: Left by
+        left_for: Left for
+        reports: Reports
+        reports_count: 'Reports (%{count})'
+        recommended: Recommended
+        show_hide: 'Show/Hide'
+        average: Average
+        confirm_delete: Are you sure (all reports about this review will be also deleted)?
+      reports:
+        sidebar_name: Manage reports
+        manage_review_reports: Manage review reports
+        manage_user_reports: Manage user reports
+        sidebar_about_review: About review
+        sidebar_about_user: About user
+        report_created_at: Report created at
+        review_created_at: Review created at
+        reason: Reason
+        details: Details
+        boat_name: Boat name
+        seller_name: Boat owner
+        report_author: Report author
+        report_about: Report about
+        review_author: Review author
+        edit_review: Edit review
+        report_details: Report details
+  homepage:
+    share_a_boat: 'Share a boat'
+    rent_a_boat: 'Rent a boat'
+    community_preferences: 'MOST POPULAR EXPERIENCES'
+    list_your_boat: 'List your boat'
+    sign_up: 'Sign up'
+    login: 'Login'
+    title_home: 'Boat rental to enjoy nautical experiences'
+  prewizard:
+    section_title: 'Earn money renting your boat'
+    get_started: 'Get started'
+    rent_your_boat: 'Rent your boat'
+    no_matter_what: 'No matter what type of boat you have to partials or rent. BoatINN makes it simple and secure to earn money.'
+    you_are_in_control: 'You’re in control'
+    with_boatINN_you_are: 'With boatINN you’re in full control of your availability, prices, boat rules and how you interact with guests.'
+    we_look_after_you: 'We look after you'
+    boatINN_offers_tools: 'BoatINN offers tools, support and an online community of experiences captains for questions and sharing ideas.'
+    frequently_asked_questions: Frequently Asked Questions
+    start_creating_your_listing: Start creating your listing
+  faq:
+    title: FAQ
+    general: General
+    for_renters: For renters
+    for_owners: For owners
+  wizards:
+    index:
+      change: Change
+      continue: Continue
+      wait: Wait
+      greeting: 'Hi %{user_name}!<br />It’s time to list<br /><span class="mark">your boat</span>'
+      location: 'Location...'
+      type_boat: 'Type of boat...'
+      number_passenger: 'Nº passenger...'
+      check_in: 'Check IN time'
+      check_out: 'Check OUT time'
+      page01:
+        boat_type:
+          catamaran: 'Catamaran'
+          power_boat: 'Power boat'
+          sailing_boat: 'Sailing boat'
+          jet_sky: 'Jet ski'
+          rib: 'RIB'
+          pontoon: 'Pontoon'
+      page02:
+        title: 'Tell us more about your boat'
+        description: 'Future sailors like to know more details about your boat.'
+        builder: 'Who is the builder?'
+        builder_placeholder: 'Fincantieri Yachts'
+        model: 'What model?'
+        model_placeholder: 'Ganimede'
+        length: 'Length'
+        length_placeholder: 'Length in meters'
+        length_feet_placeholder: 'Length in feet'
+        meters: 'Meters'
+        feet: 'Feet'
+        year_construction: 'Year of construction'
+        step_text: 'Step 1: Lets start your listing'
+      page03:
+        title: 'Let’s describe your listing'
+        description: '<span>Write about your boat Number of berths, equipment, safety features.</p><p>The history of the boat, your use of this boat (family outings, regattas). About your area! Things to see in your area (best restaurants, places to moor, a pretty cove, a place not to be missed).</span><p>Some ideas on things to do with your boat (tell us about the best places to visit from your boat’s harbour of departure).</p><p>About you! Why did you buy this boat? In which harbour is it located? A short anecdote.</p>'
+        name: 'Title'
+        desc: 'Description'
+        step_text: 'Step 2: Lets continue'
+      page04:
+        title: 'Boat features'
+        description: 'providing guests the essentials make their experience more pleasant, help you get good reviews, and so your listing to be better positioned in the list. Some captains offer a welcome drink or snack.'
+        out_equ: 'Outdoor equipment'
+        step_text: 'Step 3: Doing good!'
+      page05:
+        are_boating_with_captain: 'Are boating with captain?'
+        with_captain: 'With captain'
+        without_captain: 'Without captain'
+        with_or_without_captain: 'With or without captain'
+        title: 'How many passengers can you accommodate?'
+        description: 'this information just help clients to decide and know more about your boat '
+        cabins: 'Nº of cabins'
+        beds: 'Nº of beds'
+        guests: 'Nº of guests that can sleep aboard'
+        bathrooms: 'Nº of bathrooms'
+        step_text: 'Step 4: Ready for sailors'
+      page06:
+        title: 'What time would your sailors be able to arrive/leave?'
+        description: 'boatINN make sure that every customer receive a notification the night before with all the details including the location'
+        min_rent_time: 'Minimum rental time'
+        step_text: 'Step 5: Doing good!'
+      page07:
+        title: 'Experiences'
+        description: 'Get more chances to generate reservations by offering different activities that you enjoy or are good at and you are willing to share.'
+        step_text: 'Step 6: Doing good!'
+      page-final01:
+        title: 'Good job <span class="mark">%{user_name}</span>!'
+        subtitle: 'Let’s continue and get ready to charter'
+      page09:
+        title: 'Add your photo'
+        description: 'BoatINN is based on trust. Guests like to see what your face looks like.'
+        facebook: 'Use Facebook photo'
+        upload: 'Upload'
+        save: 'Save'
+        successfully_imported_facebook_picture: 'You have successfully imported Facebook profile image.'
+        successfully_uploaded_profile_image: 'Profile image successfully uploaded!'
+        failure_uploading_profile_image: 'There is errors during profile image uploading.'
+        step_text: 'Step 7: Doing good!'
+      page10:
+        title: 'Verify your phone number'
+        subtitle: 'To get started, enter your phone number. We’ll send to your phone a 5 digit number to confirm. Sending code cooldown: 1 minute, verification code expiring: 10 minutes.'
+        description: 'only confirmed guests get your phone number. This helps guests contact you quickly if needed.'
+        phone: 'Phone number'
+        send: 'Send code'
+        code: 'Enter code'
+        verify: 'Verify code'
+        step_text: 'Step 8: Doing good!'
+        status: 'Status:'
+      page11:
+        title: 'Where is your boat located?'
+        refine-search-text: 'Refine your search'
+        step_text: 'Step 9: Doing good!'
+      page12:
+        title: 'Show sailors what your boat looks like'
+        info: 'For better photos'
+        description: >
+          <span>Many hosts have at least 8 photos. You can start with just one photo
+          and come back later to add more. Including photos of all the spaces a
+          guest can use helps guests imagine staying at your place.</span>
+          <p>Make sure the room is well-lit. Or take photos during daylight
+          hours.</p>
+          <p>Sometimes shooting from a corner (instead of straight-on) gives
+          you a better shot.</p>
+          <p><span class="mark">Image upload rules:</span>
+          <ul class="images-rules">
+          <li>max number of images: %{max_images_count}</li>
+          <li>max file size: %{max_image_size}</li>
+          <li>supported file types: JPEG, PNG</li>
+          </ul></p>
+        upload: 'Add more'
+        drag: 'Upload your image or drag them in'
+        step_text: 'Step 10: Doing good!'
+        uploading_boat_image: 'Uploading images'
+        successfully_saved_boat_images: 'Boat photos successfully saved!'
+        successfully_uploaded_boat_image: 'Boat image successfully uploaded!'
+        successfully_deleted_boat_image: 'Boat image successfully deleted!'
+        successfully_updated_boat_images_priority: 'Boat images priority successfully updated!'
+        failure_saving_boat_images: 'There is errors during boat photos saving.'
+        confirmation_deleting_image: 'Are you sure you want to delete image?'
+        image_hint: 'Please upload or drag & drop the images one at a time'
+      page14:
+        title: 'Currency'
+        description: 'the more attractive your prices are the more chances you have to get reservations'
+        currency_label: 'You will receive the payments in this currency'
+        currency: 'Currency'
+        prices: 'Prices'
+        step_text: 'Step 11: Doing good!'
+        per_day: 'Per day'
+        per_night: 'Per night'
+      page15:
+        title: 'Add your seasonal rates'
+        description: 'Add a different price for special dates or seasonal prices.'
+        name_offer: 'Name your offer'
+        min_state: 'Minimum stay'
+        step_text: 'Step 12: Doing good!'
+        season_name: 'Season name'
+        min_stay_half_day: '1/2 day'
+        min_stay_1_day: '1 day'
+        min_stay_2_days: '2 days'
+        min_stay_3_days: '3 days'
+        min_stay_4_days: '4 days'
+        min_stay_5_days: '5 days'
+        min_stay_6_days: '6 days'
+        min_stay_1_week: '1 week'
+        min_stay_2_weeks: '2 weeks'
+        min_stay_3_weeks: '3 weeks'
+      page16:
+        title_additional_fees: 'Additional fees'
+        title_extras: 'Extras'
+        description: 'Add a different price for special dates or seasonal prices.'
+        step_text: 'Step 13: Doing good!'
+      page17:
+        title: 'Would you like to increase your reservations chances?'
+        description: '<p>Once you have registered your boat you’ll be able to activate the boat shared and the sleepINN options which will increase your reservations chances and the positioning of your listing aswell.</p><p><strong>Sharing:</strong> This option allows people to share the costs of the rental. Attracting more customers to see experiences thanks to the affordable prices. You fix a minimum number of passengers, whenever the boat is full you make more incomes. Try it.</p><p><strong>Sleeping:</strong> 90% of boats are used less than 21 days a year. Many customers might be interested renting your boat as accomodation. This way you make some extra money to cover your boat expenses while at mooring.</p><p>To activate these two options is very simple just go your listing profile page and click on activate Boat shared / SleepINN buttons then just add a brief description and set the prices you would like to charge.</p>'
+        step_text: 'Step 14: Doing good!'
+      page18:
+        title: 'Update your calendar'
+        unlock_btn: 'Unlock all dates'
+        lock_btn: 'Lock all dates'
+        step_text: 'Step 15: Doing good!'
+      page-final03:
+        title: 'Your local lows and taxes'
+        description: '<p>Make sure you familiarize yourself with your local laws, as well as boatINN Nondiscrimination Policy.</p><p>Take a moment to review the local laws that apply to your listing. We want to make sure you have everything you need to get off to a great start.</p><p>Most cities have rules covering boat rentals , and the specific codes and ordinances can appear in many places (captaincy general, ports, nautical schools). In most places, you must register, get a permit, or obtain a license before you list your boat or accept guests. You may also be responsible for collecting and remitting certain taxes. In some places, private boat rentals could be prohibited altogether.</p><p>Since you are responsible for your own decision to list or book, you should get comfortable with the applicable rules before listing on boatINN. To get you started, we offer some helpful resources under “Boat rentals city laws”.</p><p>By accepting our Terms of Service and listing your boat and experiences, you certify that you will follow applicable laws and regulations.</p>'
+        title_contract: 'Contrato de acuerdo'
+        agree: 'I agree the terms'
+        agr01: 'The registration or documentation is current on this vessel'
+        agr02: 'The watercraft complies with all safety requirements'
+        agr03: 'I can present maintenance records if asked'
+        agr04: 'This vessel is safe and seaworthy'
+    partials:
+      season_rate_fields:
+        per_day: 'Per day'
+        per_night: 'Per night *'
+        per_night_details: '* Full-day and night'
+      translation_errors:
+        empty_text: "Please enter a text"
+        empty_textarea: "Please enter a text for textarea"
+        empty_number: "Please enter a number"
+        empty_select: "Please select"
+        empty_position: "Select an address from the drop-down list"
+        per_day_min_val: "Must be equal to or greater than price per half a day"
+        per_night_min_val: "Must be equal to or greater than price per day"
+        per_week_min_val: "Must be equal to or greater than price per night"
+        maximum_boat_length: "Max. 100 meters"
+        max_and_min_boat_year_of_construction: "must be between 1900 and %{current_year}"
+        maximum_cabins: "Maximum allowed is 50"
+        maximum_beds: "Maximum allowed is 50"
+        maximum_guest: "Maximum allowed is 100"
+        maximum_bathrooms: "Maximum allowed is 20"
+        maximum_boat_listing_title: "Cannot exceed 64 characters"
+        alphanumeric_boat_listing_title: "Must be only alphanumeric expressions"
+        not_only_integer_boat_listing_title: "Cannot be only numbers"
+  search_bar:
+    where: 'Where are you boatINN...'
+    check_in: 'Check IN'
+    check_out: 'Check OUT'
+    passengers: 'Passengers'
+    search: 'Search'
+  header_popup_menu:
+    edit_profile: 'Edit profile'
+    inbox: 'Inbox'
+    account: 'Account'
+    your_listings: 'Your listings'
+    wishlist: 'Wishlist'
+    go_to_admin_panel: 'Go to the admin panel'
+    logout: 'Logout'
+  search:
+    index:
+      classic_charter: 'Classic Charter'
+      sleepinn: 'SleepInn'
+      boat_shared: 'Boat Shared'
+      price: 'Price'
+      type_of_boat_text: ''
+      type_of_rental_text: ''
+      experience_text: ''
+      with_captain_text: ''
+      captain_with: 'With captain'
+      captain_without: 'Without captain'
+      add_wishlist: 'You have successfully added a boat to wishlist!'
+      delete_wishlist: 'You have successfully removed a boat from wishlist!'
+      choose_filters: 'Please specify your search to find a boat'
+      per_half_day: 'half day'
+      per_day: 'day'
+      per_night: 'night'
+      per_week: 'week'
+      shared_price: 'person'
+      shared_number_of_seats: 'seats left'
+      per_night: "per night"
+      sleepin_price: 'night SleepINN'
+      close: 'Close'
+      apply_filters: 'Apply filters'
+  dashboard:
+    listings:
+      index:
+        sleepin: 'SleepINN'
+        boat_shared: 'Boat shared'
+        last_update: 'Last update'
+        online: 'online'
+        offline: 'offline'
+        sleepin_active: 'SleepINN on'
+        activate_sleepin: 'SleepINN off'
+        boat_shared_active: 'Boatshared on'
+        activate_boat_shared: 'Boatshared off'
+        add_new_boat: 'Add new boat'
+        in_progress: 'In progress'
+        your_listings: 'Your listings'
+        readiness_percentage: "You are %{readiness}% done with your listing"
+        finish_the_listing: 'Finish the listing'
+        delete_the_listing: 'Delete the listing'
+        delete_question: "Delete this listing?"
+        deleted_listing: "Listing was deleted!"
+        preview: 'Preview'
+        manage_listing: 'Manage listing'
+        calendar: 'Calendar'
+    statistics:
+      main:
+        title: 'Statistics'
+        rating_title: 'Ratings'
+        more_details: 'More details'
+        view_title: 'Views'
+        table_head1: 'Month'
+        table_head2: 'Views'
+        table_head3: 'Reservation requests'
+        table_head4: 'Queries'
+        table_head5: 'Reservations'
+      ratings:
+        reviews_write: 'Reviews to write'
+        reviews_about: 'Reviews about you'
+        review_from: 'Review from'
+        overall: 'Overall rating'
+        total_reviews: 'Total reviews'
+        five_star: '5 star reviews'
+        all_listings: 'All listings'
+      reviews:
+        title: 'Reviews about you'
+        author_alt: 'Author review avatar'
+        review_from: 'Review from'
+        public_review: 'Public review'
+        private_review: 'Private feedback'
+        grades:
+          accuracy: 'Accuracy'
+          communication: 'Communication'
+          boat_rules: 'Boat rules'
+          cleanliness: 'Cleanliness'
+          check_in: 'Check in'
+          value: 'Value'
+          location: 'Location'
+    your_trip:
+      title: Choose your next adventure
+      subtitle: Invite a friend and earn up to 100€ for each friend.
+      invite_btn: invite friends
+      past_trips: Past trips
+      your_review: Your review
+      view_receipt: View receipt
+      view_invoice: View invoice
+      leave_review: Leave review
+      scince: 'BoatINN member since %{year}'
+      reservation_receipt: 'Reservation receipt'
+      confirmation_code: 'Confirmation code: %{code}'
+      receipt_number: 'Receipt number: %{number}'
+      save_to_pdf: 'Save to PDF'
+      print: Print
+      your_host: 'Your host:'
+      total: 'Total (%{symbol})'
+      final_payment: 'Final payment'
+      deposit_fee: 'Deposit fee'
+      paid_with_master_card: 'Paid with MasterCard'
+      paid_with: 'Paid with %{payment}'
+      will_be_paid: 'Will be paid with %{payment}'
+    invite_trip:
+      title: Boat for free
+      subtitle: Invite a friend and earn up to 100€ for each friend.
+      invite_title: Invite via social networks
+      invite_facebook: Invite Friends via Facebook
+      invite_twitter: Invite Friends via Twitter
+      share_title: Or share the link
+      credits: 'BoatINN credits: '
+      credits_description: When your friends join an rent on BoatINN, you’ll see your BoatINN credits here!
+      referral_title: BoatINN Referral Program
+      how_earn: How to earn boatINN credits
+      earn_item1: When your friend lists their lists their boat and it rents for the first time, you earn 75.00€ in boatINN credit.
+      earn_item2: When your friend rents a boat for the first time, you earn 25.00€ in boatINN credit.
+      how_use: How to use your boatINN credits
+      use_item1: When you rent, your boatINN credit lowers the rental cost, if you have enough, your rental might be FREE!
+      use_item2: BoatINN credits expire one year after you earn them so head out on the water soon!
+      offer: Even the friends you refer get a special offer
+      offer_text: When you refer a friend and they sign up, we give them 25.00€ in boatINN credits to use on their first rental.
+  bookings:
+    reservation_code: "Reservation code"
+    confirmation_code: 'Confirmation code'
+    due_now: "Due now"
+    due_date: "Due %{date}"
+    deposit: "Deposit due %{date}"
+    due_date_info: "* We`ll automatically charge the balance payment on %{date}"
+    deposit_info: "* We`ll automatically charge deposit the balance payment on %{date}"
+    pay_urgent_payment: 'Make payment'
+    write_review: 'Write a review'
+    created_successfully: "You have successfully booked a boat! You can share this booking with your friends!"
+    payment_urgent_paid_success: "Payment completed successful. Thank you."
+    payment_urgent_paid_fail: "There was a problem with processing payment. Try to use another card or add funds to existing."
+    do_payment: "Pay"
+
+    created_errors:
+      payment: "There was a problem with your payment. Please try again or use another card"
+      dates: "Sorry, selected dates are not available"
+    requests:
+      confirmed_title: "Your request has been confirmed"
+      confirmed_desc: "You will receive an email to %{email} in 24 hours as maximum time"
+    wizard:
+      rule_link: "1. Review the boat rules"
+      passengers_link: "2. Who`s coming"
+      pay_link: "3. Confirm and pay"
+      boat_viewed_times: "<strong>This boat is on people`s mind.</strong> It`s viewed %{count} times in the past week"
+      payment_note: "%{service_name} platform won`t charge anything at all until the reservation has been confirmed"
+      payment_title: "Confirm and pay"
+      submit_new_transaction: "Request to book"
+      rule_title: "Review boat rules"
+      passengers_title: "Who`s coming?"
+      passenger_quantity_label: "Guests"
+      message_label: "Say something to your host"
+      message_help: "Let %{name} know a little about yourself"
+      message_placeholder: "Say something...."
+      check_in_time: "Check IN time is before %{date}"
+      check_out_time: "Check OUT time is before %{date}"
+      pay_with: "Pay with"
+      add_new_payment: "Add new Payment Method"
+      cancellation:
+        select_reason: "Why do you need to cancel?"
+        do_you_agree: "Do you agree?"
+        subject_label: "Select a reason"
+        reason_label: "Tell %{seller_name} why you need to cancel"
+        reason_placeholder: "Say something..."
+        due_paid: "Due to the date"
+        guest_fee: "Guest fee"
+        total_refund: "Total refund"
+        agree: "Agree and continue"
+        continue: "Continue"
+        reservation_canceled: "Reservation cancelled"
+        finish: "Finish"
+        text: "Your reservation will be cancelled immediatly and you will be refunded within 10 business days"
+      payment:
+        book_now: "Book now"
+        agree_text1: "I agree to the "
+        agree_link1: "boat rules, cancellation policy"
+        agree_text2: ", and to the "
+        agree_link2: "guest refund policy"
+        agree_text3: ". I also agree to pay the total amount shown, which includes service fees."
+      rule:
+        agree: 'Agree and continue'
+    checkout_info:
+      change_balance: "* We will automatically change the balance payment on %{date}"
+    label_passengers_count: "%{number} Guests"
+    label_passenger_count: "%{number} Guest"
+    label_passengers: "Guests"
+    label_guest:
+      one: 'Guest'
+      other: 'Guests'
+    total: "Total (%{currency})"
+    rental_types:
+      half_day: "Half day"
+      one_day:
+        one: 'Day'
+        other: 'Days'
+      week: "Week"
+      sleepin: "Sleepin"
+      shared: "Shared"
+      per_night: "Night"
+      night: "Night"
+      guests: "guests"
+      guest: 'guest'
+    types:
+      classic: "Classic"
+      sleepin: "Sleepin"
+      shared: "Boat shared"
+    created_success:
+      add_more: "+ Add more"
+      email_label: "Send this booking to your friends by email"
+
+    cancellations:
+      flexible:
+        checkout_title: "Cancellation policy: Flexible (free cancellation)"
+        checkout_desc: "Cancel up 15 days before check in and get a full refund (minus service fees)."
+      moderate:
+        checkout_title: "Cancellation policy: Moderate (free cancellation)"
+        checkout_desc: "Cancel up 30 days before check in and get a full refund (minus service fees)."
+      strict:
+        checkout_title: "Cancellation policy: Strict (free cancellation)"
+        checkout_desc: "Cancel up 60 days before check in and get a full refund (minus service fees)."
+      seller: "If you need to cancel this listing click in the following link. %{support_link}"
+      strict_title: "Strict free cancellation"
+      strict_desc: "Cancel within 24 hours of booking <br /> to get a full refund. <a href='%{url}#cp-tab-3'>More info</a>"
+      moderate_title: "Moderate free cancellation"
+      moderate_desc: "Cancel within 24 hours of booking <br /> to get a full refund. <a href='%{url}#cp-tab-2'>More info</a>"
+      flexible_title: "Flexible free cancellation"
+      flexible_desc: "Cancel within 24 hours of booking <br /> to get a full refund. <a href='%{url}#cp-tab-1'>More info</a>"
+    cancellation_subjects:
+      busy_date: "I am not available these dates anymore"
+      have_best_deal: "I have found a better deal"
+      owner: "I don’t feel comfortable with the owner"
+      change_date: "I want to change the dates"
+      other: "Another reason that is not on the list"
+    admin:
+      view_bookings: "View transactions"
+    errors:
+      add_payment_card_before: "Please add your card in the Payment details page first."
+      client_can_not_be_seller: "Boat owner can`t be client for current boat."
+      dates: 'Sorry, selected dates are not available.'
+      seller_not_payoutbable: 'Please contact customer support. Boat owner need to provide final account details to the support before creating a reservation'
+      add_payout_before: 'Please add your payout details in the account settings before activating a boat.'
+  trip_cancellation:
+    seller_cancellation:
+      title: "Are you sure you want to cancel?"
+      description: "Bear in mind that cancelling reservations to guests will have a very bad impact in your listing positioning and you may get bad reviews. Guests like owners that don't cancel since they have been planning their vacations in advance and might be very inconvenient for the outcome of their holidays."
+      contacts: "If you still need to cancel contact the BoatINN support team, and we will help you <br /> <a href='tel:+34654321987'>+34 654 321 987</a>"
+    wizard:
+      cancellation_agreement:
+        yes_cancel: "Yes, cancel"
+        see_cancellation_policy: See cancellation policy
+        text: "Your reservation will be cancelled immediatly and you will be refunded within 10 business days"
+  date:
+    formats:
+      long_with_abbr_day_name: "%a, %b %d, %Y"
+    first_day_of_week:
+    days:
+      sunday: Sunday
+      monday: Monday
+      tuesday: Tuesday
+      wednesday: Wednesday
+      thursday: Thursday
+      friday: Friday
+      saturday: Saturday
+    days_short:
+      sunday: Sun
+      monday: Mon
+      tuesday: Tue
+      wednesday: Wed
+      thursday: Thu
+      friday: Fri
+      saturday: Sat
+    days_min:
+      sunday: Su
+      monday: Mo
+      tuesday: Tu
+      wednesday: We
+      thursday: Th
+      friday: Fr
+      saturday: Sa
+    months:
+      january: January
+      february: February
+      march: March
+      april: April
+      may: May
+      june: June
+      july: July
+      august: August
+      september: September
+      october: October
+      november: November
+      december: December
+    months_short:
+      january: Jan
+      february: Feb
+      march: Mar
+      april: Apr
+      may: May
+      june: Jun
+      july: Jul
+      august: Aug
+      september: Sep
+      october: Oct
+      november: Nov
+      december: Dec
+    today: Today
+    today_at: 'today at %{time}'
+    clear: Clear
+    format: mm/dd/yyyy
+    order:
+      - month
+      - day
+      - year
+  time:
+    formats:
+      short: "%B %e, %Y at %H:%M"
+      shorter: "%B %e at %H:%M"
+      short_date: "%B %e, %Y"
+      short_date_with_short_month: "%b %e, %Y"
+      shortest_date: "%^b %e, %Y"
+      short_day: "%B %e"
+      hours_only: "%l:%M %P"
+  timestamps:
+    day_ago: "%{count} day ago"
+    days_ago: "%{count} days ago"
+    hour_ago: "%{count} hour ago"
+    hours_ago: "%{count} hours ago"
+    minute_ago: "%{count} minute ago"
+    minutes_ago: "%{count} minutes ago"
+    month_ago: "%{count} month ago"
+    months_ago: "%{count} months ago"
+    seconds_ago: "%{count} seconds ago"
+    year_ago: "%{count} year ago"
+    years_ago: "%{count} years ago"
+    days_since:
+      one: "%{count} day"
+      other: "%{count} days"
+    time_to:
+      seconds:
+        one: "%{count} second"
+        other: "%{count} seconds"
+      minutes:
+        one: "%{count} minute"
+        other: "%{count} minutes"
+      hours:
+        one: "%{count} hour"
+        other: "%{count} hours"
+      days:
+        one: "%{count} day"
+        other: "%{count} days"
+  notices:
+    booking_not_found: "Booking doesn't exist"
+    member_not_found: 'Member not found'
+    permission_denied: "You are not authorized to access this page."
+    travel_can_not_be_canceled: "Travel can`t be cancelled"
+    travel_canceled_successfully: "Travel cancelled successfully"
+    you_have_not_penalization_account: "You have not penalty balance"
+    review_already_given: 'Review already given'
+    review_can_not_be_replied: 'Review can not be replied'
+    reply_send: 'Replied success'
+    reply_not_send: 'Replied fail. Some error.'
+    statistics_not_present: "You don't have any statistics yet."
+    sign_up_success: 'Your account has been successfully created.'
+  static_pages:
+    cancellation_policy:
+      title: 'Cancellation Policy'
+      description_1: 'BoatINN allows owners to choose among three standardized cancellation policies (Flexible, Moderate, and Strict) that we will enforce to protect both guest and host alike. Each listing and reservation on our site will clearly state the cancellation policy. Guests may cancel and review any penalties by viewing their travel plans and then clicking ‘Cancel’ on the appropriate reservation.'
+      description_2: 'For reservations made more than 90 days before the check-in date cancellations policies will apply 87 days prior the check-in date. Before that, we won’t charge anything for any possible cancellations.'
+      flexible: 'Flexible'
+      moderate: 'Moderate'
+      strict: 'Strict'
+      flexible_cancellations:
+        - 'Cleaning fees are always refundable if the reservation is canceled before check-in.'
+        - 'The boatINN service fee is refundable within 24 hours from the moment that the reservation has been confirmed from both parties (it doesn’t apply the 48 hours prior the check in date).'
+        - 'The booking amount (the total amount you are charged) are refundable in certain circumstances as detailed below.'
+        - 'If there is a complaint from either party, notice must be given to boatINN within 24 hours of check-in.'
+        - 'BoatINN will mediate when necessary, and has the final say in all disputes.'
+        - 'A reservation is officially canceled when the guest clicks the cancellation button on the cancellation confirmation page, which they can find in Inbox > Your Trips >  Cancel.'
+        - 'For a full refund (minus service fee) of the deposit, cancellation must be made up to 30 days prior to listing’s local check in time (or 3:00 PM if not specified) on the day of check in.'
+        - 'For a full refund (minus service fee) of total amount, cancellation must be made up to 15 days prior to listing’s local check in time (or 3:00 PM if not specified) on the day of check in.'
+        - 'Cancellations made less than 15 days before the check in are non refundable.'
+      moderate_cancellations:
+        - 'Cleaning fees are always refundable if the reservation is canceled before check-in.'
+        - 'The boatINN service fee is refundable within 24 hours from the moment that the reservation has been confirmed from both parties (it doesn’t apply the 48 hours prior the check in date).'
+        - 'The booking amount (the total amount you are charged) are refundable in certain circumstances as detailed below.'
+        - 'If there is a complaint from either party, notice must be given to boatINN within 24 hours of check-in.'
+        - 'BoatINN will mediate when necessary, and has the final say in all disputes.'
+        - 'A reservation is officially canceled when the guest clicks the cancellation button on the cancellation confirmation page, which they can find in Inbox > Your Trips >  Cancel.'
+        - 'For a full refund (minus service fee) of the deposit, cancellation must be made up to 30 days prior to listing’s local check in time (or 3:00 PM if not specified) on the day of check in.'
+        - 'For a moderate refund of booking amount, cancellation must be made up to 15 days prior to listing’s local check in time (or 3:00 PM if not specified) on the day of check in. this case 50% of the booking amount will be refunded.'
+        - 'Cancellations made less than 15 days before the check in date are non refundable.'
+      strict_cancellations:
+        - 'Cleaning fees are always refundable if the reservation is canceled before check-in.'
+        - 'The boatINN service fee is refundable within 24 hours from the moment that the reservation has been confirmed from both parties (it doesn’t apply the 48 hours prior the check in date).'
+        - 'The booking amount (the total amount you are charged) are refundable in certain circumstances as detailed below.'
+        - 'If there is a complaint from either party, notice must be given to boatINN within 24 hours of check-in.'
+        - 'BoatINN will mediate when necessary, and has the final say in all disputes.'
+        - 'A reservation is officially canceled when the guest clicks the cancellation button on the cancellation confirmation page, which they can find in Inbox > Your Trips >  Cancel.'
+        - 'For a full refund (minus service fee) of the deposit, cancellation must be made up to 60 days prior to listing’s local check in time (or 3:00 PM if not specified) on the day of check in.'
+        - 'For a cancellation made less than 60 days prior to listing’s local check in time (or 3:00 PM if not specified) on the day of check in the deposit is not refundable.'
+        - 'For a cancellation made less than 30 days prior to listing’s local check in time (or 3:00 PM if not specified) on the day of check in the booking amount is not refundable.'
+      back: 'Back'
+  shared:
+    breadcrumbs:
+      select_reason: 1. Select reason
+      confirm_cancellation: 2. Confirm cancellation
+      cancel_booking: '1. Cancel this booking'
+  responses:
+    within_an_hour: 'Within an hour'
+    within_two_hours: 'Within two hours'
+    within_three_hours: 'Within three hours'
+    within_half_day: 'Within half day'
+    within_day: 'Within day'
+    within_two_days: 'Within two days'
+    within_three_days: 'Within three days'
+    more_than_three_days: 'More than three days'
+  invoice:
+    service_address: "%{service_name}Marketplace S.L.<br>Calle Francisco Cano 53.<br>29640 Fuengirola. Málaga (Spain)<br>CIF B93686038"
+    service_country: "Spain"
+    host_number: "Host invoice number"
+    name: "Name"
+    address: "Address"
+    not_exists: 'Invoice do not exists '
+    trip_date: "Trip date"
+    code: "Confirmation Code"
+    listing: "Listing"
+    vat: "VAT"
+    vat_country: "VAT country"
+    nie: "NIE"
+    service_fee: "Service fee"
+    boatinn_sf: "BoatINN web advertising Fee"
+    total: "Total"
+    save_to_pdf: "Save to PDF"
+    print: "Print"
+  sms:
+    booking_confirmed_to_seller: "New reservation confirmed!\nYour reservation number %{reservation_code}."
+    booking_confirmed_to_client: "Reservation confirmed!\nYour reservation number %{reservation_code}."
+    booking_canceled_by_client_to_seller: "%{client_name} has cancelled a reservation"
+    booking_canceled_by_seller_to_client: "%{seller_name} has cancelled your reservation"
+    booking_shared_activated_to_seller: "A new listing (boat share) has been activated\nYour reservation number %{reservation_code}"
+    booking_joined_to_seller: "A new passenger has joined to your boat share listing\nYour reservation number %{reservation_code}."
+    booking_joined_to_client: "Boatshare seat confirmed\nYour reservation number %{reservation_code}."
+    booking_left_to_seller: "A passenger has cancelled his seat in your boat share listing"
+    cancellation_report_to_client: "Reservation cancelled"
+    new_unread_message: "You have new messages unread in your chat"
+    notify_about_insufficient_funds: "Dear %{client_name}, Unfortunately we've been unable to complete the payment reservation"
+    caption: "Check details at %{host}"
+  mailer:
+    service_thanks:
+      thanks: 'Thanks.'
+      team: 'The %{service_name} team.'
+    travel_info_for_client:
+      date: 'Date - %{date}'
+      confirmation_code: 'Confirmation code - %{code}'
+      receipt_number: 'Receipt number - %{number}'
+      host: 'Your host:'
+      member_scince: "%{service_name} member since %{scince_at}"
+      service_fee: 'Service Fee'
+      cleaning_fee: 'Cleaning fee'
+      skipper_fee: 'Skipper fee'
+      total: 'Total (%{currency})'
+      print_receipt: 'Print receipt'
+      paid_with: 'Paid with'
+      will_be_paid_with: 'Will be paid with'
+    travel_info_for_seller:
+      scince_at: "%{service_name} member since %{scince_at}"
+      send_message: 'Send message'
+      send_message_to: 'Send a message to %{client_name}'
+  booking_mailer:
+    canceled_by_seller_to_client:
+      subject: "%{seller_name} has cancelled your reservation"
+      seller_has_canceled: "%{seller_name} has cancelled your reservation"
+      seller_since_at: '%{service_name} Host since %{seller_since_at}'
+      similar_lisitings_title: 'If you want, you can find a similar listing'
+      similar_lisitings: 'Watch similar listings'
+    cancellation_report_to_client:
+      subject: "Reservation cancelled"
+      reservation_canceled: 'Reservation cancelled'
+      we_have_issued: 'We have issued a %{refund_amount} the refund to your %{source}'
+      about_refund: 'Information about the refund'
+      reservation_price: 'Reservation price'
+      service_fee: 'Service fee'
+      total_refund: 'Total refund'
+      see_receipt: 'See original receipt'
+    joined_to_client:
+      subject: "Reservation receipt (boat share)"
+    left_to_seller:
+      subject: "%{client_name} has cancelled his seat in your boat share listing"
+      client_has_canceled: '%{client_name} has cancelled his trip. You can see the details of %{client_name} cancellation reasons below.'
+      client_since_at: '%{service_name} member since %{seller_since_at}'
+    canceled_by_client_to_seller:
+      subject: "%{client_name} has cancelled his reservation"
+      client_has_canceled: '%{client_name} has cancelled his trip. You can see the details of %{client_name} cancellation reason below'
+      client_since_at: '%{service_name} member since %{seller_since_at}'
+      hi_owner: 'Hi %{seller_name},'
+      had_cancel: 'I had to cancel my reservation due a personal issue. We can contact between us in a future date for a new reservation.'
+      sory: 'Sorry for the inconveniences, cheers.'
+    share_booking:
+      subject: "Your friend %{client_name} has joined this %{rental_type} experience!"
+      guests:
+        one: '%{count} Guest'
+        other: '%{count} Guests'
+      invite: "He invites you to join this adventure. Feel free to check the conditions by clicking on this link and join the %{service_name} community."
+      join_now: 'Join now'
+    new_unread_message:
+      subject: "New message in the chat"
+      you_have_message: 'You have new messages unread in your chat.'
+      view_message: 'Click in the button below to view all your new messages.'
+      view_details: 'View details'
+    confirmed_to_client:
+      subject: "Reservation receipt"
+    shared_activated_to_seller:
+      subject: "Your boatshared listing has been activated"
+      activated: 'Your boat share listing has been activated!'
+      # TODO: Choose only one of next translations
+      # remember: "Remember that the listing is still open and another passenger can join the trip"
+      remember: "Send a message to confirm the details of the arriving or give the welcome to %{client_name}."
+    confirmed_to_seller:
+      subject: "Reservation confirmed"
+      reservation_confirmed: 'New reservation confirmed!'
+      confirm_details: "Send a message to confirm the details of the arriving or give the welcome to %{client_name}"
+    joined_to_seller:
+      subject: "A new passenger has joined to your boat share listing!"
+      joined: "A new passenger has joined to your boat share listing!"
+      has_joined: "Send a message to confirm the details of the arriving or give the welcome to %{client_name}."
+  payment_mailer:
+    notify_about_insufficient_funds:
+      subject: "Dear %{recipient_name}, Unfortunately we've been unable to complete the payment for your reservation"
+      dear_client: "Dear %{recipient_name}, Unfortunately we've been unable to complete the payment for your reservation"
+      check_bank: 'Check with your bank that your credit card has enough money to complete the payment of %{payment_sum}.'
+      prefer_to_use: 'If you prefer to use a different credit card go to your '
+      prefer_to_use2: 'Account / Payment Methods '
+      prefer_to_use3: 'and there you can add or change a different credit card.'
+      contact_to_service: 'If you want the %{service_name} team to help you to solve this problem contact our customer service.'
+    credit_card_added:
+      subject: 'Have you added a new payment method?'
+      have_you_added: 'Have you added a new payment method?'
+      noticed_the_payment_method: 'We noticed the payment method for your %{service_name} account was recently changed. If this was you, you can safely disregard this email.'
+      did_not_do: 'I didn’t do this'
+    owner_got_earnings:
+      subject: 'Hi %{seller_name}.'
+      sent_payment: 'We have sent you a payment of %{sum}. This payment should reach your account before %{sent_at}, with weekends and holidays.'
+      date: Date
+      listing: Listing
+      Amount: Amount
+      you_can_check: "also, you can check the status of your payments in %{transaction_history_link}."
+      transaction_history_link: 'your Transaction History'
+  review_mailer:
+    client_should_leave_review:
+      subject: '%{client_name}, leave an evaluation about your experience'
+      evaluations: >
+        Evaluations are a very important part of the %{service_name} community. Take a moment to provide
+        useful information to your host so he can improve; It will only take you a few minutes.
+      write_evaluation: 'Write an evaluation'
+    boat_owner_has_left_review:
+      subject: '%{seller_name} has left an evaluation about you.'
+      evaluations: >
+        You will be able to read what the %{seller_name} wrote about you once you write a review about him.
+      write_evaluation: 'Write an evaluation'
+    read_boat_owner_review:
+      subject: 'You can read %{seller_name} review.'
+      read_review: 'You can read %{seller_name} review'
+      review_content: 'This is what %{seller_name} said about you:'
+      review_will_public: 'Now the both parties left the reviews. They will be public on each %{service_name} profiles'
+    boat_owner_should_leave_review:
+      subject: '%{seller_name}, leave an evaluation about your guest.'
+      has_left_evaluation: "%{seller_name}, leave an evaluation about your guest."
+      you_will_able: "Evaluations are very important part of the %{service_name} community. Take a moment to provide useful information to let your guest know how you felt about them. It will only take a few minutes."
+      write_evaluation: 'Write an evaluation'
+    client_has_left_review:
+      subject: '%{client_name} has left an evaluation about you.'
+      you_will_able: 'You will be able to read what the %{client_name} wrote about you once you write a review about him.'
+      write_evaluation: 'Write an evaluation'
+    read_client_review:
+      subject: 'You can read %{client_name} review.'
+      read_review: 'You can read %{client_name} review'
+      review_content: 'This is what %{client_name} said about you:'
+      review_will_public: 'Now the both parties left the reviews. They will be public on each %{service_name} profiles.'
+  listing_mailer:
+    boat_not_completed:
+      subject: 'Your listing %{listing_title} is not completed.'
+      title: "Your listing '%{listing_title}' is not completed."
+      need_some_details: 'We need some details to complete your listing. Please get your listing ready to be online and start renting.'
+      complete_listing: 'Complete listing'
+    boat_finished_without_payment:
+      subject: "Congratulations, you have just finished your first listing!"
+      congratulations: "Congratulations, you have just finished your first listing!"
+      team_need_review: >
+        The %{service_name} team need to review your listing to verify the details provided.
+        Remember that we don’t know how to pay you, please provide ou your payment
+        information throughout this button. Your listing will be offline until you
+        provide us the information required.
+      payout_preferences: 'Payout preferences'
+    boat_finished_without_cv:
+      subject: "Congratulations for listing your boat"
+      congratulatios: 'Congratulatios for listing your boat!'
+      best_possible: 'To give the best possible service we would like to know more about your skills. We appreciate very much if you could give us a couple of minutes of your time to fill up the CV form.'
+      complete_cv: 'Complete your CV'
+    boat_offlined:
+      subject: 'Have you deactivated this listing?'
+      have_you_deactivate: 'Have you deactivated this listing?'
+      we_noticed: 'We noticed that this listing has been deactivated. If this was you, you can safely disregard this email.'
+      last_update: 'Last update'
+      did_not_do: "I didn't do this"
+    boat_image_updated:
+      subject: 'Have you updated the picture of this listing?'
+      have_you_updated: 'Have you updated the picture of this listing?'
+      we_noticed: 'We noticed that this picture has been updated in your listing. If this was you, you can safely disregard this email.'
+      last_update: 'Last update'
+      did_not_do: "I didn't do this"
+  user_mailer:
+    notify_new_message:
+      subject: 'You receive new message in BoatINN chat'
+      body: "%{sender_name} send a new message in BoatINN chat: %{chat_url}"
+    confirmation_instructions:
+      dear_user: 'Dear %{name}, welcome to %{service_name}!'
+      thanks_for_join: >
+        Thanks to join to the %{service_name} community. We need to %{confirm_email_link}, please click in the link
+        below to complete your registration and %{start_use_link}.
+      confirm_your_email: 'confirm your email'
+      start_use: 'start your next adventure'
+      confirm_email: 'Confirm your email'
+    welcome_email:
+      subject: 'Dear %{name}, welcome to %{service_name}!'
+      dear_user: 'Dear %{name}, welcome to %{service_name}!'
+    user_banned:
+      subject: 'Your account has been banned due to bad pactices'
+      contact_to_team: 'Contact our team to solve this problem in order to use your account again.'
+      contact_with_service: 'Contact with %{service_name}'
+    phone_number_deleted:
+      subject: 'Have you removed this phone number from your account?'
+      we_detected: "We have detected that the next phone number has been recently removed from your account. If it's been you, ignore this email."
+      number_was_eliminated: "This phone number was eliminated"
+      join_now: 'Join now'
+      i_didnt_do: "I didn't do this"
+    phone_number_updated:
+      subject: 'Your phone number has been updated successfully'
+      number_updated: 'Your phone number has been updated successfully'
+      tahnks_for_update: 'Thanks for update your phone number. We will send all the notifications at the new phone provided.'
+    password_changed:
+      subject: 'Did you change your password?'
+      text: 'We noticed the password for your BoatINN account was recently changed. If this was you, you can safely disregard this email.'
+      i_didnt_do: "I didn't do this"
+  notifies:
+    ago: ago
+    messages_with_count: 'Messages (%{count})'
+    events_with_count: 'Notifications (%{count})'
+    view_all: 'view all'
+    notifications: 'Notifications'
+    events:
+      user_canceled_seat:
+        title: 'A passenger has cancelled his seat in your boat shared listing.'
+        content: 'The listing is still active and other passenger still may join the trip. You can check all the details of this trip dated in %{check_in_date} '
+        link_name: 'View details'
+      user_canceled_reservation:
+        title: '%{client_name} has cancelled his reservation.'
+        content: '%{client_name} has cancelled his trip. You can see the details of %{client_name} cancellation clicking in the button.'
+        link_name: 'View details'
+      shared_activated:
+        title: 'A new listing (boat share) has been activated.'
+        content: 'Remember that the listing is still open and other passenger can join to trip.'
+        link_name: 'View details'
+      joined_to_shared:
+        title: 'A new passenger has joined to your boat shared listing'
+        content: 'You can check all the details of this trip dated in %{check_in_date}'
+        link_name: 'View details'
+      reserved:
+        title: 'New reservation confirmed!'
+        content: 'Send a message to confirm the details of the arriving or give the welcome to %{client_name}.'
+        link_name: 'View details'
+      set_payment_after_listing_completed:
+        title: 'Congratulations, you have just finished your first listing!'
+        content: >
+          The BoatINN team need to review your listing to verify the details provided.
+          Remember that we don`t know how to pay you, please provide us your payment information throughout
+          this button, your listing will be offline until you provide us the information required.
+        link_name: 'Payout preferences'
+      set_your_cv_after_listing_completed:
+        title: 'Congratulations for listing your boat.'
+        content: >
+          To give the best possible service we would like to know more about your skills. We appreciate very match
+          if you could give us a couple of minutes of your time to fill up the CV form.
+        link_name: 'Complete your CV'
+      listing_not_completed:
+        title: 'Your listing %{listing_title} is not completed'
+        content: 'We need some details to complete your listing. Please get your listing ready to be online and start renting'
+        link_name: 'Complete listing'
+      pending_review:
+        title: 'Leave an evaluation to %{review_receiver_name} about your trip.'
+        content: >
+          You can now write an evaluation about your stay. Evaluations are very important part of the %{service_name} community.
+          <br>
+          Take a moment to provide useful information to your guest so he can improve. It will only take a few minutes.
+        link_name: 'Leave an evaluation'
+      rending_review_wait_responce:
+        title: '%{review_receiver_name} wrote an evaluation about your listing.'
+        content: >
+          You can read the evaluation about %{review_receiver_name}'s trip. Evaluations are very important part of the BoatINN community.
+          Take a moment to provide useful information to your guest so he can improve. It will only take you a few minutes.
+        link_name: 'Read evaluation'
+  my_payments: My payments
+  layouts:
+    footer:
+      home: 'Home'
+      about_us: 'About Us'
+      community_preferences: 'Most popular experiences'
+      experiences: 'Experiences'
+      press: 'Press'
+      list_your_boat: 'List your boat'
+      help: 'Help'
+      contact: 'Contact'
+      policies: 'Policies'
+      terms: 'Terms'
+      live_chat: 'Live chat'
+      faqs: 'FAQs'
+      follow_us: 'Follow us:'
+    cookie_consent:
+      message: 'This site use cookies for analysis and to display personalized content and ads. </ br> By clicking <b>Accept</b> you agree to the use'
+      dismiss: "Accept"
+      link: "Cookies Policy"
+  devise:
+    confirmations:
+      confirmed: "Your email address has been successfully confirmed."
+      send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
+      send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions for how to confirm your email address in a few minutes."
+      resend_confirmation_instructions: 'Resend confirmation instructions'
+    failure:
+      already_authenticated: "You are already signed in."
+      inactive: "Your account is not activated yet."
+      invalid: "Invalid %{authentication_keys} or password."
+      locked: "Your account is locked."
+      blocked: "Your account has been blocked by BoatINN administration. Please contact us at +34 617 39 75 73."
+      closed: "Your account has been closed by you. Please contact us at +34 617 39 75 73."
+      account_closed: ''
+      last_attempt: "You have one more attempt before your account is locked."
+      not_found_in_database: "Invalid %{authentication_keys} or password."
+      timeout: "Your session expired. Please sign in again to continue."
+      unauthenticated: "You need to sign in or sign up before continuing."
+      unconfirmed: "You have to confirm your email address before continuing."
+      unconfirmed_at: "Login failed. Please check your email inbox and confirm your account."
+    mailer:
+      confirmation_instructions:
+        subject: "Confirmation instructions"
+      reset_password_instructions:
+        subject: "Reset password instructions"
+      unlock_instructions:
+        subject: "Unlock instructions"
+      email_changed:
+        subject: "Email Changed"
+      password_change:
+        subject: "Password Changed"
+    omniauth_callbacks:
+      failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
+      success: "Successfully authenticated from %{kind} account."
+    passwords:
+      no_token: "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided."
+      send_instructions: "You will receive an email with instructions on how to reset your password in a few minutes."
+      send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
+      updated: "Your password has been changed successfully. You are now signed in."
+      updated_not_active: "Your password has been changed successfully."
+      update_successfully:
+        title: SUCCESS!
+        notice: Your password has been set. <br /> You may go ahead and login now.
+        homepage: Homepage
+      change_your_password: "Change your password"
+      characters_minimum: "characters minimum"
+      password_placeholder: "New password"
+      password_confirmation_placeholder: "Confirm new password"
+      change_my_password: "Change my password"
+      forgot_your_password: "Forgot your password?"
+    registrations:
+      destroyed: "Bye! Your account has been successfully canceled. We hope to see you again soon."
+      signed_up: "Welcome! You have signed up successfully."
+      signed_up_but_inactive: "You have signed up successfully. However, we could not sign you in because your account is not yet activated."
+      signed_up_but_locked: "You have signed up successfully. However, we could not sign you in because your account is locked."
+      signed_up_but_unconfirmed: "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account."
+      update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address."
+      updated: "Your account has been updated successfully."
+      after_signup_popup:
+        notice: "We have just sent you an email with information to activate your account. Please check your inbox for further instructions."
+        homepage: homepage
+      edit:
+        edit: "Edit"
+        currently_waiting_confirmation_for: "Currently waiting confirmation for:"
+        leave_blank_if_you_dont_want_to_change_it: "(leave blank if you don't want to change it)"
+        we_need_your_current_password_to_confirm_your_changes: "(we need your current password to confirm your changes)"
+        update: "Update"
+        cancel_my_account: "Cancel my account"
+        unhappy: "Unhappy?"
+      new:
+        sign_up_omniauth: "Continue with %{provider}"
+        sign_up_or: "or"
+        sign_up_email: "Sign up with email"
+        by_clicking_sign_up_or_continue_with_i_agree: "By clicking Sign up or Continue with, I agree"
+        terms_of_service: 'Terms of service, '
+        payments_terms_of_service: 'Payments Terms of service, '
+        privacy_policy: 'Privacy Policy, '
+        and: 'and'
+        nondiscrimination_policy: 'Nondiscrimination Policy.'
+        already_have_account: "Already have an BoatINN account?"
+        register_with: "Register with"
+        email_placeholder: 'Email address'
+        first_name_placeholder: 'First name'
+        last_name_placeholder: 'Last name'
+        password_placeholder: 'Create a password'
+        birthday_label: "Birthday"
+        birthday_help: "To sign up you must be 18 or older, other people can`t see your birthday."
+        registration_info: "We will send you notifications and policy updates via email."
+        sign_up: "Sign up"
+    sessions:
+      signed_in: "Signed in successfully."
+      signed_out: "Signed out successfully."
+      already_signed_out: "Signed out successfully."
+      new:
+        login_with_email: 'Login with email'
+        email_placeholder: 'Email'
+        password_placeholder: 'Password'
+        log_in: 'Login'
+        reset_password: 'Send recovery link'
+    shared_links:
+      log_in: "Log in"
+      sign_up: "Sign up"
+      forgot_your_password: "Forgot your password?"
+      didnt_receive_confirmation_instructions: "Didn't receive confirmation instructions?"
+      didnt_receive_unlock_instructions: "Didn't receive unlock instructions?"
+      sign_in_omniauth: "Sign in with %{provider}"
+    unlocks:
+      send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
+      send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."
+      unlocked: "Your account has been unlocked successfully. Please sign in to continue."
+    changepassword:
+      change_password: "Change Password"
+      current_password: "Current password"
+      new_password: "New password"
+      password_confirmation: "Password confirmation"
+      match_password: "Password confirmation doesn't match Password"
+      password_short: "Password is too short (minimum is 6 characters)"
+      current_blank: "Current password can't be blank"
+  errors:
+    messages:
+      already_confirmed: "was already confirmed, please try signing in"
+      confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
+      expired: "has expired, please request a new one"
+      not_found: "not found"
+      not_locked: "was not locked"
+      not_saved:
+        # one: "1 error prohibited this %{resource} from being saved:"
+        one: ""     
+        # other: "%{count} errors prohibited this %{resource} from being saved:"
+        other: ""	
+  stripe_account:
+    stripe_account: "Stripe Account"
+    stripe_account_connected: "Bank account details configured successfully!"
+    change_account_info: "Change account info"
+    payout_ready: "You are now all set to receive money to your bank account"
+    require_account: "We need some information about you in order to send you money."
+    connect_with_stripe: 'Connect with Stripe'
+    created_success: 'Account connected!'
+    created_failure: 'Connection is not completed, maybe need provide more information about self.'
+    require_more_info: "Your stripe account requires more info"
+    add_info: "Add info to my stripe account"
+    account_is_pending: >
+      Your stripe account is pending verification. Don`t worry your account wii be activated automatically
+      after finalized verification

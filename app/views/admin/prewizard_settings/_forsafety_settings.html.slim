@@ -1,0 +1,20 @@
+.form-group.tab-pane
+  label.col-sm-1.control-label
+    = title_for_sharing(forsafety_settings)
+  .col-sm-11
+    div
+      - Boatinn::AVAILABLE_LOCALES_SHORT_FORMAT.each do |locale|
+        = f.globalize_fields_for locale do |ff|
+          = ff.text_field custom_figure_field('safety_settings_title', forsafety_settings), class: for_globalize_hidden(locale), placeholder: t('activerecord.attributes.homepage_setting.search_bar.title', locale: locale.to_sym), minlength: '5', maxlength: '100', data: {lang: locale}
+    span.help-block.m-b-none
+      = t('admin.general.count_symbols_100')
+.form-group.tab-pane
+  label.col-sm-1.control-label
+    = descr_for_sharing(forsafety_settings)
+  .col-sm-11
+    div
+      - Boatinn::AVAILABLE_LOCALES_SHORT_FORMAT.each do |locale|
+        = f.globalize_fields_for locale do |ff|
+          = ff.text_area custom_figure_field('safety_settings_descr', forsafety_settings), class: for_globalize_hidden(locale), placeholder: t('admin.general.descr', locale: locale.to_sym), minlength: '5', maxlength: '300', data: {lang: locale}
+    span.help-block.m-b-none
+      = t('admin.general.count_symbols_300')

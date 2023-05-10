@@ -1,0 +1,68 @@
+.container
+  .row
+    table.invoice-table
+      tr.bordered
+        td
+          = t('invoice.host_number')
+          br
+          = @invoice_number
+        td
+          = t('invoice.service_address', service_name: t('service_name')).html_safe
+        td.custom-align
+          = image_tag 'logo', class: "invoice-logo"
+
+      tr
+        td
+          h4.invoice-title
+            = t('invoice.name')
+          = @member.display_name
+        td
+          h4.invoice-title
+            = t('invoice.address')
+          = @booking.trip.boat_hash[:location][:address]
+        td.custom-align.print-hide
+          = link_to t('invoice.save_to_pdf'), dashboard_invoice_path(booking_id: params[:booking_id], format: :pdf, for_penalty: params[:for_penalty]), class: "button btn-secondary-outlined btn-save-pdf", target: "_blank"
+          = link_to t('invoice.print'), '#print', class: "button btn-secondary-outlined btn-print"
+      tr
+        td
+          h4.invoice-title
+            = t('invoice.trip_date')
+          = @booking.trip.check_in.strftime('%d/%m/%y')
+        td
+          h4.invoice-title
+            = t('invoice.code')
+          = @booking.reservation_code
+        td
+          h4.invoice-title
+            = t('invoice.listing')
+          = @booking.trip.boat_hash[:name]
+      tr.bordered
+        td
+          h4.invoice-title
+            = t('invoice.vat_country')
+          = t('invoice.service_country')
+        td
+          h4.invoice-title
+            = t('invoice.vat')
+          = "#{@booking.trip.vat_fee_percents.to_s.sub('.0', '')}%"
+        td
+          h4.invoice-title
+            = t('invoice.nie')
+          = @member.nie
+      tr
+        td colspan="3"
+          .invoice-super-title
+            = t('invoice.boatinn_sf')
+      tr.bordered
+        td
+          h4.invoice-title
+            = t('invoice.service_fee')
+          = view_money(@service_fee - @vat_fee)
+        td
+          h4.invoice-title
+            = t('invoice.vat')
+          = view_money(@vat_fee)
+        td
+          h4.invoice-title
+            = t('invoice.total')
+          = view_money(@service_fee)

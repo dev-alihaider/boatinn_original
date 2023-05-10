@@ -1,0 +1,15 @@
+header.header.wizard-header
+  .container-fluid
+    .row
+      .column.col-lg-12
+        = link_to project_logo, root_path, class: :logo
+        .wizard-status
+          strong#status-text
+        = render 'layouts/logged_in_user'
+        = link_to t('save_exit'), 'javascript:void(0)', class: 'header-link', id: 'btn-save-exit'
+        /
+          = link_to '#', class: 'header-link' do
+            i.fa.fa-life-ring
+            = t('help')
+.status-line
+  .progress

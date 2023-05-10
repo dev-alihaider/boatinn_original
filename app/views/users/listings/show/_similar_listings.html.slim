@@ -1,0 +1,3 @@
+section.similar-section
+  h2.title = t('users.listings.show.similar_listings')
+  ul.similar-list = render partial: 'users/listings/show/similar_listing', collection: @similar_boats, as: :boat

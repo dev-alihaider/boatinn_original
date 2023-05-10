@@ -1,0 +1,10 @@
+.container
+  .notifications-title-holder
+    h1.notifications-title
+      = t('notifies.notifications')
+    - if notifications_size.positive?
+      span.unreads.notifications-unreads= notifications_size
+
+.container
+  .notifications-wrap
+    = concept('notifies/cell/notification', collection: notifications).()

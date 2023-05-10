@@ -1,0 +1,13 @@
+.container-fluid
+  .row
+    .column.col-lg-12
+      .home-slider-wrapper
+        .home-slider
+          - if mobile_device == "mobile"
+            - if @homepage_settings.cover_photo_slideshow
+              = render partial: 'homepages/slider_part', collection: @slider_images
+          -else
+            = video_tag 'Experiences_boatINN_video.mp4', type:"video/mp4", autoplay:"", loop:"", muted:"", poster:"Video-icon.jpg"
+        .slider-search-wrapper
+          h1.subtitle = @marketplace_slogan
+          .slider-search-control-panel = render 'shared/search-bar'

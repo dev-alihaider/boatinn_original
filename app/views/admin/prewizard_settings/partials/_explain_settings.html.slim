@@ -1,0 +1,9 @@
+.form-group.fg-mn
+  .title-block
+    h2.title--bordered = t('admin.dashboard.prewizard.explain_settings.title')
+    = render 'admin/shares/save_btn', f:f, return_url: admin_prewizard_settings_path
+  .action-block
+    = render 'admin/shares/breadcrumbs'
+    = render 'admin/shares/switch_block', f:f, switch_field: :explain_settings
+= render 'admin/shares/languages_tab_list'
+= render partial: 'admin/prewizard_settings/forexplain_settings', locals: {f:f}, collection: @three

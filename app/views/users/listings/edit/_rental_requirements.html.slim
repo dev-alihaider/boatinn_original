@@ -1,0 +1,36 @@
+.yl-box
+  h3.title
+    = t('users.listings.edit.rental_requirements')
+  .tabs-container
+    ul
+      li class=(:hidden unless @boat.classic?)
+        a href="#rent-tab-1" = t('classic_charter')
+      li class=(:hidden unless @boat.shared?)
+        a href="#rent-tab-2" = t('boat_shared')
+      li class=(:hidden unless @boat.sleepin?)
+        a href="#rent-tab-3" = t('sleepinn')
+    #rent-tab-1 class=(:hidden unless @boat.classic?)
+      = link_to edit_wizard_path(@boat, stage: 6), class: 'button btn-secondary btn-edit' do
+        i.fa.fa-edit
+        = t('edit')
+      ul.yl-box-list.requirements-list
+        = render 'users/listings/edit/item', name: t('users.listings.edit.check_in_time_is'), value: to_human(check_in_out_times, @boat.check_in_time) if @boat.check_in_time.present?
+        = render 'users/listings/edit/item', name: t('users.listings.edit.check_out_time_is'), value: to_human(check_in_out_times, @boat.check_out_time) if @boat.check_out_time.present?
+        = render 'users/listings/edit/item', name: t('users.listings.edit.minimum_to_stay'), value: to_human(minimum_rental_times, @boat.minimum_rental_time) if @boat.minimum_rental_time.present?
+    #rent-tab-2 class=(:hidden unless @boat.shared?)
+      = link_to sharing_dashboard_listing_path(@boat), class: 'button btn-secondary btn-edit' do
+        i.fa.fa-edit
+        = t('edit')
+      ul.yl-box-list.requirements-list
+        = render 'users/listings/edit/item', name: t('users.listings.edit.check_in_time_is'), value: to_human(check_in_out_times, @boat.shared_check_in_time) if @boat.shared_check_in_time.present?
+        = render 'users/listings/edit/item', name: t('users.listings.edit.check_out_time_is'), value: to_human(check_in_out_times, @boat.shared_check_out_time) if @boat.shared_check_out_time.present?
+        / TODO: Add `shared_min_rental_time`
+        / = render 'users/listings/edit/item', name: t('users.listings.edit.minimum_to_stay'), value: to_human(minimum_rental_times, @boat.shared_min_rental_time) if @boat.shared_min_rental_time.present?
+    #rent-tab-3 class=(:hidden unless @boat.sleepin?)
+      = link_to sleepin_dashboard_listing_path(@boat), class: 'button btn-secondary btn-edit' do
+        i.fa.fa-edit
+        = t('edit')
+      ul.yl-box-list.requirements-list
+        = render 'users/listings/edit/item', name: t('users.listings.edit.check_in_time_is'), value: to_human(check_in_out_times, @boat.sleepin_check_in_time) if @boat.sleepin_check_in_time.present?
+        = render 'users/listings/edit/item', name: t('users.listings.edit.check_out_time_is'), value: to_human(check_in_out_times, @boat.sleepin_check_out_time) if @boat.sleepin_check_out_time.present?
+        = render 'users/listings/edit/item', name: t('users.listings.edit.minimum_to_stay'), value: to_human(minimum_rental_times, @boat.sleepin_min_rental_time) if @boat.sleepin_min_rental_time.present?

@@ -1,0 +1,43 @@
+.search-result-box*{data: {lat: boat.location&.lat, lng: boat.location&.lng}}
+  = hidden_field_tag 'passengers_count', boat.passengers_count
+
+  = hidden_field_tag 'prices[per_day]',           boat.per_day
+  = hidden_field_tag 'prices[shared_price]',      boat.shared_price
+  = hidden_field_tag 'prices[sleepin_per_night]', boat.sleepin_per_night
+
+  / = hidden_field_tag 'location[name]', boat.location&.name
+  / = hidden_field_tag nil, boat.location&.lat, class: 'location-lat'
+  / = hidden_field_tag nil,  boat.location&.lng, class: 'location-lng'
+
+  .img-wrap
+    = link_to image_tag(boat_image_url(boat, :medium)),
+        listing_params_url(boat,
+          check_in_date: params[:check_in_date].presence,
+          check_out_date: params[:check_out_date].presence,
+          passengers_count: params[:passengers_count].presence),
+        target: '_blank'
+    - if current_user.present?
+      button*{class: "wishlist-add#{' active' if current_user.wishes.exists?(boat.id)}", data: {id: boat.id}}
+        i.fa*{class: "fa-heart#{'-o' unless current_user.wishes.exists?(boat.id)}"}
+
+  .inf-wrap
+    .title = link_to boat.listing_title,
+                listing_params_url(boat,
+                  check_in_date: params[:check_in_date].presence,
+                  check_out_date: params[:check_out_date].presence,
+                  passengers_count: params[:passengers_count].presence),
+              target: '_blank'
+
+    .price
+      span.price-number = view_money(boat.minimum_rental[:price])
+      = " /#{t(boat.minimum_rental[:rental])}"
+
+    - if boat.location.present?
+      .location
+        i.fa.fa-map-marker
+        = boat.location.short_name
+        - if @location_short_name == '' 
+            - @location_short_name = boat.location.short_name
+
+    .custom-design-var-2
+      = render 'users/listings/show/rating', rate: avg_boat_rating(boat), count: boat.rating_hash[:count]

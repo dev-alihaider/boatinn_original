@@ -1,0 +1,94 @@
+.row
+  .col-lg-12
+    .wrapper.wrapper-content.animated.fadeInUp
+      .ibox
+        .ibox-content
+          table.table
+            thead
+              tr
+                th= t('admin.dashboard.bookings.boat_name')
+                th= t('admin.dashboard.bookings.seller_name')
+                th= t('admin.dashboard.bookings.rental_type')
+                th= t('admin.dashboard.bookings.check_in')
+                th= t('admin.dashboard.bookings.check_out')
+                th= t('admin.dashboard.bookings.cancellation')
+                th= t('admin.dashboard.bookings.status')
+            tbody
+              tr
+                td= link_to @travel.boat_hash[:name], @travel.boat_path
+                td= link_to @travel.seller.display_name, show_profile_path(id: @travel.seller.id)
+                td= t("admin.dashboard.bookings.rental_types.#{@travel.trip.rental}")
+                td= l(@travel.check_in, format: :short)
+                td= l(@travel.check_out, format: :short)
+                td= t("admin.dashboard.bookings.cancellations.#{@travel.trip.cancellation}")
+                td= t("admin.dashboard.bookings.statuses.#{@travel.trip.status}")
+      .ibox
+        .ibox-content
+          table.table
+            thead
+              tr
+                th= t('admin.dashboard.bookings.client_name')
+                th= t('admin.dashboard.bookings.booked_at')
+                th= t('admin.dashboard.bookings.reservation_code')
+                th= t('admin.dashboard.bookings.guests')
+                th= t('admin.dashboard.bookings.per_quantity')
+                th= t('admin.dashboard.bookings.status')
+                th= t('admin.dashboard.bookings.client_paid')
+            tbody
+              - @travel.trip.bookings.each do |booking|
+                tr
+                  td= link_to booking.client.display_name, show_profile_path(id: booking.client_id)
+                  td= l(booking.created_at, format: :short)
+                  td= booking.reservation_code
+                  td= booking.number_of_guests
+                  td= "#{t("admin.dashboard.bookings.rental_types.#{@travel.trip.rental}")} x #{@travel.number_of_periods}"
+                  td= t("admin.dashboard.bookings.statuses.#{booking.status}")
+                  td= view_money(booking.total)
+
+      .ibox
+        .ibox-content
+          table.table
+            thead
+              tr
+                th= t('admin.dashboard.bookings.subtotal')
+                th= t('admin.dashboard.bookings.client_fee')
+                th= t('admin.dashboard.bookings.client_paid')
+                th= t('admin.dashboard.bookings.seller_earnings')
+                th= t('admin.dashboard.bookings.seller_fee')
+                th= t('admin.dashboard.bookings.service_fee')
+            tbody
+              tr
+                td= view_money(@travel.trip.subtotal)
+                td= view_money(@travel.trip.client_fee)
+                td= view_money(@travel.trip.total)
+                td= view_money(@travel.trip.earnings)
+                td= view_money(@travel.trip.seller_fee)
+                td= view_money(@travel.trip.service_fee)
+      .row
+        .col-lg-12.text-right
+          - if @travel.can_cancel?
+            = link_to t('admin.dashboard.bookings.cancel_as_seller'), cancel_admin_trip_path(id: @travel.trip.id), class: 'btn btn-w-m btn-danger listing-admin-cancel', method: 'post'
+
+
+  - if @travel.canceled?
+    .wrapper.wrapper-content.animated
+      .ibox
+        .ibox-content
+          - if @travel.trip_cancellation.seller.present?
+            - if @travel.trip_cancellation.seller?
+              h2= t('admin.dashboard.bookings.canceled_by_seller')
+            - else
+              h2= t('admin.dashboard.bookings.canceled_by_client')
+              - if @travel.trip.trip_cancellation.subject.present?
+                h3= t("bookings.cancellation_subjects.#{@travel.trip.trip_cancellation.subject}")
+              - if @travel.trip.trip_cancellation.reason.present?
+                p= @travel.trip.trip_cancellation.reason
+
+
+
+.ibox
+  .ibox-content
+    h2 Payments
+    .row
+      = render partial: 'payment_item', collection: @travel.trip.payments, as: :payment
+

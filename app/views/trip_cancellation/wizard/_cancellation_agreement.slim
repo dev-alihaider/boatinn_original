@@ -1,0 +1,26 @@
+.tr-wizard-step#cancellation-update-container
+  .row
+    .col-md-12
+      h2.title = t("bookings.wizard.cancellation.do_you_agree")
+  .row
+    .col-md-12
+      .confirm-cancellation-table-wrapper
+        table.confirm-cancellation-table
+          tr.cc-table-tr
+            td.cc-table-td-first = t("bookings.wizard.cancellation.due_paid")
+            td.cc-table-td-last = view_money(@travel.paid_amount)
+          tr.cc-table-tr
+            td.cc-table-td-first
+              = t("bookings.wizard.cancellation.guest_fee")
+              br
+              = link_to t('.see_cancellation_policy'), cancellation_policy_path
+            td.cc-table-td-last = view_money(@travel.client_fee_paid_amount)
+          tr.cc-table-tr
+            td.cc-table-td-first = t("bookings.wizard.cancellation.total_refund")
+            td.cc-table-td-last = view_money(@travel.can_be_refunded_amount)
+  .row
+    .col-md-12
+      .confirm-cancellation-text =t('.text')
+  .row
+    .col-md-4.sm-12
+      button.button.btn-default.btn-expanded type='button' id="btn_cancel" = t('.yes_cancel')

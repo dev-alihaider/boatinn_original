@@ -1,0 +1,154 @@
+@import "utils/variables";
+
+/* Invoice */
+.invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  tr {
+    &.bordered {
+      td {
+        border-bottom: 1px solid $border-color;
+      }
+    }
+    td {
+      color: $carbon;
+      padding: 2rem 1rem;
+      &.custom-align {
+        text-align: right;
+        vertical-align: middle;
+      }
+    }
+  }
+}
+.invoice-logo {
+  width: 170px;
+  height: auto;
+}
+.invoice-title {
+  font-size: 1rem;
+  margin: 0 0 0.5rem;
+}
+.invoice-super-title {
+  font-size: 1.5rem;
+  font-family: $bold-font;
+}
+
+/* Receive */
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+.payment-holder {
+  border-top: 1px solid #c2c2c1;
+  border-bottom: 1px solid #c2c2c1;
+  padding: 1rem 0;
+}
+.price-holder {
+  width: 45%;
+  float: left;
+  box-sizing: border-box;
+  padding-right: 1rem; 
+}
+.card-holder {
+  width: 55%;
+  float: right;
+}
+.card-data-holder {
+  width: 50%;
+  float: left;
+  border-left: 1px solid #c2c2c1;
+  box-sizing: border-box;
+  padding-left: 1.5rem;
+}
+.card-type {
+  margin-top: 1rem;
+}
+.line-item {
+  line-height: 40px; 
+  height: 40px;
+}
+.line-item-main {
+  font-weight: 600;
+  padding-top: 1rem; 
+  border-top: 1px solid #c2c2c1;
+}
+.line-label {
+  width: 50%;
+  float: left;
+  text-align: left;
+  overflow: hidden;
+}
+.line-value {
+  width: 50%;
+  float: left;
+  text-align: right;
+  overflow: hidden;
+}
+.reservation-info-holder {
+  width: 100%; 
+  padding-top: 1.875rem; 
+  padding-bottom: 1.875rem; 
+  border-top: 1px solid #c2c2c1;
+}
+.host-info-holder {
+  width: 45%;
+  float: left;
+  padding-top: 1rem; 
+}
+.checkin-list {
+  width: 55%;
+  float: right;
+}
+.host-ava-holder {
+  position: relative;
+  background-color: #C6C6C6;
+  overflow: hidden;
+  border-radius: 50%;
+  box-sizing: content-box;
+  display: inline-block;
+  width: 70px;
+  height: 70px;
+  margin: 0 1rem;
+  float: left;
+}
+.host-ava-holder img {   
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.host-label {
+  font-size: 16px;
+  display: inline-block;
+}
+.host-name-holder {
+  display: inline-block;
+}
+.host-name {
+  margin: 0;
+  font-size: 20px; 
+  color: #727272; 
+  margin: 0;
+  line-height: 1;
+}
+.host-duration {
+  margin: 0;
+  padding: 7px 0 0;
+}
+
+.checkin-item {
+  width: 33%; 
+  float: left; 
+  border-left: 1px solid #c2c2c1; 
+  padding-left: 0.5rem; 
+  padding-top: 0.8rem;
+  box-sizing: border-box;
+}
+.checkin-item.no-border {
+  border-left: none;
+}

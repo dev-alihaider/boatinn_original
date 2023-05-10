@@ -1,0 +1,74 @@
+/ TODO: Front-end: replace this code with used previously
+css:
+  .ratings {
+    position: relative;
+    vertical-align: middle;
+    display: inline-block;
+    color: #b1b1b1;
+    overflow: hidden;
+  }
+
+  .full-stars {
+    position: absolute;
+    left: 0;
+    top: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #fde16d;
+  }
+
+  .empty-stars:before,
+  .full-stars:before {
+    content: "\2605\2605\2605\2605\2605";
+  }
+
+  .empty-stars:before {
+    -webkit-text-stroke: 1px #848484;
+  }
+
+  .full-stars:before {
+    -webkit-text-stroke: 1px orange;
+  }
+
+  /* Webkit-text-stroke is not supported on firefox or IE */
+  /* Firefox */
+  @-moz-document url-prefix() {
+    .full-stars {
+      color: #ECBE24;
+    }
+  }
+
+.row
+  .col-lg-12
+    .ibox
+      .ibox-content
+        .title-block
+          h2.title--bordered Edit report from «‎‎#{l(@report.created_at, format: :long)}» by «‎‎#{@report.author.display_name}» about «‎‎#{@report.about_review? ? @report.reportable.trip.boat_hash[:name] : @report.reportable.display_name}»
+          .btn-block
+            = link_to @report.about_review? ? about_review_admin_reports_path : about_user_admin_reports_path, class: %i[btn exit-btn] do
+              i.fa.fa-reply
+            = link_to admin_report_path(@report), method: :delete,
+                      data: { confirm: t('are_you_sure') },
+                      class: %i[btn btn-danger], style: 'margin-left: 10px' do
+              i.fa.fa-trash
+        .hr-line-dashed
+
+        .form-group.row
+          = label_tag :created_at, t('admin.dashboard.reports.report_created_at'), class: 'col-sm-2 col-form-label'
+          .col-sm-10
+            p.form-control-static = l(@report.created_at, format: :long, default: '-')
+        .hr-line-dashed
+
+        .form-group.row
+          = label_tag :author, t('admin.dashboard.reports.report_author'), class: 'col-sm-2 col-form-label'
+          .col-sm-10
+            p.form-control-static
+              = link_to show_profile_path(locale: locale, id: @report.author.id), target: '_blank' do
+                = image_tag user_image_url(@report.author), style: 'width: 200px'
+                =< @report.author.display_name
+        .hr-line-dashed
+
+        - if @report.about_review?
+          = render 'show_review_report'
+        - else
+          = render 'show_user_report'

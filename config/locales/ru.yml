@@ -1,0 +1,65 @@
+ru:
+  date:
+    abbr_day_names:
+      - Вс
+      - Пн
+      - Вт
+      - Ср
+      - Чт
+      - Пт
+      - Сб
+    abbr_month_names:
+      -
+      - янв.
+      - февр.
+      - марта
+      - апр.
+      - мая
+      - июня
+      - июля
+      - авг.
+      - сент.
+      - окт.
+      - нояб.
+      - дек.
+    day_names:
+      - воскресенье
+      - понедельник
+      - вторник
+      - среда
+      - четверг
+      - пятница
+      - суббота
+    formats:
+      default: "%d.%m.%Y"
+      long: "%-d %B %Y"
+      short: "%-d %b"
+    month_names:
+      -
+      - января
+      - февраля
+      - марта
+      - апреля
+      - мая
+      - июня
+      - июля
+      - августа
+      - сентября
+      - октября
+      - ноября
+      - декабря
+    order:
+      - :day
+      - :month
+      - :year
+  time:
+    am: утра
+    pm: вечера
+    formats:
+      default: "%a, %d %b %Y, %H:%M:%S %z"
+      long: "%d %B %Y, %H:%M"
+      short: "%d %b, %H:%M"
+      shorter: "%B %e at %H:%M"
+      short_date: "%B %e, %Y"
+      shortest_date: "%^b %e, %Y"
+      hours_only: "%l:%M %P"

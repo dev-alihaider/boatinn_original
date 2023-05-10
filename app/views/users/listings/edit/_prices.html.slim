@@ -1,0 +1,36 @@
+.yl-box
+  h3.title
+    = t('users.listings.edit.prices')
+  .tabs-container
+    ul
+      li class=(:hidden unless @boat.classic?)
+        a href="#price-tab-1" = t('classic_charter')
+      li class=(:hidden unless @boat.shared?)
+        a href="#price-tab-2" = t('boat_shared')
+      li class=(:hidden unless @boat.sleepin?)
+        a href="#price-tab-3" = t('sleepinn')
+    #price-tab-1 class=(:hidden unless @boat.classic?)
+      = link_to edit_wizard_path(@boat, stage: 14), class: 'button btn-secondary btn-edit' do
+        i.fa.fa-edit
+        = t('edit')
+      ul.yl-box-list.prices-list
+        - [[t('users.listings.edit.price_per_half_day'), @boat.per_half_day],
+           [t('users.listings.edit.price_per_day'), @boat.per_day],
+           [t('users.listings.edit.price_per_night'), @boat.per_night],
+           [t('users.listings.edit.price_per_week'), @boat.per_week]].each do |price|
+          = render 'users/listings/edit/price', name: price.first, price: price.last unless price.last.to_f.zero?
+    #price-tab-2 class=(:hidden unless @boat.shared?)
+      = link_to sharing_dashboard_listing_path(@boat), class: 'button btn-secondary btn-edit' do
+        i.fa.fa-edit
+        = t('edit')
+      ul.yl-box-list.prices-list
+        - [[t('price'), @boat.shared_price]].each do |price|
+          = render 'users/listings/edit/price', name: price.first, price: price.last unless price.last.to_f.zero?
+    #price-tab-3 class=(:hidden unless @boat.sleepin?)
+      = link_to sleepin_dashboard_listing_path(@boat), class: 'button btn-secondary btn-edit' do
+        i.fa.fa-edit
+        = t('edit')
+      ul.yl-box-list.prices-list
+        - [[t('users.listings.edit.price_per_night'), @boat.sleepin_per_night],
+          [t('users.listings.sleepin.extra_guest'), @boat.sleepin_extra_price]].each do |price|
+          = render 'users/listings/edit/price', name: price.first, price: price.last unless price.last.to_f.zero?

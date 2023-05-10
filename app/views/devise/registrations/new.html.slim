@@ -1,0 +1,82 @@
+.popup.wide-popup
+  .btn-close
+  .error = devise_error_messages!
+
+    / h3 = t('registrations.sign_up')
+
+    / .actions
+    /   = link_to t('registrations.sign_up_omniauth', provider: 'Facebook'), user_facebook_omniauth_authorize_path,
+    /           class: 'button btn-primary btn-expanded'
+    /
+    / div = t('registrations.sign_up_or')
+    /
+    / h3 = t('registrations.sign_up_email')
+    /
+    / = form_for(resource, as: resource_name, url: registration_path(resource_name), html: {id: 'sign-up_user'},
+    /         format: :json, remote: true) do |f|
+    /   .form-field
+    /     = f.email_field :email, placeholder: t('registrations.email_placeholder')
+    /   .form-field
+    /     = f.password_field :password, placeholder: t('registrations.password_placeholder')
+    /   .form-field
+    /     = f.password_field :password_confirmation, placeholder: t('registrations.password_confirmation_placeholder')
+    /   .actions
+    /     = f.submit t('registrations.sign_up'), class: 'button btn-success btn-expanded'
+    /
+    / div = t('registrations.license')
+    /
+    / div = t('registrations.already_have_account')
+    /
+    / .actions
+    /   = link_to "Log in", new_session_path(resource_name), class: 'button btn-danger btn-expanded'
+
+  - remote = request.xhr? ? true : false
+  - format = request.xhr? ? :json : :html
+
+  = form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {id: 'sign-up_user'}, format: format, remote: remote ) do |f|
+    = f.invisible_captcha :subtitle
+    .form-field.social-enter
+      = link_to user_facebook_omniauth_authorize_path, class: 'button btn-expanded btn-facebook' do
+        i.fa.fa-facebook
+        = t('.sign_up_omniauth', provider: 'Facebook')
+    .form-field.social-enter
+      = link_to user_google_oauth2_omniauth_authorize_path, class: 'button btn-expanded btn-google' do
+        i.fa.fa-google-plus
+        = t('.sign_up_omniauth', provider: 'Google')
+    .form-divide
+      span style="text-transform: uppercase;" = t('.sign_up_or')
+    .form-field.general-enter.no-margin
+      = link_to '#', class: 'button btn-expanded btn-danger btn-switch' do
+        i.fa.fa-envelope
+        = t('.sign_up_email')
+    .form-field.general-enter.subsidiary
+      p
+        => t('.by_clicking_sign_up_or_continue_with_i_agree')
+        = link_to t('.terms_of_service'), '#'
+        = link_to t('.payments_terms_of_service'), '#'
+        = link_to t('.privacy_policy'), '#'
+        => t('.and')
+        = link_to t('.nondiscrimination_policy'), '#'
+      p
+        = t('.already_have_account')
+        = link_to t('devise.sessions.new.log_in'), new_user_session_path, class: 'button btn-small btn-danger-outlined', data: { modal: true, remote: true }
+    .form-field.simple-enter
+      .link-holder
+        span => t('.register_with')
+        span.link-to Facebook
+        span =<> t('.sign_up_or')
+        span.link-to Google
+    .form-field.simple-enter = f.email_field :email, placeholder: t('.email_placeholder')
+    .form-field.simple-enter = f.text_field :first_name, placeholder: t('.first_name_placeholder')
+    .form-field.simple-enter = f.text_field :last_name, placeholder: t('.last_name_placeholder')
+    .form-field.simple-enter = f.password_field :password, placeholder: t('.password_placeholder')
+    .form-field.simple-enter
+      h4.note-title = t('.birthday_label')
+      p.note-text = t('.birthday_help')
+      .birthday#user_birthday
+        .birthday-holder
+          = f.date_select :birthday, birthday_select_options, :class => "select2"
+          label.error
+    .form-field.simple-enter
+      p.note-text = t('.registration_info')
+    .form-field.no-margin.simple-enter = f.submit t('.sign_up'), class: 'button btn-danger btn-expanded'

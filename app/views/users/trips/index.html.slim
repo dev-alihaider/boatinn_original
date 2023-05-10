@@ -1,0 +1,28 @@
+= render 'users/shared/menu'
+
+.container.your-trip
+  .your-trip-container
+    / = render 'invite_friends'
+    h3.subtitle = t('dashboard.your_trip.past_trips')
+    ul.past-trips-list
+      = render partial: 'travel_item', collection: @travels, as: :travel
+
+    = paginate @box.collection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

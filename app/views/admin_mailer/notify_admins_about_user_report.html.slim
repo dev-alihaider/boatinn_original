@@ -1,0 +1,13 @@
+h2 = t('reports.email_subjects.user_report')
+
+p = "The reporting reason: #{t("reports.user_modal.reason_section_#{@report_reason_section}")}"
+p = "Reason description: #{t("reports.#{@report.reason < 4 ? 'review' : 'user'}_modal.reason_#{@report.reason}_description")}"
+p = "Detailed description: #{@report.details}" if @report.details.present?
+p
+  | Report author:
+  =< link_to @report.author.display_name, show_profile_url(id: @report.author.id)
+p
+  | Report about user:
+  =< link_to @report.reportable.display_name, show_profile_url(id: @report.reportable.id)
+p = link_to t('admin.dashboard.reports.report_details'), admin_report_url(id: @report.id)
+p = link_to t('admin.dashboard.reports.manage_user_reports'), about_user_admin_reports_url

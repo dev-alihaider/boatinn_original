@@ -1,0 +1,5 @@
+div.faq-content__item[id="#{setting_part.id}"]
+  h3.title = setting_part.title
+  .editor.description = raw(setting_part.description)
+  = link_to t('edit'), edit_admin_faq_setting_path(setting_part), class: 'button btn-success'
+  = link_to t('delete'), admin_faq_setting_path(setting_part), method: :delete, data: { confirm: t('are_you_sure') }, class: 'button btn-remove'

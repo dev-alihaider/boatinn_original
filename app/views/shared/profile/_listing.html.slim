@@ -1,0 +1,6 @@
+.listing-box
+  = link_to listing_path(boat) do
+    .img-block
+      = image_tag boat_image_url(boat)
+    .listing-title 
+      = boat.listing_title

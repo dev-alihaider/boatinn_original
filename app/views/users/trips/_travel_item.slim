@@ -1,0 +1,26 @@
+li.past-trips-item
+  .img-wrap = image_tag travel.cover_src
+  .description
+    = link_to show_profile_path(travel.seller) do
+      .avatar.img-block = image_tag user_image_url(travel.seller)
+    .place-name= travel.boat_hash[:location][:name]
+    - month = travel.check_in.strftime("%B").downcase
+    - day   = travel.check_in.day
+    - year  = travel.check_in.strftime("%Y")
+    .info= "#{t("date.months_short.#{month}")} #{day} - #{year} &#183 #{travel.guest_label}".html_safe
+
+    .rating-wrapper
+      - if travel.given_review&.given?
+        = render 'users/listings/show/rating.html', rate: avg_rating_review(travel.given_review)
+
+    .links
+      - if travel.given_review&.given?
+        = link_to t('dashboard.your_trip.your_review'), dashboard_review_path(travel.given_review)
+      - elsif travel.given_review&.pending?
+        = link_to t('dashboard.your_trip.leave_review'), dashboard_review_leave_review_path(review_id: travel.given_review.id)
+
+      = link_to t('dashboard.your_trip.view_receipt'), dashboard_receipt_path(travel.trip), target: "_blank"
+
+    - booking = travel.current_bookings.first
+    - if booking.present?
+      = link_to t('dashboard.your_trip.view_invoice'), dashboard_invoice_path(booking.id), class: "button btn-outlined btn-expanded btn-invoice", target: "_blank"

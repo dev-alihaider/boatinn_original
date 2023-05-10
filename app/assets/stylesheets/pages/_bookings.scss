@@ -1,0 +1,192 @@
+body.bookings, body.booking_cancellation {
+  .flex-container {
+    align-items: start;
+    .content {
+      padding: 0 3rem 0 0;
+      width: 65%;
+    }
+    .sidebar {
+      padding: 1rem 2rem 1.5rem;
+      border: 1px solid $border-color;
+      width: 35%;
+      margin-bottom: 3rem;
+    }
+    @include respond-to-max($tablet) {
+      .content, .sidebar {
+        width: 100%;
+        padding: 0;
+      }
+      .sidebar {
+        padding: 0 1rem;
+      }
+    }
+  }
+  &.created_success {
+    .flex-container {
+      padding-top: 75px;
+    }
+  }
+}
+
+.tr-wizard-step {
+  padding: 0 0 30px;
+  display:none;
+  &:first-child {
+    display:block;
+  }
+  &:nth-child(3) {
+    .title {
+      margin-bottom: 2rem;
+    }
+  }
+  .title {
+    color: $carbon;
+    margin-bottom: 1rem;
+  }
+  .note {
+    border: 1px solid $border-color;
+    padding: 1.5rem 1.5rem 1.5rem 3rem;
+    margin-bottom: 2rem;
+    background: image-url('icons/lightbulb-green.svg') 12px 15px no-repeat;
+    background-size: 30px;
+    strong {
+      color: inherit;
+    }
+  }
+  .help-text {
+    margin-bottom: 0.5rem;
+  }
+  .agree-text {
+    border-top: 1px solid $border-color;
+    padding: 1rem 0 0;
+    margin: 2rem 0 1rem;
+    line-height: 1.5rem;
+  }
+  .cancellation-text {
+    margin: 1rem 0 0;
+    line-height: 1.5rem;
+    strong {
+      color: inherit;
+    }
+  }
+  .pay-with-label {
+    display: flex;
+    margin-bottom: 0.5rem;
+    align-items: center;
+    justify-content: start;
+    label {
+      margin: 0;
+    }
+    img {
+      width: calc(100% - 150px);
+      margin-left: 1rem;
+      max-width: 12.5rem;
+    }
+  }
+  #message {
+    margin-bottom: 2rem;
+  }
+  @include respond-to-max($tablet) {
+    text-align: center;
+  }
+}
+
+.info-check {
+  padding: 0;
+  margin-bottom: 4rem;
+  li {
+    list-style-type: none;
+    line-height: 4rem;
+    border-bottom: 1px solid $border-color;
+    padding-left: 40px;
+    &:last-child {
+      border: none;
+    }
+    &.check-in {
+      background: image-url('icons/getINN.svg') 0 17px no-repeat;
+      background-size: 30px;
+    }
+    &.check-out {
+      background: image-url('icons/getOUT.svg') 0 17px no-repeat;
+      background-size: 30px;
+    }
+  }
+}
+
+.cancelation-text {
+  margin: 2rem 0 0;
+  .title {
+    font-size: 1.2rem;
+    margin: 0 0 0.5rem;
+    color: $carbon;
+  }
+  p {
+    line-height: 1.4rem;
+  }
+}
+
+#request-emails {
+  margin: 4rem 0 2rem;
+  label {
+    margin-bottom: 1rem;
+    display: block;
+    font-family: $bold-font;
+  }
+}
+
+.request-email-add {
+  margin: 0 0 3rem;
+  display: inline-block;
+}
+
+.checkout-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  .checkout-header-logo {
+    display: block;
+    width: 40px;
+    height: auto;
+    margin: -11px 0 0 1rem;
+    @include respond-to-min($desktop) {
+      position: absolute;
+      top: 7px;
+      left: -33px;
+      margin: 0;
+    }
+  }
+}
+
+.confirm-cancellation-text {
+  margin: 3rem 0 1rem;
+  font-size: 0.8rem;
+}
+
+.confirm-cancellation-table-wrapper {
+  padding: 0 2rem;
+  border: 1px solid $border-color;
+  .cc-table-tr {
+    border-bottom: 1px solid $border-color;
+    &:nth-child(odd) {
+      background-color: $white;
+    }
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  .cc-table-td-first {
+    padding: 2rem 0;
+  }
+  .cc-table-td-last {
+    padding: 2rem 0;;
+    text-align: right;
+    font-weight: 700;
+  }
+}
+
+.cancel-contacts {
+  margin: 1rem 0;
+  display: block;
+}

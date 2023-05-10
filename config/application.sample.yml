@@ -1,0 +1,54 @@
+# Add configuration values here, as shown below.
+#
+# pusher_app_id: "2954"
+# pusher_key: 7381a978f7dd7f9a1117
+# pusher_secret: abdc3b896a0ffb85d373
+# stripe_api_key: sk_test_2J0l093xOyW72XUYJHE4Dv2r
+# stripe_publishable_key: pk_test_ro9jV5SNwGb1yYlQfzG17LHK
+#
+# production:
+#   stripe_api_key: sk_live_EeHnL644i6zo4Iyq4v1KdV9H
+#   stripe_publishable_key: pk_live_9lcthxpSIHbGwmdO941O1XVU
+
+development:
+  FACEBOOK_APP_ID: '742296059312887'
+  FACEBOOK_APP_SECRET: '959dcf62db459a7d67ee090277bfe9de'
+
+  GOOGLE_CLIENT_ID: '1008021051480-4l818vo6ut11e6mq5ppeq997fnjn4go1.apps.googleusercontent.com'
+  GOOGLE_CLIENT_SECRET: 'PpqAftCDF7liwcoPDrwUkVT_'
+  GOOGLE_API_KEY: 'AIzaSyBcVxi2ATkTHiejIm7ssTSTs4rZLQoYmoQ'
+
+  TWILIO_ACCOUNT_SID: 'AC38509ee2173ae0fbc2f8c5e9a49035df'
+  TWILIO_AUTH_TOKEN: 'df796a691c1ddbba02f21aff100de226'
+  TWILIO_PHONE_NUMBER: '+15063003126'
+
+  FIXER_ACCESS_KEY: '0c4244e827b1255071b3a95c32bb18ee'
+  # NOTE: For getting an array use: `YAML.load(ENV['FIXER_CURRENCIES'])`.
+  FIXER_CURRENCIES: '["RUB", "USD", "GBP"]'
+
+  BRAINTREE_ENV: 'sandbox'
+  BRAINTREE_MERCHANT_ID: '7t2bdt2t3pd4z7s7'
+  BRAINTREE_PUBLIC_KEY: 'h7vdn58fvrynx6qq'
+  BRAINTREE_PRIVATE_KEY: '61fbd4f544e2e9d7c9c4bbc6aea3e380'
+
+  STRIPE_CLIENT_ID: 'ca_Dq5jHvsf0RhEiFZoRu3FHehUH6Sk2J7F'
+  STRIPE_SECRET_KEY: 'sk_test_ppjr6nQrb3f3kdx9KDcIi0bP'
+  STRIPE_PUBLISH_KEY: 'pk_test_piwsH0mEYi51sXWrr5DjJGpI'
+
+  # Fix `WARNING: Use strings for Figaro configuration. 3 was converted to "3"/10 was converted to "10"`.
+  SELLER_FEE_PERCENTS: '3'
+  CLIENT_FEE_PERCENTS: '13'
+  VAT_FEE_PERCENTS: '21'
+
+  HOST: '<your_host>'
+  SMTP_EMAIL_ADDRESS: '<your_address>'
+  SMTP_EMAIL_PORT: '<your_port>'
+  SMTP_EMAIL_DOMAIN: '<your_domain>'
+  SMTP_EMAIL_USER_NAME: '<your_user_name>'
+  SMTP_EMAIL_PASSWORD: '<your_password>'
+
+staging:
+  # Add staging configuration values here.
+
+production:
+  # Add production configuration values here.

@@ -1,0 +1,5 @@
+#edit-payout-modal.modal aria-hidden="true" aria-labelledby="add-payout-modal" role="dialog" tabindex="-1"
+  .modal-dialog.modal-wide role="document"
+    .btn-close data-dismiss="modal"
+    = form_tag dashboard_payout_path(payout), id: :stripe_form, method: :patch do
+      = render 'users/account/form_bank_account', hash: hash

@@ -1,0 +1,25 @@
+@import "../../main.css";
+
+body.terms{
+  .title {
+    font-size: 1.2rem;
+    color: #3C4651;
+    margin: 2rem 0 0;
+  }
+  .description {
+    margin: 1.5rem 0 1rem;
+    line-height: 1.2;
+  }
+  .btn-go-back {
+    margin-bottom: 3rem;
+  }
+}
+
+.terms-list {
+  margin-bottom: 2rem;
+  li {
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+}
+

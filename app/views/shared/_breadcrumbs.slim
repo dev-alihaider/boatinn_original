@@ -1,0 +1,6 @@
+nav#breadcrumbs
+  ul.breadcrumbs-list
+    - items.each do |item|
+      li.breadcrumbs-item
+        = t(item[:t_key])
+        -# = link_to t(item[:t_key]), item[:url]

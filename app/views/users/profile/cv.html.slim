@@ -1,0 +1,37 @@
+= render 'users/shared/menu'
+
+.container
+  .flex-container.account-container
+    .sidebar = render 'menu'
+    .content
+      h3.title = t('users.profile.your_cv')
+      .inner-content
+        .row
+          .column.col-lg-8.col-sm-12
+            = form_tag update_cv_dashboard_profile_index_path, method: :patch, class: %i[notification-form account-form cv-form] do |f|
+              .row.cvs-container
+                - @cvs[:cvs_select].each do |key, hash|
+                  .column.col-lg-6.col-sm-12
+                    .form-field
+                      = label_tag key, hash[:name]
+                      = select_tag key, options_for_select(hash[:options].map{ |h| [h[1], h[0]] }, @current_cv.send(key)), class: :select2
+              .row.custom-grid-row
+                .column.col-lg-6.col-sm-12
+                  .form-field
+                    = label_tag @cvs[:cvs_license].keys[0], @cvs[:cvs_license].values[0][:name]
+                    = text_field_tag @cvs[:cvs_license].keys[0], @current_cv.send(@cvs[:cvs_license].keys[0]), maxlength: 50
+                .column.col-lg-6.col-sm-12
+                  .form-field
+                    = label_tag @cvs[:cvs_country].keys[0], @cvs[:cvs_country].values[0][:name]
+                    = select_tag @cvs[:cvs_country].keys[0], options_for_select(ISO3166::Country.all_names_with_codes,
+                                @current_cv.send(@cvs[:cvs_country].keys[0])), class: :select2
+              .row
+                .column.col-lg-12
+                  .form-field
+                    = label_tag @cvs[:cvs_description].keys[0], @cvs[:cvs_description].values[0][:name]
+                    = text_area_tag @cvs[:cvs_description].keys[0], @current_cv.send(@cvs[:cvs_description].keys[0]), maxlength: 3000
+              .row
+                .column.col-lg-4.col-sm-12
+                  = button_tag nil, class: %i[button btn-success btn-expanded btn-save] do
+                    i.fa.fa-save
+                    = t('save')

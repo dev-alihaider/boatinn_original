@@ -1,0 +1,87 @@
+/* Only demo */
+@import "utils/variables";
+@import "utils/mixins";
+
+@media (max-width: 1000px) {
+  .welcome-message {
+    display: none;
+  }
+}
+
+.login_img_logo{
+  display: block;
+  width: 180px;
+  margin: 40px auto;
+}
+
+.devise{
+  .alert, .notice{
+    color: red;
+    text-align: center;
+    padding: 0;
+  }
+}
+
+#wrapper {
+  background-color: $admin-bgcolor02;
+}
+
+#page-wrapper {
+  background-color: $page-wrap;
+  @include respond-to-min($tablet) {
+    margin: 0 0 0 250px;
+  }
+}
+.navbar-static-side, .nav-header {
+  background-color: $admin-bgcolor02;
+}
+
+.navbar-static-side {
+  @include respond-to-min($tablet) {
+    width: 250px;
+  }
+}
+
+#side-menu > li {
+  background-color: $admin-bgcolor02;
+  &.active, &.active > a {
+    background-color: $admin-active;
+    border-left: none;
+  }
+  > .nav-second-level {
+    background-color: $admin-bgcolor01;
+  }
+}
+
+.navbar-default .nav > li > a:hover, .navbar-default .nav > li > a:focus, .nav > li.active {
+  background-color: #1C4D63;
+  color: $white;
+}
+
+.nav > li.active > a, .nav > li > a, .nav > li.active > a i {
+  color: $white;
+}
+
+.metismenu li > a {
+  font-weight: normal;
+  & > .fa.arrow:before {
+    content: '\f107';
+  }
+}
+
+.metismenu li.active > a > .fa.arrow:before {
+  content: '\f106';
+}
+
+.count-info .label {
+  background-color: $admin-active;
+}
+
+p.notice, p.alert {
+  padding: 0;
+  margin: 0;
+}
+
+.ibox-title {
+  border: none;
+}

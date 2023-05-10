@@ -1,0 +1,4 @@
+ol.breadcrumb
+  li = link_to t('Admin homepage'), admin_root_path
+  - if local_assigns[:active]
+    li.active = active

@@ -1,0 +1,31 @@
+= render 'users/shared/menu'
+
+= hidden_field_tag :rental_type, rental_type
+
+.container
+  .your-listings-container
+    h3.title = t('your_listings')
+
+    .row
+      .yl-nav-links
+        = link_to t('listing_details'), edit_dashboard_listing_path, class: %i[listing-tab-link active]
+        = link_to t('booking_settings'), settings_dashboard_listing_path, class: %i[listing-tab-link]
+        .select2-wrapper = select_tag :switch_listing, options_for_select(current_user_listings(@boats, :edit), @boat.id), class: :select2
+
+    .row
+      .img-wrap.img-block.main-img = image_tag boat_image_url(@boat)
+
+    = render 'users/listings/edit/title'
+    = render 'users/listings/edit/space'
+    = render 'users/listings/edit/with_or_without_captain'
+    = render 'users/listings/edit/features'
+    = render 'users/listings/edit/experiences'
+    = render 'users/listings/edit/details'
+    = render 'users/listings/edit/prices'
+    = render 'users/listings/edit/seasonal_rates'
+    = render 'users/listings/edit/additional_fees'
+    = render 'users/listings/edit/cancellation_policy'
+    = render 'users/listings/edit/rental_requirements'
+    = render 'users/listings/edit/photos'
+    = render 'users/listings/edit/location'
+    = render 'users/listings/edit/port'

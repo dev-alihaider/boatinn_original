@@ -1,0 +1,15 @@
+.form-group.fg-mn
+  .title-block
+    h2.title--bordered
+      = t('admin.dashboard.homepage.community_preferences.h2_title')
+    = render 'admin/shares/save_btn', f:f, return_url: admin_homepage_settings_path
+  .action-block
+    = render 'admin/shares/breadcrumbs'
+    = render 'admin/shares/switch_block', f:f, switch_field: :community_preferences
+= render 'admin/shares/languages_tab_list'
+- (1..8).each do |img|
+  = f.fields_for :images do |a|
+    - if a.object.slug == "hp_copre_#{img}"
+      = render 'admin/homepage_settings/community_preferences_image', img: img, f:a, view_type: view_type
+- (1..12).each do |figure|
+  = render 'admin/homepage_settings/community_preferences_title_link', figure: figure, f:f, view_type: view_type

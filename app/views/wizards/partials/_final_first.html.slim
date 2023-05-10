@@ -1,0 +1,24 @@
+.wizard-page#page8 data-stage='8'
+  = hidden_field_tag nil, '', class: 'status-text-val'
+  .col.left-column
+    .main-title = t('wizards.index.page-final01.title', user_name: user_name).html_safe
+    .subtitle = t('wizards.index.page-final01.subtitle')
+    .step-box
+      .step-title
+        i.fa.fa-check
+        = t('step') + ' 1'
+      = link_to t('wizards.index.change'), edit_wizard_path(@boat, stage: 1), class: 'button btn-success back'
+    .step-box.current
+      .step-title
+        i.fa.fa-close
+        = t('step') + ' 2'
+      = button_tag nil, class: 'button btn-info next', type:'button', data:{stage: 8, commit: false} do
+        = t('wizards.index.continue')
+        i.fa.fa-angle-right.after-text
+    .step-box.future
+      .step-title
+        i.fa.fa-close
+        = t('step') + ' 3'
+      = button_tag t('wizards.index.wait'), class: 'button btn-disabled', disabled: 'true'
+  .col.right-column.without-text
+    .shipsnap

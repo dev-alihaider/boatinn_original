@@ -1,0 +1,20 @@
+.form-group.row
+  = label_tag :reason, t('admin.dashboard.reports.report_about'), class: 'col-sm-2 col-form-label'
+  .col-sm-10
+    p.form-control-static
+      = link_to show_profile_path(locale: locale, id: @report.reportable.id), target: '_blank' do
+        = image_tag user_image_url(@report.reportable), style: 'width: 200px'
+        =< @report.reportable.display_name
+.hr-line-dashed
+
+.form-group.row
+  = label_tag :reason, t('admin.dashboard.reports.reason'), class: 'col-sm-2 col-form-label'
+  .col-sm-10
+    p.form-control-static = "#{t("reports.user_modal.reason_section_#{reason_section(@report)}")} - #{t("reports.#{@report.reason < 4 ? 'review' : 'user'}_modal.reason_#{@report.reason}_description")}"
+.hr-line-dashed
+
+.form-group.row
+  = label_tag :reason, t('admin.dashboard.reports.details'), class: 'col-sm-2 col-form-label'
+  .col-sm-10
+    p.form-control-static = @report.details
+.hr-line-dashed
