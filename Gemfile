@@ -5,7 +5,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.1.6'
 # Use postgre as the database for Active Record
@@ -92,7 +91,7 @@ gem 'sidekiq-status'
 gem 'slim-rails'
 gem 'coffee-rails'
 gem 'mimemagic'
-gem 'paperclip', github: 'thoughtbot/paperclip'
+gem 'paperclip'
 gem 'globalize', '~> 5.1.0.beta2'
 gem 'activemodel-serializers-xml'
 gem 'summernote-rails', '~> 0.8.10.0'
