@@ -39,3 +39,5 @@ etc/ssl/
 etc/redis
 
 db/2018-10-23-noowner.sql
+.generators
+.rakeTasks

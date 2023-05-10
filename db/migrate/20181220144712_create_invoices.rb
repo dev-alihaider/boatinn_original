@@ -6,9 +6,9 @@ class CreateInvoices < ActiveRecord::Migration[5.1]
       t.string :seller_number
     end
 
-    Booking.find_each do |booking|
-      Invoice.generate_new_numbers(booking.id)
-    end
+    # Booking.find_each do |booking|
+    #   Invoice.generate_new_numbers(booking.id)
+    # end
   end
 
   def down

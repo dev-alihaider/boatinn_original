@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20210301122705) do
   create_table "assets", force: :cascade do |t|
     t.string "attachment_file_name"
     t.string "attachment_content_type"
-    t.integer "attachment_file_size"
+    t.bigint "attachment_file_size"
     t.datetime "attachment_updated_at"
     t.string "assetable_type"
     t.bigint "assetable_id"
@@ -701,18 +701,6 @@ ActiveRecord::Schema.define(version: 20210301122705) do
     t.index ["transfer_at"], name: "index_travel_trips_on_transfer_at"
   end
 
-  create_table "user_payouts", force: :cascade do |t|
-    t.bigint "user_id"
-    t.integer "payoutable_id"
-    t.string "payoutable_type"
-    t.integer "payout_status"
-    t.boolean "payout_default", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["payoutable_type", "payoutable_id"], name: "index_user_payouts_on_payoutable_type_and_payoutable_id"
-    t.index ["user_id"], name: "index_user_payouts_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -734,15 +722,15 @@ ActiveRecord::Schema.define(version: 20210301122705) do
     t.boolean "admin", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "phone_number"
-    t.string "phone_verification_code"
-    t.datetime "phone_verification_code_sent_at"
-    t.boolean "phone_verified", default: false, null: false
     t.string "auth_via"
     t.string "uid_facebook"
     t.string "image_url_facebook"
     t.string "uid_google_oauth2"
     t.string "image_url_google_oauth2"
+    t.string "phone_number"
+    t.string "phone_verification_code"
+    t.datetime "phone_verification_code_sent_at"
+    t.boolean "phone_verified", default: false, null: false
     t.boolean "closed", default: false
     t.string "stripe_customer_id"
     t.string "first_name"
