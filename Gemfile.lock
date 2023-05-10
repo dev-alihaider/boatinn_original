@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/mimemagicrb/mimemagic
+  revision: 01f92d86d15d85cfd0f20dabd025dcbd36a8a60f
+  ref: 01f92d86d15d85cfd0f20dabd025dcbd36a8a60f
+  specs:
+    mimemagic (0.3.5)
+
+GIT
   remote: https://github.com/thoughtbot/paperclip.git
   revision: c769382c9b7078f3d1620b50ec2a70e91ba62ec4
   specs:
@@ -262,9 +269,6 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
-    mimemagic (0.3.10)
-      nokogiri (~> 1)
-      rake
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.14.3)
@@ -545,7 +549,7 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   mail_view
   meta_request
-  mimemagic
+  mimemagic!
   money-rails
   omniauth-facebook
   omniauth-google-oauth2
