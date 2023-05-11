@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(version: 20210301122705) do
     t.string "name"
     t.jsonb "properties"
     t.datetime "time"
-    t.index "properties jsonb_path_ops", name: "index_ahoy_events_on_properties_jsonb_path_ops", using: :gin
     t.index ["name", "time"], name: "index_ahoy_events_on_name_and_time"
+    t.index ["properties"], name: "index_ahoy_events_on_properties_jsonb_path_ops"
     t.index ["user_id"], name: "index_ahoy_events_on_user_id"
     t.index ["visit_id"], name: "index_ahoy_events_on_visit_id"
   end
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20210301122705) do
   create_table "assets", force: :cascade do |t|
     t.string "attachment_file_name"
     t.string "attachment_content_type"
-    t.bigint "attachment_file_size"
+    t.integer "attachment_file_size"
     t.datetime "attachment_updated_at"
     t.string "assetable_type"
     t.bigint "assetable_id"
@@ -118,7 +118,7 @@ ActiveRecord::Schema.define(version: 20210301122705) do
     t.boolean "instant_booking_sleepin", default: false, null: false
     t.boolean "instant_booking_shared", default: false, null: false
     t.integer "sleepin_min_rental_time"
-    t.text "rating_hash", default: "---\n:count: 0\n:accuracy_avg: 0\n:communication_avg: 0\n:cleanliness_avg: 0\n:location_avg: 0\n:check_in_avg: 0\n:value_avg: 0\n"
+    t.text "rating_hash"
     t.datetime "finished_at"
     t.boolean "showboat", default: true
     t.index ["bathrooms_count"], name: "index_boats_on_bathrooms_count"
@@ -569,7 +569,7 @@ ActiveRecord::Schema.define(version: 20210301122705) do
     t.datetime "left_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "seen_at", default: "1970-01-01 00:00:00"
+    t.datetime "seen_at", default: "1970-01-01 00:00:01"
     t.integer "cleaning_fee_cents", default: 0
     t.integer "skipper_fee_cents", default: 0
     t.index ["client_id"], name: "index_travel_customers_on_client_id"
@@ -687,7 +687,7 @@ ActiveRecord::Schema.define(version: 20210301122705) do
     t.datetime "image_updated_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "seller_seen_at", default: "1970-01-01 00:00:00"
+    t.datetime "seller_seen_at", default: "1970-01-01 00:00:01"
     t.integer "cleaning_fee_cents", default: 0
     t.integer "skipper_fee_cents", default: 0
     t.boolean "skipper_included"
@@ -701,9 +701,21 @@ ActiveRecord::Schema.define(version: 20210301122705) do
     t.index ["transfer_at"], name: "index_travel_trips_on_transfer_at"
   end
 
+  create_table "user_payouts", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "payoutable_id"
+    t.string "payoutable_type"
+    t.integer "payout_status"
+    t.boolean "payout_default", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["payoutable_type", "payoutable_id"], name: "index_user_payouts_on_payoutable_type_and_payoutable_id"
+    t.index ["user_id"], name: "index_user_payouts_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
+    t.string "email", null: false
+    t.string "encrypted_password", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -722,15 +734,15 @@ ActiveRecord::Schema.define(version: 20210301122705) do
     t.boolean "admin", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "phone_number"
+    t.string "phone_verification_code"
+    t.datetime "phone_verification_code_sent_at"
+    t.boolean "phone_verified", default: false, null: false
     t.string "auth_via"
     t.string "uid_facebook"
     t.string "image_url_facebook"
     t.string "uid_google_oauth2"
     t.string "image_url_google_oauth2"
-    t.string "phone_number"
-    t.string "phone_verification_code"
-    t.datetime "phone_verification_code_sent_at"
-    t.boolean "phone_verified", default: false, null: false
     t.boolean "closed", default: false
     t.string "stripe_customer_id"
     t.string "first_name"
