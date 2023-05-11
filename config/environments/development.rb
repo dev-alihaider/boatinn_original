@@ -59,4 +59,14 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.action_mailer.asset_host = 'http://0.0.0.0:3000'
+
+  Paperclip::Attachment.default_options[:s3_credentials] = {
+      :bucket => ENV['S3_BUCKET_NAME'],
+      :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'],
+      :region => 'us-east-1'
+  }
+  Paperclip::Attachment.default_options[:s3_region] = 'us-east-1'
+  Paperclip::Attachment.default_options[:s3_host_name] = 's3.us-east-1.amazonaws.com'
+  # Paperclip.options[:command_path] = 'usr/local/bin'
 end
