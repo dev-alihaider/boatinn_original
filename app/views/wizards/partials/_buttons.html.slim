@@ -44,9 +44,9 @@
         type: 'button', data: {stage: current_stage, commit: commit, validate: true} do
       = t('next')
       i.fa.fa-angle-right
-    = button_tag nil, class: %i[button btn-success btn-expanded next btn-finish btn-disabled],
+    = link_to dashboard_root_path, class: %i[button btn-success btn-expanded next btn-finish btn-disabled],
         type: 'button', data: {stage: current_stage, commit: commit, validate: true} do
-      = t('finish')
+      = 'finish'
     = button_tag nil,
         class: "button btn-secondary btn-expanded btn-skip btn-skip-right#{' hidden' if is_hide_right_skip_button}",
         type: 'button', data: {stage: current_stage, commit: commit, validate: true} do
