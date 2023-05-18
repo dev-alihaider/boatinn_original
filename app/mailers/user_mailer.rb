@@ -15,13 +15,13 @@ class UserMailer < ApplicationMailer # :nodoc:
       @nameclient = nameclient
       @emailclient = emailclient
       subject = @nameclient + " ha dado su consentimiento"
-      mail(to: "info@boatinn.net", subject: subject)
+      mail(to: "info@boatinn.es", subject: subject)
   end
 
   def user_banned(user)
     user_email user do |email|
       subject = t("user_mailer.user_banned.subject")
-      mail(to: email, bcc: "rfs@boatinn.net", subject: @subject) 
+      mail(to: email, bcc: "rfs@boatinn.es", subject: @subject)
     end
   end
 
@@ -51,7 +51,7 @@ class UserMailer < ApplicationMailer # :nodoc:
   def password_changed(user)
     user_email user do |email|
       subject = t("user_mailer.password_changed.subject")
-      mail(to: email, bcc: "rfs@boatinn.net", subject: @subject)
+      mail(to: email, bcc: "rfs@boatinn.es", subject: @subject)
     end
   end
 

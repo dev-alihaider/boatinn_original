@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(version: 20210301122705) do
     t.string "name"
     t.jsonb "properties"
     t.datetime "time"
-    t.index "properties jsonb_path_ops", name: "index_ahoy_events_on_properties_jsonb_path_ops", using: :gin
     t.index ["name", "time"], name: "index_ahoy_events_on_name_and_time"
+    t.index ["properties"], name: "index_ahoy_events_on_properties_jsonb_path_ops"
     t.index ["user_id"], name: "index_ahoy_events_on_user_id"
     t.index ["visit_id"], name: "index_ahoy_events_on_visit_id"
   end
@@ -118,7 +118,7 @@ ActiveRecord::Schema.define(version: 20210301122705) do
     t.boolean "instant_booking_sleepin", default: false, null: false
     t.boolean "instant_booking_shared", default: false, null: false
     t.integer "sleepin_min_rental_time"
-    t.text "rating_hash", default: "---\n:count: 0\n:accuracy_avg: 0\n:communication_avg: 0\n:cleanliness_avg: 0\n:location_avg: 0\n:check_in_avg: 0\n:value_avg: 0\n"
+    t.text "rating_hash"
     t.datetime "finished_at"
     t.boolean "showboat", default: true
     t.index ["bathrooms_count"], name: "index_boats_on_bathrooms_count"
@@ -569,7 +569,7 @@ ActiveRecord::Schema.define(version: 20210301122705) do
     t.datetime "left_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "seen_at", default: "1970-01-01 00:00:00"
+    t.datetime "seen_at", default: "1970-01-01 00:00:01"
     t.integer "cleaning_fee_cents", default: 0
     t.integer "skipper_fee_cents", default: 0
     t.index ["client_id"], name: "index_travel_customers_on_client_id"
@@ -687,7 +687,7 @@ ActiveRecord::Schema.define(version: 20210301122705) do
     t.datetime "image_updated_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "seller_seen_at", default: "1970-01-01 00:00:00"
+    t.datetime "seller_seen_at", default: "1970-01-01 00:00:01"
     t.integer "cleaning_fee_cents", default: 0
     t.integer "skipper_fee_cents", default: 0
     t.boolean "skipper_included"
@@ -714,8 +714,8 @@ ActiveRecord::Schema.define(version: 20210301122705) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
+    t.string "email", null: false
+    t.string "encrypted_password", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

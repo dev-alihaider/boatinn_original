@@ -1,6 +1,13 @@
 GIT
+  remote: https://github.com/mimemagicrb/mimemagic
+  revision: 01f92d86d15d85cfd0f20dabd025dcbd36a8a60f
+  ref: 01f92d86d15d85cfd0f20dabd025dcbd36a8a60f
+  specs:
+    mimemagic (0.3.5)
+
+GIT
   remote: https://github.com/thoughtbot/paperclip.git
-  revision: acbb03f76da032d9d5eca0adcc32c8bee9f5ab60
+  revision: c769382c9b7078f3d1620b50ec2a70e91ba62ec4
   specs:
     paperclip (6.1.0)
       activemodel (>= 4.2.0)
@@ -81,6 +88,22 @@ GEM
     autoprefixer-rails (9.1.0)
       execjs
     awesome_print (1.8.0)
+    aws-eventstream (1.2.0)
+    aws-partitions (1.762.0)
+    aws-sdk-core (3.172.0)
+      aws-eventstream (~> 1, >= 1.0.2)
+      aws-partitions (~> 1, >= 1.651.0)
+      aws-sigv4 (~> 1.5)
+      jmespath (~> 1, >= 1.6.1)
+    aws-sdk-kms (1.64.0)
+      aws-sdk-core (~> 3, >= 3.165.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-s3 (1.122.0)
+      aws-sdk-core (~> 3, >= 3.165.0)
+      aws-sdk-kms (~> 1)
+      aws-sigv4 (~> 1.4)
+    aws-sigv4 (1.5.2)
+      aws-eventstream (~> 1, >= 1.0.2)
     bcrypt (3.1.12)
     better_errors (2.4.0)
       coderay (>= 1.0.0)
@@ -140,7 +163,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    concurrent-ruby (1.1.8)
+    concurrent-ruby (1.2.2)
     connection_pool (2.2.2)
     countries (2.1.4)
       i18n_data (~> 0.8.0)
@@ -206,13 +229,16 @@ GEM
     httparty (0.13.7)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
-    i18n (1.8.9)
+    i18n (1.13.0)
       concurrent-ruby (~> 1.0)
     i18n_data (0.8.0)
+    invisible_captcha (2.0.0)
+      rails (>= 5.0)
     jaro_winkler (1.5.1)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
+    jmespath (1.6.2)
     jquery-rails (4.3.3)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -260,10 +286,9 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
-    mimemagic (0.3.2)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
-    minitest (5.14.3)
+    minitest (5.15.0)
     monetize (1.9.1)
       money (~> 6.12)
     money (6.13.3)
@@ -474,7 +499,7 @@ GEM
       faraday (~> 0.9)
       jwt (>= 1.5, <= 2.5)
       nokogiri (>= 1.6, < 2.0)
-    tzinfo (1.2.9)
+    tzinfo (1.2.11)
       thread_safe (~> 0.1)
     uber (0.1.0)
     unf (0.1.4)
@@ -508,6 +533,7 @@ DEPENDENCIES
   ahoy_matey
   annotate
   awesome_print
+  aws-sdk-s3
   better_errors
   binding_of_caller
   bootstrap-sass
@@ -531,7 +557,9 @@ DEPENDENCIES
   draper
   figaro
   geokit-rails
+  globalid
   globalize (~> 5.1.0.beta2)
+  invisible_captcha (~> 2.0)
   jbuilder (~> 2.5)
   jquery-rails
   kaminari
@@ -540,6 +568,7 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   mail_view
   meta_request
+  mimemagic!
   money-rails
   omniauth-facebook
   omniauth-google-oauth2
@@ -576,5 +605,8 @@ DEPENDENCIES
   wicked_pdf
   wkhtmltopdf-binary
 
+RUBY VERSION
+   ruby 2.5.9p229
+
 BUNDLED WITH
-   1.17.3
+   2.3.26

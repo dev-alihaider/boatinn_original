@@ -2,7 +2,7 @@
 
 class ApplicationMailer < ActionMailer::Base # :nodoc:
 #  default from: "BoatINN Notifier <#{ENV['SMTP_EMAIL_USER_NAME']}>"
-  default from: "BoatINN Notifier <no-reply@boatinn.net>"
+  default from: "BoatINN Notifier <no-reply@boatinn.es>"
   layout 'mailer'
   add_template_helper(ApplicationHelper)
   add_template_helper(LocalizeHelper)

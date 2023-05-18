@@ -1,5 +1,5 @@
 User-agent: *
 Disallow: /admin/*
 Allow: /
-Sitemap: https://boatinn.net/sitemap.xml
-Host: https://boatinn.net
+Sitemap: https://boatinn.es/sitemap.xml
+Host: https://boatinn.es

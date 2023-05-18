@@ -85,7 +85,7 @@ Rails.application.configure do
   end
 
   # mail
-  config.action_mailer.default_url_options = { host: ENV['HOST'] }
+  config.action_mailer.default_url_options = { host: ENV['HOST_DOMAIN'] }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.smtp_settings = {
@@ -102,5 +102,15 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.asset_host = "https://boatinn.net/"
+  config.action_mailer.asset_host = "https://boatinn.es/"
+
+  Paperclip::Attachment.default_options[:s3_credentials] = {
+      :bucket => ENV['S3_BUCKET_NAME'],
+      :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'],
+      :region => 'us-east-1'
+  }
+  Paperclip::Attachment.default_options[:s3_region] = 'us-east-1'
+  Paperclip::Attachment.default_options[:s3_host_name] = 's3.us-east-1.amazonaws.com'
+  # Paperclip.options[:command_path] = 'usr/local/bin'
 end
