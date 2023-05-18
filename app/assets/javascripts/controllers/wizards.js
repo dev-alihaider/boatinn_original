@@ -221,44 +221,44 @@ $(document).ready(function () {
 
     function wizardValidation() {
       var pageActive = $('.wizard-page:not(.hidden)');
-      if (!pageActive.find('input[type="text"]').length == 0) {
-        var inputText = pageActive.find('input[type="text"]:not(.disabled, .season-rate-price)');
+    //   if (!pageActive.find('input[type="text"]').length == 0) {
+    //     var inputText = pageActive.find('input[type="text"]:not(.disabled, .season-rate-price)');
 
-        inputText.each(function () {
-          if ($(this).val() == '') {
-            if (($(this).parent().find('.field-error').length == 0)) {
-              $(this).parent().append('<span class="field-error">' + emptyTextMessage + '</span>');
-            }
-            $(this).addClass('input-error');
-          } else {
-            $(this).siblings('.field-error').detach();
-            $(this).removeClass('input-error');
-          }
-        });
+    //     inputText.each(function () {
+    //       if ($(this).val() == '') {
+    //         if (($(this).parent().find('.field-error').length == 0)) {
+    //           $(this).parent().append('<span class="field-error">' + emptyTextMessage + '</span>');
+    //         }
+    //         $(this).addClass('input-error');
+    //       } else {
+    //         $(this).siblings('.field-error').detach();
+    //         $(this).removeClass('input-error');
+    //       }
+    //     });
 
-        // Season rates prices group validation: at least one price filled.
-        var seasonRatesTabs = pageActive.find('#season_rates div.nested-fields');
-        seasonRatesTabs.each(function () {
-          var seasonRatesInputs = $(this).find('input[type="text"]:not(.disabled).season-rate-price');
+    //     // Season rates prices group validation: at least one price filled.
+    //     var seasonRatesTabs = pageActive.find('#season_rates div.nested-fields');
+    //     seasonRatesTabs.each(function () {
+    //       var seasonRatesInputs = $(this).find('input[type="text"]:not(.disabled).season-rate-price');
 
-          if ($(seasonRatesInputs[0]).val() === '' &&
-              $(seasonRatesInputs[1]).val() === '' &&
-              $(seasonRatesInputs[2]).val() === '' &&
-              $(seasonRatesInputs[3]).val() === '') {
-            seasonRatesInputs.each(function () {
-              $(this).addClass('input-error');
-              if (($(this).parent().find('.field-error').length === 0)) {
-                $(this).parent().append('<span class="field-error">' + emptyTextMessage + '</span>');
-              }
-            })
-          } else {
-            seasonRatesInputs.each(function () {
-              $(this).removeClass('input-error');
-              $(this).siblings('.field-error').detach();
-            })
-          }
-        })
-      };
+    //       if ($(seasonRatesInputs[0]).val() === '' &&
+    //           $(seasonRatesInputs[1]).val() === '' &&
+    //           $(seasonRatesInputs[2]).val() === '' &&
+    //           $(seasonRatesInputs[3]).val() === '') {
+    //         seasonRatesInputs.each(function () {
+    //           $(this).addClass('input-error');
+    //           if (($(this).parent().find('.field-error').length === 0)) {
+    //             $(this).parent().append('<span class="field-error">' + emptyTextMessage + '</span>');
+    //           }
+    //         })
+    //       } else {
+    //         seasonRatesInputs.each(function () {
+    //           $(this).removeClass('input-error');
+    //           $(this).siblings('.field-error').detach();
+    //         })
+    //       }
+    //     })
+    //   };
 
         if (!pageActive.find('input[type="text"]').length == 0) {
             var inputTextDisabled = pageActive.find('input[type="text"]');
@@ -270,61 +270,61 @@ $(document).ready(function () {
             });
         };
 
-        if ((!pageActive.find('#boat_season_rates_attributes_0_per_half_day').length == 0) &&
-            (!$('#boat_season_rates_attributes_0_per_half_day').not(':disabled').length == 0)    
-        ) {
-            input = $('#boat_season_rates_attributes_0_per_half_day');
-            if (input.val() === '') {
-                if ((input.parent().find('.field-error').length == 0)) {
-                    input.parent().append('<span class="field-error">' + emptyNumberMessage + '</span>');
-                }
-            }
-        };        
+        // if ((!pageActive.find('#boat_season_rates_attributes_0_per_half_day').length == 0) &&
+        //     (!$('#boat_season_rates_attributes_0_per_half_day').not(':disabled').length == 0)    
+        // ) {
+        //     input = $('#boat_season_rates_attributes_0_per_half_day');
+        //     if (input.val() === '') {
+        //         if ((input.parent().find('.field-error').length == 0)) {
+        //             input.parent().append('<span class="field-error">' + emptyNumberMessage + '</span>');
+        //         }
+        //     }
+        // };        
 
-        if ((!pageActive.find('#boat_season_rates_attributes_0_per_day').length == 0) &&
-            (!$('#boat_season_rates_attributes_0_per_day').not(':disabled').length == 0)    
-        ) {
-            input = $('#boat_season_rates_attributes_0_per_day');
-            if (input.val() === '') {
-                if ((input.parent().find('.field-error').length == 0)) {
-                    input.parent().append('<span class="field-error">' + emptyNumberMessage + '</span>');
-                }
-            } else if (parseInt(input.val()) < parseInt($('#boat_season_rates_attributes_0_per_half_day').val())) {
-                if ((input.parent().find('.field-error').length == 0)) {
-                    input.parent().append('<span class="field-error" style="top: 70px">' + perDayMinValMessage + '</span>');
-                }                
-            }
-        };
+        // if ((!pageActive.find('#boat_season_rates_attributes_0_per_day').length == 0) &&
+        //     (!$('#boat_season_rates_attributes_0_per_day').not(':disabled').length == 0)    
+        // ) {
+        //     input = $('#boat_season_rates_attributes_0_per_day');
+        //     if (input.val() === '') {
+        //         if ((input.parent().find('.field-error').length == 0)) {
+        //             input.parent().append('<span class="field-error">' + emptyNumberMessage + '</span>');
+        //         }
+        //     } else if (parseInt(input.val()) < parseInt($('#boat_season_rates_attributes_0_per_half_day').val())) {
+        //         if ((input.parent().find('.field-error').length == 0)) {
+        //             input.parent().append('<span class="field-error" style="top: 70px">' + perDayMinValMessage + '</span>');
+        //         }                
+        //     }
+        // };
 
-        if ((!pageActive.find('#boat_season_rates_attributes_0_per_night').length == 0) &&
-            (!$('#boat_season_rates_attributes_0_per_night').not(':disabled').length == 0)    
-        ) {
-            input = $('#boat_season_rates_attributes_0_per_night');
-            if (input.val() === '') {
-                if ((input.parent().find('.field-error').length == 0)) {
-                    input.parent().append('<span class="field-error">' + emptyNumberMessage + '</span>');
-                }
-            } else if (parseInt(input.val()) < parseInt($('#boat_season_rates_attributes_0_per_day').val())) {
-                if ((input.parent().find('.field-error').length == 0)) {
-                    input.parent().append('<span class="field-error" style="top: 100px">' + perNightMinValMessage + '</span>');
-                }                
-            }
-        };
+        // if ((!pageActive.find('#boat_season_rates_attributes_0_per_night').length == 0) &&
+        //     (!$('#boat_season_rates_attributes_0_per_night').not(':disabled').length == 0)    
+        // ) {
+        //     input = $('#boat_season_rates_attributes_0_per_night');
+        //     if (input.val() === '') {
+        //         if ((input.parent().find('.field-error').length == 0)) {
+        //             input.parent().append('<span class="field-error">' + emptyNumberMessage + '</span>');
+        //         }
+        //     } else if (parseInt(input.val()) < parseInt($('#boat_season_rates_attributes_0_per_day').val())) {
+        //         if ((input.parent().find('.field-error').length == 0)) {
+        //             input.parent().append('<span class="field-error" style="top: 100px">' + perNightMinValMessage + '</span>');
+        //         }                
+        //     }
+        // };
         
-        if ((!pageActive.find('#boat_season_rates_attributes_0_per_week').length == 0) &&
-            (!$('#boat_season_rates_attributes_0_per_week').not(':disabled').length == 0)    
-        ) {
-            input = $('#boat_season_rates_attributes_0_per_week');
-            if (input.val() === '') {
-                if ((input.parent().find('.field-error').length == 0)) {
-                    input.parent().append('<span class="field-error">' + emptyNumberMessage + '</span>');
-                }
-            } else if (parseInt(input.val()) < parseInt($('#boat_season_rates_attributes_0_per_night').val())) {
-                if ((input.parent().find('.field-error').length == 0)) {
-                    input.parent().append('<span class="field-error" style="top: 70px">' + perWeekMinValMessage + '</span>');
-                }                
-            }
-        };        
+        // if ((!pageActive.find('#boat_season_rates_attributes_0_per_week').length == 0) &&
+        //     (!$('#boat_season_rates_attributes_0_per_week').not(':disabled').length == 0)    
+        // ) {
+        //     input = $('#boat_season_rates_attributes_0_per_week');
+        //     if (input.val() === '') {
+        //         if ((input.parent().find('.field-error').length == 0)) {
+        //             input.parent().append('<span class="field-error">' + emptyNumberMessage + '</span>');
+        //         }
+        //     } else if (parseInt(input.val()) < parseInt($('#boat_season_rates_attributes_0_per_night').val())) {
+        //         if ((input.parent().find('.field-error').length == 0)) {
+        //             input.parent().append('<span class="field-error" style="top: 70px">' + perWeekMinValMessage + '</span>');
+        //         }                
+        //     }
+        // };        
 
         
         if (!pageActive.find('#boat_listing_title').length == 0) {
