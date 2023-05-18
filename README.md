@@ -170,7 +170,7 @@ Restart services puma and sidekiq:
 Go to server to user "deploy" with ssh
 
 <pre>
-ssh deploy@boatinn.net -p 9922
+ssh deploy@boatinn.es -p 9922
 </pre>
 
 and run command:

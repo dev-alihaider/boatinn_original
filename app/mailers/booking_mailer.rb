@@ -16,7 +16,7 @@ class BookingMailer < ApplicationMailer
     @travel.attach_current_bookings([@booking])
     @message_text = @travel.messages.messages.where(sender: @client).last&.content
     user_email @seller do |email|
-      mail(to: email, bcc: "info@boatinn.net", subject: @subject)
+      mail(to: email, bcc: "info@boatinn.es", subject: @subject)
     end
   end
 
@@ -25,7 +25,7 @@ class BookingMailer < ApplicationMailer
     @travel = TravelService::Travel.new(@trip, @client)
     @travel.attach_current_bookings([@booking])
     user_email @booking.client do |email|
-      mail(to: email, bcc: "info@boatinn.net", subject: @subject)
+      mail(to: email, bcc: "info@boatinn.es", subject: @subject)
     end
   end
 
@@ -33,7 +33,7 @@ class BookingMailer < ApplicationMailer
     booking_locals booking_id
     @reason = @booking.trip.trip_cancellation.reason
     user_email @seller do |email|
-      mail(to: email, bcc: "info@boatinn.net", subject: @subject)
+      mail(to: email, bcc: "info@boatinn.es", subject: @subject)
     end
   end
 
@@ -47,7 +47,7 @@ class BookingMailer < ApplicationMailer
     }, locale: I18n.locale }
     @similar_listings_url = search_url(search_params)
     user_email @booking.client do |email|
-      mail(to: email, bcc: "info@boatinn.net", subject: @subject)
+      mail(to: email, bcc: "info@boatinn.es", subject: @subject)
     end
   end
 
@@ -57,7 +57,7 @@ class BookingMailer < ApplicationMailer
     @travel.attach_current_bookings([@booking])
     @message_text = @travel.messages.messages.where(sender: @client).last&.content
     user_email @seller do |email|
-      mail(to: email, bcc: "info@boatinn.net", subject: @subject)
+      mail(to: email, bcc: "info@boatinn.es", subject: @subject)
     end
   end
 
@@ -104,7 +104,7 @@ class BookingMailer < ApplicationMailer
     user_email @recipient do
       mail(
         to: @recipient.email,
-        bcc: "info@boatinn.net",
+        bcc: "info@boatinn.es",
         subject: t("booking_mailer.new_unread_message.subject")
       )
     end

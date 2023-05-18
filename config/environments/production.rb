@@ -102,7 +102,7 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.asset_host = "https://boatinn.net/"
+  config.action_mailer.asset_host = "https://boatinn.es/"
 
   Paperclip::Attachment.default_options[:s3_credentials] = {
       :bucket => ENV['S3_BUCKET_NAME'],
